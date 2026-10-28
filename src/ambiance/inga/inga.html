@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+    <meta charset="UTF-8">
+    <title>Inga</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page-arrow right">
+    <a href="inga2.html">→</a>
+</div>
+
+
+<div id="room">
+
+    <img src="1.png" alt="">
+
+
+    <!-- zones cliquables : x1, y1, x2, y2 en pixels de l'image, comme les anciens coords ;
+         si deux zones se chevauchent, la dernière de la liste passe au-dessus -->
+
+    <button class="zone" type="button" aria-label="chaise" style="--x1: 361; --y1: 159; --x2: 456; --y2: 262;" onclick="talk('chair')"></button>
+    <button class="zone" type="button" aria-label="fenêtre" style="--x1: 712; --y1: 14; --x2: 805; --y2: 126;" onclick="talk('window')"></button>
+    <button class="zone" type="button" aria-label="chat" style="--x1: 1020; --y1: 510; --x2: 1126; --y2: 594;" onclick="talk('chat')"></button>
+    <button class="zone" type="button" aria-label="poster" style="--x1: 1216; --y1: 15; --x2: 1322; --y2: 178;" onclick="talk('poster')"></button>
+
+
+    <div id="dialog">
+
+        <img
+            id="speaker"
+            src="https://i.postimg.cc/Zn8ZdS2Q/image-2026-09-03-100531968.png"
+        >
+
+        <div id="dialog-content">
+
+            <div id="text"></div>
+
+            <span>suite</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="dialogues.js"></script>
+<script src="room.js"></script>
+
+</body>
+</html>
+

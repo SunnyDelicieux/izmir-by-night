@@ -1,0 +1,14 @@
+body::before {
+  content: "";
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60vh;
+  opacity: var(--iz-coin-opacity);
+  background: var(--iz-coin) no-repeat right bottom;
+  background-size: auto 100%;
+  pointer-events: none;
+}
+
+body.sans-coin::before { display: none; }

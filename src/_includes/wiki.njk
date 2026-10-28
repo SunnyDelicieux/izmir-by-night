@@ -1,0 +1,16 @@
+---
+layout: base.njk
+css: [/css/wiki.css]
+---
+{#- Une page du wiki (src/univers/). Le grand titre vient de « titre: » dans l'en-tête de la page.
+    Pour un sommaire automatique, la page contient :
+      <div id="toc"></div>        ← le sommaire se remplit ici avec les titres de la page
+      <div id="contents"> … </div>  ← le texte de la page
+    (voir src/univers/_modele.html) -#}
+<main>
+  <div id="container">
+    <h1>{{ titre }}</h1>
+{{ content | ancres | safe }}
+  </div>
+</main>
+<script src="/js/sommaire.js"></script>

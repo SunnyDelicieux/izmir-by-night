@@ -1,0 +1,92 @@
+
+(function () {
+  const BADGES = [
+    { id: "writer", image: "/img/blinkies/badges/writer.gif", nom: "writer",
+      desc: "A écrit une lettre dans le coffre-fort.", compte: "lettres", min: 1 },
+    { id: "database", image: "/img/blinkies/badges/database.gif", nom: "i love my database",
+      desc: "A posté une date sur le calendrier.", compte: "evenements", min: 1 },
+    { id: "actually", image: "/img/blinkies/badges/actually.gif", nom: "actually…",
+      desc: "A envoyé un signalement sur le site.", compte: "signalements", min: 1 },
+    { id: "pyramide", image: "/img/blinkies/badges/pyramide.gif", nom: "remember 2008",
+      desc: "A ouvert la chute de la Pyramide dans le calendrier.", main: true },
+    { id: "nebetta", image: "/img/blinkies/badges/nebetta.gif", nom: "Nebetta's darling",
+      desc: "A écrit une rumeur de Nebetta.", main: true },
+    { id: "inga", image: "/img/blinkies/badges/inga.gif", nom: "cyber genius",
+      desc: "A fini le jeu d'Inga.", main: true },
+    { id: "pigeon", image: "/img/blinkies/badges/pigeon.gif", nom: "protect the pigeon",
+      desc: "A cherché « pigeon » dans le Code de Smyrne.", main: true },
+    { id: "noshame", image: "/img/blinkies/badges/noshame.gif", nom: "incognito mode",
+      desc: "A ouvert une image spice de la galerie.", main: true },
+    { id: "paranoid", image: "/img/blinkies/badges/paranoid.gif", nom: "paranoid much ?",
+      desc: "A tiré les cartes de tarot dix fois.", main: true },
+  ];
+
+  const box = document.getElementById("badges");
+  const list = document.getElementById("badges-list");
+  if (!box || !list || !window.izmirAccount) return;
+
+  async function compter(client, uid) {
+    const n = async (query) => {
+      const { count, error } = await query;
+      return error ? 0 : count || 0;
+    };
+    const opts = { count: "exact", head: true };
+    const [lettres, evenements, signalements] = await Promise.all([
+      n(client.from("handouts").select("id", opts).eq("author", uid).not("contenu", "is", null)),
+      n(client.from("Calendar").select("id", opts).eq("author", uid)),
+      n(client.from("tickets").select("id", opts).eq("user_id", uid)),
+    ]);
+    return { lettres, evenements, signalements };
+  }
+
+  function afficher(gagnes) {
+    list.innerHTML = "";
+    if (!gagnes.length) {
+      list.innerHTML = '<div class="side-hint">aucun badge pour l\'instant…</div>';
+      return;
+    }
+    for (const b of gagnes) {
+      const img = document.createElement("img");
+      img.src = b.image;
+      img.alt = b.nom;
+      img.title = `${b.nom} : ${b.desc}`;
+      img.width = 150;
+      img.height = 20;
+      img.className = "badge-img";
+      list.appendChild(img);
+    }
+  }
+
+  let compte = null;
+  let totaux = {};
+  let donnes = [];
+
+  function rafraichir() {
+    afficher(BADGES.filter((b) => (b.main ? donnes.includes(b.id) : (totaux[b.compte] || 0) >= b.min)));
+  }
+
+  function gagner(badge) {
+    if (!compte || donnes.includes(badge)) return;
+    donnes.push(badge);
+    izmirAccount.gagnerBadge(badge).then((ok) => {
+      if (!ok) donnes = donnes.filter((b) => b !== badge);
+      rafraichir();
+    });
+  }
+  async function recompter() {
+    if (!compte) return;
+    totaux = await compter(compte.client, compte.user.id);
+    rafraichir();
+  }
+
+  window.izmirBadges = { gagner, recompter };
+
+  izmirAccount.onChange(async ({ client, user, profile }) => {
+    box.hidden = !user;
+    compte = user ? { client, user } : null;
+    if (!user) return;
+    donnes = (Array.isArray(profile?.badges) ? profile.badges : []).map(izOutils.norm);
+    totaux = await compter(client, user.id);
+    rafraichir();
+  });
+})();

@@ -1,0 +1,129 @@
+:root {
+  --iz-deep: #161008;
+  --iz-bg: #1e1408;
+  --iz-bar: rgba(20, 12, 4, 0.97);
+  --iz-menu: #1a1006;
+  --iz-panel: rgba(28, 18, 8, 0.97);
+  --iz-sheet: #1c1208;
+  --iz-field: #1e1408;
+  --iz-sunken: #221608;
+  --iz-box: #261a0c;
+  --iz-box-soft: #301e10;
+  --iz-button: #2e1e0e;
+  --iz-button-hover: #1e1208;
+  --iz-button-active: #1e1208;
+  --iz-overlay: rgba(10, 6, 2, 0.7);
+
+  --iz-border: #3a2810;
+  --iz-border-strong: #4a3018;
+  --iz-border-hover: #4a3018;
+
+  --iz-title: #e8dfc8;
+  --iz-text: #e8dcc0;
+  --iz-text-soft: #c8b898;
+  --iz-button-text: #ecdfc8;
+  --iz-button-text-hover: #d4aa72;
+  --iz-muted: #a07840;
+  --iz-placeholder: #a08a68;
+  --iz-quote: #d4b87c;
+
+  --iz-accent: #c09050;
+  --iz-accent-hover: #d4aa72;
+  --iz-accent-dim: #7a5028;
+
+  --iz-shadow: rgba(0, 0, 0, 0.35);
+  --iz-drop-shadow: rgba(0, 0, 0, 0.45);
+
+  --iz-coin: url('/img/idia.webp');
+  --iz-coin-opacity: 0.69;
+
+  --iz-font: Arial, Tahoma, Verdana, sans-serif;
+  --iz-font-title: Georgia, "Times New Roman", serif;
+
+  --iz-radius: 4px;
+}
+
+:root:has(> body.light) {
+  --iz-deep: #e8d4bc;
+  --iz-bg: #e8d4bc;
+  --iz-bar: rgba(245, 232, 215, 0.97);
+  --iz-menu: #f3e5d2;
+  --iz-panel: rgba(245, 232, 215, 0.99);
+  --iz-sheet: #fbf5ec;
+  --iz-field: #fbf5ec;
+  --iz-sunken: #ead8c0;
+  --iz-box: #f0e0cc;
+  --iz-box-soft: #e8d0b4;
+  --iz-button: #dfc0a0;
+  --iz-button-hover: #cfaa88;
+  --iz-button-active: #ead8c0;
+  --iz-overlay: rgba(60, 30, 10, 0.4);
+
+  --iz-border: #c8906a;
+  --iz-border-strong: #c8906a;
+  --iz-border-hover: #a86840;
+
+  --iz-title: #2a1a0e;
+  --iz-text: #2a1a0e;
+  --iz-text-soft: #3a2010;
+  --iz-button-text: #2a1a0e;
+  --iz-button-text-hover: #150d05;
+  --iz-muted: #7a5a3e;
+  --iz-placeholder: #8b6a4a;
+  --iz-quote: #5a2e10;
+
+  --iz-accent: #8b4a18;
+  --iz-accent-hover: #b86030;
+  --iz-accent-dim: #c8906a;
+
+  --iz-shadow: rgba(180, 110, 60, 0.12);
+  --iz-drop-shadow: rgba(90, 45, 15, 0.18);
+
+  --iz-coin: url('/img/coin-jour.webp');
+  --iz-coin-opacity: 0.75;
+}
+
+:root:has(> body.halloween:not(.light)) {
+  --iz-deep: #160909;
+  --iz-bg: #1e0d0e;
+  --iz-bar: rgba(24, 10, 11, 0.97);
+  --iz-menu: #1c0b0c;
+  --iz-panel: rgba(30, 13, 14, 0.96);
+  --iz-sheet: #1f0e0f;
+  --iz-field: #180a0b;
+  --iz-sunken: #2a1214;
+  --iz-box: #2a1214;
+  --iz-box-soft: #341719;
+  --iz-button: #3a1a1d;
+  --iz-button-hover: #241011;
+  --iz-button-active: #241011;
+  --iz-overlay: rgba(20, 5, 6, 0.75);
+
+  --iz-border: #4e2226;
+  --iz-border-strong: #6e2e34;
+  --iz-border-hover: #8a3c43;
+
+  --iz-title: #f6e4e0;
+  --iz-text: #efdcd7;
+  --iz-text-soft: #d4b2ad;
+  --iz-button-text: #efdcd7;
+  --iz-button-text-hover: #f4a6a4;
+  --iz-muted: #c48a87;
+  --iz-placeholder: #9a6e6c;
+  --iz-quote: #e9b2ac;
+
+  --iz-accent: #e07d7d;
+  --iz-accent-hover: #f4a6a4;
+  --iz-accent-dim: #8a3c43;
+
+  --iz-shadow: rgba(0, 0, 0, 0.4);
+  --iz-drop-shadow: rgba(20, 0, 2, 0.5);
+
+  --iz-coin: url('/img/gab.webp');
+  --iz-coin-opacity: 1;
+}
+
+:root:has(> body.halloween:not(.light)),
+body.halloween:not(.light) {
+  background: var(--iz-bg) url('/img/halloween-fond.webp') repeat;
+}

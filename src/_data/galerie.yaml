@@ -1,0 +1,1103 @@
+# Les dessins de la galerie (/galerie/), dans l'ordre d'affichage.
+#   src  : le fichier dans src/galerie/dessins/ (ex. sun/hanged.webp)
+#   alt  : la description courte de l'image ; desc : le texte sous l'image agrandie
+#   tags : les filtres où il apparaît (voir galerie_filtres.yaml), « spice » pour le flouter
+#   pages : pour une BD ou une série, la liste des images (à la place de src)
+# Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
+
+- src: sun/hanged.webp
+  alt: Hanged.
+  tags: [sunny, noncanon, brujah, baran]
+  desc: The Hanged man.
+- src: sun/atamdeath.webp
+  alt: Atam death.
+  tags: [sunny, noncanon, nosferatu, atam]
+  desc: Death.
+- src: sun/lineupbrujah.webp
+  alt: Lineup brujah.
+  tags: [sunny, canon, brujah, halloween]
+  desc: Aaron, Enry, Gabriel and Essil.
+- src: sun/trio.webp
+  alt: Trio.
+  tags: [sunny, canon, ventrue, halloween]
+  desc: Alita, Thouros and Louiza.
+- src: sun/enry.webp
+  alt: Enry.
+  tags: [sunny, canon, enry, brujah, halloween]
+  desc: Enry, blue feather.
+- src: sun/aaron.webp
+  alt: Aaron.
+  tags: [sunny, canon, aaron, brujah, halloween]
+  desc: Aaron, cult leader.
+- src: sun/thouros.webp
+  alt: zacharias.
+  tags: [sunny, canon, thouros, ventrue, halloween]
+  desc: Witch hunter.
+- src: sun/hermit.webp
+  alt: zacharias.
+  tags: [sunny, canon, dimitrios, tremere, halloween]
+  desc: The hermit.
+- src: sun/alita.webp
+  alt: Alita.
+  tags: [sunny, canon, alita, ventrue, halloween]
+  desc: Alita, spirit of the forest.
+- src: sun/essil.webp
+  alt: zacharias.
+  tags: [sunny, canon, essil, brujah, halloween]
+  desc: The ol'mighty one
+- src: sun/zacharias.webp
+  alt: zacharias.
+  tags: [sunny, canon, zacharias, tremere, halloween]
+  desc: The sun.
+- src: sun/kaadir.webp
+  alt: Kaadir costume.
+  tags: [yolnir, canon, kaadir, brujah, halloween]
+  desc: Kaadir costume.
+- type: comic
+  title: Zaya, death rider
+  alt: Zaya, death rider
+  tags: [sunny, canon, ventrue, zaya, halloween]
+  desc: Zaya, death rider.
+  pages:
+    - src: sun/DEATH2.webp
+    - src: sun/death.webp
+- type: comic
+  title: Diable
+  alt: Diable
+  tags: [sunny, canon, brujah, gabriel, halloween]
+  desc: diable.
+  pages:
+    - src: sun/diable.webp
+    - src: sun/gabee.webp
+- src: sun/dimitri.webp
+  alt: Dimitri.
+  tags: [sunny, canon, dimitri, ventrue, halloween]
+  desc: Dimitri icon hermes.
+- src: sun/angel.webp
+  alt: Tamperance.
+  tags: [sunny, canon, arslan, ventrue, halloween]
+  desc: Angel icon.
+- src: sun/temperance.webp
+  alt: Tamperance.
+  tags: [sunny, canon, eleni, tremere, halloween]
+  desc: Tamperance.
+- src: sun/highpriestess.webp
+  alt: High Priestess.
+  tags: [sunny, canon, ismini, tremere, halloween]
+  desc: High Priestess.
+- src: sun/EMPRESS.webp
+  alt: Empress.
+  tags: [sunny, canon, sophia, tremere, halloween]
+  desc: Empress.
+- src: sun/MOON.webp
+  alt: Moon.
+  tags: [sunny, canon, eylem, tremere, halloween]
+  desc: Moon.
+- src: sun/strenght.webp
+  alt: Strenght.
+  tags: [sunny, canon, tarik, tremere, halloween]
+  desc: Strenght.
+- src: ashita/arslan_halloween.webp
+  alt: Louiza.
+  tags: [ashita, canon, arslan, ventrue, halloween]
+  desc: Arslan Halloween.
+- src: sun/magician.webp
+  alt: Mariko.
+  tags: [sunny, canon, esen, tremere, halloween]
+  desc: I Magician.
+- src: sun/louiza.webp
+  alt: Louiza.
+  tags: [sunny, canon, louiza, ventrue, halloween]
+  desc: Run bunny, run.
+- src: ashita/dimitri_hermes.webp
+  alt: Hermes.
+  tags: [ashita, canon, dimitri, ventrue, halloween]
+  desc: Dimitri Halloween.
+- src: sun/mariko-2.webp
+  alt: Mariko.
+  tags: [sunny, canon, mariko, tremere, halloween]
+  desc: XX Judgement.
+- src: sun/carreau.webp
+  alt: Love.
+  tags: [sunny, canon, angelos, toreador, halloween]
+  desc: Lignée du carreau.
+- src: deneb/love.webp
+  alt: Love.
+  tags: [deneb, canon, chae-yeong, ji-woo, ventrue]
+  desc: Lovers.
+- src: autriche/lundi.webp
+  alt: Baba ishak.
+  tags: [autriche, canon, baba ishak, ventrue]
+  desc: Baba ishak.
+- src: autriche/baba.webp
+  alt: Baba ishak.
+  tags: [autriche, canon, baba ishak, ventrue]
+  desc: Baba ishak.
+- src: sun/aylin.webp
+  alt: Aylin d'halloween.
+  tags: [sunny, canon, aylin, toreador, halloween]
+  desc: Aylin d'halloween.
+- src: sun/baran.webp
+  alt: Baran d'halloween.
+  tags: [sunny, canon, baran, brujah, halloween]
+  desc: Baran d'halloween.
+- src: sun/duo.webp
+  alt: Duo Idia Enry d'halloween.
+  tags: [sunny, canon, brujah, lasombra, enry, idia, halloween]
+  desc: Duo Idia Enry d'halloween.
+- src: sun/emine.webp
+  alt: Emine d'halloween.
+  tags: [sunny, canon, emine, brujah, halloween]
+  desc: Emine d'halloween.
+- src: sun/nafissa.webp
+  alt: Nafissa d'halloween.
+  tags: [sunny, canon, nafissa, toreador, halloween]
+  desc: Nafissa d'halloween.
+- src: sun/poster.webp
+  alt: Elysium d'halloween.
+  tags: [sunny, canon, asset, nebetta, nosferatu, halloween]
+  desc: Elysium d'halloween.
+- src: sun/sophiaed.webp
+  alt: Soul keeper.
+  tags: [sunny, noncanon, tremere, sophia]
+  desc: Soul keeper.
+- src: sun/prophete.webp
+  alt: The whispers.
+  tags: [sunny, canon, autre, toreador, soteria, le prophète]
+  desc: The whispers.
+- src: vincent/izmail.webp
+  alt: 22 décembre 1790, izmail.
+  tags: [vincent, canon, ventrue, thouros]
+  desc: 22 décembre 1790, izmail.
+- src: autriche/carthage.webp
+  alt: Fils de Carthage.
+  tags: [autriche, asset, brujah]
+  desc: Fils de Carthage.
+- src: yolnir/ARR.mp4
+  alt: Animation Nour
+  tags: [video, yolnir, canon, brujah, tremere, toreador, ventrue, esen, arslan, enry, nafissa, gabriel, tarik, chae-yeong, kaadir]
+  desc: Animation de Nour.
+- src: sunny/green.webp
+  alt: Green if for brujah.
+  tags: [sunny, canon, brujah, emine, enry]
+  desc: Green if for brujah.
+- src: sunny/BD.webp
+  alt: Did i not deserve you ?
+  tags: [sunny, canon, ventrue, dimitri, hadla]
+  desc: Did i not deserve you ?
+- src: sunny/die.webp
+  alt: If we don't win, they die.
+  tags: [sunny, noncanon, lasombra, brujah, nosferatu, gabriel, nour, inga]
+  desc: If we don't win, they die.
+- src: deneb/idia.webp
+  alt: Icon idia.
+  tags: [deneb, canon, lasombra, idia]
+  desc: Icon idia.
+- src: sunny/tremeretrio.webp
+  alt: Before the fire
+  tags: [sunny, noncanon, alkinoos, tremere]
+  desc: Red is for tremere.
+- src: sunny/arrow.webp
+  alt: You have beaten truth.
+  tags: [sophia, canon, tremere, sunny]
+  desc: You have beaten truth.
+- src: sun/test2.mp4
+  alt: test anim.
+  tags: [sunny, noncanon, tremere, lasombra, nour, esen, video]
+  desc: Test animation nour.
+- type: comic
+  title: Nour
+  alt: Nour
+  tags: [sunny, noncanon, lasombra, nour]
+  desc: WIP du projet d'animation pour Nour.
+  pages:
+    - src: sunny/image.webp
+    - src: sunny/image2.webp
+- src: autriche/Batards.webp
+  alt: Trois fois bâtards.
+  tags: [autriche, canon, tremere, handout]
+  desc: Trois fois bâtards.
+- src: deneb/kaadirr.webp
+  alt: Kaadir.
+  tags: [deneb, canon, brujah, kaadir]
+  desc: Kaadir icon.
+- src: sunny/dude.gif
+  alt: Sophia.
+  tags: [sunny, noncanon, nosferatu, ventrue, autre, kushi, atam, zaya]
+  desc: The debt is paid.
+- src: sunny/alitafancy.webp
+  alt: Alita.
+  tags: [sunny, canon, ventrue, alita]
+  desc: Elysium ready
+- src: sunny/fire.webp
+  alt: Fire.
+  tags: [sunny, noncanon, tremere, dimitrios]
+  desc: Fire and ashes
+- src: yolnir/dog.webp
+  alt: Dog tremere.
+  tags: [yolnir, noncanon, dog]
+  desc: wif wif
+- src: sunny/uyanik.webp
+  alt: Nour.
+  tags: [sunny, canon, uyanik, emre yilmaz]
+  desc: Water downed stare
+- src: sunny/YELLOW.webp
+  alt: Nour.
+  tags: [sunny, noncanon, brujah, eudokia]
+  desc: Blessed be the blade that cut.
+- src: sunny/ingated.webp
+  alt: Inga.
+  tags: [sunny, canon, inga, nosferatu]
+  desc: Have you seen.
+- src: sunny/baeria.webp
+  alt: Soteria.
+  tags: [sunny, canon, toreador, soteria]
+  desc: Don't cry, the sun is kind.
+- src: sunny/gambling.webp
+  alt: Nour.
+  tags: [sunny, canon, lasombra, nour]
+  desc: You lost
+- src: deneb/enryr.webp
+  alt: Enry.
+  tags: [deneb, canon, brujah, enry]
+  desc: Enry token
+- src: deneb/tarikk.webp
+  alt: tarik.
+  tags: [deneb, canon, tremere, tarik]
+  desc: Tarik token
+- src: autriche/Iphigenie.webp
+  alt: iphigenie.
+  tags: [autriche, canon, brujah, iphigenie]
+  desc: Le Sacrifice d'Iphigénie
+- src: sunny/eminecr.webp
+  alt: nafissa.
+  tags: [sunny, canon, brujah, emine]
+  desc: And one day, you will discover something about yourself.
+- src: sunny/nafissacr.webp
+  alt: nafissa.
+  tags: [sunny, noncanon, toreador, nafissa]
+  desc: Warm, is the embrace of death.
+- src: sunny/atamed.webp
+  alt: atam.
+  tags: [sunny, noncanon, nosferatu, atam]
+  desc: 20 fucking century boys.
+- src: sunny/idiamg.webp
+  alt: idia.
+  tags: [sunny, noncanon, lasombra, idia]
+  desc: the guardian of shadow, idia.
+- src: sunny/GABOU.webp
+  alt: gab.
+  tags: [sunny, noncanon, brujah, gabriel]
+  desc: gabriel (vous pouvez pas voir le stand vous en avez pas).
+- src: sunny/duimitrios.webp
+  alt: dimitrios.
+  tags: [sunny, noncanon, tremere, dimitrios]
+  desc: sunny larp avoir lu monster.
+- src: sunny/sugarune.webp
+  alt: ismini.
+  tags: [sunny, noncanon, tremere, ismini]
+  desc: Sugar sugar rune !.
+- src: deneb/mariko.webp
+  alt: Mariko.
+  tags: [deneb, canon, tremere, mariko]
+  desc: Mariko token.
+- src: deneb/esen.webp
+  alt: Esen.
+  tags: [deneb, canon, tremere, esen]
+  desc: Esen token.
+- src: deneb/arslan.webp
+  alt: Arslan.
+  tags: [deneb, canon, ventrue, arslan]
+  desc: Arslan token.
+- src: deneb/dimitri.webp
+  alt: Dimitri.
+  tags: [deneb, canon, ventrue, dimitri]
+  desc: Dimitri token.
+- src: sunny/arc.webp
+  alt: Sophia.
+  tags: [sunny, noncanon, tremere, sophia]
+  desc: Short hair sophia supremacy.
+- src: sunny/sabbat.webp
+  alt: Sabbat.
+  tags: [sunny, canon, asset]
+  desc: Asset du sabbat.
+- src: /img/wiki/icon/wikilogo.png
+  alt: Logo.
+  tags: [autriche, canon, asset]
+  desc: Icon Izmir.
+- src: deneb/chae.webp
+  alt: Chae.
+  tags: [deneb, canon, ventrue, chae-yeong]
+  desc: Portrait de Chae-yeong.
+- src: sunny/ingagraph.webp
+  alt: Trois.
+  tags: [sunny, nosferatu, inga, asset]
+  desc: La chaire, le Divin et la Machine.
+- src: sunny/aylinref.webp
+  alt: Aylin.
+  tags: [sunny, canon, toreador, aylin]
+  desc: Character ref de Aylin.
+- src: autriche/utopie.webp
+  alt: Trois.
+  tags: [autriche, canon, tremere]
+  desc: Les Utopies de la Pyramide.
+- src: autriche/esen.webp
+  alt: Trois.
+  tags: [autriche, canon, tremere, esen]
+  desc: La Vision du Sommet de la Pyramide.
+- src: autriche/meryem.webp
+  alt: Meryem.
+  tags: [autriche, canon, autre, meryem]
+  desc: Meryem, Notre Dame des Chagrins.
+- src: vincent/smoke.webp
+  alt: Trois.
+  tags: [vincent, noncanon, ventrue, dimitri]
+  desc: Fumer, c'est etre l'esclave du tabac.
+- src: sunny/zayaa.webp
+  alt: Zaya
+  tags: [sunny, canon, ventrue, zaya]
+  desc: My blood for yours.
+- src: sunny/pearls.webp
+  alt: Pearls
+  tags: [sunny, spice, ventrue, louiza]
+  desc: Nothing but pearls.
+- src: autriche/exterior.webp
+  alt: Trois.
+  tags: [autriche, canon, tremere, eleni, sophia, tarik]
+  desc: Les Songes de la Pyramide Extérieure.
+- src: autriche/interior.webp
+  alt: Trois.
+  tags: [autriche, canon, tremere, zacharias, eylem, dimitrios, ismini, mariko, calliope, arslan]
+  desc: Les Rêveries de la Pyramide Intérieure.
+- src: sunny/shadow.webp
+  alt: Shadow.
+  tags: [sunny, canon, lasombra, nour, idia]
+  desc: Avec le temps passé dans la coterie et au jardin, les ombres de Nour s'approchent plus de racines que de tentacules.
+- src: sunny/car.webp
+  alt: Trio.
+  tags: [sunny, noncanon, tremere, brujah, eleni, gabriel]
+  desc: Happy ending.
+- src: sunny/smoke.webp
+  alt: Smoking.
+  tags: [sunny, canon, tremere, ismini, zacharias]
+  desc: Smoking kills.
+- src: autriche/sabbat.webp
+  alt: Trio.
+  tags: [autriche, canon, sabbat]
+  desc: Les Infants de Scylla.
+- src: sunny/PRIMOGENANTT.webp
+  alt: Trio.
+  tags: [sunny, canon, ventrue, brujah, tremere, enry, esen, arslan]
+  desc: Primo-sexiste.
+- src: ashita/Louiza.webp
+  alt: Singing.
+  tags: [ashita, canon, ventrue, louiza]
+  desc: Portrait official Louiza.
+- src: yolnir/MEME.webp
+  alt: Meme.
+  tags: [yolnir, noncanon, brujah, meme]
+  desc: meme.
+- type: comic
+  title: Alita
+  alt: Alita
+  tags: [sunny, canon, ventrue, alita]
+  desc: Singing in the Elysium.
+  pages:
+    - src: sunny/ALITASING.webp
+    - src: sunny/alitaa.webp
+- src: sunny/ketevan.webp
+  alt: Vogue.
+  tags: [sunny, noncanon, lasombra, ketevan]
+  desc: Put me on vogue.
+- src: sunny/priestess.webp
+  alt: Mirror.
+  tags: [sunny, canon, nosferatu, nebetta]
+  desc: O, tell me the truth, High Priestess.
+- type: comic
+  title: Esen
+  alt: Esen
+  tags: [sunny, canon, tremere, esen]
+  desc: Tah le look de prof d'histoire.
+  pages:
+    - src: sunny/esenex.webp
+    - src: sunny/chad.webp
+- src: sunny/prayer.webp
+  alt: Prayer.
+  tags: [sunny, canon, toreador, calliope]
+  desc: Prière à Soteria.
+- src: ashita/zacharias.webp
+  alt: Glasses.
+  tags: [ashita, canon, tremere, zacharias]
+  desc: Icon Zacharias.
+- src: sunny/kushiedd.webp
+  alt: Bird.
+  tags: [sunny, canon, autre, kushi]
+  desc: Forme bestiale.
+- src: sunny/nourrr.webp
+  alt: Smoke.
+  tags: [sunny, lasombra, canon, nour]
+  desc: Smoke break.
+- src: sunny/camillll.webp
+  alt: Frénésie.
+  tags: [sunny, autre, canon, camil]
+  desc: Première frénésie.
+- src: sunny/ismini.webp
+  alt: Over the city.
+  tags: [sunny, tremere, canon, ismini]
+  desc: Over the city.
+- src: sunny/armes.webp
+  alt: Armes.
+  tags: [sunny, nosferatu, noncanon, nebetta]
+  desc: Nebetta's concern.
+- src: sunny/emined.webp
+  alt: Emine.
+  tags: [sunny, brujah, emine, canon]
+  desc: Death, and death, and death at last.
+- src: sunny/henne.webp
+  alt: Henné.
+  tags: [sunny, toreador, aylin, canon]
+  desc: Henné.
+- src: sunny/marikoo.webp
+  alt: Mariko.
+  tags: [sunny, tremere, mariko, noncanon]
+  desc: Blood.
+- src: shiva/tarik.webp
+  alt: Tarik.
+  tags: [shiva, tremere, tarik, canon]
+  desc: Tarik.
+- src: sunny/tarikeleni.webp
+  alt: Pyramide.
+  tags: [sunny, tremere, tarik, eleni, canon]
+  desc: Le visage de la pyramide.
+- src: sunny/nebetted.webp
+  alt: nebetta.
+  tags: [sunny, nosferatu, nebetta, canon]
+  desc: Le premier Elysium de Nebetta.
+- src: sunny/water.webp
+  alt: Water.
+  tags: [sunny, toreador, ventrue, angelos, louiza, canon]
+  desc: Love.
+- src: sunny/meryem.webp
+  alt: Meryem.
+  tags: [sunny, tremere, malkavian, meryem, tarik, noncanon]
+  desc: Her hair shined with all the colors of the rainbow.
+- src: sunny/heyyou.webp
+  alt: Duo.
+  tags: [sunny, ventrue, toreador, louiza, angelos, canon]
+  desc: Duo Angelos Louiza.
+- src: sunny/DECEMBRE.webp
+  alt: Idia magic.
+  tags: [sunny, ventrue, calendrier]
+  desc: Calendrier Decembre.
+- type: comic
+  title: Sophia sprite
+  alt: Sophia sprite
+  tags: [sunny, tremere, sophia, canon, official]
+  desc: Ines Sprite.
+  pages:
+    - src: sunny/sophied.webp
+    - src: sunny/SOPHIA.webp
+- src: sunny/noursprite.webp
+  alt: Nour Sprite.
+  tags: [sunny, lasombra, nour, official, canon]
+  desc: Nour sprite.
+- type: comic
+  title: Nebetta Sprite
+  alt: Nebetta Sprite
+  tags: [sunny, nosferatu, nebetta, canon, official]
+  desc: Nebetta Sprite.
+  pages:
+    - src: sunny/nebettaa.webp
+    - src: sunny/nebebou.webp
+- src: sunny/maliha.webp
+  alt: Idia magic.
+  tags: [sunny, toreador, maliha, canon]
+  desc: Maliha Sprite.
+- type: comic
+  title: gif
+  alt: gif
+  tags: [sunny, toreador, canon, official, ines]
+  desc: Ines Sprite.
+  pages:
+    - src: sunny/ines2.webp
+    - src: sunny/ines.webp
+    - src: sunny/inesoutfit.webp
+- src: sunny/idia.webp
+  alt: Idia magic.
+  tags: [sunny, lasombra, idia, canon]
+  desc: Idia Outfit.
+- src: sunny/GABRIELSPRITE.webp
+  alt: Emine Sprite.
+  tags: [sunny, official, brujah, gabriel, canon]
+  desc: Sprite Gabriel.
+- src: sunny/EMINEE.webp
+  alt: Emine Sprite.
+  tags: [sunny, official, brujah, emine, canon]
+  desc: Sprite Emine.
+- src: sunny/eleni.webp
+  alt: Eleni Sprite.
+  tags: [sunny, official, tremere, eleni, canon]
+  desc: Sprite Eleni.
+- src: sunny/dimitrios.webp
+  alt: Dimitrios Sprite.
+  tags: [sunny, official, tremere, dimitrios, canon]
+  desc: Dimitrios Sprite.
+- src: sunny/anna.webp
+  alt: sprite Anna.
+  tags: [sunny, official, brujah, anna, canon]
+  desc: Sprite Anna.
+- type: comic
+  title: cavaliers
+  alt: cavaliers
+  tags: [autriche, ventrue, autre, canon, kushi]
+  desc: Les cavaliers de Smyrne.
+  pages:
+    - src: autriche/conquerant.webp
+    - src: autriche/famine.webp
+    - src: autriche/guerre.webp
+- src: autriche/soteria.webp
+  alt: soteria.
+  tags: [autriche, toreador, canon, ventrue]
+  desc: Soteria et Atratinus.
+- src: autriche/marcusforain.webp
+  alt: Marcus forain.
+  tags: [autriche, lasombra, canon]
+  desc: Marcus Forain.
+- src: ashita/raffi.webp
+  alt: Raffi, ventrue.
+  tags: [ashita, ventrue, canon, official, raffi]
+  desc: Raffi, ventrue.
+- src: ashita/hadle.webp
+  alt: Adla, ventrue.
+  tags: [ashita, ventrue, canon, official, hadla]
+  desc: Adla, ventrue.
+- type: comic
+  title: gif
+  alt: gif
+  tags: [ashita, ventrue, canon, official, alita]
+  desc: Alita, ventrue.
+  pages:
+    - src: ashita/hadla.webp
+    - src: ashita/alitaa.webp
+- type: comic
+  title: gif
+  alt: gif
+  tags: [ashita, toreador, canon, official, ghoule, alejandro]
+  desc: Ghoule de Angelos, Alejandro.
+  pages:
+    - src: ashita/alejandro.webp
+    - src: ashita/alenjandro.webp
+- type: comic
+  title: gif
+  alt: gif
+  tags: [noncanon, sunny, brujah, tremere, gabriel, eleni]
+  desc: driving in my car.
+  pages:
+    - src: sunny/gabcolor.gif
+      alt: Driving in my car
+      desc: Driving in my car, right after a beer.
+    - src: sunny/gabraw.gif
+      alt: test gif
+      desc: test gif.
+- src: autriche/arbre.webp
+  alt: Lignée tremere.
+  tags: [autriche, tremere, canon]
+  desc: Lignée du clan tremere.
+- src: ashita/dimitri2.webp
+  alt: Dimitri rework.
+  tags: [ashita, official, ventrue, ghoule, canon, dimitri]
+  desc: Official art Dimitri.
+- src: sunny/essil.webp
+  alt: emote essil.
+  tags: [sunny, emote, brujah, essil]
+  desc: Emote Emine looking disrespectfully.
+- src: sunny/issmini.webp
+  alt: emote issmini.
+  tags: [sunny, tremere, ismini, emote]
+  desc: emote issmini tired sip.
+- src: sunny/inesemote.webp
+  alt: emote ines.
+  tags: [sunny, emote, toreador, ines]
+  desc: emote ines cute.
+- src: sunny/novembresolo.webp
+  alt: lasombra calendrier.
+  tags: [sunny, calendrier, lasombra, idia]
+  desc: Calendrier solo novembre 2026.
+- src: sunny/emine.webp
+  alt: emote emine.
+  tags: [sunny, emote, emine]
+  desc: stop giving me your hardest battle.
+- src: sunny/storyteller.webp
+  alt: me.
+  tags: [sunny]
+  desc: They won't harm my children.
+- src: sunny/NOVEMBRE.webp
+  alt: tremere calendrier.
+  tags: [calendrier, sunny, brujah, lasombra, idia, enry]
+  desc: Calendrier duo novembre 2026.
+- src: sunny/OCTOBRE.webp
+  alt: tremere calendrier.
+  tags: [calendrier, sunny, tremere, sophia, dimitrios]
+  desc: Calendrier duo octobre 2026.
+- src: sunny/otobresolo.webp
+  alt: tremere calendrier.
+  tags: [calendrier, sunny, tremere, sophia]
+  desc: Calendrier solo octobre 2026.
+- src: sunny/nosferatu.webp
+  alt: nosfe.
+  tags: [canon, sunny, nosferatu, nebetta, inga, atam]
+  desc: Seule et unique présentation de Inga a la cour.
+- src: sunny/frame.webp
+  alt: meryem.
+  tags: [noncanon, sunny, autre, meryem]
+  desc: Frame of mind.
+- src: sunny/NEBETTASNAKE.webp
+  alt: nebetta.
+  tags: [noncanon, sunny, autre, nebetta]
+  desc: Your liar, your snake.
+- src: sunny/kushied.webp
+  alt: Lignée.
+  tags: [noncanon, sunny, autre, kushi]
+  desc: Claw fight.
+- src: autriche/Esen__Atam.webp
+  alt: Esem Atam.
+  tags: [canon, autriche, tremere, nosferatu, esen, atam]
+  desc: Parce que c'était lui, parce que c'était moi.
+- src: sunny/ship.webp
+  alt: Lignée.
+  tags: [noncanon, sunny, tremere, eylem, toreador, calliope]
+  desc: My moon, my sunshine.
+- src: sunny/wtf.webp
+  alt: Lignée.
+  tags: [emote, sunny, tremere, eleni]
+  desc: WTF.
+- src: sunny/soundoff.webp
+  alt: Lignée.
+  tags: [emote, sunny, lasombra, ketevan]
+  desc: SoundOff.
+- src: sunny/cozyy.webp
+  alt: Lignée.
+  tags: [emote, sunny, nosferatu, atam]
+  desc: Cozy.
+- src: sunny/search.webp
+  alt: Lignée.
+  tags: [emote, sunny, tremere, eylem]
+  desc: Search.
+- src: sunny/angry.webp
+  alt: Lignée.
+  tags: [emote, sunny, brujah, gabriel]
+  desc: Angry.
+- src: sunny/lovers.webp
+  alt: Lignée.
+  tags: [canon, sunny, ventrue, toreador, louiza, angelos]
+  desc: Lovers.
+- src: sunny/ketevan-2.webp
+  alt: Lignée.
+  tags: [official, sunny, lasombra, ghoule, ketevan]
+  desc: Ketevan, ghoule Lasombra.
+- src: sunny/nebae.webp
+  alt: Lignée.
+  tags: [canon, sunny, nosferatu, nebetta]
+  desc: Belle gosse Nebetta.
+- src: sunny/neonates.webp
+  alt: Lignée.
+  tags: [canon, sunny, toreador, brujah, gangrel, camil, ines, gabriel]
+  desc: Coterie des problèèmes.
+- src: autriche/enluminured.webp
+  alt: Lignée.
+  tags: [canon, autriche, toreador, brujah, ventrue, tremere, primogene, nafissa, enry, esen, arslan]
+  desc: Enluminure conseil des primogene.
+- src: sunny/coteried.webp
+  alt: Lignée.
+  tags: [canon, sunny, toreador, lasombra, tremere, nour, kejal, eleni]
+  desc: "Nafissa et Kejal. "
+- src: sunny/lignee.webp
+  alt: Lignée.
+  tags: [canon, sunny, toreador, primogene, kejal, nafissa]
+  desc: "Nafissa et Kejal. "
+- src: sunny/FINDING.webp
+  alt: Findings anarch.
+  tags: [noncanon, sunny, nosferatu, inga]
+  desc: "Findings anarch. "
+- src: sunny/kejal.webp
+  alt: Patience et minutie.
+  tags: [canon, sunny, toreador, kejal]
+  desc: "Premier design de Kejal. "
+- src: sunny/gabb.webp
+  alt: Dévoré par la passion.
+  tags: [canon, sunny, brujah, gabriel]
+  desc: "Dévoré par la passion. "
+- src: sunny/ana.webp
+  alt: Duo.
+  tags: [canon, sunny, brujah, anna]
+  desc: "Deadly duo. "
+- src: sunny/nour.webp
+  alt: Longing.
+  tags: [canon, sunny, lasombra, nour]
+  desc: "Un endroit ou mourir. "
+- src: sunny/PRIMOGENANT.webp
+  alt: Primo.
+  tags: [canon, sunny, toreador, brujah, ventrue, tremere, primogene, nafissa, enry, esen, arslan]
+  desc: "Watching. "
+- src: sunny/scourge.webp
+  alt: Scourge.
+  tags: [noncanon, sunny, toreador, aylin]
+  desc: "L'aube rouge. "
+- src: sunny/theywantme.webp
+  alt: They want me ? I do too.
+  tags: [noncanon, sunny, toreador, aylin]
+  desc: "They want me ? I do too. "
+- src: radio.webp
+  alt: Baran art
+  tags: [noncanon, sunny, toreador, max]
+  desc: "We are so cooked. "
+- src: ingaa.webp
+  alt: Baran art
+  tags: [noncanon, sunny, nosferatu, inga]
+  desc: "Baby you're a star. "
+- src: baraned.webp
+  alt: Baran art
+  tags: [canon, sunny, brujah, official, baran]
+  desc: "Despite everything, it's still you. "
+- src: RADIOOO.webp
+  alt: Radiohost
+  tags: [canon, sunny, toreador, max]
+  desc: "Radiohost "
+- src: yolnir/KAmode.webp
+  alt: CamMode
+  tags: [noncanon, yolnir, primogene, ventrue, arslan]
+  desc: "CamMode "
+- src: yiyee.webp
+  alt: Ines hihi
+  tags: [official, sunny, canon, toreador, ines]
+  desc: "Ines veste en cuir "
+- src: kushi.webp
+  alt: MON BO GOSSE KUSHI
+  tags: [official, sunny, canon, kushi]
+  desc: "Official art de Kushi et son bord :3 "
+- src: THE EMPRESS.webp
+  alt: The empress is hard to impress DVD
+  tags: [spice, sunny, canon, rhea]
+  desc: "The empress is hard to impress DVD "
+- src: CAHIN.webp
+  alt: Chain the beast DVD
+  tags: [spice, sunny, canon, aylin]
+  desc: "Chain the beast DVD "
+- src: ashita/dimitri.webp
+  alt: dimitri official art
+  tags: [canon, ashita, official, ventrue, dimitri]
+  desc: "dimitri art "
+- type: comic
+  title: Comic en 6 pages
+  alt: Comic en 6 pages
+  tags: [noncanon, yolnir, brujah, toreador, gabriel, baran]
+  desc: Comic en 6 pages.
+  pages:
+    - src: yolnir/gab1.webp
+      alt: Page 1 du comic
+      desc: Page 1 du comic.
+    - src: yolnir/gab2.webp
+      alt: Page 2 du comic
+      desc: Page 2 du comic.
+    - src: yolnir/gab3.webp
+      alt: Page 3 du comic
+      desc: Page 3 du comic.
+    - src: yolnir/gab4.webp
+      alt: Page 4 du comic
+      desc: Page 4 du comic.
+    - src: yolnir/gab4bis.webp
+      alt: Page 5 du comic
+      desc: Page 5 du comic.
+    - src: yolnir/gab5.webp
+      alt: Page 6 du comic
+      desc: Page 6 du comic.
+- src: sasha.webp
+  alt: sasha
+  tags: [canon, sunny, official, sasha]
+  desc: Portrait de Sasha, membre de la clique de Aylin
+- src: weedcat.webp
+  alt: weed
+  tags: [noncanon, sunny, nosferatu, inga]
+  desc: Weedcat made by Inga
+- src: hehe.webp
+  alt: mariko
+  tags: [emote, sunny, tremere, mariko]
+  desc: Emote Mariko héhé
+- src: kushigone.webp
+  alt: kushi
+  tags: [noncanon, sunny, autre, kushi]
+  desc: monsieur le prince vous ne pouvez pas aller au festival de la quenouille on a besoin de vous ici... (poof)
+- type: comic
+  title: Comic en 4 pages
+  alt: Comic en 4 pages
+  tags: [noncanon, yolnir, brujah, enry, emine, kaadir, gabriel]
+  desc: Comic en 4 pages.
+  pages:
+    - src: yolnir/baseV1.webp
+      alt: Page 1 du comic
+      desc: Page 1 du comic.
+    - src: yolnir/baseV2.webp
+      alt: Page 2 du comic
+      desc: Page 2 du comic.
+    - src: yolnir/baseV3.webp
+      alt: Page 3 du comic
+      desc: Page 3 du comic.
+    - src: yolnir/baseV4.webp
+      alt: Page 4 du comic
+      desc: Page 4 du comic.
+- src: affiched.webp
+  alt: affiche
+  tags: [canon, yolnir, brujah, kaadir]
+  desc: Affiche dans un vieux grenier.
+- src: sunny/zaya.webp
+  alt: Zaya
+  tags: [sunny, canon, ventrue, zaya]
+  desc: The door wide opens.
+- src: sip.webp
+  alt: Emote Emine thé vert
+  tags: [emote, sunny, brujah, emine]
+  desc: Emote Emine thé vert.
+- src: card.webp
+  alt: Emote dimitri Card
+  tags: [emote, sunny, ventrue, dimitri]
+  desc: Emote dimitri carte bleue.
+- src: eyes.webp
+  alt: Emote surprised Enri
+  tags: [emote, sunny, brujah, enry]
+  desc: Emote surprised Enri.
+- src: glasses.webp
+  alt: Emote Esen glasses
+  tags: [emote, sunny, tremere, esen]
+  desc: Emote Esen glasses.
+- src: guns.webp
+  alt: Emote finger guns Tarik
+  tags: [emote, sunny, tremere, tarik]
+  desc: Emote finger guns Tarik.
+- src: peek.webp
+  alt: Emote Inga peek
+  tags: [emote, sunny, nosferatu, inga]
+  desc: Emote Inga peek.
+- src: smoke.webp
+  alt: Emote Kaadir smoke
+  tags: [emote, sunny, brujah, kaadir]
+  desc: Emote Kaadir smoke.
+- src: +1.webp
+  alt: Emote Essil approve
+  tags: [emote, sunny, brujah, essil]
+  desc: Emote Essil approve.
+- src: aha.webp
+  alt: Emote Nafissa happy
+  tags: [emote, sunny, toreador, nafissa]
+  desc: Emote Nafissa happy.
+- src: bleeeh.webp
+  alt: Emote Kaadir bleeh
+  tags: [emote, sunny, brujah, kaadir]
+  desc: Emote Kaadir bleeh.
+- src: cheer.webp
+  alt: Emote Camil cheer
+  tags: [emote, sunny, autre, camil]
+  desc: Emote Camil cheer.
+- src: coeur.webp
+  alt: Emote Nebetta coeur
+  tags: [emote, sunny, nosferatu, nebetta]
+  desc: Emote Nebetta coeur.
+- src: crown.webp
+  alt: collage :3
+  tags: [emote, sunny, ventrue, arslan]
+  desc: Emote Kerem proud.
+- src: kiss.webp
+  alt: esen kiss
+  tags: [emote, sunny, tremere, esen]
+  desc: Emote Esen kiss.
+- src: NO.webp
+  alt: enri NO
+  tags: [emote, sunny, brujah, enry]
+  desc: Emote Enri NO.
+- src: sleep.webp
+  alt: Maliha dodo
+  tags: [emote, toreador, sunny, maliha]
+  desc: Emote Maliha dodo.
+- src: nyerk.webp
+  alt: Inga emote nyerk
+  tags: [emote, nosferatu, sunny, inga]
+  desc: Inga emote nyerk.
+- src: sunny/toreadortickers.webp
+  alt: collage :3
+  tags: [noncanon, sunny, toreador]
+  desc: collage stickers :3.
+- src: sunny/ventreusticker.webp
+  alt: collage :3
+  tags: [noncanon, sunny, ventrue]
+  desc: collage stickers :3.
+- src: sunny/brujahsticker.webp
+  alt: collage :3
+  tags: [noncanon, sunny, brujah]
+  desc: collage stickers :3.
+- src: sunny/tremerestickers.webp
+  alt: collage :3
+  tags: [noncanon, sunny, tremere]
+  desc: collage stickers :3.
+- src: sunny/theempress.webp
+  alt: the empress is hard to impress
+  tags: [spice, canon, sunny, rhea]
+  desc: The empress is hard to impress-, couverture du DVD, réalisé par Aylin.
+- src: back.webp
+  alt: "-The empress is hard to impress-, dos du DVD"
+  tags: [spice, sunny, canon, rhea]
+  desc: The empress is hard to impress-, dos du DVD.
+- src: sunny/chainthebeast.webp
+  alt: chain the beast
+  tags: [spice, canon, sunny, aylin]
+  desc: Poster du film chain the beast, ou Aylin joue Kiera, la demon hunter.
+- src: sunny/spanked.webp
+  alt: the empress is hard to impress - couverture du DVD
+  tags: [spice, canon, sunny, aylin]
+  desc: Chain the beast-, dos du DVD.
+- src: emine.webp
+  alt: essil
+  tags: [brujah, official, canon, sunny, essil]
+  desc: Outfit test Essil.
+- src: backroom.webp
+  alt: ines
+  tags: [toreador, noncanon, sunny, ines]
+  desc: Neonate dans les backroom.
+- src: gabriel.webp
+  alt: emote gabriel
+  tags: [brujah, emote, sunny, gabriel]
+  desc: emote de Gabriel confus.
+- src: aylin.webp
+  alt: Emote Aylin
+  tags: [toreador, emote, sunny, aylin]
+  desc: emote Aylin devil.
+- src: BD.webp
+  alt: ines
+  tags: [nosferatu, canon, sunny, inga]
+  desc: autoportrait de Inga pour son blog.
+- src: inga.webp
+  alt: ines
+  tags: [nosferatu, canon, official, sunny, inga]
+  desc: inga, cyberhacker.
+- src: ines.webp
+  alt: ines
+  tags: [toreador, emote, sunny, ines]
+  desc: emote yeay.
+- src: flex.webp
+  alt: ines
+  tags: [toreador, noncanon, yolnir, ines, camil, autre]
+  desc: thirst trap.
+- src: mariage.webp
+  alt: mariage
+  tags: [brujah, noncanon, yolnir, primogene, limier]
+  desc: ecoute Kadir, épouser une toréadore c'est the master moove.
+- src: devour.webp
+  alt: Aylin
+  tags: [toreador, canon, official, sunny, aylin]
+  desc: Poster 'devour me softly' de Aylin.
+- src: duo.webp
+  alt: duo
+  tags: [toreador, canon, sunny]
+  desc: Concept art duo toreador.
+- src: BARAN.webp
+  alt: baren
+  tags: [brujah, canon, sunny, baran]
+  desc: Test icon Baran.
+- src: pomme.webp
+  alt: ines
+  tags: [toreador, canon, sunny, ines]
+  desc: Concept art de Ines.
+- src: sunny/nebettamirror.webp
+  alt: nebetta
+  tags: [nosferatu, canon, sunny, nebetta]
+  desc: Icon de Nebetta, concept art.
+- src: nafissa.webp
+  alt: nafissa
+  tags: [toreador, canon, primogene, official, sunny, nafissa]
+  desc: Official art Nafissa.
+- src: makeup.webp
+  alt: makeup
+  tags: [lasombra, brujah, primogene, canon, sunny, enry, idia]
+  desc: makeup artist.
+- src: sunny/jace.webp
+  alt: jace
+  tags: [toreador, mtg, sunny, nafissa]
+  desc: Jace proxy, Nafissa.
+- src: sunny/zombie.webp
+  alt: zombie
+  tags: [lasombra, mtg, sunny, idia]
+  desc: Zombie liliana proxy.
+- src: sunny/lilliana.webp
+  alt: liliana
+  tags: [lasombra, mtg, sunny, idia]
+  desc: Liliana proxy.
+- src: sunny/nebettaconcept.webp
+  alt: Cleopatra
+  tags: [nosferatu, canon, sunny, nebetta]
+  desc: Concept art Cleopatra.
+- src: sunny/zayasprite.webp
+  alt: Zaya
+  tags: [ventrue, primogene, canon, sunny, zaya]
+  desc: Zaya Borte, senechal Ventrue.
+- src: sunny/baranfirst.webp
+  alt: Baran
+  tags: [brujah, canon, limier, sunny, baran]
+  desc: Baran, sheriff Brujah.
+- type: comic
+  title: Concept art
+  alt: Comic en 4 pages
+  tags: [canon, sunny, toreador, nafissa]
+  desc: Concept art Nafissa.
+  pages:
+    - src: sunny/protonafissa.webp
+      alt: Nafissa, primogène Toreador
+      desc: Nafissa, primogène Toreador.
+    - src: sunny/nafissaconcept2.webp
+      alt: Infection aux yeux de Nafissa
+      desc: Infection aux yeux de Nafissa.
+- src: sunny/turkishgirl.webp
+  alt: turkish girl
+  tags: [limier, noncanon, brujah, sunny, kaadir]
+  desc: Oh i love being a turkish girl.
+- src: sunny/domainebrujah.webp
+  alt: Brujah & co
+  tags: [brujah, noncanon, primogene, limier, lasombra, sunny, enry, idia]
+  desc: Brujah & co.
+- src: sunny/idiawolf.webp
+  alt: Wolf
+  tags: [lasombra, noncanon, sunny, idia]
+  desc: Ask me about my wolf.
+- src: sunny/malihasprite.webp
+  alt: Jardin Toreador
+  tags: [toreador, canon, official, sunny, maliha]
+  desc: Jardin Toreador.
+- src: sunny/idiabow.webp
+  alt: Shadow piercer
+  tags: [lasombra, noncanon, sunny, idia]
+  desc: Lasombra, shadow piercer.
+- src: sunny/idiaemote.webp
+  alt: Lasombra emote
+  tags: [lasombra, emote, sunny, idia]
+  desc: emote, eh?
+- src: sunny/enrysprite.webp
+  alt: Enry
+  tags: [brujah, canon, primogene, official, sunny, enry]
+  desc: Enry, primogène Brujah.
+- src: sunny/ghol.webp
+  alt: Ghoule Toreador
+  tags: [toreador, canon, primogene, official, sunny]
+  desc: Ghoule de la primogène Toreador.
+- src: sunny/conceptventrue.webp
+  alt: Concept Ventrue
+  tags: [ventrue, canon, sunny]
+  desc: Ventrue concept art.
+- src: sunny/idiasprite.webp
+  alt: Lasombra premier art
+  tags: [lasombra, canon, official, sunny, idia]
+  desc: Premier art Lasombra.
+- src: sunny/lasombra-crayon.webp
+  alt: Lasombra crayon
+  tags: [lasombra, canon, sunny, idia]
+  desc: Test crayoné Lasombra (elle a toujours pas de prénom).
+- src: sunny/pnj-lasombra.webp
+  alt: PNJ Lasombra
+  tags: [pnj, canon, lasombra, sunny, idia]
+  desc: ""

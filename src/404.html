@@ -1,0 +1,61 @@
+---
+titre: İzmir by Night — 404
+layout: base.njk
+css: [/css/izmir.css]
+barre: false
+recherche: false
+permalink: /404.html
+---
+<style>
+.error-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 60px 20px;
+  text-align: center;
+}
+.error-code {
+  color: var(--iz-accent);
+  font: italic 72px/1 georgia, serif;
+  letter-spacing: 6px;
+  text-shadow: 0 2px 6px var(--iz-shadow);
+}
+.error-msg {
+  color: var(--iz-title);
+  font: italic 18px georgia, serif;
+  letter-spacing: 2px;
+}
+.error-sub {
+  max-width: 420px;
+  color: var(--iz-text-soft);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.error-back {
+  margin-top: 6px;
+  padding: 5px 14px;
+  color: var(--iz-button-text);
+  background: var(--iz-button);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: 4px;
+  font: italic 14px georgia, serif;
+  transition: 0.2s ease;
+}
+.error-back:hover {
+  color: var(--iz-button-text-hover);
+  background: var(--iz-button-hover);
+  border-color: var(--iz-border-hover);
+}
+</style>
+<div class="page-wrap">
+  <div class="container">
+    <div class="error-wrap">
+      <div class="error-code">404</div>
+      <div class="error-msg">cette page n'existe pas</div>
+      <div class="error-sub">La page que vous cherchez a peut-être succombé à la Géhenne, ou n'a jamais existé.</div>
+      <a class="error-back" href="/">← retour à l'accueil</a>
+    </div>
+  </div>
+</div>

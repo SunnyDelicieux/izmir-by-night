@@ -1,0 +1,268 @@
+# La liste « Updates » du hub (la page d'accueil), de la plus récente à la plus ancienne.
+# Pour ajouter une nouveauté, copie un bloc tout en haut :
+#   date : comme elle doit s'afficher
+#   texte : ce qui est écrit
+#   lien : (facultatif) la page vers laquelle ça mène
+#   nouvel_onglet: true  (facultatif) pour ouvrir le lien dans un nouvel onglet
+
+- date: 27 Oct 26
+  texte: Fiche PNJ de Ibrahim
+  lien: /personnages/ibrahim/
+- date: 27 Oct 26
+  texte: Fiche PNJ de Cem
+  lien: /personnages/cem/
+- date: 26 Oct 26
+  texte: Ajout de nouveaux dessins
+  lien: /galerie/
+- date: 23 Oct 26
+  texte: Tirage de tarot
+  lien: /outils/tarot/
+- date: 23 Oct 26
+  texte: Badges dans l'espace joueur
+- date: 23 Oct 26
+  texte: Thème Halloween
+- date: 22 Oct 26
+  texte: Lois de Smyrne
+  lien: /univers/lois/
+- date: 21 Oct 26
+  texte: Constantinople et Smyrne
+  lien: /univers/istanbul/
+- date: 17 Oct 26
+  texte: Nouvelle barre de navigation
+- date: 16 Oct 26
+  texte: Compte joueur
+  lien: /espace-joueur/
+- date: 13 Oct 26
+  texte: Fiche PJ de Tarik
+  lien: /personnages/tarik/
+- date: 10 Oct 26
+  texte: Fiche PJ de Enry
+  lien: /personnages/henri/
+- date: 10 Oct 26
+  texte: Fiche PNJ de Emine
+  lien: /personnages/emine/
+- date: 07 Oct 26
+  texte: Vidéo dans la gallerie
+- date: 07 Oct 26
+  texte: Revamp fiche Kushi
+  lien: /personnages/kushi/
+- date: 07 Oct 26
+  texte: Lore Brujah
+  lien: /univers/brujah/
+- date: 07 Oct 26
+  texte: Fiche PNJ de Raffi
+  lien: /personnages/raffi/
+- date: 06 Oct 26
+  texte: Revamp du CSS wiki
+- date: 05 Oct 26
+  texte: Article Wiki Uyanik Goz
+  lien: /univers/brujah/
+- date: 28 Sep 26
+  texte: Fiche PNJ de Meryem
+  lien: /personnages/meryem/
+- date: 24 Sep 26
+  texte: Fiche PJ de Kaadir
+  lien: /personnages/kaadir/
+- date: 21 Sep 26
+  texte: Petites MAJ ci et là
+- date: 20 Sep 26
+  texte: Lore du clan Ventrue
+  lien: /univers/ventrue/
+- date: 18 Sep 26
+  texte: Mise à jour de la galerie
+- date: 18 Sep 26
+  texte: Mise à jour du calendrier
+- date: 18 Sep 26
+  texte: Achat d'un nom de domaine !
+- date: 17 Sep 26
+  texte: Fiche PJ de Esen
+  lien: /personnages/esen/
+- date: 17 Sep 26
+  texte: Fiche PJ de Arslan
+  lien: /personnages/kerem/
+- date: 16 Sep 26
+  texte: Fiche PNJ de Zaya
+  lien: /personnages/zaya/
+- date: 16 Sep 26
+  texte: Polissage des fiches toréador
+- date: 14 Sep 26
+  texte: Fiche PNJ de Calliope
+  lien: /personnages/calliope/
+- date: 14 Sep 26
+  texte: Update organisation Wiki
+- date: 11 Sep 26
+  texte: Fiche PNJ de Alita
+  lien: /personnages/alita/
+- date: 11 Sep 26
+  texte: Fiche PNJ de Nour
+  lien: /personnages/nour/
+- date: 10 Sep 26
+  texte: Fiche PNJ de Alejandro
+  lien: /personnages/alejandro/
+- date: 09 Sep 26
+  texte: Mise a jour page Elysium
+- date: 08 Sep 26
+  texte: Update map
+  lien: https://www.google.com/maps/d/edit?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA&usp=sharing/
+- date: 08 Sep 26
+  texte: Elysium pour rumeur
+  lien: /ambiance/elysium/
+- date: 08 Sep 26
+  texte: Update système Tag Gallerie
+- date: 03 Sep 26
+  texte: Chambre de Inga
+  lien: /ambiance/inga/
+- date: 02 Sep 26
+  texte: Fiche de Ahmet
+  lien: /personnages/ahmet/
+- date: 02 Sep 26
+  texte: Fiche de Maliha
+  lien: /personnages/maliha/
+- date: 01 Sep 26
+  texte: Fiche de Mariko
+  lien: /personnages/mariko/
+- date: 01 Sep 26
+  texte: Fiche de Dimitri
+  lien: /personnages/dimitri/
+- date: 31 Aug 26
+  texte: Histoire des Toreador
+  lien: /univers/toreador/
+- date: 25 Aug 26
+  texte: Fiche de Dimitrios
+  lien: /personnages/dimitrios/
+- date: 25 Aug 26
+  texte: Fiche de Ismini
+  lien: /personnages/ismini/
+- date: 25 Aug 26
+  texte: Fiche de Eylem
+  lien: /personnages/eylem/
+- date: 25 Aug 26
+  texte: Fiche de Zacharias
+  lien: /personnages/zacharias/
+- date: 25 Aug 26
+  texte: Fiche de Eleni
+  lien: /personnages/eleni-paschalia/
+- date: 24 Aug 26
+  texte: Fiche de Baran
+  lien: /personnages/baran/
+- date: 24 Aug 26
+  texte: Fiche de Angelos
+  lien: /personnages/angelos/
+- date: 21 Aug 26
+  texte: Fiche de Thouros
+  lien: /personnages/thouros/
+- date: 17 Aug 26
+  texte: Fiche de Sophia
+  lien: /personnages/sophia/
+- date: 10 Aug 26
+  texte: Fiche de Kejal
+  lien: /personnages/kejal/
+- date: 18 Jul 26
+  texte: Ajout des dernier dessins
+  lien: /galerie/
+- date: 11 Jul 26
+  texte: Fiche de Essil
+  lien: /personnages/essil/
+- date: 11 Jul 26
+  texte: Fiche de Gabriel
+  lien: /personnages/gabriel/
+- date: 09 Jul 26
+  texte: Fiche de Inga
+  lien: /personnages/inga/
+- date: 08 Jul 26
+  texte: Clarification création pnj
+  lien: /jouer/pnj/
+- date: 08 Jul 26
+  texte: 100% de la page création
+  lien: /jouer/creation/
+- date: 08 Jul 26
+  texte: Corrections site principal
+- date: 08 Jul 26
+  texte: Fiche de Nebetta
+  lien: /personnages/nebetta/
+- date: 07 Jul 26
+  texte: Setup complet wiki
+- date: 07 Jul 26
+  texte: Fiche de Atam
+  lien: /personnages/atam/
+- date: 07 Jul 26
+  texte: Culte de Soteria
+  lien: /univers/toreador/soteria/
+- date: 05 Jul 26
+  texte: Grosse update Kumu
+  lien: https://kumu.io/SunnyD/izmir
+- date: 05 Jul 26
+  texte: Lore Tremere
+  lien: /univers/tremere/
+- date: 03 Jul 26
+  texte: Fiche de Max
+  lien: /personnages/max/
+- date: 03 Jul 26
+  texte: Fiche de Aylin
+  lien: /personnages/aylin/
+- date: 03 Jul 26
+  texte: Lore des clans
+  lien: /univers/clans/
+- date: 01 Jul 26
+  texte: Fiche de Kushi
+  lien: /personnages/kushi/
+- date: 29 Jun 26
+  texte: Update du blog
+  lien: /archives/ancien-blog/
+  nouvel_onglet: true
+- date: 24 Jun 26
+  texte: "[Orga] Cette page >:3"
+- date: 23 Jun 26
+  texte: Le sabbat
+  lien: /ambiance/factions/sabbat/test.html
+  nouvel_onglet: true
+- date: 19 Jun 26
+  texte: Hub du Wiki
+  lien: /univers/
+  nouvel_onglet: true
+- date: 18 Jun 26
+  texte: Wiki de Nafissa
+  lien: /personnages/nafissa/
+  nouvel_onglet: true
+- date: 16 Jun 26
+  texte: Rework backend
+- date: 12 Jun 26
+  texte: Ajout gestion de pression
+  lien: /jouer/factions/
+  nouvel_onglet: true
+- date: 12 Jun 26
+  texte: Ajout gestion d'entreprise
+  lien: /jouer/entreprises/
+  nouvel_onglet: true
+- date: 10 Jun 26
+  texte: Page création de personnage
+  lien: /jouer/creation/
+  nouvel_onglet: true
+- date: 10 Jun 26
+  texte: Finition gestion de ressources
+  lien: /jouer/ressources/
+  nouvel_onglet: true
+- date: 10 Jun 26
+  texte: Ajout gestion de ressources
+  lien: /jouer/ressources/
+  nouvel_onglet: true
+- date: 06 Jun 26
+  texte: Ajout création objectifs
+  lien: /jouer/objectifs/
+  nouvel_onglet: true
+- date: 01 Jun 26
+  texte: Nouvelle page FAQ
+- date: 01 Jun 26
+  texte: Ajout de 5 pages
+- date: 31 May 26
+  texte: Base de la relationship map
+  lien: /outils/relations/
+  nouvel_onglet: true
+- date: 29 May 26
+  texte: Ajout des descriptions
+- date: 28 May 26
+  texte: Création du site
+  lien: /accueil/
+  nouvel_onglet: true
+- date: 28 May 26
+  texte: Choix de la ville

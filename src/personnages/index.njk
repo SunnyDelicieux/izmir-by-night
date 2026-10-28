@@ -1,0 +1,104 @@
+---
+titre: Liste des personnages
+layout: base.njk
+css: [/css/fiche.css]
+---
+{#- La liste de tous les personnages. Les cartes et leur ordre sont dans src/_data/liste_personnages.yaml.
+    Une carte avec « fiche: » prend le nom, l'icône et le lien dans la fiche du personnage. -#}
+<style>
+    body {
+        background-attachment: fixed;
+    }
+</style>
+
+    <main>
+
+        <h2 class="character-name">
+            Liste des personnages
+        </h2>
+
+        <p>
+            La page complète des PNJ de la campagne. Ce sont tous ceux qui étaient
+            déjà présents en ville au début de l'histoire et que vos personnages
+            connaissent au moins de nom, ou ceux qui ont été rencontrés en jeu.
+            <br><br>
+            Pour la page de création de PNJ, référez-vous à
+            <a href="/jouer/pnj/">
+                cette page.
+            </a>
+        </p>
+
+        <a href="#" onclick="pageAleatoire(); return false;">
+            Aller sur une page de personnage aléatoire
+        </a>
+
+        <br><br>
+
+        <a href="/univers/">
+            Retourner sur le wiki général
+        </a>
+{% for section in liste_personnages %}
+        <section id="{{ section.id }}">
+
+            <h3 class="purple">{{ section.titre }}</h3>
+  {%- for groupe in section.groupes %}
+
+            <section class="status pinned">
+                <div class="titre-clan">{{ groupe.titre }}</div>
+
+                <div class="card-grid">
+    {%- for carte in groupe.cartes %}
+      {%- set f = (carte.fiche | fiche) if carte.fiche else null %}
+      {%- set nom = carte.nom or (f.data.nom if f else "") %}
+      {%- set icone = carte.icone or (f.data.icone if f else "") %}
+
+      {%- if f %}
+                    <a class="card" href="{{ f.url }}">
+      {%- else %}
+                    <div class="card">
+      {%- endif %}
+                    {%- if icone %}
+                        <img src="{{ icone }}" class="icon" alt="{{ nom }}">
+                    {%- endif %}
+                        <div class="content">
+                        {%- if nom %}
+                            <h5>{{ nom }}</h5>
+                        {%- endif %}
+                        {%- if carte.role %}
+                            <p>{{ carte.role }}</p>
+                        {%- endif %}
+                        {%- if carte.note %}
+                            <p>{{ carte.note }}</p>
+                        {%- endif %}
+                        </div>
+      {%- if f %}
+                    </a>
+      {%- else %}
+                    </div>
+      {%- endif %}
+    {%- endfor %}
+
+                </div>
+            </section>
+  {%- endfor %}
+
+        </section>
+{% endfor %}
+    </main>
+
+    <hr>
+
+    <nav>
+        <a href="/univers/">[Izmir by Night]</a>
+    </nav>
+
+    <footer>
+        © 2026 [Izmir by Night]
+    </footer>
+
+<script>
+  const fiches = [{% for f in collections.personnages %}"{{ f.url }}"{% if not loop.last %}, {% endif %}{% endfor %}];
+  function pageAleatoire() {
+    location.href = fiches[Math.floor(Math.random() * fiches.length)];
+  }
+</script>

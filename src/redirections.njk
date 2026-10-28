@@ -1,0 +1,28 @@
+---
+pagination:
+  data: redirections
+  size: 1
+  alias: ancienne
+permalink: "{{ ancienne }}"
+eleventyExcludeFromCollections: true
+---
+{#- Fabrique une petite page à chaque ancienne adresse de src/_data/redirections.yaml,
+    qui envoie le visiteur vers la nouvelle (liens Kumu, favoris des joueurs…). -#}
+{%- set nouvelle = redirections[ancienne] -%}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Cette page a déménagé</title>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+<meta http-equiv="refresh" content="0; url={{ nouvelle }}">
+<link rel="canonical" href="{{ nouvelle }}">
+<script>
+  const [chemin, ancre] = {{ nouvelle | json | safe }}.split("#");
+  location.replace(chemin + location.search + (ancre ? "#" + ancre : location.hash));
+</script>
+</head>
+<body style="background:#1e1408;color:#e8dcc0;font:12px Arial">
+<p>Cette page a déménagé : <a href="{{ nouvelle }}" style="color:#c09050">{{ nouvelle }}</a></p>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+    <meta charset="UTF-8">
+    <title>Inga</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page-arrow left">
+    <a href="inga.html">←</a>
+</div>
+
+
+<div id="room">
+
+    <img src="2.png" alt="">
+
+
+    <!-- zones cliquables : x1, y1, x2, y2 en pixels de l'image, comme les anciens coords ;
+         si deux zones se chevauchent, la dernière de la liste passe au-dessus -->
+
+    <button class="zone" type="button" aria-label="travail" style="--x1: 1068; --y1: 33; --x2: 1336; --y2: 291;" onclick="talk('travail')"></button>
+    <button class="zone" type="button" aria-label="sabbat" style="--x1: 682; --y1: 193; --x2: 842; --y2: 340;" onclick="openPage('/SITE/FACTIONS/sabbat/test.html')"></button>
+    <button class="zone" type="button" aria-label="ordinateur" style="--x1: 439; --y1: 176; --x2: 582; --y2: 279;" onclick="openPage('/SITE/FACTIONS/')"></button>
+    <button class="zone" type="button" aria-label="travail" style="--x1: 46; --y1: 399; --x2: 208; --y2: 681;" onclick="talk('travail')"></button>
+    <button class="zone" type="button" aria-label="code" style="--x1: 998; --y1: 30; --x2: 1094; --y2: 131;" onclick="talk('code')"></button>
+    <button class="zone" type="button" aria-label="chaire" style="--x1: 1047; --y1: 552; --x2: 1201; --y2: 700;" onclick="talk('flesh')"></button>
+    <button class="zone" type="button" aria-label="divin" style="--x1: 1257; --y1: 282; --x2: 1341; --y2: 414;" onclick="talk('holy')"></button>
+
+
+    <!-- DIALOGUE -->
+
+    <div id="dialog">
+
+        <img
+            id="speaker"
+            src="https://i.postimg.cc/Zn8ZdS2Q/image-2026-09-03-100531968.png"
+        >
+
+        <div id="dialog-content">
+
+            <div id="text"></div>
+
+            <span>suite</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAGE INTERNE -->
+
+    <div id="page-viewer">
+
+        <button
+            id="page-close"
+            onclick="closePage()"
+        >
+            CLOSE
+        </button>
+
+        <iframe
+            id="page-frame"
+            src="about:blank"
+        ></iframe>
+
+    </div>
+
+</div>
+
+
+<script src="dialogues.js"></script>
+<script src="room.js"></script>
+
+</body>
+</html>

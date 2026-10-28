@@ -1,0 +1,80 @@
+---
+titre: Tirage de tarot
+layout: base.njk
+css: [/css/izmir.css]
+---
+<style>
+  #tirage { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 16px; }
+  .carte { width: 160px; text-align: center; }
+  .carte img { width: 100%; border-radius: 6px; }
+  .renversee img { transform: rotate(180deg); }
+  #question { margin-top: 16px; text-align: center; font: italic 16px georgia, serif; }
+</style>
+<div class="page-wrap">
+<div class="container">
+
+  <div class="box">
+
+    <button onclick="tirer(1)">tirer une carte</button>
+    <button onclick="tirer(3)">tirer trois cartes</button>
+    <button onclick="tirer(11)">tirer toutes les cartes</button>
+    <div id="question"></div>
+    <div id="tirage"></div>
+  </div>
+</div>
+</div>
+
+<script>
+  const cartes = [
+    { nom: "Le Magicien",   image: "/GALLERIE/thumbs/dessin/sun/magician.webp" },
+    { nom: "La Papesse",    image: "/GALLERIE/thumbs/dessin/sun/highpriestess.webp" },
+    { nom: "L'Impératrice", image: "/GALLERIE/thumbs/dessin/sun/EMPRESS.webp" },
+    { nom: "La Force",      image: "/GALLERIE/thumbs/dessin/sun/strenght.webp" },
+    { nom: "Tempérance",    image: "/GALLERIE/thumbs/dessin/sun/temperance.webp" },
+    { nom: "La Lune",       image: "/GALLERIE/thumbs/dessin/sun/MOON.webp" },
+    { nom: "Le Jugement",   image: "/GALLERIE/thumbs/dessin/sun/juge.webp" },
+    { nom: "Le soleil",   image: "/GALLERIE/thumbs/dessin/sun/zacharias.webp" },
+    { nom: "L'hermit",   image: "/GALLERIE/thumbs/dessin/sun/hermit.webp" },
+    { nom: "Mort'",   image: "/GALLERIE/thumbs/dessin/sun/atamdeath.webp" },
+    { nom: "Le Pendu",   image: "/GALLERIE/thumbs/dessin/sun/hanged.webp" },
+  ];
+
+  function tirer(nombre) {
+    const paquet = cartes.slice();  
+    let html = "";
+
+    for (let i = 0; i < nombre; i++) {
+      if (paquet.length  === 0) {
+  break; }
+      const carte = paquet.splice(Math.floor(Math.random() * paquet.length), 1)[0];
+
+
+      
+    let renversee = Math.random() < 0.5;
+
+if (nombre === cartes.length) {
+  renversee = false;
+}
+
+
+      
+
+      html += `
+        <div class="carte ${renversee ? "renversee" : ""}">
+          <img src="${carte.image}" alt="${carte.nom}">
+          <div>${carte.nom}</div>
+          <small>${renversee ? "renversée" : "à l'endroit"}</small>
+        </div>`; 
+    }
+
+    document.getElementById("tirage").innerHTML = html;
+
+    let tirages = 0;
+    try { tirages = Number(localStorage.getItem("izmir-tarot")) || 0; } catch (e) {}
+    tirages = tirages + 1;
+    try { localStorage.setItem("izmir-tarot", tirages); } catch (e) {}
+    if (tirages >= 10 && window.izmirAccount) izmirAccount.gagnerBadge("paranoid");
+  }
+
+
+</script>

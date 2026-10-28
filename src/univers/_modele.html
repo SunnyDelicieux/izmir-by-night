@@ -1,0 +1,44 @@
+---
+# MODÈLE D'UNE PAGE DU WIKI : copie ce fichier dans src/univers/ (ou un de ses dossiers),
+# renomme-le (ex. port.html → adresse /univers/port/) et remplis-le.
+# Les lignes qui commencent par # sont des commentaires : tu peux les effacer.
+
+titre: Le titre de la page     # le grand titre, et le titre de l'onglet
+layout: wiki.njk               # ne change pas : c'est le modèle des pages du wiki
+
+# Pour que la page apparaisse dans l'index du wiki (/univers/toutes-les-pages/) :
+rubrique: Izmir                # Izmir, Brujah, Toreador, Tremere ou Ventrue
+ordre: 5                       # sa place dans la rubrique
+---
+<!--LE BLOC POUR LA NAVIGATION, AUTOMATIQUEMENT LES GRAND TITRE SE METTENT DEDANS, PAS BESOIN D'Y TOUCHER-->
+
+<div id="toc"></div>
+<div id="contents">
+
+
+    <!--LE PREMIER TITRE DE LA PAGE, QUI APPARAIT DANS LA NAVIGATION-->
+
+<h2>Titre majeur</h2>
+
+<p>
+    C'est toujours mieux de mettre les textes entre deux tags "p" qui définissent un paragraphe.
+</p>
+<p>
+    On utilise un second si on veut changer de paragraphe sous le meme titre.
+</p>
+
+
+<h3>Un sous titre</h3>
+<p>
+Un autre paragraphe
+</p>
+
+<h2>Titre majeur</h2>
+<p>
+Un autre paragraphe
+</p>
+
+
+<!-- LES TRUCS QUI FERMENT LA PAGE/-->
+
+</div>

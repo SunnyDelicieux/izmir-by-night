@@ -1,0 +1,16 @@
+---
+titre: Index du wiki
+layout: wiki.njk
+rubriques: [Izmir, Brujah, Toreador, Tremere, Ventrue]
+---
+{#- Cette liste se remplit toute seule : une page du wiki y apparaît si son en-tête contient
+    « rubrique: » (une des rubriques ci-dessus) et, pour la ranger, « ordre: ». -#}
+<p>Toutes les pages du wiki, hors fiches de personnages (elles sont dans <a href="/personnages/">Personnages</a>).</p>
+{% for rubrique in rubriques %}
+<h2>{{ rubrique }}</h2>
+<ul>
+{%- for p in collections.wiki %}{% if p.data.rubrique == rubrique %}
+    <li><a href="{{ p.url }}">{{ p.data.titre }}</a></li>
+{%- endif %}{% endfor %}
+</ul>
+{% endfor %}

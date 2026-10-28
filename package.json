@@ -1,0 +1,19 @@
+{
+  "name": "izmir-by-night",
+  "private": true,
+  "type": "module",
+  "description": "Le site de la campagne Izmir by Night",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7",
+    "js-yaml": "^5.5.0",
+    "pagefind": "^1.5.2",
+    "sharp": "^0.35.5"
+  }
+}

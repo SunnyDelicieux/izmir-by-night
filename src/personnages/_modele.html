@@ -1,0 +1,67 @@
+---
+# MODÈLE D'UNE FICHE : copie ce fichier dans src/personnages/, renomme-le (ex. jiwoo.html) et remplis-le.
+# Le nom du fichier donne l'adresse de la fiche (/personnages/jiwoo/) et son identifiant ("jiwoo").
+# Les lignes qui commencent par # sont des commentaires : tu peux les effacer.
+
+titre: Ji-Woo | Ventrue        # le titre de l'onglet
+layout: fiche.njk              # ne change pas : c'est le modèle des fiches
+nom: Ji-Woo
+icone: /img/wiki/ventrue/jiwoo.png
+portrait: /img/wiki/ventrue/jiwoo.png
+halloween: /GALLERIE/thumbs/dessin/sun/jiwoo.webp   # facultatif : le portrait du thème Halloween
+citation: « Une phrase qui la résume. »
+
+# Le tableau à côté du portrait, ligne par ligne et dans cet ordre.
+# Si une valeur contient « : » (deux-points suivis d'une espace), mets-la entre guillemets.
+bio:
+  Nom: Ji-Woo
+  Clan: Ventrue
+  Sire: <a href="/personnages/thouros/">Thouros</a>
+  Étreinte: 1990
+  Âge apparent: 30 ans
+---
+      <section id="personality">
+        <h3 class="purple">Information connue</h3>
+        <p>
+          Ce que tout le monde sait d'elle.
+        </p>
+      </section>
+
+      <section id="story">
+        <h3 class="red">Histoire</h3>
+        <p>
+          Son passé.
+        </p>
+      </section>
+
+      <section id="relationships">
+        <h3 class="red">Relations</h3>
+        <h4>LIGNEE</h4>
+
+        {#- Une relation avec un personnage qui a une fiche : son icône, son nom et le lien viennent de sa fiche. -#}
+        {% relation "thouros" %}
+          Ce qu'elle pense de son sire.
+        {% endrelation %}
+
+        <h4>RELATIONS</h4>
+
+        {#- Pour afficher un autre nom que celui de la fiche : -#}
+        {% relation "baran", "Baran, le Sheriff" %}
+          Ce qu'elle pense de Baran.
+        {% endrelation %}
+
+        {#- Un personnage sans fiche : on écrit la relation en HTML, comme avant. -#}
+        <dl>
+          <dt><img src="/img/wiki/icon/no-icon.png" class="icon">Quelqu'un sans fiche</dt>
+          <dd>
+            Ce qu'elle en pense.
+          </dd>
+        </dl>
+      </section>
+
+      <section id="trivia">
+        <h3 class="green">Trivia</h3>
+        <ul>
+          <li>Un détail amusant.</li>
+        </ul>
+      </section>

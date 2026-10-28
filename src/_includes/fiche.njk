@@ -1,0 +1,34 @@
+---
+layout: base.njk
+css: [/css/fiche.css]
+js: [/js/costumes.js]
+---
+{#- La fiche d'un personnage. Les infos viennent de l'en-tête du fichier dans src/personnages/ :
+      nom, icone, portrait, halloween (portrait du thème Halloween), citation,
+      bio: les lignes du tableau, dans l'ordre (ex. Clan: Ventrue) -#}
+<main>
+  <h2 class="character-name">{% if icone %}<img src="{{ icone }}" class="icon" alt="">{% endif %}{{ nom | safe }}</h2>
+{%- if portrait or bio %}
+  <aside class="bio">
+  {%- if portrait %}
+    <img src="{{ portrait }}" alt="{{ nom }}"{% if halloween %} data-halloween="{{ halloween }}"{% endif %}>
+  {%- endif %}
+  {%- if bio %}
+    <table>
+    {%- for cle, valeur in bio %}
+      <tr>
+        <td>{{ cle }}</td>
+        <td>{{ valeur | safe }}</td>
+      </tr>
+    {%- endfor %}
+    </table>
+  {%- endif %}
+  </aside>
+{%- endif %}
+{%- if citation %}
+  <section id="info">
+    <p class="quote">{{ citation | safe }}</p>
+  </section>
+{%- endif %}
+{{ content | safe }}
+</main>

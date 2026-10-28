@@ -1,0 +1,34 @@
+{#- Le squelette commun à toutes les pages (sauf le hub et les îles d'ambiance).
+    Dans l'en-tête d'une page (entre les deux lignes ---), tu peux mettre :
+      titre: Le titre de l'onglet
+      css: [/css/izmir.css]   les feuilles de style de la page
+      js: [/js/costumes.js]   des scripts à lancer une fois la page chargée
+      classe: sans-coin       une classe pour <body>
+      barre: false            pour une page sans barre de navigation
+      recherche: false        pour que la page n'apparaisse pas dans la recherche -#}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ titre }}</title>
+  <meta data-pagefind-meta="title[content]" content="{{ titre }}">
+  <link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+{%- for fichier in css %}
+  <link rel="stylesheet" href="{{ fichier }}">
+{%- endfor %}
+  <link rel="stylesheet" href="/css/barre.css">
+  <script src="/js/outils.js"></script>
+  <script src="/js/connexion.js"></script>
+  <script src="/js/recherche.js" defer></script>
+{%- for fichier in js %}
+  <script src="{{ fichier }}" defer></script>
+{%- endfor %}
+</head>
+<body{% if classe %} class="{{ classe }}"{% endif %}{% if recherche !== false %} data-pagefind-body{% endif %}>
+{%- if barre !== false %}
+{% include "barre.njk" %}
+{%- endif %}
+{{ content | safe }}
+</body>
+</html>

@@ -1,0 +1,91 @@
+# Les boutons de filtre de la galerie (/galerie/).
+# À gauche le tag (le mot à mettre dans « tags » d'un dessin), à droite le texte du bouton.
+# Pour chaque clan, « persos » donne les boutons qui apparaissent quand on clique sur le clan.
+
+themes:
+  official: Officiel
+  canon: Canon
+  noncanon: Non-canon
+  spice: Spice
+  emote: Emote
+  calendrier: Calendrier
+  asset: Asset
+  video: Video
+  halloween: Halloween
+clans:
+  brujah:
+    texte: Brujah
+    persos:
+      baran: Baran
+      kaadir: Kaadir
+      enry: Enry
+      emine: Emine
+      gabriel: Gabriel
+      aaron: Aaron
+      essil: Essil
+      anna: Anna
+      ahmet: Ahmet
+  ventrue:
+    texte: Ventrue
+    persos:
+      chae-yeong: Chae-yeong
+      ji-woo: Ji-woo
+      zaya: Zaya
+      louiza: Louiza
+      dimitri: Dimitri
+      arslan: Arslan
+      raffi: Raffi
+      hadla: Hadla
+      alita: Alita
+      thouros: Thouros
+      cem: Cem
+  tremere:
+    texte: Tremere
+    persos:
+      eleni: Eleni
+      tarik: Tarik
+      esen: Esen
+      mariko: Mariko
+      sophia: Sophia
+      dimitrios: Dimitrios
+      zacharias: Zacharias
+      eylem: Eylem
+      ismini: Ismini
+  nosferatu:
+    texte: Nosfe
+    persos:
+      inga: Inga
+      atam: Atam
+      nebetta: Nebetta
+  toreador:
+    texte: Toreador
+    persos:
+      maliha: Maliha
+      nafissa: Nafissa
+      angelos: Angelos
+      ines: Ines
+      aylin: Aylin
+      kejal: Kejal
+      max: Max
+      calliope: Calliope
+      alejandro: Alejandro
+  autre:
+    texte: Autre
+    persos:
+      camil: Camil
+      kushi: Kushi
+      meryem: Meryem
+  lasombra:
+    texte: Lasombra
+    persos:
+      idia: Idia
+      nour: Nour
+      ketevan: Ketevan
+auteurs:
+  yolnir: Yolnir
+  sunny: Sunny
+  ashita: Ashita
+  autriche: Autriche
+  shiva: Shiva
+  vincent: Vincent
+  deneb: Deneb

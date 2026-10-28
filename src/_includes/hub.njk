@@ -1,0 +1,47 @@
+{#- Les pages du hub (« all she does is yap yap ») : / et src/hub/.
+    Dans l'en-tête d'une page du hub :
+      image_cote: /img/tore.png   l'image de la colonne de gauche -#}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base target="_top">
+  <title>yap session</title>
+  <meta data-pagefind-meta="title[content]" content="{{ titre or 'yap session' }}">
+  <link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+  <link rel="stylesheet" href="/hub/hub.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/barre.css">
+  <script src="/js/outils.js"></script>
+  <script src="/js/connexion.js"></script>
+  <script src="/js/recherche.js" defer></script>
+</head>
+<body data-pagefind-body>
+	<div class="wrapper">
+		<div class="header" data-pagefind-ignore="all">
+			<div class="title">all she does is yap yap</div>
+			<div class="menu">
+				<a href="/" target="_self"><img src="/img/icup.png" alt="">update</a>
+				<a href="/hub/projet/" target="_self"><img src="/img/icode.png" alt="">projet</a>
+				<a href="/hub/galerie/" target="_self"><img src="/img/hub/gallerie.png" class="icone" alt="">gallerie</a>
+				<a href="/accueil/" target="_top"><img src="/img/hub/site.png" class="icone" alt="">siteweb</a>
+				<a href="/univers/" target="_top"><img src="/img/hub/wiki.png" class="icone" alt="">wiki</a>
+				<a href="https://kumu.io/SunnyD/izmir#untitled-map" target="_top"><img src="/img/hub/kumu.png" class="icone" alt="">kumu</a>
+				<a href="/hub/blog/" target="_self"><img src="/img/hub/blog.png" class="icone" alt="">blog</a>
+			</div>
+		</div>
+
+		<div class="main">
+			<div class="sidebar">
+				<img src="{{ image_cote }}" alt="">
+			</div>
+{{ content | safe }}
+		</div>
+
+		<div class="footer"><small>Hub de la campagne d'izmir, [2026]</small></div>
+	</div>
+</body>
+</html>

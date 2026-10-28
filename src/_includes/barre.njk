@@ -1,0 +1,34 @@
+{#- La barre de navigation en haut des pages. Les liens du menu sont dans src/_data/menu.yaml. -#}
+<nav id="iz-barre" aria-label="Navigation du site" data-pagefind-ignore="all">
+  <div class="izb-ligne">
+    <a class="izb-titre" href="/accueil/"><img class="izb-logo" src="/img/wiki/icon/logo-128.png" alt="">İzmir by Night</a>
+    <div class="izb-menu">
+    {%- for entree in menu %}
+      {%- if entree.colonnes %}
+      <div class="navi-group">
+        <span class="navi-parent">{{ entree.titre }}</span>
+        <div class="navi-sub">
+        {%- for colonne in entree.colonnes %}
+          <div class="navi-col">
+            <div class="navi-titre">{{ colonne.titre }}</div>
+          {%- for lien in colonne.liens %}
+            <a href="{{ lien.url }}">{{ lien.texte }}</a>
+          {%- endfor %}
+          </div>
+        {%- endfor %}
+        </div>
+      </div>
+      {%- else %}
+      <a href="{{ entree.url }}">{{ entree.titre }}</a>
+      {%- endif %}
+    {%- endfor %}
+    </div>
+    <div class="izb-outils">
+      <div id="iz-topbar"></div>
+      <button class="izb-theme" type="button" aria-label="Changer de thème"></button>
+      <button class="izb-citrouille" type="button" aria-label="Thème Halloween">🎃</button>
+      <span id="iz-barre-compte"></span>
+    </div>
+  </div>
+</nav>
+<script src="/js/barre.js"></script>

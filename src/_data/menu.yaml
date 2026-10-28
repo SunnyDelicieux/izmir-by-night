@@ -1,0 +1,86 @@
+# La barre de navigation en haut des pages.
+# Une entrée avec « url » est un lien direct ; une entrée avec « colonnes » est un menu déroulant.
+
+- titre: Hub
+  url: /
+
+- titre: Univers
+  colonnes:
+    - titre: La ville
+      liens:
+        - texte: La ville d'Izmir
+          url: /univers/
+        - texte: Chronologie
+          url: /univers/chronologie/
+        - texte: Calendrier
+          url: /espace-joueur/#calendrier
+        - texte: Les lois
+          url: /univers/lois/
+        - texte: Carte
+          url: /outils/carte/
+    - titre: Les clans
+      liens:
+        - texte: Tous les clans
+          url: /univers/clans/
+        - texte: Brujah
+          url: /univers/brujah/
+        - texte: Toreador
+          url: /univers/toreador/
+        - texte: Tremere
+          url: /univers/tremere/
+        - texte: Ventrue
+          url: /univers/ventrue/
+    - titre: Personnages
+      liens:
+        - texte: Tous les personnages
+          url: /personnages/
+        - texte: Relations
+          url: /outils/relations/
+    - titre: Rencontres
+      liens:
+        - texte: Inga
+          url: /ambiance/inga/
+        - texte: Nebetta (Elysium)
+          url: /ambiance/elysium/
+
+- titre: Jouer
+  colonnes:
+    - titre: Créer son personnage
+      liens:
+        - texte: Création de personnage
+          url: /jouer/creation/
+        - texte: Les groupes
+          url: /jouer/groupes/
+        - texte: Les objectifs
+          url: /jouer/objectifs/
+    - titre: Créer l'environnement
+      liens:
+        - texte: Le clan
+          url: /jouer/creation-du-clan/
+        - texte: Les PNJ
+          url: /jouer/pnj/
+    - titre: Système
+      liens:
+        - texte: Factions
+          url: /jouer/factions/
+        - texte: Ressources
+          url: /jouer/ressources/
+        - texte: Entreprises
+          url: /jouer/entreprises/
+
+- titre: Outils
+  colonnes:
+    - titre: À lire, à voir
+      liens:
+        - texte: Journal
+          url: /ambiance/journal/
+        - texte: Galerie
+          url: /galerie/
+        - texte: Tarot
+          url: /outils/tarot/
+    - titre: Organisation
+      liens:
+        - texte: Lignes et voiles
+          url: /jouer/lignes-et-voiles/
+        - texte: Alchemy
+          url: /outils/alchemy/

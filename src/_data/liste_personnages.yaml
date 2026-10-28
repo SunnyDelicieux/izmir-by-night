@@ -1,0 +1,207 @@
+# La page « Tous les personnages » (/personnages/) : ses sections, ses groupes et ses cartes, dans l'ordre.
+# Une carte peut avoir :
+#   fiche : le nom du fichier de la fiche (src/personnages/<fiche>.html), sans .html.
+#           Le nom, l'icône et le lien viennent alors de la fiche. Si la fiche n'existe pas, le site refuse de se construire.
+#   nom, icone : pour un personnage sans fiche, ou pour afficher autre chose que la fiche
+#   role : la ligne sous le nom ; note : une deuxième ligne
+
+- titre: Dans la Camarilla
+  id: camarilla
+  groupes:
+    - titre: Toreador
+      cartes:
+        - fiche: nafissa
+          icone: /img/wiki/toreador/nafissa.png
+          role: Primogène Toreador
+        - fiche: ines
+          icone: /img/wiki/toreador/ines.png
+          role: Marketeuse du clan
+        - fiche: max
+          nom: Max
+          role: Talkshow host
+        - fiche: maliha
+          icone: /img/wiki/toreador/maliha.png
+          role: Gardienne du jardin
+        - fiche: aylin
+          icone: /img/wiki/toreador/aylin.png
+          role: Actrice pornographique
+        - fiche: angelos
+          role: Darling acteur
+        - fiche: kejal
+          nom: Kejal
+          icone: /img/wiki/toreador/kejal.png
+          role: Toreador
+        - fiche: calliope
+          role: Toreador
+    - titre: Tremere
+      cartes:
+        - fiche: esen
+          role: Régent & Primogène
+        - fiche: dimitrios
+          role: Magister
+        - fiche: sophia
+          role: Logothète et Héraut
+        - fiche: tarik
+          nom: Tarik El-Hashim
+          role: Apprenti & Limier
+        - fiche: eleni-paschalia
+          icone: /img/wiki/tremere/eleni.png
+          role: Tremere
+        - fiche: eylem
+          role: Tremere
+        - fiche: ismini
+          role: Tremere
+        - fiche: zacharias
+          role: Tremere
+    - titre: Ventrue
+      cartes:
+        - fiche: kerem
+          nom: Kerem Arslan
+          icone: /img/wiki/ventrue/kerem.png
+          role: Primogène Ventrue
+        - fiche: zaya
+          role: Sénéchale
+        - fiche: chae
+          icone: /img/wiki/ventrue/chae.jpg
+          role: Limier Ventrue
+        - fiche: louisa
+          role: Aristocrate
+        - fiche: thouros
+          icone: /img/wiki/ventrue/thouros.png
+          role: Marchand de guerre
+        - fiche: raffi
+          icone: /img/wiki/ventrue/raffi.jpg
+          role: Historien
+        - fiche: alita
+          role: Membre du Conseil
+        - fiche: cem
+          role: Courtier des données volées
+    - titre: Brujah
+      cartes:
+        - fiche: henri
+          nom: Enry
+          role: Primogène Brujah
+        - fiche: baran
+          nom: Baran
+          icone: /img/wiki/brujah/baran.png
+          role: Sheriff
+        - fiche: kaadir
+          role: Limier du Sheriff
+        - fiche: gabriel
+          icone: /img/wiki/brujah/gabriel.png
+          role: Conseiller juridique
+        - fiche: emine
+          role: Ancienne du clan
+        - fiche: essil
+          nom: Essil Khaled
+          role: Sécurité privée
+        - fiche: anna-petrova
+          icone: /img/wiki/brujah/anna.png
+          role: Brujah
+        - fiche: ahmet
+          icone: /img/wiki/brujah/ahmet.jpg
+          role: Brujah
+    - titre: Autres
+      cartes:
+        - fiche: kushi
+          icone: /img/wiki/autre/kushi.png
+          role: Prince d'Izmir
+        - fiche: camil
+          icone: /img/wiki/autre/camil.png
+          role: Infant du prince
+        - fiche: idia
+          nom: Idia
+          icone: /img/wiki/autre/idia.png
+          role: Lasombra
+        - fiche: atam
+          role: Sortie de torpeur
+        - fiche: nebetta
+          role: Gardienne d'Elysium
+        - fiche: inga
+          icone: /img/wiki/autre/inga.png
+          role: Cyber degen
+        - fiche: meryem
+          role: Assistante chercheuse
+        - fiche: nour
+          icone: /img/wiki/autre/nour.png
+          role: Autre
+- titre: Humains
+  id: humains
+  groupes:
+    - titre: Ghoules
+      cartes:
+        - fiche: mariko
+          icone: /img/wiki/tremere/mariko.png
+          role: Goule & PDG Tremere
+        - fiche: dimitri
+          nom: Dimitri
+          icone: /img/wiki/ventrue/dimitri.jpg
+          role: Goule & PDG Ventrue
+        - fiche: aaron
+          icone: /img/wiki/icon/no-icon.png
+          role: Goule & PDG Brujah
+        - fiche: alejandro
+          icone: /img/wiki/toreador/alejandro.jpg
+          role: Goule & PDG Toreador
+        - nom: Ketevan
+          icone: /img/wiki/autre/ketevan.png
+          role: Goule & PDG Lasombra
+- titre: Factions ennemies
+  id: ennemis
+  groupes:
+    - titre: Anarchs
+      cartes:
+        - nom: Baron
+          icone: /img/wiki/icon/no-icon.png
+          role: Baron Anarch
+        - nom: '"Rollin"'
+          icone: /img/wiki/icon/pfp2.png
+          role: Ventrue
+        - nom: '"Lil"'
+          icone: /img/wiki/icon/pfp.png
+          role: Gangrel
+        - nom: '"Snail"'
+          icone: /img/wiki/icon/fire.png
+          role: Anarch
+        - nom: '"Doll"'
+          icone: /img/wiki/icon/doll.png
+          role: Anarch
+        - nom: Kostas
+          icone: /img/wiki/icon/no-icon.png
+          role: Anarch
+        - nom: '"Sun"'
+          icone: /img/wiki/icon/sun.png
+          role: Anarch
+    - titre: Sabbat
+      cartes:
+        - nom: '"Le ductus"'
+          icone: https://i.pinimg.com/736x/a7/7f/3b/a77f3b0b96c31603a4dee2fa85f4e22c.jpg
+          role: L'infante de Scilla
+        - role: Estimation de 10 membres
+    - titre: Setites
+      cartes:
+        - role: Estimation de 4 membres
+- titre: Absents
+  id: absents
+  groupes:
+    - titre: Mort finale
+      cartes:
+        - nom: Bardas Planudes
+          icone: /img/wiki/icon/no-icon.png
+          role: Primogène Brujah
+          note: Mort finale en 1920
+        - nom: Sélim
+          icone: /img/wiki/icon/no-icon.png
+          role: Sheriff Brujah
+          note: Mort finale en 1920
+        - nom: Alkinoos Kerkyra
+          icone: /img/wiki/icon/no-icon.png
+          role: Régent de Smyrne
+        - nom: Shahar
+          icone: /img/wiki/icon/no-icon.png
+          role: Vizir de l'Ashira
+          note: Assassiné en 1560
+    - titre: A quitté la ville
+      cartes:
+        - fiche: ibrahim
+          role: Ancien primogene Ventrue
