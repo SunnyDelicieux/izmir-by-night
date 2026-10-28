@@ -31,7 +31,8 @@ js: [/js/costumes.js, /js/galerie-fiche.js]
     <p class="quote">{{ citation | safe }}</p>
   </section>
 {%- endif %}
-{{ content | safe }}
+{#- Les noms des relations qui correspondent à une fiche deviennent des liens (config/personnages.js). -#}
+{{ content | lierRelations | safe }}
 {#- Les dessins de la galerie tagués avec le nom du personnage, ajoutés tout seuls.
       Les onglets (Canon, Non canon…) sont réglés dans src/_data/galerie_filtres.yaml. -#}
 {%- set onglets = galerie | dessinsDe(tag_galerie or page.fileSlug, galerie_filtres.fiches) %}
@@ -56,3 +57,6 @@ js: [/js/costumes.js, /js/galerie-fiche.js]
   </section>
 {%- endif %}
 </main>
+<footer>
+  <a href="/personnages/">← tous les personnages</a> · © 2026 [Izmir by Night]
+</footer>

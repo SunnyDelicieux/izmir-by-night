@@ -4,7 +4,7 @@
 import { load as lireYaml } from "js-yaml";
 import { preparerGalerie, dessinsDe } from "./config/galerie.js";
 import { indexerRecherche } from "./config/recherche.js";
-import { fiche, relation, fichesDe } from "./config/personnages.js";
+import { fiche, relation, fichesDe, lierRelations } from "./config/personnages.js";
 import { ancres } from "./config/ancres.js";
 
 export default function (eleventyConfig) {
@@ -21,7 +21,7 @@ export default function (eleventyConfig) {
 
   // Pas transformés en pages : les modèles à copier, les îles (copiées au-dessus)
   // et les dessins (préparés par config/galerie.js).
-  eleventyConfig.ignores.add("src/**/_modele.html");
+  eleventyConfig.ignores.add("src/**/_modele*.html");
   eleventyConfig.ignores.add("src/ambiance/**");
   eleventyConfig.ignores.add("src/archives/**");
   eleventyConfig.ignores.add("src/galerie/dessins/**");
@@ -32,6 +32,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("fiche", fiche);
   // {% relation "thouros" %}texte{% endrelation %} : une relation avec l'icône et le lien de la fiche.
   eleventyConfig.addPairedShortcode("relation", relation);
+  // {{ content | lierRelations }} : les noms des relations qui correspondent à une fiche deviennent des liens.
+  eleventyConfig.addFilter("lierRelations", lierRelations);
   // {% set onglets = galerie | dessinsDe("baran", galerie_filtres.fiches) %} : les dessins tagués « baran », rangés en onglets.
   eleventyConfig.addFilter("dessinsDe", dessinsDe);
 
