@@ -1,25 +1,6 @@
----
-# MODÈLE D'UNE FICHE : copie ce fichier dans src/personnages/, renomme-le (ex. jiwoo.html) et remplis-le.
-# Le nom du fichier donne l'adresse de la fiche (/personnages/jiwoo/) et son identifiant ("jiwoo").
-# Les lignes qui commencent par # sont des commentaires : tu peux les effacer.
-
-titre: Ji-Woo | Ventrue        # le titre de l'onglet
-layout: fiche.njk              # ne change pas : c'est le modèle des fiches
-nom: Ji-Woo
-icone: /img/wiki/ventrue/jiwoo.png
-portrait: /img/wiki/ventrue/jiwoo.png
-halloween: /GALLERIE/thumbs/dessin/sun/jiwoo.webp   # facultatif : le portrait du thème Halloween
-citation: « Une phrase qui la résume. »
-tag_galerie: ji-woo            # facultatif : son tag dans la galerie, s'il n'est pas le nom du fichier
-# Les dessins de la galerie qui portent ce tag s'affichent tout seuls en bas de la fiche, en onglets
-# (Canon ; Non canon = tags noncanon ou mtg ; Concept art = tag concept), réglés dans src/_data/galerie_filtres.yaml.
-
-# Le tableau à côté du portrait, ligne par ligne et dans cet ordre.
-# Si une valeur contient « : » (deux-points suivis d'une espace), mets-la entre guillemets.
-bio:
   Nom: Ji-Woo
   Clan: Ventrue
-  Sire: <a href="/personnages/thouros/">Thouros</a>
+  Sire: ?
   Étreinte: 1990
   Âge apparent: 30 ans
 ---
@@ -41,27 +22,17 @@ bio:
         <h3 class="red">Relations</h3>
         <h4>LIGNEE</h4>
 
-        {#- Une relation avec un personnage qui a une fiche : son icône, son nom et le lien viennent de sa fiche. -#}
-        {% relation "thouros" %}
+        {% relation "NomPerso" %}
           Ce qu'elle pense de son sire.
         {% endrelation %}
 
         <h4>RELATIONS</h4>
 
-        {#- Pour afficher un autre nom que celui de la fiche : -#}
-        {% relation "baran", "Baran, le Sheriff" %}
-          Ce qu'elle pense de Baran.
+        {% relation "NomDuPerso", "Nom de la relation" %}
+          Ce qu'elle pense du perso.
         {% endrelation %}
 
-        {#- Un personnage sans fiche : on écrit la relation en HTML, comme avant. -#}
-        <dl>
-          <dt><img src="/img/wiki/icon/no-icon.png" class="icon">Quelqu'un sans fiche</dt>
-          <dd>
-            Ce qu'elle en pense.
-          </dd>
-        </dl>
-      </section>
-
+        
       <section id="trivia">
         <h3 class="green">Trivia</h3>
         <ul>
