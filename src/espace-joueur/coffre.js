@@ -191,10 +191,7 @@
     }
 
     const paths = files.map((f) => f.path).filter(Boolean);
-    const { data: signed } = paths.length
-      ? await client.storage.from(BUCKET).createSignedUrls(paths, 3600)
-      : { data: [] };
-    const urls = Object.fromEntries((signed || []).map((s) => [s.path, s.signedUrl]));
+    const urls = await izmirPartage.liens(client, paths); // liens gardés quelques jours (voir partage.js)
     if (mine !== run) return;
     vault.innerHTML = "";
 
@@ -272,7 +269,7 @@
       const ext = izmirAlleger.extension(file);
       const path = `joueurs/${user.id}/${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
       hMsg.textContent = "envoi du fichier…";
-      ({ error } = await client.storage.from(BUCKET).upload(path, file, { contentType: file.type }));
+      ({ error } = await client.storage.from(BUCKET).upload(path, file, { contentType: file.type, cacheControl: izmirPartage.CACHE }));
       if (!error) {
         ({ error } = await client.from("handouts").insert({ titre, path, tags: [...chosen], source: original.name }));
         if (error) await client.storage.from(BUCKET).remove([path]);

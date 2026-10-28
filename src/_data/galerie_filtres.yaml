@@ -6,6 +6,8 @@ themes:
   official: Officiel
   canon: Canon
   noncanon: Non-canon
+  concept: Concept art
+  mtg: MTG
   spice: Spice
   emote: Emote
   calendrier: Calendrier
@@ -89,3 +91,13 @@ auteurs:
   shiva: Shiva
   vincent: Vincent
   deneb: Deneb
+
+# Les onglets de la galerie sur les fiches des personnages, dans l'ordre d'affichage.
+# Un dessin va dans le premier onglet dont il porte un des tags ;
+# l'onglet sans tags (Canon) prend tout le reste, « official » compris.
+fiches:
+  - titre: Canon
+  - titre: Non canon
+    tags: [noncanon, mtg]
+  - titre: Concept art
+    tags: [concept]

@@ -113,5 +113,52 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", setupModals);
   else setupModals();
 
-  window.izmirPartage = { tags, editor, format, escape, tagClass, chips };
+  // Les liens vers les fichiers du coffre (Supabase les fabrique, ils sont signés et expirent).
+  // On garde chaque lien quelques jours dans le navigateur au lieu d'en redemander un neuf à chaque visite :
+  // avec la même adresse, le navigateur réutilise le fichier déjà téléchargé, ce qui économise la bande passante
+  // (l'« Egress » de Supabase, limité à 5 Go par mois).
+  const DUREE_LIEN = 7 * 24 * 3600; // un lien est valable 7 jours…
+  const MARGE = 24 * 3600; // …et on en redemande un quand il lui reste moins d'un jour
+  const CLE_LIENS = "izmir-liens";
+  // à donner à l'envoi d'un fichier : le navigateur peut le garder 7 jours sans redemander
+  const CACHE = String(DUREE_LIEN);
+
+  function lireLiens() {
+    try {
+      return JSON.parse(localStorage.getItem(CLE_LIENS)) || {};
+    } catch {
+      return {};
+    }
+  }
+
+  // chemins des fichiers -> { chemin: lien }
+  async function liens(client, chemins) {
+    const maintenant = Date.now() / 1000;
+    const gardes = lireLiens();
+    const resultat = {};
+    const aDemander = [];
+    for (const chemin of chemins) {
+      const garde = gardes[chemin];
+      if (garde && garde.expire - maintenant > MARGE) resultat[chemin] = garde.lien;
+      else aDemander.push(chemin);
+    }
+    if (aDemander.length) {
+      const { data } = await client.storage.from("handouts").createSignedUrls(aDemander, DUREE_LIEN);
+      for (const s of data || []) {
+        if (!s.signedUrl) continue;
+        resultat[s.path] = s.signedUrl;
+        gardes[s.path] = { lien: s.signedUrl, expire: maintenant + DUREE_LIEN };
+      }
+    }
+    // on ne garde que les liens encore valables, pour que la liste ne grossisse pas sans fin
+    for (const [chemin, garde] of Object.entries(gardes)) if (garde.expire - maintenant <= MARGE) delete gardes[chemin];
+    try {
+      localStorage.setItem(CLE_LIENS, JSON.stringify(gardes));
+    } catch {
+      // navigation privée ou stockage plein : les liens ne seront simplement pas gardés
+    }
+    return resultat;
+  }
+
+  window.izmirPartage = { tags, editor, format, escape, tagClass, chips, liens, CACHE };
 })();

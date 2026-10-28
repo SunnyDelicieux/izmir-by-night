@@ -22,27 +22,26 @@ const fichierPublie = (src) => (src.startsWith("/") ? src : "/GALLERIE/dessin/" 
 const miniature = (src) => (telQuel(src) ? fichierPublie(src) : "/GALLERIE/thumbs/dessin/" + src.replace(IMAGE, ".webp"));
 const grandeImage = (src) => (telQuel(src) ? fichierPublie(src) : "/GALLERIE/web/dessin/" + src.replace(IMAGE, ".webp"));
 
-// Pour la fiche d'un personnage : les dessins tagués avec son nom, en deux onglets.
-// Tout est canon (« official » compris), sauf ce qui a le tag « noncanon ».
+// Pour la fiche d'un personnage : les dessins tagués avec son nom, rangés en onglets.
+// Les onglets viennent de galerie_filtres.yaml (« fiches ») : un dessin va dans le premier onglet
+// dont il porte un des tags, sinon dans l'onglet sans tags (Canon).
 // Les dessins « spice » et les vidéos ne sont pas montrés. Un onglet vide n'apparaît pas.
-export function dessinsDe(dessins, tag) {
-  const canon = [];
-  const noncanon = [];
+export function dessinsDe(dessins, tag, onglets) {
+  const rangement = onglets.map((onglet) => ({ titre: onglet.titre, tags: onglet.tags || [], dessins: [] }));
+  const parDefaut = rangement.find((onglet) => !onglet.tags.length);
   for (const dessin of dessins) {
     const tags = (dessin.tags || []).map((t) => String(t).trim().toLowerCase());
     const src = dessin.pages?.length ? dessin.pages[0].src : dessin.src;
     if (!tags.includes(tag) || tags.includes("spice") || /\.(mp4|webm)$/i.test(src)) continue;
-    (tags.includes("noncanon") ? noncanon : canon).push({
+    const onglet = rangement.find((o) => o.tags.some((t) => tags.includes(t))) || parDefaut;
+    onglet.dessins.push({
       miniature: miniature(src),
       image: grandeImage(src),
       alt: dessin.alt || "",
       legende: dessin.desc || dessin.alt || "",
     });
   }
-  return [
-    { titre: "Canon", dessins: canon },
-    { titre: "Non canon", dessins: noncanon },
-  ].filter((onglet) => onglet.dessins.length);
+  return rangement.filter((onglet) => onglet.dessins.length);
 }
 
 async function tousLesFichiers(dossier) {

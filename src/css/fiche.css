@@ -234,98 +234,138 @@ main img,
   font-weight: bold;
 }
 
-/*tabbed gallery pages tutorial*/
-/*https://css-tricks.com/pure-css-tabs-with-details-grid-and-subgrid/*/
-.gallery-grid {
+/* La galerie en bas des fiches (src/_includes/fiche.njk).
+   Les onglets sont des <details> : un seul ouvert à la fois (même « name »).
+   Les titres se rangent sur une ligne, le contenu de l'onglet ouvert passe dessous.
+   https://css-tricks.com/pure-css-tabs-with-details-grid-and-subgrid/ */
+.galerie-onglets {
   display: grid;
-  grid-template-columns: repeat(var(--pages), minmax(150px, 1fr));
+  grid-template-columns: repeat(var(--onglets), auto) 1fr;
   grid-template-rows: auto 1fr;
-  column-gap: 1rem;
+  column-gap: 6px;
 }
-
-.gallery-page {
+.galerie-onglets details {
   display: grid;
   grid-template-columns: subgrid;
   grid-template-rows: subgrid;
   grid-column: 1 / -1;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 2;
 }
-.gallery-page::details-content {
-  grid-row: 2; /* position in the second row */
-  grid-column: 1 / -1; /* cover all three columns */
-  padding: 1rem;
+.galerie-onglets details::details-content {
+  grid-row: 2;
+  grid-column: 1 / -1;
 }
-.gallery-page:not([open])::details-content {display: none;}
-
-.gallery-page > summary {
+.galerie-onglets details:not([open])::details-content {display: none;}
+.galerie-onglets summary {
   grid-column: var(--n) / span 1;
-  grid-row: 1; /* position in the first row */
-  display: grid;
-  padding: .5rem;
-  border: 2px solid var(--heading-color);
-  text-align: center;
-  /*uncomment to add animation*/
-  /*transition: .2s all;*/
-}
-.gallery-page[open] > summary {
-  background: var(--tag-color);
-  font-weight: bold;
-}
-.gallery-page > summary:hover {
-  background: var(--highlight);
-  border: 2px solid var(--subtle);
-  /*uncomment to add animation*/
-  /*transition: .2s all;*/
-}
-/*these make sure you can click everything inside all pages*/
-.gallery-page a,
-.gallery-page details,
-.gallery-page summary {z-index: 1;}
-
-/*for the image buttons*/
-/*we want them to be inside a flex grid so they display nicely*/
-.img-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-/*individual button styles*/
-.img-gallery details > summary,
-.img-gallery figure {
-  margin: 10px;
-  max-width: 200px;
+  grid-row: 1;
+  list-style: none;
+  cursor: pointer;
+  padding: 6px 14px;
   border: 1px solid var(--iz-border-strong);
-  background: var(--iz-box);
+  border-radius: 999px;
+  color: var(--subtle);
+  white-space: nowrap;
+  transition: background .2s, color .2s;
+  z-index: 1;
 }
-.img-gallery details > summary:hover,
-.img-gallery figure:hover {
-  border: 2px solid var(--link-color);
-}
-/*limit the size on these things*/
-.img-gallery img {
-  max-height: 200px;
-  max-width: 196px;
-}
-/*and the caption style*/
-.img-gallery figcaption {
-  font-size: small;
-  text-align: center;
-  margin: auto;
-  padding: 4px 20px;
+.galerie-onglets summary::-webkit-details-marker {display: none;}
+.galerie-onglets summary:hover {color: var(--text-color); border-color: var(--link-color);}
+.galerie-onglets details[open] > summary {
   background: var(--heading-color);
   color: var(--text-color);
+  border-color: var(--link-color);
 }
-/*the whole element is wrapped in a link to view the full image, but we don't want to style the text like one*/
-.img-gallery a {text-decoration: none;}
-.img-gallery details > summary {
-  background: var(--heading-color);
-  padding: 40px;
-  list-style-type: none;
+.galerie-onglets .nombre {
+  font-size: .8em;
+  opacity: .7;
+  margin-left: 4px;
+}
+
+/* les dessins : une grille de vignettes de même taille, la légende apparaît dessus */
+.galerie-dessins {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  padding-top: 14px;
+}
+.galerie-dessins a {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--iz-border-strong);
+  border-radius: 6px;
+  background: var(--iz-box);
+  text-decoration: none;
+}
+.galerie-dessins img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%; /* garde les visages, souvent en haut */
+  transition: transform .3s;
+}
+.galerie-dessins .legende {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 24px 8px 6px;
+  font-size: .8rem;
+  line-height: 1.3;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .85));
+  opacity: 0;
+  transition: opacity .2s;
+}
+.galerie-dessins a:hover,
+.galerie-dessins a:focus-visible {border-color: var(--link-color);}
+.galerie-dessins a:hover img,
+.galerie-dessins a:focus-visible img {transform: scale(1.05);}
+.galerie-dessins a:hover .legende,
+.galerie-dessins a:focus-visible .legende {opacity: 1;}
+@media (hover: none) {
+  .galerie-dessins .legende {opacity: 1;} /* sur téléphone, pas de survol : légende toujours visible */
+}
+
+/* l'image agrandie (src/js/galerie-fiche.js) */
+.galerie-zoom {
+  max-width: min(92vw, 1100px);
+  max-height: 92vh;
+  padding: 0;
+  border: 1px solid var(--iz-border-strong);
+  border-radius: 8px;
+  background: var(--iz-sheet);
+  color: var(--text-color);
+}
+.galerie-zoom::backdrop {background: rgba(0, 0, 0, .8);}
+.galerie-zoom img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 60px);
+  margin: auto;
+}
+.galerie-zoom p {
+  margin: 0;
+  padding: 10px 14px;
   text-align: center;
-  font-weight: bold;
+  font-size: .9rem;
 }
-/*hide the spoiler tag once it's clicked*/
-.img-gallery details[open] > summary {display:none;}
+.galerie-zoom button {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  border: none;
+  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+}
+.galerie-zoom .precedent {left: 8px;}
+.galerie-zoom .suivant {right: 8px;}
+.galerie-zoom .fermer {top: 24px; right: 8px;}
 
 /*fake comments section!!!!*/
 .comment {
@@ -423,8 +463,6 @@ footer a:hover {
     width: 280px;
     margin: 0 auto;
   }
-  /*change the max size of grid items so they still get laid out nicely*/
-  .gallery-grid {grid-template-columns: repeat(var(--pages), minmax(60px, 1fr));}
 }
 
 h4{

@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 css: [/css/fiche.css]
-js: [/js/costumes.js]
+js: [/js/costumes.js, /js/galerie-fiche.js]
 ---
 {#- La fiche d'un personnage. Les infos viennent de l'en-tête du fichier dans src/personnages/ :
       nom, icone, portrait, halloween (portrait du thème Halloween), citation,
@@ -32,24 +32,21 @@ js: [/js/costumes.js]
   </section>
 {%- endif %}
 {{ content | safe }}
-{#- Les dessins de la galerie tagués avec le nom du personnage, ajoutés tout seuls. -#}
-{%- set onglets = galerie | dessinsDe(tag_galerie or page.fileSlug) %}
+{#- Les dessins de la galerie tagués avec le nom du personnage, ajoutés tout seuls.
+      Les onglets (Canon, Non canon…) sont réglés dans src/_data/galerie_filtres.yaml. -#}
+{%- set onglets = galerie | dessinsDe(tag_galerie or page.fileSlug, galerie_filtres.fiches) %}
 {%- if onglets.length %}
   <section id="galerie">
     <h3 class="orange">Galerie</h3>
-    <div class="gallery-grid" style="--pages:{{ onglets.length }};">
+    <div class="galerie-onglets" style="--onglets:{{ onglets.length }};">
     {%- for onglet in onglets %}
-      <details class="gallery-page" name="galerie-auto" style="--n:{{ loop.index }};"{% if loop.first %} open{% endif %}>
-        <summary>{{ onglet.titre }} ({{ onglet.dessins.length }})</summary>
-        <div class="img-gallery">
+      <details name="galerie" style="--n:{{ loop.index }};"{% if loop.first %} open{% endif %}>
+        <summary>{{ onglet.titre }} <span class="nombre">{{ onglet.dessins.length }}</span></summary>
+        <div class="galerie-dessins">
         {%- for dessin in onglet.dessins %}
           <a href="{{ dessin.image }}" target="_blank" rel="noopener">
-            <figure>
-              <img src="{{ dessin.miniature }}" alt="{{ dessin.alt }}" loading="lazy">
-              {%- if dessin.legende %}
-              <figcaption>{{ dessin.legende }}</figcaption>
-              {%- endif %}
-            </figure>
+            <img src="{{ dessin.miniature }}" alt="{{ dessin.alt }}" loading="lazy">
+            {%- if dessin.legende %}<span class="legende">{{ dessin.legende }}</span>{% endif %}
           </a>
         {%- endfor %}
         </div>

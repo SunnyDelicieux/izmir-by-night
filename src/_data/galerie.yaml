@@ -1003,7 +1003,7 @@
   desc: Test icon Baran.
 - src: pomme.webp
   alt: ines
-  tags: [toreador, canon, sunny, ines]
+  tags: [toreador, canon, concept, sunny, ines]
   desc: Concept art de Ines.
 - src: sunny/nebettamirror.webp
   alt: nebetta
@@ -1031,7 +1031,7 @@
   desc: Liliana proxy.
 - src: sunny/nebettaconcept.webp
   alt: Cleopatra
-  tags: [nosferatu, canon, sunny, nebetta]
+  tags: [nosferatu, canon, concept, sunny, nebetta]
   desc: Concept art Cleopatra.
 - src: sunny/zayasprite.webp
   alt: Zaya
@@ -1044,7 +1044,7 @@
 - type: comic
   title: Concept art
   alt: Comic en 4 pages
-  tags: [canon, sunny, toreador, nafissa]
+  tags: [canon, concept, sunny, toreador, nafissa]
   desc: Concept art Nafissa.
   pages:
     - src: sunny/protonafissa.webp
@@ -1087,7 +1087,7 @@
   desc: Ghoule de la primogène Toreador.
 - src: sunny/conceptventrue.webp
   alt: Concept Ventrue
-  tags: [ventrue, canon, sunny]
+  tags: [ventrue, canon, concept, sunny]
   desc: Ventrue concept art.
 - src: sunny/idiasprite.webp
   alt: Lasombra premier art
@@ -1101,3 +1101,39 @@
   alt: PNJ Lasombra
   tags: [pnj, canon, lasombra, sunny, idia]
   desc: ""
+- src: camilcomm.webp
+  alt: Poster de Camil
+  tags: [autre, canon, camil]
+  desc: Poster de Camil (commission).
+- src: iconcamil.webp
+  alt: Icon de Camil
+  tags: [autre, canon, camil]
+  desc: Icon de Camil (commission).
+- src: concept.webp
+  alt: Character design de Camil
+  tags: [autre, concept, camil]
+  desc: Character design de Camil (commission).
+- src: camil.webp
+  alt: Outfit de Camil
+  tags: [autre, concept, camil]
+  desc: Outfit exploration.
+- src: camill.webp
+  alt: Camil
+  tags: [autre, concept, camil]
+  desc: Concept art de Camil.
+- src: mariko-marigolds.png
+  alt: Mariko
+  tags: [tremere, canon, mariko]
+  desc: Art de @crownedinmarigolds.
+- src: /img/wiki/tremere/tarik.png
+  alt: Tarik
+  tags: [tremere, canon, tarik]
+  desc: Art de @crownedinmarigolds.
+- src: /img/wiki/autre/inga.png
+  alt: Inga
+  tags: [nosferatu, canon, inga]
+  desc: Icon d'Inga.
+- src: /img/wiki/autre/bd.png
+  alt: Autoportrait d'Inga
+  tags: [nosferatu, canon, inga]
+  desc: Autoportrait.

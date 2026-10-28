@@ -190,7 +190,7 @@
         // chaque page devient une image légère (voir alleger.js)
         const image = await izmirAlleger.pageEnImage(pending.doc, p.num);
         const path = `lettres/${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}.${izmirAlleger.extension(image)}`;
-        const up = await client.storage.from(BUCKET).upload(path, image, { contentType: image.type });
+        const up = await client.storage.from(BUCKET).upload(path, image, { contentType: image.type, cacheControl: izmirPartage.CACHE });
         if (up.error) throw up.error;
 
         const ins = await client.from("handouts").insert({
@@ -252,10 +252,7 @@
     }
     sent = data || [];
     const paths = sent.map((h) => h.path).filter(Boolean);
-    const { data: signed } = paths.length
-      ? await client.storage.from(BUCKET).createSignedUrls(paths, 3600)
-      : { data: [] };
-    const urls = Object.fromEntries((signed || []).map((s) => [s.path, s.signedUrl]));
+    const urls = await izmirPartage.liens(client, paths); // liens gardés quelques jours (voir partage.js)
     for (const h of sent) h._url = urls[h.path];
     renderSent();
   }
@@ -371,7 +368,7 @@
     // même dossier : un fichier de joueur reste dans joueurs/<son id>/, il peut donc toujours le supprimer
     const dossier = h.path.slice(0, h.path.lastIndexOf("/") + 1);
     const path = `${dossier}${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}.${izmirAlleger.extension(apres)}`;
-    const up = await client.storage.from(BUCKET).upload(path, apres, { contentType: apres.type });
+    const up = await client.storage.from(BUCKET).upload(path, apres, { contentType: apres.type, cacheControl: izmirPartage.CACHE });
     if (up.error) throw up.error;
 
     const { data: copie, error: erreurCopie } = await client.from("handouts").insert({

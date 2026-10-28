@@ -408,7 +408,9 @@ returns boolean
 language sql stable security definer
 set search_path = public
 as $$
-  select exists (
+  -- l'admin peut ouvrir tous les fichiers (sinon le coffre et l'espace MJ n'affichent pas
+  -- les PDF et images des lettres qui ne lui sont pas adressées)
+  select public.izmir_is_admin() or exists (
     select 1 from public.handouts h
     where h.path = object_path
       and public.izmir_handout_visible_to(public.izmir_as_tags(to_jsonb(h.tags)), h.author, auth.uid())
