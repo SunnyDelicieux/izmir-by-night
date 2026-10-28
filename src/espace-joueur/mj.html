@@ -12,13 +12,19 @@ recherche: false
     <div data-tab="handouts">
       <div class="box">
         <div class="title">handouts</div>
-        <div class="side-hint">Dépose un PDF : chaque page devient une lettre, que tu tagues.
+        <div class="side-hint">Dépose un PDF : chaque page devient une lettre (une image légère), que tu tagues.
           Pour partager une lettre à d'autres plus tard, change ses tags dans la liste.</div>
       </div>
       <div class="box">
         <div class="title">chercher</div>
         <input class="input" id="ho-filter" type="search" placeholder="titre, tag, pdf…" aria-label="Filtrer les lettres">
         <div class="muted" id="ho-count" style="margin-top:6px"></div>
+      </div>
+      <div class="box">
+        <div class="title">place</div>
+        <button class="btn side-btn" type="button" id="alleger">alléger les anciens fichiers</button>
+        <div class="side-hint" id="alleger-msg" aria-live="polite">Remplace les anciennes lettres PDF et les grosses images
+          par des versions légères. À lancer une fois.</div>
       </div>
     </div>
 
@@ -96,6 +102,7 @@ recherche: false
 </div>
 
 <script src="/espace-joueur/lecteur.js"></script>
+<script src="/espace-joueur/alleger.js"></script>
 <script src="/espace-joueur/partage.js"></script>
 <script src="/espace-joueur/onglets.js"></script>
 <script src="/espace-joueur/handouts.js"></script>

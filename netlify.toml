@@ -1,4 +1,4 @@
-# Réglages pour Netlify (les autres hébergeurs ignorent ce fichier).
+# Réglages pour Netlify 
 [build]
   command = "npm run build"
   publish = "_site"

@@ -1,6 +1,5 @@
 
 (function () {
-  const PDFLIB = "https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js";
   const BUCKET = "handouts";
 
   const gate = document.getElementById("ho-gate");
@@ -17,18 +16,15 @@
   const sentBox = document.getElementById("sent");
   const filter = document.getElementById("ho-filter");
   const count = document.getElementById("ho-count");
+  const allegerBtn = document.getElementById("alleger");
+  const allegerMsg = document.getElementById("alleger-msg");
 
-  const { el, norm, plain, loadScript, tagsDuProfil, groupesDuProfil } = izOutils;
+  const { el, norm, plain, tagsDuProfil, groupesDuProfil } = izOutils;
 
   let client = null;
   let known = ["public"];
   let pending = null;
   let sent = [];
-
-
-  function pdfLib() {
-    return loadScript(PDFLIB).then(() => window.PDFLib, () => { throw new Error("pdf-lib introuvable"); });
-  }
 
 
   async function loadKnownTags() {
@@ -176,8 +172,6 @@
       return "le bucket « handouts » n'existe pas : relance supabase/izmir.sql en entier.";
     if (/duplicate|already exists/i.test(m))
       return "un fichier du même nom existe déjà, réessaie.";
-    if (/pdf-lib introuvable/i.test(m))
-      return "la bibliothèque de découpage (pdf-lib) n'a pas pu se charger : vérifie ta connexion ou un bloqueur de pub.";
     return `erreur : ${m || "inconnue"} (détails dans la console, F12)`;
   }
 
@@ -186,16 +180,6 @@
     if (!kept.length) return;
     sendBtn.disabled = cancelBtn.disabled = true;
 
-    let source, PDFDocument;
-    try {
-      ({ PDFDocument } = await pdfLib());
-      source = await PDFDocument.load(pending.bytes, { ignoreEncryption: true });
-    } catch (err) {
-      console.error(err);
-      sendBtn.disabled = cancelBtn.disabled = false;
-      sendMsg.textContent = `Impossible de découper ce PDF : ${explain(err)}`;
-      return;
-    }
     let done = 0;
     const failed = [];
     let lastError = null;
@@ -203,16 +187,10 @@
     for (const p of kept) {
       sendMsg.textContent = `envoi ${done + 1} / ${kept.length}…`;
       try {
-        const out = await PDFDocument.create();
-        const [page] = await out.copyPages(source, [p.num - 1]);
-        out.addPage(page);
-        out.setTitle(p.titre);
-        const bytes = await out.save();
-
-        const path = `lettres/${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}.pdf`;
-        const up = await client.storage.from(BUCKET).upload(path, new Blob([bytes], { type: "application/pdf" }), {
-          contentType: "application/pdf",
-        });
+        // chaque page devient une image légère (voir alleger.js)
+        const image = await izmirAlleger.pageEnImage(pending.doc, p.num);
+        const path = `lettres/${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}.${izmirAlleger.extension(image)}`;
+        const up = await client.storage.from(BUCKET).upload(path, image, { contentType: image.type });
         if (up.error) throw up.error;
 
         const ins = await client.from("handouts").insert({
@@ -369,6 +347,83 @@
   }
 
   filter.addEventListener("input", renderSent);
+
+
+  // ===== ALLÉGER LES FICHIERS DÉJÀ ENVOYÉS =====
+  // Supabase interdit de changer le fichier d'une lettre : on crée donc une lettre identique
+  // (titre, tags, auteur, date…) avec le fichier allégé, puis on supprime l'ancienne et son fichier.
+
+  async function alleger(h) {
+    const reponse = await fetch(h._url);
+    if (!reponse.ok) throw new Error(`téléchargement impossible (${reponse.status})`);
+    const avant = await reponse.blob();
+    let apres;
+    if (/\.pdf$/i.test(h.path)) {
+      const lib = await izmirLecteur.pdfjs();
+      const doc = await lib.getDocument({ data: new Uint8Array(await avant.arrayBuffer()) }).promise;
+      if (doc.numPages !== 1) return 0; // un PDF de plusieurs pages (envoyé par un joueur) reste tel quel
+      apres = await izmirAlleger.pageEnImage(doc, 1);
+    } else {
+      apres = await izmirAlleger.imageAllegee(avant);
+    }
+    if (apres === avant || apres.size > avant.size * 0.9) return 0; // presque rien à gagner
+
+    // même dossier : un fichier de joueur reste dans joueurs/<son id>/, il peut donc toujours le supprimer
+    const dossier = h.path.slice(0, h.path.lastIndexOf("/") + 1);
+    const path = `${dossier}${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}.${izmirAlleger.extension(apres)}`;
+    const up = await client.storage.from(BUCKET).upload(path, apres, { contentType: apres.type });
+    if (up.error) throw up.error;
+
+    const { data: copie, error: erreurCopie } = await client.from("handouts").insert({
+      titre: h.titre, tags: h.tags, source: h.source, page: h.page,
+      created_at: h.created_at, author: h.author, author_name: h.author_name, path,
+    }).select("id").single();
+    if (erreurCopie) {
+      await client.storage.from(BUCKET).remove([path]);
+      throw erreurCopie;
+    }
+    const { error: erreurSuppression } = await client.from("handouts").delete().eq("id", h.id);
+    if (erreurSuppression) {
+      await client.from("handouts").delete().eq("id", copie.id);
+      await client.storage.from(BUCKET).remove([path]);
+      throw erreurSuppression;
+    }
+    await client.storage.from(BUCKET).remove([h.path]);
+    return avant.size - apres.size;
+  }
+
+  allegerBtn.addEventListener("click", async () => {
+    const aFaire = sent.filter((h) => h.path && h._url && !/\.(webp|gif)$/i.test(h.path));
+    if (!aFaire.length) {
+      allegerMsg.textContent = "Rien à alléger : tous les fichiers sont déjà légers.";
+      return;
+    }
+    if (!confirm(`Alléger ${aFaire.length} fichier${aFaire.length > 1 ? "s" : ""} ? Les lettres PDF d'une page deviennent des images ` +
+      "(on ne pourra plus sélectionner leur texte). Les titres, tags et dates ne changent pas.")) return;
+
+    allegerBtn.disabled = true;
+    let gagne = 0;
+    let alleges = 0;
+    const echecs = [];
+    for (const [i, h] of aFaire.entries()) {
+      allegerMsg.textContent = `allègement ${i + 1} / ${aFaire.length}…`;
+      try {
+        const octets = await alleger(h);
+        if (octets > 0) {
+          gagne += octets;
+          alleges++;
+        }
+      } catch (err) {
+        console.error(h.titre, err);
+        echecs.push(h.titre);
+      }
+    }
+    allegerBtn.disabled = false;
+    allegerMsg.textContent = `${alleges} fichier${alleges > 1 ? "s" : ""} allégé${alleges > 1 ? "s" : ""}, ` +
+      `${(gagne / 1024 / 1024).toFixed(1)} Mo gagnés.` +
+      (echecs.length ? ` Échec pour : ${echecs.join(", ")} (détails dans la console, F12).` : "");
+    await loadSent();
+  });
 
 
   izmirAccount.onChange(async (acc) => {

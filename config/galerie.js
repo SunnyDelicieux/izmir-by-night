@@ -16,6 +16,35 @@ const VERSIONS = {
   web: { taille: 2000, qualite: 85 },
 };
 
+// Les adresses publiées d'un dessin (« src » de galerie.yaml), comme dans src/galerie/galerie.js.
+const telQuel = (src) => src.startsWith("/") || /\.(gif|mp4|webm)$/i.test(src);
+const fichierPublie = (src) => (src.startsWith("/") ? src : "/GALLERIE/dessin/" + src);
+const miniature = (src) => (telQuel(src) ? fichierPublie(src) : "/GALLERIE/thumbs/dessin/" + src.replace(IMAGE, ".webp"));
+const grandeImage = (src) => (telQuel(src) ? fichierPublie(src) : "/GALLERIE/web/dessin/" + src.replace(IMAGE, ".webp"));
+
+// Pour la fiche d'un personnage : les dessins tagués avec son nom, en deux onglets.
+// Tout est canon (« official » compris), sauf ce qui a le tag « noncanon ».
+// Les dessins « spice » et les vidéos ne sont pas montrés. Un onglet vide n'apparaît pas.
+export function dessinsDe(dessins, tag) {
+  const canon = [];
+  const noncanon = [];
+  for (const dessin of dessins) {
+    const tags = (dessin.tags || []).map((t) => String(t).trim().toLowerCase());
+    const src = dessin.pages?.length ? dessin.pages[0].src : dessin.src;
+    if (!tags.includes(tag) || tags.includes("spice") || /\.(mp4|webm)$/i.test(src)) continue;
+    (tags.includes("noncanon") ? noncanon : canon).push({
+      miniature: miniature(src),
+      image: grandeImage(src),
+      alt: dessin.alt || "",
+      legende: dessin.desc || dessin.alt || "",
+    });
+  }
+  return [
+    { titre: "Canon", dessins: canon },
+    { titre: "Non canon", dessins: noncanon },
+  ].filter((onglet) => onglet.dessins.length);
+}
+
 async function tousLesFichiers(dossier) {
   const liste = [];
   for (const entree of await fs.readdir(dossier, { withFileTypes: true })) {

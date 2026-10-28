@@ -259,16 +259,22 @@
       if (!hForm.contenu.value.trim()) { hMsg.textContent = "La lettre est vide."; return; }
       ({ error } = await client.from("handouts").insert({ titre, contenu: hForm.contenu.value, tags: [...chosen] }));
     } else {
-      const file = hForm.file.files[0];
-      if (!file) { hMsg.textContent = "Choisis un fichier."; return; }
+      const original = hForm.file.files[0];
+      if (!original) { hMsg.textContent = "Choisis un fichier."; return; }
+      if (!/^(image\/(png|jpeg|webp|gif)|application\/pdf)$/.test(original.type)) { hMsg.textContent = "Seulement des images ou des PDF."; return; }
+      let file = original;
+      if (original.type.startsWith("image/")) {
+        // une image est réduite et recompressée avant l'envoi (voir alleger.js)
+        hMsg.textContent = "allègement de l'image…";
+        file = await izmirAlleger.imageAllegee(original);
+      }
       if (file.size > MAX) { hMsg.textContent = "Fichier trop lourd (10 Mo maximum)."; return; }
-      if (!/^(image\/(png|jpeg|webp|gif)|application\/pdf)$/.test(file.type)) { hMsg.textContent = "Seulement des images ou des PDF."; return; }
-      const ext = (file.name.split(".").pop() || "bin").toLowerCase().replace(/[^a-z0-9]/g, "");
+      const ext = izmirAlleger.extension(file);
       const path = `joueurs/${user.id}/${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
       hMsg.textContent = "envoi du fichier…";
       ({ error } = await client.storage.from(BUCKET).upload(path, file, { contentType: file.type }));
       if (!error) {
-        ({ error } = await client.from("handouts").insert({ titre, path, tags: [...chosen], source: file.name }));
+        ({ error } = await client.from("handouts").insert({ titre, path, tags: [...chosen], source: original.name }));
         if (error) await client.storage.from(BUCKET).remove([path]);
       }
     }
