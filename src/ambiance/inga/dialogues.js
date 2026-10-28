@@ -1,3 +1,7 @@
+// Chaque dialogue : first (la première fois), repeat (les fois suivantes).
+// Facultatif : image (un objet en gros plan), boucle: false (reste sur la dernière phrase),
+// humeur: "degoutee" pour le sprite dégoûté/surpris (sinon c'est le sprite de base).
+
 const dialogues = {
 
     window: {
@@ -34,6 +38,7 @@ const dialogues = {
     },
 
     holy: {
+        humeur: "degoutee",
         first: "Il y a une mauvaise odeur qui vient ce tas, je ne suis pas sure que ce soit une bonne idée d'y plonger les bras.",
         repeat: [
             "Un léger couinement semble provenir de là.",

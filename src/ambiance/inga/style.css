@@ -72,6 +72,38 @@ html, body {
 }
 
 
+/* SPRITE D'INGA (quand elle parle) */
+
+#room > #sprite { /* « #room > » pour passer avant la règle « #room > img » du fond */
+    display: none;
+    position: absolute;
+    left: 3%;
+    bottom: 0;
+    height: 95%;
+    z-index: 25; /* devant la chambre, derrière la boîte de dialogue */
+    pointer-events: none;
+    filter: drop-shadow(0 0 12px #000);
+    animation: spriteIn .35s ease-out;
+}
+
+/* dégoûtée / surprise : un petit sursaut */
+#room > #sprite.degoutee {
+    animation: spriteSursaut .4s ease-out;
+}
+
+@keyframes spriteIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes spriteSursaut {
+    0%   { opacity: 0; transform: translateY(0); }
+    30%  { opacity: 1; transform: translateY(-25px); }
+    60%  { transform: translateY(4px); }
+    100% { transform: none; }
+}
+
+
 /* DIALOGUE */
 
 #dialog {

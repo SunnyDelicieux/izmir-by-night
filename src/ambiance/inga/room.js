@@ -9,6 +9,15 @@ const ingaPortrait =
 
 const seen = {};
 
+// Les sprites d'Inga : « base » par défaut, ou celui donné par « humeur » dans dialogues.js
+const sprites = {
+    base: "inga-base.webp",
+    degoutee: "inga-degoutee.webp"
+};
+
+// on les charge tout de suite, pour qu'ils s'affichent sans attendre au premier clic
+Object.values(sprites).forEach(src => { new Image().src = src; });
+
 
 /* =========================
    DIALOGUES
@@ -38,6 +47,8 @@ function talk(id) {
     }
 
     dialog.style.display = "block";
+
+    showSprite(dialogue.humeur || "base");
 
 
     // Objet en gros plan
@@ -77,6 +88,46 @@ function hideFocusItem() {
 
 
 /* =========================
+   SPRITE D'INGA
+========================= */
+
+function showSprite(humeur) {
+
+    let sprite = document.getElementById("sprite");
+
+    if (!sprite) {
+        sprite = document.createElement("img");
+        sprite.id = "sprite";
+        sprite.alt = "";
+        room.appendChild(sprite);
+    }
+
+    const src = sprites[humeur] || sprites.base;
+
+    // l'animation ne se relance que si l'humeur change
+    if (sprite.dataset.humeur !== humeur || sprite.style.display !== "block") {
+        sprite.src = src;
+        sprite.dataset.humeur = humeur;
+        sprite.className = humeur;
+        sprite.style.display = "block";
+        sprite.style.animation = "none";
+        sprite.offsetHeight; // force le navigateur à repartir de zéro
+        sprite.style.animation = "";
+    }
+}
+
+
+function hideSprite() {
+
+    const sprite = document.getElementById("sprite");
+
+    if (sprite) {
+        sprite.style.display = "none";
+    }
+}
+
+
+/* =========================
    FERMER LE DIALOGUE
 ========================= */
 
@@ -85,6 +136,7 @@ dialog.addEventListener("click", () => {
     dialog.style.display = "none";
 
     hideFocusItem();
+    hideSprite();
 });
 
 
