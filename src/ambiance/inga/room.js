@@ -36,7 +36,7 @@ function talk(id) {
     // first, puis les repeat ; à la fin, on reboucle sur les repeat,
     // sauf si le dialogue a boucle: false (il reste alors sur la dernière phrase)
     const lignes = [dialogue.first, ...dialogue.repeat];
-    const index = seen[id] ?? 0;
+    const index = seen[id] ?? reprise(id, lignes.length, dialogue.boucle);
 
     text.textContent = lignes[index];
 
@@ -58,6 +58,20 @@ function talk(id) {
     if (dialogue.image) {
         showFocusItem(dialogue.image);
     }
+}
+
+
+// Chaque pièce est une page à part : en changeant de pièce, on reprend chaque dialogue
+// là où on l'avait laissé (quete.js garde combien de phrases ont été lues).
+function reprise(id, total, boucle) {
+
+    const lues = typeof lireProgression === "function"
+        ? (lireProgression().dialogues || {})[id] || 0
+        : 0;
+
+    if (lues < total) return lues;                 // la phrase suivante
+    if (boucle === false) return total - 1;        // reste sur la dernière
+    return total > 1 ? 1 : 0;                      // tout est lu : on reboucle sur les repeat
 }
 
 
