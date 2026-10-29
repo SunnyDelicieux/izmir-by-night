@@ -243,8 +243,10 @@ async function jouerLaFin() {
     noir.innerHTML = "";
     noir.classList.add("transparent");
 
-    // la nuit suivante : la faim, le chat, la porte
-    await ingaInterrompt("lendemain");
+    // la nuit suivante : le téléphone, le chat, l'appel à Zacharias, la porte
+    for (const moment of ["lendemain", "repas", "appel", "sortie"]) {
+        await ingaInterrompt(moment);
+    }
 
     noterProgression({ fin: true });
     noir.classList.remove("transparent");
