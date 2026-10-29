@@ -88,26 +88,28 @@ travail: {
             "Personne ne doit savoir ce qu'il y a là-dessus."
         ]
     },
+    
 
-    // Les interruptions : quand il se passe quelque chose sur un PC, Inga coupe,
-    // dit toutes ses « lignes » (un clic pour passer à la suivante), puis on revient sur le PC.
+    // Les interruptions
 
     // à la fin de la conversation cachée de vermine.exe
     vermine: {
         humeur: "degoutee",
         lignes: [
-            "Un humain m'a envoyé ce lien en jurant que ça allait « changer ma vie ». C'est nul à chier. Les Setites recrutent avec un site qui a l'air codé en 2004 par un prof de yoga.",
-            "Et le pire, c'est que ça marche. Les gens veulent tellement qu'on leur dise que leurs pires envies sont une forme de liberté.",
-            "Je devrais signaler ce site à quelqu'un. Mais qui ? Le Prince ? Il va me demander comment je l'ai trouvé."
+            "Un humain m'a filé une clef contenant ce fichier. C'est nul à chier. Les Setites recrutent avec un site qui a l'air codé en 2001 par un prof de yoga.",
+            "Et le pire, c'est que ça marche, les gens veulent tellement qu'on leur dise que leur désirs sont une forme de libérté.",
+            "Dans l'état des choses, je ne pourrais pas remonter à celui qui l'a fait, il à eu l'intelligence de brouiller les pistes, mais à quand meme une <div> soup.",
+            "Ce qui laisse à penser que le look est volontaire, pour leur donner une image `accessible`."
         ]
     },
 
-    // dans la discussion Steam, après l'échange avec Zacharias
+    // dans la discussion Steam
     zacharias: {
         lignes: [
-            "Il croit vraiment que je ne trouverai pas. Il oublie qui garde les archives de cette ville.",
-            "Un jour, je le verrai à travers sa propre caméra. Et ce jour-là, c'est moi qui rirai."
-        ]
+            "Il rale, mais il n'a bloqué que 4 de mes cinq comptes . . .",
+            "Je devrais pouvoir récupérer ce que je cherche bientot, s'il reste trop peu méfiant.",
+            "Reste à savoir ce que lui cherche, en continuant à me parler."
+        ] 
     }
 
 };
