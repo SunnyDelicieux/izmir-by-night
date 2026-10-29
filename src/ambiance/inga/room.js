@@ -256,7 +256,12 @@ async function ingaInterrompt(id) {
     if (ecran) ecran.hidden = true;
     hideFocusItem();
 
+    // une conversation au téléphone : le téléphone s'affiche à côté d'Inga (telephone: true dans dialogues.js)
+    if (dialogue.telephone) montrerTelephone(true);
+
     await direBulles(dialogue.lignes || [dialogue.first, ...(dialogue.repeat || [])], dialogue.humeur);
+
+    montrerTelephone(false);
 
     if (etaitSurLePC && !ecranFermePourDeBon) {
         ecran.hidden = false;
@@ -265,6 +270,23 @@ async function ingaInterrompt(id) {
     }
 
     if (typeof verifierFin === "function") verifierFin();
+}
+
+// le téléphone d'Inga (telephone.png, dans ce dossier), affiché pendant les appels
+function montrerTelephone(visible) {
+
+    let telephone = document.getElementById("telephone");
+
+    if (!telephone && visible) {
+        telephone = document.createElement("img");
+        telephone.id = "telephone";
+        telephone.alt = "";
+        telephone.src = "telephone.png";
+        telephone.onerror = () => telephone.remove(); // pas d'image : pas de téléphone, rien ne casse
+        room.appendChild(telephone);
+    }
+
+    if (telephone) telephone.hidden = !visible;
 }
 
 // mis à vrai par la fin de l'histoire : on ne revient plus sur le PC

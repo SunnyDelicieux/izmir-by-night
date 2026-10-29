@@ -6,6 +6,7 @@
 //   Facultatif : image (un objet en gros plan), humeur: "degoutee" (le sprite dégoûté/surpris).
 //
 // Les interruptions et les réactions ont des « lignes » : toutes les bulles, à la suite.
+//   Facultatif : telephone: true pour afficher le téléphone d'Inga pendant la conversation.
 //
 // Une bulle peut aussi être un objet :
 //   { texte: "…", humeur: "degoutee" }   change le sprite d'Inga pour cette bulle
@@ -357,7 +358,10 @@ DeadDogs`,
     },
 
     // 3. l'appel : Inga rappelle Zacharias. Ils jouent à se taper sur les nerfs, sans haine.
+    //    Lore utilisé : la lettre de Zacharias à Esen sur les Anarchs (leurs deux méthodes, le jeu),
+    //    le blog anarch du PC 1, le titre qu'Inga refuse, Dimitrios, Atam et le Régent.
     appel: {
+        telephone: true,   // le téléphone s'affiche pendant la conversation (telephone.png)
         lignes: [
             "Bon. Rappelons-le, avant qu'il envoie une goule frapper à ma porte. Elle passerait pas la porte, de toute façon.",
             { texte: "Une sonnerie. Il décroche avant la deuxième.", qui: "" },
@@ -368,27 +372,41 @@ DeadDogs`,
             { texte: "Quatre mois, Inga.", qui: "Zacharias" },
             "J'avais rien à dire.",
             { texte: "Tu n'as jamais rien à dire. D'habitude, ça ne t'empêche pas de parler.", qui: "Zacharias" },
-            { texte: "Bref. Les Anarchs ont encore déménagé leur blog. Tu l'as vu ?", qui: "Zacharias" },
-            "Je l'ai vu avant eux. Quelqu'un a cliqué sur un lien qu'il aurait pas dû, quelqu'un d'autre a paniqué, et ils ont tout déplacé en une nuit.",
-            { texte: "Nous avons retrouvé le nouveau serveur en quatre jours.", qui: "Zacharias" },
+            { texte: "Bref. Les Anarchs ont encore migré. Nouveau blog, nouveau serveur. Et cette fois-ci, quelqu'un chez eux a lu un tutoriel de sécurité.", qui: "Zacharias" },
+            "Je sais. Lil a cliqué sur un lien qu'il aurait pas dû, Rollin a paniqué, le Baron a tapé du poing. Ils ont tout déménagé en une nuit.",
+            "C'était presque attendrissant.",
+            { texte: "Nous les avons retrouvés en quatre jours. Ta méthode et la mienne, pour une fois dans le même sens.", qui: "Zacharias" },
+            "Ta méthode, c'est envoyer des goules boire des cafés à Alsancak en attendant qu'un Anarch fasse une scène.",
+            { texte: "Ma méthode, c'est l'observation. Ils tiennent à leur ego plus qu'à leur sécurité. Il suffit d'attendre qu'ils aient envie d'être remarqués.", qui: "Zacharias" },
+            "Et la mienne, c'est leur vie d'avant. Ils cachent la Nuit, mais pas leurs vieilles adresses mail. Ils se croient encore humains, alors ils protègent pas la partie humaine.",
+            { texte: "Et entre les deux, on retombe toujours sur le jeu. Les paris, les tables de cartes, des chances un peu trop favorables. Ils aiment l'argent qui vient vite.", qui: "Zacharias" },
+            "Le seul point commun qu'ils ont avec les Ventrue.",
             { texte: "Le problème n'est pas de les retrouver. C'est ce qu'on remonte dans le filet.", qui: "Zacharias" },
-            { texte: "Plus de scripts, plus de goules dans les bars d'Alsancak, plus de nuits passées à trier. Chaque migration nous coûte un peu plus.", qui: "Zacharias" },
+            { texte: "Plus de scripts, plus de goules, plus de nuits passées à trier. Chaque migration nous coûte un peu plus.", qui: "Zacharias" },
             { texte: "Et qu'est-ce qu'on récupère ? Des anniversaires. Des recommandations de films. Un tableau des terrains de chasse, codé par couleur.", qui: "Zacharias" },
             "Le tableau est super, j'ai rien à redire sur le tableau.",
-            "Et y a l'homme en costume qui regarde la station Konak depuis un bar. Et les six corps du port. C'est pas rien.",
+            "Et y a l'homme en costume qui regarde la station Konak depuis un bar. Et les six corps du port.",
+            "« C'est toujours six, puis plus rien. » Ils l'ont écrit entre deux disputes sur le daltonisme de Lil.",
             { texte: "Ce n'est pas rien. Mais c'est noyé dans tout le reste. On creuse trop large, on ramasse tout et n'importe quoi.", qui: "Zacharias" },
             "Alors on resserre.",
-            { texte: "Sur quoi ? Le port ? Konak ? Le Baron ? Ce n'est pas à nous de choisir. C'est au Conseil de nous dire ce qui compte.", qui: "Zacharias" },
+            { texte: "Sur quoi ? Le port ? Konak ? Le Baron ? Ce n'est pas à nous de choisir. En théorie, c'est le Conseil qui décide de ce qui compte pour la ville. Nous ne sommes que des outils.", qui: "Zacharias" },
+            "Parle pour toi.",
             { texte: "Et c'est là que tu interviens. Parle aux primogènes. Demande-leur sur quoi ils veulent qu'on se concentre.", qui: "Zacharias" },
             "Moi ? Parler à des gens ? Tu m'as vraiment crue morte, tu me confonds avec quelqu'un d'autre.",
-            { texte: "Ils t'écoutent. Ils ne t'aiment pas, mais ils t'écoutent. Moi, ils me demandent d'où viennent mes informations, et sur quel budget.", qui: "Zacharias" },
-            "Donc la Pyramide sait pas tout ce que tu fais. Je suis presque fière de toi.",
-            { texte: "La Pyramide sait ce qu'elle a besoin de savoir.", qui: "Zacharias" },
-            "Bon. Je leur parlerai. C'est mon projet de toute façon, tu as fait que l'améliorer.",
-            { texte: "« Améliorer ». Je note que tu l'as dit.", qui: "Zacharias" },
-            "Ne t'habitue pas. Et Il sera au courant, de toute façon. Il est toujours au courant.",
-            { texte: "Évidemment. J'ai renoncé depuis longtemps à me demander comment.", qui: "Zacharias" },
-            "C'est la chose la plus intelligente que tu aies dite ce soir.",
+            { texte: "Ils t'écoutent. Ils ne t'aiment pas, mais ils t'écoutent. La Cour t'a même proposé un titre, si je me souviens bien.", qui: "Zacharias" },
+            "Et j'ai dit non. Un titre, c'est une laisse avec un nom gravé dessus.",
+            { texte: "Moi, si j'apporte ça, ils me demanderont comment je l'ai obtenu. Avec quelles ressources, et sur ordre de qui.", qui: "Zacharias" },
+            { texte: "Mon sire n'aime pas que la Pyramide découvre ce que je fais en même temps que le reste de la ville.", qui: "Zacharias" },
+            { texte: "Donc le grand génie de la Fondation a peur de se faire gronder par Dimitrios.", humeur: "degoutee" },
+            { texte: "J'ai le sens de la hiérarchie. C'est une notion qui t'échappe, je sais.", qui: "Zacharias" },
+            "Bon. Je leur parlerai. C'est mon projet de toute façon. C'est moi qui ai ouvert leur réseau en premier, tu as fait que suivre le chemin.",
+            "Mais je mentirai pas pour toi. Je dirai que tu y as participé, que tes scripts sont bons.",
+            "Si quelqu'un doit te tirer les oreilles, ce sera pas moi qui tiendrai le ciseau.",
+            { texte: "… C'est presque gentil. Tu es sûre que tu as bien mangé ?", qui: "Zacharias" },
+            "Et Il sera au courant, de toute façon. Il est toujours au courant. Même quand il dit rien.",
+            { texte: "Atam fera ce qu'Atam fait. Je ne prétends pas comprendre ton sire, et je n'ai pas l'intention d'essayer. Ce n'est pas mon domaine.", qui: "Zacharias" },
+            "Personne le comprend. C'est un peu le principe.",
+            { texte: "Il voit le Régent plus souvent que nous tous réunis. Ça me suffit, comme mystère.", qui: "Zacharias" },
             { texte: "Bonne nuit, Inga. Ne meurs pas avant d'avoir parlé au Conseil. Ta nécrologie n'est pas finie.", qui: "Zacharias" },
             "Bonne nuit, Zacharias. Garde-la au chaud.",
             { texte: "Elle raccroche. Elle sourit presque.", qui: "" }

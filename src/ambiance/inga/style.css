@@ -438,3 +438,27 @@ html, body {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+
+/* LE TÉLÉPHONE, pendant les appels (room.js, montrerTelephone) */
+
+#room > #telephone { /* « #room > » pour passer avant la règle « #room > img » du fond */
+    position: absolute;
+    right: 9%;
+    bottom: 26%;
+    height: 58%;
+    z-index: 25; /* comme Inga : devant la chambre, derrière la boîte de dialogue */
+    transform: rotate(-12deg); /* légèrement tourné vers la gauche */
+    filter: drop-shadow(0 0 18px #000) drop-shadow(0 0 4px #000);
+    pointer-events: none;
+    animation: telephoneArrive .5s ease-out;
+}
+
+#room > #telephone[hidden] {
+    display: none;
+}
+
+@keyframes telephoneArrive {
+    from { opacity: 0; transform: rotate(-12deg) translateY(30px); }
+    to   { opacity: 1; transform: rotate(-12deg); }
+}
