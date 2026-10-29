@@ -309,7 +309,9 @@ try {
 try {
     const chaine = sessionStorage.getItem("vermine-chaine");
     if (chaine) {
-        const aujourdhui = new Date().toLocaleDateString("fr-FR");
+        // le jour et le mois d'aujourd'hui, mais en 2014 : l'année de la campagne
+        const maintenant = new Date();
+        const aujourdhui = [maintenant.getDate(), maintenant.getMonth() + 1].map((n) => String(n).padStart(2, "0")).join("/") + "/2014";
         const message = document.createElement("div");
         message.className = "message toi";
         message.innerHTML = `<span class="qui">Le Cercle</span> <span class="quand">— ${aujourdhui}</span><br>`;

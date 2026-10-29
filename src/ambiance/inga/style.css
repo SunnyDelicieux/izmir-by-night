@@ -126,6 +126,12 @@ html, body {
     cursor: pointer;
 }
 
+/* quand l'objet cliqué est dans le bas de l'image, la boîte passe en haut (room.js, placerDialogue) */
+#dialog.en-haut {
+    bottom: auto;
+    top: 30px;
+}
+
 #speaker {
     width: 110px;
     height: 110px;

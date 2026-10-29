@@ -4,6 +4,11 @@ const dialog = document.getElementById("dialog");
 const text = document.getElementById("text");
 const speaker = document.getElementById("speaker");
 
+// La dernière zone cliquée. Si l'objet est dans le bas de l'image, la boîte de dialogue
+// se met en haut pour ne pas le cacher (voir placerDialogue).
+let derniereZone = null;
+room.addEventListener("click", (e) => { derniereZone = e.target.closest(".zone"); }, true);
+
 const ingaPortrait =
     "https://i.postimg.cc/Zn8ZdS2Q/image-2026-09-03-100531968.png";
 
@@ -166,6 +171,8 @@ let phraseSuivante = null;
 
 function direBulles(bulles, humeurParDefaut) {
 
+    placerDialogue();
+
     return new Promise((fini) => {
 
         let n = 0;
@@ -192,6 +199,21 @@ function direBulles(bulles, humeurParDefaut) {
 
         phraseSuivante();
     });
+}
+
+
+// la boîte de dialogue en bas (normalement) ou en haut (si l'objet cliqué est dans le bas de l'image)
+function placerDialogue() {
+
+    let enHaut = false;
+
+    if (derniereZone) {
+        const zone = derniereZone.getBoundingClientRect();
+        const image = room.getBoundingClientRect();
+        enHaut = (zone.top + zone.height / 2 - image.top) / image.height > 0.55;
+    }
+
+    dialog.classList.toggle("en-haut", enHaut);
 }
 
 

@@ -239,6 +239,7 @@ async function jouerLaFin() {
 
     // on quitte l'écran du PC s'il est ouvert : la scène se passe dans la chambre
     ecranFermePourDeBon = true;
+    derniereZone = null; // la fin se joue avec la boîte de dialogue en bas
     if (typeof ecran !== "undefined" && ecran) ecran.hidden = true;
 
     // l'aube : la torpeur la prend

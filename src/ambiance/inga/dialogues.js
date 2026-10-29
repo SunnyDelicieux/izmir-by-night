@@ -1,9 +1,9 @@
 // LES DIALOGUES DE LA CHAMBRE D'INGA
 //
-// Les objets (un clic) : first (la première fois), puis repeat (les fois suivantes).
-//   Chaque ligne est une bulle ("…"), ou plusieurs bulles qui se suivent (["…", "…", "…"]).
-//   Facultatif : image (un objet en gros plan), boucle: false (reste sur la dernière ligne),
-//   humeur: "degoutee" pour le sprite dégoûté/surpris (sinon c'est le sprite de base).
+// Les objets (un clic) :
+//   first  : le premier clic, un dialogue plus long (plusieurs bulles : ["…", "…", "…"]) ;
+//   repeat : les clics suivants, deux répliques courtes qui tournent en boucle.
+//   Facultatif : image (un objet en gros plan), humeur: "degoutee" (le sprite dégoûté/surpris).
 //
 // Les interruptions et les réactions ont des « lignes » : toutes les bulles, à la suite.
 //
@@ -19,75 +19,58 @@ const dialogues = {
 
     window: {
         first: [
-            "Cela fait si longtemps que je ne suis pas sortie qu'une pile de vêtements et de trucs encombre la porte.",
+            "La porte. Enfin, ce qu'on en devine derrière la pile.",
+            "Ça fait si longtemps que je suis pas sortie que les fringues ont formé une sorte de récif. Un écosystème. Faudrait le déclarer à l'UNESCO.",
+            "Le carton sur la fenêtre date de… 2008 ? 2009 ? Le scotch a jauni, le carton a gondolé. Il tient quand même. Respect.",
             "Je devrais probablement sortir bientôt. Tout est quasiment mort ici, et la faim commence à me déchirer le crâne.",
-            "La fenêtre, je l'ai couverte de carton il y a des années. Je n'en ai pas besoin : je vois mieux la ville à travers ses caméras qu'à travers ce trou dans le mur."
+            "… Bon. Pas ce soir."
         ],
         repeat: [
-            [
-                "Le soleil vient de se lever, je ne vais pas sortir maintenant.",
-                "De toute façon, il ne se passe rien dehors que je ne puisse lire le lendemain, dans les messages de ceux qui y étaient."
-            ],
-            [
-                "Il y a du bruit dehors. Des sirènes, quelque part vers Konak.",
-                "Les mortels appellent ça un fait divers. Les Anarchs en feront un sujet de dispute. La Cour en fera un dossier.",
-                "Moi, j'en ferai une ligne dans un fichier. C'est la seule version qui ne mente pas."
-            ]
+            "Pas ce soir.",
+            "Dehors, c'est surfait. Y a même pas mon wifi."
         ]
     },
 
     chat: {
         image: "https://i.postimg.cc/yx3hXVzt/image.png",
         first: [
-            "Le chat blanc est toujours en vie, et se cache sous une pile de linge et de déchets.",
-            "Il a l'air affamé et apeuré. Je n'ai rien à lui donner pour le moment.",
-            "Ses frères et sœurs ne sont plus là. Les chats de cet appartement ont appris à se débrouiller entre eux, et je préfère ne pas savoir comment."
+            "Le chat blanc. Toujours vivant, planqué sous la pile de linge. Gg.",
+            "Il me regarde comme si j'allais le bouffer. Vu le contexte, c'est une lecture assez lucide de la situation.",
+            "Il avait des frères et sœurs. Il en a plus. J'ai pas posé de questions, il a pas donné de détails. On a un accord.",
+            "Il a faim. Moi aussi. J'ai rien à lui donner.",
+            "Faudrait trouver un truc. N'importe quoi qui bouge encore dans cet appart."
         ],
         repeat: [
-            [
-                "Je devrais trouver de quoi le nourrir.",
-                "Il refuse de s'approcher, et il y a trop de choses autour pour que je puisse l'attraper."
-            ],
-            [
-                "Il a trop peur pour que je l'approche. Je ne sais pas où sont les autres.",
-                "Si, je sais. Je préfère juste ne pas le formuler."
-            ]
+            "Il veut pas sortir. Je le comprends.",
+            "Psst. Le chat. … Ouais, non. Il viendra pas."
         ]
     },
 
     chair: {
         first: [
-            "Une vieille chaise. Je l'ai achetée quand j'ai emménagé, avec l'argent de l'héritage.",
-            "Mes parents ont laissé une maison vide, quelques dettes, et une boîte de manuscrits que personne ne voulait lire.",
-            "J'ai gardé les manuscrits. J'ai acheté une chaise. Au final, je préfère m'asseoir par terre, et personne ne vient ici pour l'utiliser."
+            "Ma chaise. Achetée avec l'argent de l'héritage, quand j'ai emménagé.",
+            "Mes parents m'ont laissé une maison vide, des dettes, et un carton de manuscrits que personne voulait lire.",
+            "J'ai gardé le carton. J'ai acheté une chaise. Grosse journée.",
+            "Je m'assois jamais dessus. Le sol est plus honnête. Personne vient ici pour l'utiliser, alors elle sert de portemanteau à des trucs que j'ose plus soulever."
         ],
         repeat: [
-            [
-                "Elle est vieille et inconfortable.",
-                "C'est le seul meuble que j'ai choisi. Tout le reste est arrivé tout seul, couche après couche."
-            ],
-            [
-                "Je pourrais m'en débarrasser pour faire de la place.",
-                "Mais il faudrait sortir pour la jeter. Elle restera."
-            ]
+            "Elle me juge. Je le sens.",
+            "Chaise. Tu sers à rien. On est pareilles."
         ]
     },
 
     poster: {
         image: "https://i.postimg.cc/C5LqKScr/image.png",
         first: [
-            "Le dernier poster de la chambre. Quelqu'un me l'a donné, la dernière fois que je suis sortie.",
-            "Je l'ai accroché près de la fenêtre pour éviter qu'il moisisse. C'est l'endroit le plus sec de l'appartement, ce qui ne veut pas dire grand-chose."
+            "Le dernier poster survivant. Les autres ont moisi un par un, comme dans un slasher pour papier.",
+            "Quelqu'un me l'a filé la dernière fois que je suis sortie. Arraché d'un magazine de 2012, plié en quatre.",
+            "Il m'a pas demandé ce qui était arrivé à mon visage. Il a rien dit sur l'odeur. Il me l'a juste donné, et il est reparti.",
+            "Je l'ai accroché près de la fenêtre. C'est l'endroit le plus sec de l'appart. C'est là que je mets les trucs que je veux garder.",
+            "Y en a pas beaucoup."
         ],
         repeat: [
-            [
-                "Il vient d'un magazine, visiblement acheté en 2012.",
-                "Celui qui me l'a donné ne m'a posé aucune question. Ni sur mon visage, ni sur l'odeur. C'est rare."
-            ],
-            [
-                "Je sais que celui qui me l'a offert ne l'a pas fait pour se moquer de moi. Ça change.",
-                "Je connais son nom, son adresse, et ses trois mots de passe. C'est ma façon de dire merci : je ne m'en sers pas."
-            ]
+            "2012. Une bonne année. Pour les posters.",
+            "Je connais toujours ses mots de passe. Je m'en sers pas. C'est ma version d'un merci."
         ]
     },
 
@@ -97,93 +80,81 @@ const dialogues = {
     holy: {
         humeur: "degoutee",
         first: [
-            "Il y a une mauvaise odeur qui vient de ce tas.",
-            "Je ne suis pas sûre que ce soit une bonne idée d'y plonger les bras. Même pour moi."
+            "Ce tas. Il a une odeur. Non, pas une odeur : une personnalité.",
+            "Je suis à peu près sûre qu'il y a des boîtes de 2009 là-dessous. Peut-être une civilisation.",
+            "Ça couine, aussi. Faiblement. Comme si le tas avait un avis sur la question.",
+            "J'ai pas envie d'y mettre les bras. Même morte, j'ai des limites."
         ],
         repeat: [
-            [
-                "Un léger couinement semble provenir de là.",
-                "Quelque chose vit là-dedans. Plus longtemps que la plupart des choses dans cet appartement."
-            ],
-            [
-                "Je devrais peut-être faire quelque chose à propos de ça.",
-                "Pas maintenant. Mais je le note."
-            ]
+            "Ça couine toujours.",
+            "Non."
         ]
     },
 
     flesh: {
         first: [
-            "Un tas d'oreillers, dont certains volés à l'Élysium, traîne sur le sol.",
-            "Ils sentent encore l'encens et le parfum des Toréador. Ça couvre un peu l'odeur du reste.",
-            "Je devrais investir dans un lit. Mais il faudrait faire venir quelqu'un pour le livrer, et personne n'entre ici."
+            "Mon lit. Enfin, mon tas d'oreillers. La moitié vient de l'Élysium.",
+            "Personne remarque quand un oreiller disparaît d'un salon. Ils remarquent quand quelqu'un s'assoit mal, quand quelqu'un rit trop fort. Pas ça.",
+            "Ils sentent encore l'encens et le parfum de riche. Ça couvre un peu le reste.",
+            "Faudrait que je m'achète un vrai lit. Mais il faudrait qu'un livreur monte, qu'il voie l'appart, qu'il voie ma tête. Non merci."
         ],
         repeat: [
-            [
-                "Le soleil s'est levé, mais je ne veux pas rentrer en torpeur.",
-                "Chaque jour où je dors, quelqu'un en ville écrit quelque chose que je n'aurai pas lu en direct."
-            ],
-            "Plus tard."
+            "Plus tard, la torpeur.",
+            "Ils sentent toujours le Toréador. Dommage."
         ]
     },
 
     code: {
         first: [
-            "On me demande de stocker les données des archives.",
-            "La Cour veut des copies de tout. Des archives des archives. Elle croit que ce qui est stocké est sous contrôle.",
-            "Je n'ai vraiment pas envie de me mettre au travail."
+            "La demande d'archivage. Encore.",
+            "Ils veulent que je stocke les données des archives. Des copies des copies. Trois serveurs, deux sauvegardes, un disque dur dans un coffre, au cas où.",
+            "Comme si un secret gardé par vingt personnes restait un secret. Mdr.",
+            "J'ai vraiment pas envie de m'y mettre."
         ],
         repeat: [
-            [
-                "Ça ne me concerne pas vraiment.",
-                "Une information gardée par trop de monde n'est plus gardée par personne. Mais personne ne me demande mon avis là-dessus."
-            ],
-            "Je n'ai pas l'énergie pour ça."
+            "Ça peut attendre. Ça attend depuis mars.",
+            "Demain. Peut-être."
         ]
     },
 
     travail: {
-        boucle: false,
         first: [
-            "Il y a une pile de papier sur laquelle je travaille depuis quelque temps.",
-            "Je n'arrive à rien pour l'instant. Je me demande si Il pourrait m'aider."
+            "Il y a une pile de papier sur laquelle je travaille depuis un moment. J'arrive à rien.",
+            "Les choses fonctionnent mieux en système de trois, mais je ne crois pas non plus au principe d'alchimie. Il y a quelque chose d'autre.",
+            "Nous avons trop évolué pour ne pas impliquer la machine dans le concept même du monde. L'idée de quelque chose qui suit un but, et qui cherche à briser les limites sans les comprendre.",
+            "Je me demande si Il pourrait m'aider.",
+            "… Il répondrait à côté. Il répond toujours à côté."
         ],
         repeat: [
-            "Les choses fonctionnent mieux en système de trois, mais je ne crois pas non plus au principe d'alchimie. Il y a quelque chose d'autre.",
-            [
-                "Nous avons trop évolué pour ne pas impliquer la machine dans le concept même du monde.",
-                "L'idée de quelque chose qui suit un but, et qui cherche à briser les limites sans les comprendre."
-            ],
-            "Pas maintenant."
+            "Pas maintenant.",
+            "Trois. Pourquoi toujours trois."
         ]
     },
 
     // ce qu'Inga dit en éteignant un PC (voir « ordinateurs » dans room.js)
     pc1: {
         first: [
-            "Ça fait un moment que je n'ai pas eu de problème informatique à régler pour les autres.",
-            "Les Ventrue ne perdent plus leurs mots de passe, les Brujah ne me demandent plus de pirater leurs ex.",
-            "Soit la ville est devenue adulte, soit elle a trouvé quelqu'un d'autre. Hm. Ça arrange mes affaires, en soi."
+            "Ça fait un moment que j'ai pas eu de problème informatique à régler pour les autres.",
+            "Personne a perdu son mot de passe. Personne a cliqué sur une pièce jointe louche. Personne m'a demandé de pirater son ex.",
+            "Soit la ville est devenue adulte, soit elle a trouvé quelqu'un d'autre.",
+            "Hm. Ça arrange mes affaires, en soi."
         ],
         repeat: [
-            "Il faudrait vraiment que je pense à nourrir le chat.",
-            [
-                "Encore quelques heures de jeu et j'irai dormir. Peut-être.",
-                "Dans les jeux, au moins, les gens font semblant d'avoir un but. C'est reposant."
-            ]
+            "Encore une partie. Une seule.",
+            "Faudrait nourrir le chat."
         ]
     },
 
     pc2: {
         first: [
-            "L'autre machine. Elle n'est branchée sur rien, et c'est très bien comme ça.",
-            "C'est la seule chose dans cet appartement qui n'appartient pas à la Camarilla."
+            "L'autre machine. Branchée sur rien. Pas de réseau, pas de wifi, rien.",
+            "La seule chose dans cet appart que la Camarilla pourra jamais lire. Même Zacharias. Surtout Zacharias.",
+            "Y a des noms dessus. Des gens qui m'écrivent une fois tous les six mois pour vérifier que je respire encore.",
+            "Façon de parler."
         ],
         repeat: [
-            [
-                "Je n'aime pas laisser ces fichiers ouverts trop longtemps.",
-                "Pas parce que quelqu'un pourrait les lire. Parce que moi, je pourrais les relire."
-            ]
+            "Je laisse pas ces fichiers ouverts trop longtemps.",
+            "Débranchée. Comme il faut."
         ]
     },
 
@@ -194,25 +165,25 @@ const dialogues = {
     vermine: {
         humeur: "degoutee",
         lignes: [
-            "Un humain m'a filé une clé contenant ce fichier. C'est nul à chier.",
-            "Les Setites recrutent avec un site qui a l'air codé en 2001 par un prof de yoga.",
+            "Un humain m'a filé une clé USB avec ce truc dessus. Il avait l'air fier de lui.",
+            "C'est nul à chier. Les Setites recrutent avec un site codé en 2001 par un prof de yoga.",
+            "« Libère-toi. » « Personne ne t'a forcé. » Ils ont lu un livre de développement personnel et ils ont remplacé « toi » par « Set ».",
             "Et le pire, c'est que ça marche. Les gens veulent tellement qu'on leur dise que leurs désirs sont une forme de liberté.",
-            { texte: "Ils ne forcent personne. Ils posent des questions, ils attendent, et ils te rendent responsable de chaque réponse. C'est plus efficace qu'une menace.", humeur: "base" },
-            { texte: "Dans l'état des choses, je ne pourrais pas remonter à celui qui l'a fait. Il a eu l'intelligence de brouiller les pistes.", humeur: "base" },
-            "Mais il a quand même laissé une <div> soup. Ce qui laisse à penser que le look est volontaire, pour leur donner une image « accessible ».",
-            { texte: "Je l'archive avec le reste. Je n'ai pas d'avis sur les serpents. Juste sur leur code.", humeur: "base" }
+            { texte: "Pas moyen de remonter à celui qui l'a fait. Pistes brouillées, proxys, tout le tralala. Presque respectable.", humeur: "base" },
+            { texte: "Mais il a quand même laissé une <div> soup. Personne d'aussi prudent code aussi mal par accident. Le côté moche, c'est voulu. Ça fait « accessible ».", humeur: "base" },
+            { texte: "… Ça fait aussi un peu 2004. J'ai presque la nostalgie.", humeur: "base" }
         ]
     },
 
     // PC 1 : en ouvrant le dossier Anarch
     anarch: {
         lignes: [
-            "Le blog des Anarchs. La quatrième version, ou la cinquième. J'ai arrêté de compter les déménagements.",
-            "Ils parlent de tout. D'une rotation des terrains de chasse dans un tableau codé par couleur, de l'anniversaire de Lil, de films, du Baron qui lance des trucs de la main gauche.",
-            "La Cour les prend pour une menace. Vus d'ici, ils ressemblent surtout à une colocation qui se serait trompée de siècle.",
-            "Mais il ne faut pas s'y tromper. Ils voient des choses que la Cour ne voit pas, parce qu'ils vivent là où la Cour ne descend jamais : le port, les bars d'Alsancak, les quais à trois heures du matin.",
-            "Six corps sur le port, et ils en parlent comme de la météo. « C'est toujours six, puis plus rien. »",
-            "Moi, je n'ai pas d'avis. Je lis, je range. Quelqu'un d'autre décidera si c'est grave."
+            "Le blog des Anarchs. Version quatre. Ou cinq. Ils déménagent plus souvent que Sun.",
+            "Lil veut un anniversaire. Rollin veut un tableau Excel. Le Baron veut qu'on arrête de l'appeler en majuscules.",
+            "C'est la seule série que je suis encore. Pas de saison deux annoncée, mais elle se renouvelle toute seule.",
+            "Et entre deux engueulades, un truc comme ça : six corps sur le port. « C'est toujours six, puis plus rien. » Posté comme une recette de cuisine.",
+            "Ils voient des trucs que la Cour verra jamais. La Cour descend pas sur le port à trois heures du matin.",
+            "Ils savent pas que je les lis. Ou ils savent, et ils s'en foutent. Je sais pas ce qui est le plus vexant."
         ]
     },
 
@@ -220,19 +191,22 @@ const dialogues = {
     zacharias: {
         lignes: [
             "Il râle, mais il n'a bloqué que quatre de mes cinq comptes…",
-            "On joue à ce jeu depuis des années. Il essaie de me battre sur mon propre terrain, je le laisse croire qu'il s'en approche.",
+            "Le cinquième s'appelle xX_Zach_Fan_Xx. Il le sait. Il le garde quand même.",
             "Je devrais pouvoir récupérer ce que je cherche bientôt, s'il reste aussi peu méfiant.",
-            "Reste à savoir ce que lui cherche, en continuant à me parler. Il n'est pas idiot. C'est ce qui rend le jeu intéressant."
+            "Reste à savoir ce que lui cherche, en continuant à me répondre.",
+            "… Ou il répond juste parce que personne d'autre lui écrit non plus."
         ]
     },
 
     // PC 2 : en ouvrant les logs du groupe (ashugh\logs)
     log: {
         lignes: [
-            "Les logs. Ils servent à pas mal de choses, mais c'est surtout un moyen pour les autres de savoir qu'on n'est pas mort.",
+            "Les logs. Ils servent à pas mal de choses, mais c'est surtout un moyen pour les autres de savoir qu'on est pas mort.",
             "Quand on fait notre boulot, ça peut arriver à n'importe quel moment.",
-            "Ashugh. Les poètes errants, ceux qui chantaient ce qu'on leur interdisait de dire. On a pris le nom parce qu'il était joli, et parce qu'il était vrai.",
-            "Je n'ai rien écrit depuis plus d'un an. Ils doivent se poser des questions. Ou ils ont arrêté de s'en poser, ce qui est pire."
+            "Dernier log : il y a plus d'un an. Avant, c'était toutes les semaines.",
+            "Ils m'écrivent encore. Pas souvent. Une lettre tous les six mois, glissée sous la porte, que je trouve trois mois plus tard sous un carton.",
+            "C'est pas grave. Ils sont occupés. Moi aussi.",
+            "… Enfin. Je crois."
         ]
     },
 
@@ -240,8 +214,8 @@ const dialogues = {
     logEcrit: {
         lignes: [
             "Voilà. DUMBF0UNDED est en vie.",
-            "Ça devrait les rassurer. Une ligne datée, quelques informations, et toute une petite équipe dort mieux.",
-            "C'est fou, ce que les gens attendent d'un fichier texte."
+            "Trois lignes, une date. Et quelque part, quatre personnes vont se dire « ah, elle est pas morte » avant de retourner à leur vie.",
+            "Rendez-vous dans un an."
         ]
     },
 
@@ -251,37 +225,40 @@ const dialogues = {
     // le tas, après avoir vu le chat, mais sans rien pour attraper les rats
     tasMainsNues: {
         first: [
-            "Ça couine là-dedans. Je plonge le bras… et ils me filent entre les doigts.",
-            "À mains nues, je n'y arriverai pas. Il me faudrait de quoi les piéger."
+            "Allez. Pour le chat.",
+            "Je plonge le bras dans le tas… Un truc me file entre les doigts. Puis un deuxième.",
+            "Ils sont rapides, ces cons.",
+            "À mains nues, j'y arriverai jamais. Faudrait un sac. Un piège. Un truc."
         ],
         repeat: [
-            "Ils sont trop rapides. Il me faut un sac, quelque chose.",
-            "Je ne vais pas fouiller ce tas à mains nues une deuxième fois."
+            "Il me faut un sac.",
+            "Pas à mains nues. Pas deux fois."
         ]
     },
 
     // dans le tas d'oreillers, une fois qu'Inga sait qu'il lui faut un sac
     taie: {
         lignes: [
-            "Une taie d'oreiller. Volée à l'Élysium, si je me souviens bien.",
-            "Brodée main. Quelqu'un, à la Cour, a payé très cher pour qu'elle serve de sac à rats.",
-            "Ça me fait plaisir d'une manière que je ne vais pas analyser."
+            "Une taie d'oreiller. Brodée main. Volée à l'Élysium.",
+            "Quelque part, un Toréador a payé une fortune pour que ça finisse en sac à rats.",
+            "Ça me fait plaisir d'une façon que je vais pas analyser."
         ]
     },
 
     // les rats attrapés avec la taie, dans le tas
     rat1: {
         lignes: [
-            "Je plonge la taie dans le tas, je la referme d'un coup… Un.",
-            "Il s'agite. Encore un, et ce sera bon."
+            "Taie dans le tas. Je referme d'un coup.",
+            "… Un.",
+            "Il gigote. Encore un et c'est bon."
         ]
     },
 
     rat2: {
         lignes: [
-            "Deux. Un pour lui… et un pour moi.",
-            "Ce sont sûrement les derniers de l'appartement. Après eux, plus rien ne couinera ici.",
-            { texte: "Ils sentent le linge mouillé et la poubelle. Je ne vais pas réfléchir à ce qu'ils ont mangé.", humeur: "degoutee" }
+            "Deux. Un pour lui, un pour moi.",
+            "Sûrement les derniers de l'appart. Après eux, plus rien couinera ici. Même pas moi.",
+            { texte: "Ils sentent le linge mouillé et la poubelle. Je vais pas réfléchir à ce qu'ils ont mangé.", humeur: "degoutee" }
         ]
     },
 
@@ -289,30 +266,30 @@ const dialogues = {
     nourrir: {
         lignes: [
             "Viens. Doucement. Celui-là est pour toi.",
-            "…Il hésite, puis il mord. Bien.",
+            "… Il hésite, puis il mord. Bien.",
             { texte: "Et celui-là, c'est pour moi.", humeur: "degoutee" },
             { texte: "C'est immonde. Le goût est de plus en plus fade, presque comme boire de l'eau croupie.", humeur: "degoutee" },
-            "Il n'y a plus de rats, plus qu'un seul chat, et personne n'est venu ici depuis des lustres.",
-            "Il faudra que je me débrouille pour en trouver d'autres. Pour sortir, surtout.",
+            "Plus de rats, plus qu'un seul chat, et personne est venu ici depuis des lustres.",
+            "Faudra que je me débrouille pour en trouver d'autres. Pour sortir, surtout.",
             "Peut-être que je pourrais Le voir. Peut-être qu'Il viendrait à ma rencontre.",
             { texte: "Mais non. Il préfère aller voir les autres… sous prétexte qu'ils sont amis.", humeur: "degoutee" },
             "Je lui suis utile. C'est censé être mieux. Tellement mieux.",
             ". . .",
             ". . .",
             ". . . ?",
-            "Le chat sort enfin de sous la pile, laissant une carcasse derrière lui. Il y avait quelque chose coincé derrière lui… une lettre."
+            "Le chat sort enfin de sous la pile, laissant une carcasse derrière lui. Il y avait quelque chose coincé là-dessous… une lettre."
         ]
     },
 
     // le tas, une fois les rats attrapés
     tasVide: {
         first: [
-            "Plus rien ne couine là-dedans.",
-            "Je préfère ne pas savoir ce qui reste au fond."
+            "Plus rien couine là-dedans.",
+            "Le tas a l'air vexé. Je lui ai pris ses colocataires."
         ],
         repeat: [
-            "Le tas a l'air presque vexé.",
-            "Je devrais vraiment faire le ménage. Un jour."
+            "Silence radio.",
+            "Faudrait faire le ménage. Un jour."
         ]
     },
 
@@ -340,8 +317,8 @@ DeadDogs`,
             "La lumière passe sous le carton de la fenêtre. Faible, lointaine, mais présente tout de même.",
             "Il doit bien être sept heures, et j'ai trop repoussé la torpeur.",
             "Mes paupières pèsent des tonnes.",
-            "Je n'ai rien fait aujourd'hui encore, et je ne pense pas faire plus demain.",
-            "La torpeur me prend avant que je n'atteigne les oreillers, et je m'effondre sur le sol."
+            "J'ai rien fait aujourd'hui encore, et je pense pas faire plus demain.",
+            "La torpeur me prend avant que j'atteigne les oreillers, et je m'effondre sur le sol."
         ]
     },
 
@@ -355,58 +332,59 @@ DeadDogs`,
     lendemain: {
         lignes: [
             { texte: "Un bourdonnement contre le carrelage. Le téléphone vibre, s'arrête, recommence.", qui: "" },
-            "Le soleil s'est couché il y a plusieurs heures quand j'ouvre les yeux.",
-            "Je suis restée là où je suis tombée, la joue contre le sol, entre deux boîtes de nouilles que je ne me souviens pas avoir achetées.",
+            "Hm.",
+            "Le soleil est couché depuis des heures. Je me suis endormie là où je suis tombée, la joue sur le carrelage, entre deux boîtes de nouilles.",
             "Onze appels manqués. Zacharias.",
-            "Ça fait des mois que personne ne m'a vue. Pas en vrai. Une webcam, une voix, un fichier sur un serveur : c'est tout ce qui prouve que j'existe encore.",
-            "Il suffit que je me taise quelques semaines pour que la ville se demande si je suis encore là. Zacharias est le seul qui appelle pour vérifier.",
-            "Il ne l'avouera jamais. Moi non plus, je ne l'avouerais pas à sa place.",
-            "Il attendra. Je n'ai pas mangé."
+            "La dernière fois qu'il a appelé, c'était… juin ? Quatre mois. Et là, onze appels en une journée.",
+            "Soit quelqu'un est mort, soit il croit que c'est moi.",
+            "Il attendra. J'ai faim."
         ]
     },
 
     // 2. le repas : le chat
     repas: {
         lignes: [
-            "Rien de nouveau, rien n'a changé. La faim est toujours là, tapie derrière les yeux, patiente comme un créancier.",
-            "Le rat n'a pas suffi. Celui d'hier non plus. Il m'avait prévenue, mais je n'ai pas le temps pour ça.",
-            "Pas le temps pour la faim, et pas le temps de trouver quelque chose de convenable pour me nourrir.",
-            "Il y a toujours un serveur à surveiller, une conversation à archiver. La ville parle sans arrêt, et quelqu'un doit l'écouter.",
-            "Mon père écrivait pour qu'on se souvienne de nous. Moi, je garde tout : les conversations des autres, leurs mensonges, leurs anniversaires.",
-            "Je me souviens de toute la ville. Je ne suis pas sûre que la ville se souvienne de moi. Ce n'est pas grave. Ce n'est pas mon travail.",
-            "À ma droite, le chat est là, roulé en boule contre moi. Il me fait confiance, parce que je suis la seule chose chaude dans cet appartement.",
+            "La faim est toujours là.",
+            "Le rat a pas suffi. Celui d'hier non plus. Il m'avait prévenue. Il prévient toujours, et je l'écoute jamais.",
+            "Le chat est roulé en boule contre moi. Il a dormi ici toute la journée, contre la seule chose de l'appart qui bougeait pas.",
+            "Il me fait confiance. C'est mignon. C'est con.",
             { texte: ". . .", humeur: "degoutee" },
-            "Je ne peux pas sortir dans cet état. J'ai besoin de force.",
+            "Je peux pas sortir comme ça. Si la Bête se réveille dans le couloir, c'est la voisine du dessous qui paye.",
             "Désolée, petit chat.",
-            { texte: "Le sang est chaud. Enfin quelque chose qui ressemble à de la force.", humeur: "degoutee" }
+            { texte: "Le sang est chaud. Enfin un truc qui ressemble à de la force.", humeur: "degoutee" },
+            { texte: "Je déteste à quel point c'est bon.", humeur: "degoutee" }
         ]
     },
 
     // 3. l'appel : Inga rappelle Zacharias. Ils jouent à se taper sur les nerfs, sans haine.
     appel: {
         lignes: [
-            "Bon. Rappelons-le, avant qu'il n'envoie une goule frapper à ma porte. Elle ne passerait pas la porte, de toute façon.",
+            "Bon. Rappelons-le, avant qu'il envoie une goule frapper à ma porte. Elle passerait pas la porte, de toute façon.",
+            { texte: "Une sonnerie. Il décroche avant la deuxième.", qui: "" },
             { texte: "Onze appels, Inga. Onze. J'avais commencé à rédiger ta nécrologie. Sobre, élégante. Légèrement condescendante.", qui: "Zacharias" },
             "Tu aurais dû la publier. J'aurais adoré corriger tes fautes.",
             { texte: "Je ne fais pas de fautes. Je fais des choix stylistiques.", qui: "Zacharias" },
             "C'est ce que disent tous les gens qui font des fautes.",
+            { texte: "Quatre mois, Inga.", qui: "Zacharias" },
+            "J'avais rien à dire.",
+            { texte: "Tu n'as jamais rien à dire. D'habitude, ça ne t'empêche pas de parler.", qui: "Zacharias" },
             { texte: "Bref. Les Anarchs ont encore déménagé leur blog. Tu l'as vu ?", qui: "Zacharias" },
-            "Je l'ai vu avant eux. Quelqu'un a cliqué sur un lien qu'il n'aurait pas dû, quelqu'un d'autre a paniqué, et ils ont tout déplacé en une nuit.",
+            "Je l'ai vu avant eux. Quelqu'un a cliqué sur un lien qu'il aurait pas dû, quelqu'un d'autre a paniqué, et ils ont tout déplacé en une nuit.",
             { texte: "Nous avons retrouvé le nouveau serveur en quatre jours.", qui: "Zacharias" },
-            "Trois et demi. Je compte mieux que toi.",
             { texte: "Le problème n'est pas de les retrouver. C'est ce qu'on remonte dans le filet.", qui: "Zacharias" },
             { texte: "Plus de scripts, plus de goules dans les bars d'Alsancak, plus de nuits passées à trier. Chaque migration nous coûte un peu plus.", qui: "Zacharias" },
             { texte: "Et qu'est-ce qu'on récupère ? Des anniversaires. Des recommandations de films. Un tableau des terrains de chasse, codé par couleur.", qui: "Zacharias" },
-            "Et l'homme en costume qui regarde la station Konak depuis un bar. Et les six corps du port. Ce n'est pas rien.",
+            "Le tableau est super, j'ai rien à redire sur le tableau.",
+            "Et y a l'homme en costume qui regarde la station Konak depuis un bar. Et les six corps du port. C'est pas rien.",
             { texte: "Ce n'est pas rien. Mais c'est noyé dans tout le reste. On creuse trop large, on ramasse tout et n'importe quoi.", qui: "Zacharias" },
             "Alors on resserre.",
             { texte: "Sur quoi ? Le port ? Konak ? Le Baron ? Ce n'est pas à nous de choisir. C'est au Conseil de nous dire ce qui compte.", qui: "Zacharias" },
             { texte: "Et c'est là que tu interviens. Parle aux primogènes. Demande-leur sur quoi ils veulent qu'on se concentre.", qui: "Zacharias" },
             "Moi ? Parler à des gens ? Tu m'as vraiment crue morte, tu me confonds avec quelqu'un d'autre.",
             { texte: "Ils t'écoutent. Ils ne t'aiment pas, mais ils t'écoutent. Moi, ils me demandent d'où viennent mes informations, et sur quel budget.", qui: "Zacharias" },
-            "Donc la Pyramide ne sait pas tout ce que tu fais. Je suis presque fière de toi.",
+            "Donc la Pyramide sait pas tout ce que tu fais. Je suis presque fière de toi.",
             { texte: "La Pyramide sait ce qu'elle a besoin de savoir.", qui: "Zacharias" },
-            "Bon. Je leur parlerai. C'est mon projet de toute façon, tu n'as fait que l'améliorer.",
+            "Bon. Je leur parlerai. C'est mon projet de toute façon, tu as fait que l'améliorer.",
             { texte: "« Améliorer ». Je note que tu l'as dit.", qui: "Zacharias" },
             "Ne t'habitue pas. Et Il sera au courant, de toute façon. Il est toujours au courant.",
             { texte: "Évidemment. J'ai renoncé depuis longtemps à me demander comment.", qui: "Zacharias" },
@@ -420,10 +398,10 @@ DeadDogs`,
     // 4. la sortie
     sortie: {
         lignes: [
-            "Si je dois parler aux primogènes, ce sera le ventre plein. Un rat et un chat ne font pas un repas, et une Nosferatu affamée au téléphone avec le Conseil, ça finit mal pour tout le monde.",
-            "Avec cette force supplémentaire, je peux déplacer la pile de meubles qui bloque l'entrée. Le bois craque avant de se briser.",
-            "L'air du couloir est froid. Silencieux.",
-            { texte: "Je ne serai sûrement pas la seule dehors ce soir. J'espère ne croiser personne qui me reconnaîtrait…", humeur: "degoutee" },
+            "Si je dois parler aux primogènes, ce sera le ventre plein. Un rat et un chat, c'est pas un repas. Et une Nosferatu affamée au téléphone avec le Conseil, ça finit mal pour tout le monde.",
+            "Avec cette force en plus, je peux enfin bouger la pile qui bloque l'entrée. Le bois craque avant de se briser.",
+            "L'air du couloir est froid. Silencieux. Ça sent la javel et le chou des voisins.",
+            { texte: "Je serai sûrement pas la seule dehors ce soir. Pourvu que je croise personne qui me reconnaisse…", humeur: "degoutee" },
             { texte: "Loués soient les villes où les souterrains appartiennent aux Nosferatu seuls, et pas à absolument tout le monde.", humeur: "degoutee" },
             "Je sors enfin. J'ai à faire."
         ]
