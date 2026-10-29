@@ -95,6 +95,11 @@ chatForm.addEventListener("submit", event => {
             );
         }, 2800);
 
+        // quelques secondes après, Inga interrompt (si on est dans sa chambre)
+        setTimeout(() => {
+            chambreDInga()?.ingaInterrompt("zacharias");
+        }, 5300);
+
         return;
     }
 
@@ -108,3 +113,16 @@ chatForm.addEventListener("submit", event => {
         addMessage(reply, "them");
     }, 800);
 });
+
+
+// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
+function chambreDInga() {
+    try {
+        let fenetre = window;
+        while (fenetre !== fenetre.parent) {
+            fenetre = fenetre.parent;
+            if (typeof fenetre.ingaInterrompt === "function") return fenetre;
+        }
+    } catch (e) {}
+    return null;
+}

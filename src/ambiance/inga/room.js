@@ -133,11 +133,72 @@ function hideSprite() {
 
 dialog.addEventListener("click", () => {
 
+    // pendant une interruption, un clic passe à la phrase suivante (voir ingaInterrompt)
+    if (phraseSuivante) {
+        phraseSuivante();
+        return;
+    }
+
     dialog.style.display = "none";
 
     hideFocusItem();
     hideSprite();
 });
+
+
+/* =========================
+   INGA INTERROMPT
+   Appelée par les pages des PC (vermine-cercle.html, la discussion Steam) :
+   on quitte l'écran, Inga dit toutes les phrases du dialogue (un clic pour passer
+   à la suivante), puis on revient sur le PC, là où on en était.
+   Les phrases sont dans dialogues.js (« lignes »).
+========================= */
+
+let phraseSuivante = null;
+
+function ingaInterrompt(id) {
+
+    const dialogue = dialogues[id];
+
+    if (!dialogue) return Promise.resolve();
+
+    const lignes = dialogue.lignes || [dialogue.first, ...(dialogue.repeat || [])];
+    const etaitSurLePC = !ecran.hidden;
+
+    ecran.hidden = true;
+    hideFocusItem();
+    speaker.src = ingaPortrait;
+
+    return new Promise((fini) => {
+
+        let n = 0;
+
+        phraseSuivante = () => {
+
+            if (n < lignes.length) {
+                text.textContent = lignes[n++];
+                dialog.style.display = "block";
+                showSprite(dialogue.humeur || "base");
+                return;
+            }
+
+            // plus de phrases : on revient sur le PC
+            phraseSuivante = null;
+            dialog.style.display = "none";
+            hideSprite();
+
+            if (etaitSurLePC) {
+                ecran.hidden = false;
+                ajusterEcran();
+                montrerPC(pcActuel);
+            }
+
+            fini();
+        };
+
+        phraseSuivante();
+    });
+}
 
 
 /* =========================
@@ -241,19 +302,7 @@ function eteindrePC() {
     const pc = ordinateurs[pcActuel];
     ecran.hidden = true;
 
-    // si on vient d'ouvrir vermine.exe sur le PC 1, Inga en parle
-    // (vermine.html le note en s'ouvrant ; on l'efface pour ne le dire qu'une fois par visite)
-    let vermine = null;
-    try {
-        vermine = sessionStorage.getItem("inga-vermine");
-        sessionStorage.removeItem("inga-vermine");
-    } catch (e) {}
-    if (vermine === "vue") {
-        talk("vermine");
-        return;
-    }
-
-    // sinon, Inga réagit au PC qu'on vient de regarder
+    // Inga réagit au PC qu'on vient de regarder
     if (pc.dialogue) talk(pc.dialogue);
 }
 

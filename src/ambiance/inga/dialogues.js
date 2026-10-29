@@ -89,13 +89,24 @@ travail: {
         ]
     },
 
-    // après avoir ouvert vermine.exe sur le PC 1 (voir eteindrePC dans room.js)
+    // Les interruptions : quand il se passe quelque chose sur un PC, Inga coupe,
+    // dit toutes ses « lignes » (un clic pour passer à la suivante), puis on revient sur le PC.
+
+    // à la fin de la conversation cachée de vermine.exe
     vermine: {
         humeur: "degoutee",
-        first: "Un humain m'a envoyé ce lien en jurant que ça allait « changer ma vie ». C'est nul à chier. Les Setites recrutent avec un site qui a l'air codé en 2004 par un prof de yoga.",
-        repeat: [
+        lignes: [
+            "Un humain m'a envoyé ce lien en jurant que ça allait « changer ma vie ». C'est nul à chier. Les Setites recrutent avec un site qui a l'air codé en 2004 par un prof de yoga.",
             "Et le pire, c'est que ça marche. Les gens veulent tellement qu'on leur dise que leurs pires envies sont une forme de liberté.",
             "Je devrais signaler ce site à quelqu'un. Mais qui ? Le Prince ? Il va me demander comment je l'ai trouvé."
+        ]
+    },
+
+    // dans la discussion Steam, après l'échange avec Zacharias
+    zacharias: {
+        lignes: [
+            "Il croit vraiment que je ne trouverai pas. Il oublie qui garde les archives de cette ville.",
+            "Un jour, je le verrai à travers sa propre caméra. Et ce jour-là, c'est moi qui rirai."
         ]
     }
 

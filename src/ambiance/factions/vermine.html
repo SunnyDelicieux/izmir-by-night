@@ -305,9 +305,6 @@ try {
     document.getElementById("compteur").textContent = String(4113 + visites).padStart(6, "0");
 } catch (e) {}
 
-// pour la chambre d'Inga : on a ouvert vermine.exe (elle le commente en éteignant le PC)
-try { sessionStorage.setItem("inga-vermine", "vue"); } catch (e) {}
-
 // après la conversation cachée : un nouveau message apparaît dans le livre d'or… sur toi
 try {
     const chaine = sessionStorage.getItem("vermine-chaine");

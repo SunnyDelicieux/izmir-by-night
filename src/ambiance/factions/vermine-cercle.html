@@ -14,7 +14,17 @@
 -->
 
 <style>
+/* Le look : un vieux terminal un peu cheap (texte vert phosphore, lignes de balayage),
+   mais propre : une fenêtre avec sa barre de titre, des marges, une lueur douce. */
+
 * { box-sizing: border-box; }
+
+:root {
+    --vert: #8fdc8a;        /* le texte de la voix */
+    --vert-pale: #4f7a4c;   /* les détails : invites, bordures */
+    --ambre: #e3c46a;       /* les révélations */
+    --fond: #050805;
+}
 
 html, body {
     margin: 0;
@@ -24,126 +34,160 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background: radial-gradient(ellipse at 50% 0%, #10241c, #050a08 70%);
-    color: #d8ccb0;
-    font: 16px/1.6 Georgia, "Times New Roman", serif;
+    background: var(--fond);
+    color: var(--vert);
+    font: 15px/1.55 "Lucida Console", "Courier New", monospace;
+    text-shadow: 0 0 4px rgba(143, 220, 138, .35);
     overflow: hidden;
 }
 
-/* l'en-tête : le serpent et le nom du lieu */
+/* lignes de balayage et bords assombris, par-dessus tout */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    background:
+        radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, .55) 100%),
+        repeating-linear-gradient(to bottom, rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px);
+}
+
+/* la barre de titre de la fenêtre */
 header {
     flex: none;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 18px;
-    border-bottom: 1px solid #3a3320;
-    letter-spacing: 4px;
+    gap: 10px;
+    padding: 5px 10px;
+    background: #0d140d;
+    border-bottom: 1px solid #1d2e1c;
+    color: var(--vert-pale);
     font-size: 12px;
-    color: #a8925a;
-    text-transform: uppercase;
+    text-shadow: none;
 }
 
-header svg {
-    width: 34px;
-    height: 34px;
+header .points span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border: 1px solid var(--vert-pale);
 }
 
 header .retour {
     margin-left: auto;
-    color: #5d5440;
+    color: var(--vert-pale);
     text-decoration: none;
-    letter-spacing: 1px;
-    text-transform: none;
 }
 
-header .retour:hover { color: #a8925a; }
+header .retour:hover { color: var(--vert); }
+
+/* le serpent en caractères, en haut de la conversation */
+#serpent {
+    margin: 0 0 6px;
+    color: var(--vert-pale);
+    font-size: 12px;
+    line-height: 1.15;
+    white-space: pre;
+}
 
 /* la conversation */
 #fil {
     flex: 1;
     overflow-y: auto;
-    padding: 20px 22px 10px;
+    padding: 16px 22px 6px;
+    scrollbar-color: #1d2e1c transparent;
 }
 
 .ligne {
-    max-width: 78%;
-    margin: 0 0 12px;
-    padding: 10px 14px;
-    border-radius: 3px;
-    animation: apparition .4s ease-out;
+    margin: 0 0 10px;
+    white-space: pre-wrap;
 }
 
-.ligne.voix {
-    background: rgba(168, 146, 90, .08);
-    border-left: 2px solid #a8925a;
+/* chaque ligne commence par une petite invite, comme dans un terminal */
+.ligne::before {
+    color: var(--vert-pale);
 }
+
+.ligne.voix::before { content: "> "; }
 
 .ligne.toi {
-    margin-left: auto;
-    background: rgba(255, 255, 255, .04);
-    border-right: 2px solid #5d5440;
-    color: #9a927f;
-    font-style: italic;
-    text-align: right;
+    color: #b9c9b6;
+    text-shadow: none;
 }
+
+.ligne.toi::before { content: "[toi]$ "; }
 
 .ligne.revelation {
-    max-width: 100%;
-    background: none;
-    border: none;
-    color: #e3c46a;
-    font-size: 19px;
-    text-align: center;
-    text-shadow: 0 0 14px rgba(227, 196, 106, .45);
+    margin: 16px 0;
+    color: var(--ambre);
+    text-shadow: 0 0 8px rgba(227, 196, 106, .55);
 }
 
-@keyframes apparition {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: none; }
+.ligne.revelation::before { content: ":: "; color: #8a7638; }
+
+.ligne.systeme {
+    color: var(--vert-pale);
+    font-size: 12px;
 }
+
+/* le curseur qui clignote au bout de la ligne en train de s'écrire */
+.ligne.ecrit::after {
+    content: "█";
+    margin-left: 1px;
+    animation: curseur 1s steps(1) infinite;
+}
+
+@keyframes curseur { 50% { opacity: 0; } }
 
 #ecrit {
     height: 20px;
     padding: 0 22px;
-    color: #5d5440;
-    font-size: 13px;
-    font-style: italic;
+    color: var(--vert-pale);
+    font-size: 12px;
+    text-shadow: none;
 }
 
 /* les réponses possibles */
 #choix {
     flex: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    min-height: 62px;
-    padding: 12px 18px 16px;
-    border-top: 1px solid #3a3320;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-height: 60px;
+    padding: 10px 18px 14px;
+    border-top: 1px dashed #1d2e1c;
 }
 
 #choix button {
-    padding: 8px 14px;
-    background: transparent;
-    border: 1px solid #5d5440;
-    border-radius: 2px;
-    color: #d8ccb0;
+    padding: 3px 8px;
+    background: none;
+    border: none;
+    color: var(--vert);
     font: inherit;
-    font-size: 14px;
+    text-align: left;
+    text-shadow: inherit;
     cursor: pointer;
-    transition: .2s;
+}
+
+#choix button .touche {
+    color: var(--vert-pale);
+    margin-right: 8px;
 }
 
 #choix button:hover,
 #choix button:focus-visible {
-    border-color: #e3c46a;
-    color: #e3c46a;
-    box-shadow: 0 0 10px rgba(227, 196, 106, .25);
+    outline: none;
+    background: var(--vert);
+    color: var(--fond);
+    text-shadow: none;
 }
 
-#choix button .touche {
-    color: #5d5440;
-    margin-right: 6px;
+#choix button:hover .touche,
+#choix button:focus-visible .touche {
+    color: var(--fond);
 }
 
 /* l'œil qui s'ouvre à la fin */
@@ -151,45 +195,58 @@ header .retour:hover { color: #a8925a; }
     display: none;
     position: fixed;
     inset: 0;
+    z-index: 40;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 18px;
-    background: #050a08;
-    color: #a8925a;
-    letter-spacing: 6px;
-    font-size: 13px;
-    text-transform: uppercase;
+    gap: 16px;
+    background: var(--fond);
+    color: var(--ambre);
+    text-shadow: 0 0 8px rgba(227, 196, 106, .55);
     animation: apparition 1.5s ease-out;
 }
 
-#oeil svg { width: 140px; }
+#oeil pre {
+    margin: 0;
+    line-height: 1.15;
+}
+
+@keyframes apparition {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-    <!-- le serpent -->
-    <svg viewBox="0 0 40 40" fill="none" stroke="#a8925a" stroke-width="2" stroke-linecap="round">
-        <path d="M30 8 C 18 2, 6 10, 16 18 S 28 30, 12 34"/>
-        <circle cx="31" cy="8.5" r="2.4" fill="#a8925a" stroke="none"/>
-        <path d="M33 9 l 4 1 M33 9 l 3 3" stroke-width="1.2"/>
-    </svg>
-    <span>Le Cercle · ceux qui ont vu</span>
-    <a class="retour" href="vermine.html">quitter</a>
+    <span class="points"><span></span><span></span><span></span></span>
+    <span>C:\CERCLE\MEMBRES\vermine.exe</span>
+    <a class="retour" href="vermine.html">[ quitter ]</a>
 </header>
 
-<div id="fil"></div>
+<div id="fil"><pre id="serpent">
+        /^\/^\
+      _|__|  O|        LE CERCLE :: ceux qui ont vu
+\/     /~     \_/ \    connexion chiffrée . . . . ok
+ \____|__________/  \  membre : invité
+        \_______      \
+                `\     \
+</pre></div>
 <div id="ecrit"></div>
 <div id="choix"></div>
 
 <div id="oeil">
-    <svg viewBox="0 0 120 60" fill="none" stroke="#e3c46a" stroke-width="2">
-        <path d="M4 30 Q 60 -8, 116 30 Q 60 68, 4 30 Z"/>
-        <circle cx="60" cy="30" r="13" fill="#e3c46a" stroke="none"/>
-        <ellipse cx="60" cy="30" rx="3" ry="11" fill="#050a08"/>
-    </svg>
+<pre>
+          .-'"""""'-.
+        .'           '.
+       /    .-----.    \
+      |    /  (@)  \    |
+       \   '-------'   /
+        '.           .'
+          '-.......-'
+</pre>
     <span id="oeil-texte"></span>
 </div>
 
@@ -296,15 +353,24 @@ function ajouter(texte, qui) {
     ligne.textContent = texte;
     fil.appendChild(ligne);
     fil.scrollTop = fil.scrollHeight;
+    return ligne;
 }
 
-// la voix « écrit » un moment avant chaque phrase, plus longtemps pour les longues
+// la voix « se connecte », puis sa phrase s'écrit lettre par lettre
 async function voixDit(phrases, qui = "voix") {
     for (const phrase of phrases) {
-        ecrit.textContent = "quelqu'un écrit…";
-        await attendre(500 + Math.min(phrase.length * 18, 1800));
+        ecrit.textContent = "réception…";
+        await attendre(400 + Math.min(phrase.length * 6, 700));
         ecrit.textContent = "";
-        ajouter(phrase.replace("{chaine}", "« " + chaine + " »"), qui);
+
+        const texte = phrase.replace("{chaine}", "« " + chaine + " »");
+        const ligne = ajouter("", qui + " ecrit");
+        for (const lettre of texte) {
+            ligne.textContent += lettre;
+            fil.scrollTop = fil.scrollHeight;
+            await attendre(lettre === "." || lettre === "," ? 90 : 18);
+        }
+        ligne.classList.remove("ecrit");
     }
 }
 
@@ -314,12 +380,11 @@ function proposer(choix) {
         choix.forEach((c, n) => {
             const bouton = document.createElement("button");
             bouton.type = "button";
-            bouton.innerHTML = `<span class="touche">${n + 1}</span>`;
+            bouton.innerHTML = `<span class="touche">[${n + 1}]</span>`;
             bouton.append(c.texte);
             bouton.addEventListener("click", () => ok(c));
             zoneChoix.appendChild(bouton);
         });
-        zoneChoix.querySelector("button")?.focus();
     });
 }
 
@@ -356,11 +421,30 @@ async function terminer(fin) {
         sessionStorage.setItem("vermine-fin", fin);
     } catch (e) {}
 
+    // quelques secondes après le dernier message, Inga interrompt (si on est dans sa chambre)
     await attendre(3500);
+    const chambre = chambreDInga();
+    if (chambre) {
+        await chambre.ingaInterrompt("vermine");
+        await attendre(800);
+    }
+
     document.getElementById("oeil-texte").textContent = fin === "oui" ? "Il t'a vu. Il t'attend." : "Il t'a vu.";
     document.getElementById("oeil").style.display = "flex";
     await attendre(4000);
     location.href = "vermine.html#livre";
+}
+
+// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
+function chambreDInga() {
+    try {
+        let fenetre = window;
+        while (fenetre !== fenetre.parent) {
+            fenetre = fenetre.parent;
+            if (typeof fenetre.ingaInterrompt === "function") return fenetre;
+        }
+    } catch (e) {}
+    return null;
 }
 
 derouler();

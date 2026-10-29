@@ -198,7 +198,7 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 14px;
+    padding: 56px 14px 14px; /* en haut : la place du bouton de connexion du site */
     box-sizing: border-box;
     background: rgba(0, 0, 0, .82);
     animation: ecranFondu .25s ease-out;
