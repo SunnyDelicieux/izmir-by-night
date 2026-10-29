@@ -97,7 +97,7 @@ chatForm.addEventListener("submit", event => {
 
         // quelques secondes après, Inga interrompt (si on est dans sa chambre)
         setTimeout(() => {
-            chambreDInga()?.ingaInterrompt("zacharias");
+            chambreDInga()?.reactionUnique("zacharias"); // une seule fois
         }, 5300);
 
         return;

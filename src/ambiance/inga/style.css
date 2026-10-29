@@ -136,6 +136,25 @@ html, body {
     image-rendering: pixelated;
 }
 
+/* le nom de celui qui parle, quand ce n'est pas Inga (« qui » dans dialogues.js) */
+#nom {
+    margin-bottom: 4px;
+    color: #c00000;
+    font: 12px Georgia, serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#nom[hidden] {
+    display: none;
+}
+
+/* une bulle de narration (qui: "") */
+#text.narration {
+    color: #999;
+    font-style: italic;
+}
+
 #dialog-content {
     min-height: 110px;
     overflow: hidden;

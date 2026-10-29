@@ -323,4 +323,24 @@ sujet 23 not outside
 
 
 
+<script>
+// la chambre d'Inga réagit la première fois qu'on ouvre le dossier Anarch (voir reactionUnique dans inga/quete.js)
+document.addEventListener("click", (e) => {
+	if (!e.target.closest('.open-page[data-url^="ANARCH"]')) return;
+	setTimeout(() => chambreDInga()?.reactionUnique("anarch"), 2500);
+});
+
+// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
+function chambreDInga() {
+	try {
+		let fenetre = window;
+		while (fenetre !== fenetre.parent) {
+			fenetre = fenetre.parent;
+			if (typeof fenetre.reactionUnique === "function") return fenetre;
+		}
+	} catch (e) {}
+	return null;
+}
+</script>
+
 </body></html>

@@ -409,12 +409,9 @@ function noterProgression(changements) {
     try { localStorage.setItem("inga-progression", JSON.stringify(Object.assign(progression(), changements))); } catch (e) {}
 }
 
-// la réaction d'Inga aux logs (une seule fois, et seulement après la lettre d'Aram)
+// la réaction d'Inga en ouvrant les logs de son groupe (une seule fois)
 function reactionLogs() {
-    const p = progression();
-    if (!p.chatSorti || p.logVu || p.logEcrit) return;
-    noterProgression({ logVu: true });
-    setTimeout(() => chambreDInga()?.ingaInterrompt("log"), 1200);
+    setTimeout(() => chambreDInga()?.reactionUnique("log"), 1200); // une seule fois
 }
 
 // le log d'Aram : vide avant la lettre ; ensuite, il s'écrit sous nos yeux, une seule fois

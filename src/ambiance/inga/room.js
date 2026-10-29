@@ -23,24 +23,21 @@ Object.values(sprites).forEach(src => { new Image().src = src; });
    DIALOGUES
 ========================= */
 
-function talk(id) {
+// Un clic sur un objet. Chaque « ligne » (first, puis chaque repeat) peut être :
+//   un texte (une bulle), ou une liste de textes (plusieurs bulles qui se suivent, un clic pour passer).
+async function talk(id) {
 
     const dialogue = dialogues[id];
 
-    if (!dialogue) return;
-
-    hideFocusItem();
-
-    speaker.src = ingaPortrait;
+    if (!dialogue || phraseSuivante) return;  // pas de nouveau dialogue pendant qu'Inga parle
 
     // first, puis les repeat ; à la fin, on reboucle sur les repeat,
-    // sauf si le dialogue a boucle: false (il reste alors sur la dernière phrase)
+    // sauf si le dialogue a boucle: false (il reste alors sur la dernière ligne)
     const lignes = [dialogue.first, ...dialogue.repeat];
     const index = seen[id] ?? reprise(id, lignes.length, dialogue.boucle);
+    const ligne = lignes[index];
 
-    text.textContent = lignes[index];
-
-    // pour la fin de l'histoire (quete.js) : combien de phrases de ce dialogue ont été lues
+    // pour reprendre au bon endroit en changeant de pièce (quete.js)
     if (typeof noterDialogue === "function") noterDialogue(id, index + 1);
 
     if (index + 1 < lignes.length) {
@@ -49,15 +46,17 @@ function talk(id) {
         seen[id] = 1;
     }
 
-    dialog.style.display = "block";
-
-    showSprite(dialogue.humeur || "base");
-
+    hideFocusItem();
 
     // Objet en gros plan
     if (dialogue.image) {
         showFocusItem(dialogue.image);
     }
+
+    await direBulles(Array.isArray(ligne) ? ligne : [ligne], dialogue.humeur);
+
+    // l'histoire avance-t-elle ? (quete.js)
+    if (typeof verifierFin === "function") verifierFin();
 }
 
 
@@ -148,46 +147,24 @@ function hideSprite() {
    FERMER LE DIALOGUE
 ========================= */
 
+// un clic sur la boîte de dialogue passe à la bulle suivante
 dialog.addEventListener("click", () => {
-
-    // pendant une interruption, un clic passe à la phrase suivante (voir ingaInterrompt)
-    if (phraseSuivante) {
-        phraseSuivante();
-        return;
-    }
-
-    dialog.style.display = "none";
-
-    hideFocusItem();
-    hideSprite();
-
-    // tout a-t-il été lu ? (quete.js)
-    if (typeof verifierFin === "function") verifierFin();
+    if (phraseSuivante) phraseSuivante();
 });
 
 
 /* =========================
-   INGA INTERROMPT
-   Appelée par les pages des PC (vermine-cercle.html, la discussion Steam) :
-   on quitte l'écran, Inga dit toutes les phrases du dialogue (un clic pour passer
-   à la suivante), puis on revient sur le PC, là où on en était.
-   Les phrases sont dans dialogues.js (« lignes »).
+   LES BULLES
+   direBulles montre des bulles l'une après l'autre (un clic pour passer à la suivante).
+   Une bulle est un texte, ou un objet :
+     { texte: "…", humeur: "degoutee" }   change le sprite d'Inga
+     { texte: "…", qui: "Zacharias" }     quelqu'un d'autre parle (son nom et son icône s'affichent)
+     { texte: "…", qui: "" }              de la narration, sans personne
 ========================= */
 
 let phraseSuivante = null;
 
-function ingaInterrompt(id) {
-
-    const dialogue = dialogues[id];
-
-    if (!dialogue) return Promise.resolve();
-
-    const lignes = dialogue.lignes || [dialogue.first, ...(dialogue.repeat || [])];
-    const etaitSurLePC = ecran && !ecran.hidden;
-
-    if (ecran) ecran.hidden = true;
-    hideFocusItem();
-    speaker.src = ingaPortrait;
+function direBulles(bulles, humeurParDefaut) {
 
     return new Promise((fini) => {
 
@@ -195,36 +172,81 @@ function ingaInterrompt(id) {
 
         phraseSuivante = () => {
 
-            if (n < lignes.length) {
-                // une ligne est un texte, ou { texte: "…", humeur: "degoutee" } pour changer de sprite
-                const ligne = lignes[n++];
-                text.textContent = typeof ligne === "string" ? ligne : ligne.texte;
+            if (n < bulles.length) {
+                const bulle = bulles[n++];
+                text.textContent = typeof bulle === "string" ? bulle : bulle.texte;
+                montrerQuiParle(bulle.qui);
                 dialog.style.display = "block";
-                showSprite(ligne.humeur || dialogue.humeur || "base");
+                showSprite(bulle.humeur || humeurParDefaut || "base");
                 return;
             }
 
-            // plus de phrases : on revient sur le PC
+            // plus de bulles : on ferme
             phraseSuivante = null;
+            montrerQuiParle(undefined);
             dialog.style.display = "none";
+            hideFocusItem();
             hideSprite();
-
-            if (typeof noterDialogue === "function") noterDialogue(id, lignes.length);
-
-            if (etaitSurLePC) {
-                ecran.hidden = false;
-                ajusterEcran();
-                montrerPC(pcActuel);
-            }
-
             fini();
-
-            if (typeof verifierFin === "function") verifierFin();
         };
 
         phraseSuivante();
     });
 }
+
+
+// qui parle : rien (Inga), le nom d'un autre personnage (avec son icône), ou "" (la narration)
+function montrerQuiParle(qui) {
+
+    let nom = document.getElementById("nom");
+
+    if (!nom) {
+        nom = document.createElement("div");
+        nom.id = "nom";
+        text.before(nom);
+    }
+
+    nom.textContent = qui || "";
+    nom.hidden = !qui;
+    text.classList.toggle("narration", qui === "");
+
+    const icone = qui && typeof interlocuteurs !== "undefined" ? interlocuteurs[qui] : null;
+    speaker.src = icone || ingaPortrait;
+}
+
+
+/* =========================
+   INGA INTERROMPT
+   Appelée par les pages des PC et par la quête : on quitte l'écran, Inga dit toutes les bulles
+   du dialogue (« lignes » dans dialogues.js), puis on revient sur le PC, là où on en était.
+========================= */
+
+async function ingaInterrompt(id) {
+
+    const dialogue = dialogues[id];
+
+    if (!dialogue) return;
+
+    // si Inga parle déjà, on attend qu'elle ait fini
+    while (phraseSuivante) await new Promise((ok) => setTimeout(ok, 200));
+
+    const etaitSurLePC = ecran && !ecran.hidden;
+    if (ecran) ecran.hidden = true;
+    hideFocusItem();
+
+    await direBulles(dialogue.lignes || [dialogue.first, ...(dialogue.repeat || [])], dialogue.humeur);
+
+    if (etaitSurLePC && !ecranFermePourDeBon) {
+        ecran.hidden = false;
+        ajusterEcran();
+        montrerPC(pcActuel);
+    }
+
+    if (typeof verifierFin === "function") verifierFin();
+}
+
+// mis à vrai par la fin de l'histoire : on ne revient plus sur le PC
+let ecranFermePourDeBon = false;
 
 
 /* =========================

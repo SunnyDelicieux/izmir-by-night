@@ -362,7 +362,7 @@ async function terminer(fin) {
     await attendre(3500);
     const chambre = chambreDInga();
     if (chambre) {
-        await chambre.ingaInterrompt("vermine");
+        await chambre.reactionUnique("vermine"); // une seule fois
         await attendre(800);
     }
 
