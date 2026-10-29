@@ -176,25 +176,6 @@ dialog.addEventListener("click", () => {
 
 let phraseSuivante = null;
 
-// qui parle : rien (Inga), le nom d'un autre personnage (avec son icône), ou "" (la narration)
-function montrerQuiParle(qui) {
-
-    let nom = document.getElementById("nom");
-
-    if (!nom) {
-        nom = document.createElement("div");
-        nom.id = "nom";
-        text.before(nom);
-    }
-
-    nom.textContent = qui || "";
-    nom.hidden = !qui;
-    text.classList.toggle("narration", qui === "");
-
-    const icone = qui && typeof interlocuteurs !== "undefined" ? interlocuteurs[qui] : null;
-    speaker.src = icone || ingaPortrait;
-}
-
 function ingaInterrompt(id) {
 
     const dialogue = dialogues[id];
@@ -218,7 +199,6 @@ function ingaInterrompt(id) {
                 // une ligne est un texte, ou { texte: "…", humeur: "degoutee" } pour changer de sprite
                 const ligne = lignes[n++];
                 text.textContent = typeof ligne === "string" ? ligne : ligne.texte;
-                montrerQuiParle(ligne.qui);
                 dialog.style.display = "block";
                 showSprite(ligne.humeur || dialogue.humeur || "base");
                 return;
@@ -226,7 +206,6 @@ function ingaInterrompt(id) {
 
             // plus de phrases : on revient sur le PC
             phraseSuivante = null;
-            montrerQuiParle(undefined);
             dialog.style.display = "none";
             hideSprite();
 
