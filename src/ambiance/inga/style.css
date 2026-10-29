@@ -444,12 +444,12 @@ html, body {
 
 #room > #telephone { /* « #room > » pour passer avant la règle « #room > img » du fond */
     position: absolute;
-    right: 9%;
-    bottom: 26%;
-    height: 58%;
-    z-index: 25; /* comme Inga : devant la chambre, derrière la boîte de dialogue */
-    transform: rotate(-12deg); /* légèrement tourné vers la gauche */
-    filter: drop-shadow(0 0 18px #000) drop-shadow(0 0 4px #000);
+    left: 50%;
+    top: 42%;
+    height: 55%;
+    z-index: 20; /* comme un objet en gros plan : derrière Inga et la boîte de dialogue */
+    transform: translate(-50%, -50%) rotate(-12deg); /* centré, légèrement tourné vers la gauche */
+    filter: drop-shadow(0 0 5px #000) drop-shadow(0 0 20px #000);
     pointer-events: none;
     animation: telephoneArrive .5s ease-out;
 }
@@ -459,6 +459,6 @@ html, body {
 }
 
 @keyframes telephoneArrive {
-    from { opacity: 0; transform: rotate(-12deg) translateY(30px); }
-    to   { opacity: 1; transform: rotate(-12deg); }
+    from { opacity: 0; transform: translate(-50%, -45%) rotate(-12deg); }
+    to   { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg); }
 }
