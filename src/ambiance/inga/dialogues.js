@@ -231,69 +231,95 @@ DeadDogs`,
     // le texte sur l'écran noir, entre les deux nuits
     nuitSuivante: "La nuit suivante.",
 
-    // La nuit suivante se joue en quatre interruptions, l'une après l'autre (voir jouerLaFin dans quete.js) :
-    // le réveil, le chat, l'appel à Zacharias, la sortie.
+    // La nuit suivante se joue en cinq interruptions, l'une après l'autre (voir jouerLaFin dans quete.js) :
+    // le réveil, le chat, l'appel à Zacharias, l'appel au Conseil, la sortie.
 
     // 1. le réveil : le téléphone
     lendemain: {
         lignes: [
-            { texte: "Un bourdonnement contre le sol. Le téléphone vibre, s'arrête, recommence.", qui: "" },
-            "Le soleil s'est couché il y a plusieurs heures quand j'ouvre les yeux.",
+            { texte: "Un bourdonnement contre le carrelage. Le téléphone vibre, s'arrête, recommence. Quelqu'un, quelque part, a décidé que ma nuit commencerait maintenant.", qui: "" },
+            "Le soleil s'est couché il y a plusieurs heures quand j'ouvre les yeux. Je suis restée là où je suis tombée, la joue contre le sol, entre deux boîtes de nouilles que je ne me souviens pas avoir achetées.",
             "Onze appels manqués. Zacharias. Évidemment.",
-            "Personne ne m'a vue depuis des mois, alors il appelle pour vérifier. Que je suis encore là. Ou pour être le premier à annoncer que je ne le suis plus.",
-            { texte: "Il peut attendre. Je n'ai pas mangé, je ne suis pas d'humeur à supporter un Tremere.", humeur: "degoutee" }
+            "Ça fait des mois que personne ne m'a vue. Pas en vrai. Une webcam, une voix, un fichier qui apparaît sur un serveur : c'est tout ce qui prouve que j'existe encore. Il suffit que je me taise trois semaines pour que la ville commence à parler de moi au passé.",
+            "Je pourrais les laisser faire. Ce serait reposant, d'être morte. Personne n'attend rien d'un cadavre.",
+            "Mais je connais Zacharias. Il n'appelle pas pour savoir si je vais bien. Il appelle pour être le premier à savoir si je ne vais plus bien du tout. Il a toujours voulu ma place, il n'a juste jamais eu le courage de la prendre pendant que j'y étais assise.",
+            { texte: "Il peut attendre. Je n'ai pas mangé, et je ne suis pas d'humeur à supporter un Tremere à jeun.", humeur: "degoutee" }
         ]
     },
 
     // 2. le chat
     repas: {
         lignes: [
-            "Rien de nouveau, rien n'a changé, la faim est toujours présente.",
-            "Le rat n'a pas suffit, celui d'hier non plus, Il m'avait prévenu, mais je n'ai pas le temps pour ça.",
-            "Pas le temps pour la faim, et pas le temps pour trouver quelque chose de convenable pour me nourrir.",
-            "A ma droite, le chat est là, roulé en boule contre moi. Il me fait confiance.",
+            "Rien de nouveau, rien n'a changé. La faim est toujours là, tapie derrière les yeux, patiente comme un créancier.",
+            "Le rat n'a pas suffi. Celui d'hier non plus. Il m'avait prévenue, que ça ne suffirait jamais, que la Bête se souvient de chaque repas qu'on lui refuse. Mais je n'ai pas le temps pour ça.",
+            "Pas le temps pour la faim, pas le temps pour chasser, pas le temps pour trouver quelque chose de convenable. Il y a toujours un serveur à surveiller, une conversation à archiver, quelqu'un à qui il faut rappeler qu'on le regarde.",
+            "Mon père écrivait pour qu'on se souvienne de nous. Moi, je garde tout : les conversations des autres, leurs mensonges, leurs anniversaires, leurs tableaux Excel. Je me souviens de toute la ville. Je ne suis pas sûre que la ville se souvienne de moi.",
+            "A ma droite, le chat est là, roulé en boule contre moi. Il a dormi ici toute la journée. Il me fait confiance, parce que je suis la seule chose chaude dans cet appartement. Ce qui est drôle, quand on y pense.",
             { texte: ". . .", humeur: "degoutee" },
-            "Je ne peux pas sortir dans cet état, j'ai besoin de force.",
-            "Désolé petit chat.",
-            { texte: "Le sang est chaud. Enfin quelque chose qui ressemble à de la force.", humeur: "degoutee" }
+            "Je ne peux pas sortir dans cet état. Si la Bête me prend dans le couloir, ce ne sera pas un chat qu'elle trouvera, ce sera la voisine du dessous. J'ai besoin de force. Maintenant.",
+            "Désolée, petit chat. Les bonnes personnes meurent en premier. Toi, tu étais juste au mauvais endroit.",
+            { texte: "Le sang est chaud. Enfin quelque chose qui ressemble à de la force. Je déteste à quel point c'est bon.", humeur: "degoutee" }
         ]
     },
 
     // 3. l'appel : Inga rappelle Zacharias
     appel: {
         lignes: [
-            "Bon. Rappelons le génie, avant qu'il ne prévienne toute la Pyramide de ma mort.",
-            { texte: "Ah. Donc tu existes encore. J'avais parié le contraire, je viens de perdre de l'argent.", qui: "Zacharias" },
-            "Onze appels. Si j'étais morte, tu aurais parlé à un cadavre. Ça ne t'aurait pas changé de tes étudiants.",
-            { texte: "Charmante, comme toujours. Je n'appelais pas pour prendre de tes nouvelles. C'est le réseau anarch. Ils ont migré.", qui: "Zacharias" },
-            "Je sais qu'ils ont migré. C'est moi qui les ai fait migrer. Lil a cliqué sur un lien, évidemment.",
-            { texte: "Le nouveau serveur. J'y suis entré cette nuit. Ils parlent encore du port. D'un sixième corps.", qui: "Zacharias" },
-            "« C'est toujours six, puis plus rien. » Ils l'ont écrit noir sur blanc, entre deux disputes sur un fichier Excel.",
-            { texte: "Le Sabbat chasse dans la ville. Les Anarchs le savent depuis des semaines, et ils n'en ont rien dit à la Cour.", qui: "Zacharias" },
-            "Bien sûr qu'ils n'ont rien dit. Ils détestent la Cour presque autant que tu détestes qu'on sache que tu lis leurs blogs.",
-            { texte: "Ce qui nous amène au problème. Il faut prévenir les primogènes.", qui: "Zacharias" },
-            "« Il faut. » Traduction : toi, tu ne veux pas.",
-            { texte: "Si j'apporte ça, on me demandera comment je l'ai obtenu. Et mon sire n'aime pas que je fouille sans son accord.", qui: "Zacharias" },
-            { texte: "Donc le grand génie de la Pyramide a peur de se faire gronder.", humeur: "degoutee" },
-            { texte: "Inga.", qui: "Zacharias" },
-            "Je m'en occupe. Je parlerai aux primogènes. Je leur dirai que j'ai tout trouvé toute seule, évidemment.",
-            { texte: "Évidemment.", qui: "Zacharias" },
-            "Et la prochaine fois que tu m'appelles avant que j'aie mangé, je publie ton historique de recherche sur le forum de ta Fondation.",
-            { texte: "… Bonne nuit, Inga.", qui: "Zacharias" },
+            "Bon. Rappelons le génie, avant qu'il ne prévienne toute la Fondation de ma mort et ne réclame mes serveurs.",
+            { texte: "Ah. Tu existes encore. Je commençais à préparer un discours, quelque chose de sobre. Tu m'as fait perdre une soirée d'écriture.", qui: "Zacharias" },
+            "Onze appels, Zacharias. Si j'étais morte, tu aurais parlé onze fois à un cadavre. Remarque, ça ne t'aurait pas trop changé de tes étudiants.",
+            { texte: "Charmante, comme toujours. Je n'appelais pas pour ta santé. Les Anarchs ont encore migré. Nouveau blog, nouveau serveur, et cette fois-ci quelqu'un chez eux a lu un tutoriel de sécurité.", qui: "Zacharias" },
+            "Je sais. Lil a cliqué sur un lien qu'il n'aurait pas dû, Rollin a paniqué, le Baron a tapé du poing. Ils ont tout déménagé en une nuit. C'était presque attendrissant.",
+            { texte: "Nous les avons retrouvés en quatre jours. Ce n'est pas le problème. Le problème, c'est ce qu'on remonte dans le filet.", qui: "Zacharias" },
+            { texte: "J'ai trois scripts qui croisent leurs pseudonymes, deux goules qui passent leurs nuits dans les bars d'Alsancak, et des giga-octets de conversations. Un anniversaire. Des recommandations de films. Une vidéo de Kostas qu'ils se revendent. Un tableau de rotation des terrains de chasse, codé par couleur.", qui: "Zacharias" },
+            "Et quelque part là-dedans, un homme en costume qui regarde la station Konak depuis un bar, et six corps sur le port. « C'est toujours six, puis plus rien. » Ils l'ont écrit entre deux disputes sur le daltonisme de Lil.",
+            { texte: "Voilà. On a peut-être une piste. Mais chaque nuit, ça coûte plus : plus de machines, plus de goules, plus d'heures. On creuse trop large. On ramasse tout et n'importe quoi, et on finira par se noyer dans leur bruit, ce qui est précisément ce qu'ils veulent.", qui: "Zacharias" },
+            "Alors il faut resserrer. Choisir. Le port, l'homme de Konak, ou le Baron. Pas les trois.",
+            { texte: "Ce n'est pas à nous de choisir. En théorie, c'est le Conseil qui décide de ce qui compte pour la ville. Nous ne sommes que des outils.", qui: "Zacharias" },
+            "Parle pour toi. Donc, tu vas les appeler ?",
+            { texte: "Si je leur apporte ça, ils me demanderont comment je l'ai obtenu, avec quelles ressources, et sur ordre de qui. Mon sire n'aime pas que la Pyramide découvre ce que je fais en même temps que le reste de la ville.", qui: "Zacharias" },
+            { texte: "Donc le grand génie de la Fondation a peur de se faire gronder.", humeur: "degoutee" },
+            { texte: "J'ai le sens de la hiérarchie. C'est une notion qui t'échappe, je sais.", qui: "Zacharias" },
+            "Je m'en occupe. Je les appelle. C'est mon projet de toute façon, c'est moi qui ai ouvert leur réseau en premier, tu n'as fait que suivre le chemin que j'avais tracé.",
+            "Mais je ne mentirai pas pour toi. Je dirai que tu y as participé. Que tes scripts sont bons. Si quelqu'un doit te tirer les oreilles, ce ne sera pas moi qui tiendrai le ciseau.",
+            { texte: "… C'est presque gentil. Tu es sûre que tu as bien mangé ?", qui: "Zacharias" },
+            "Et Il aura son mot à dire, de toute façon. Il a toujours son mot à dire. Même quand il ne dit rien.",
+            { texte: "Atam fera ce qu'Atam fait. Je ne prétends pas comprendre ton sire, et je n'ai pas l'intention d'essayer. Ce n'est pas mon domaine.", qui: "Zacharias" },
+            "Personne ne le comprend. C'est un peu le principe.",
+            { texte: "Bonne nuit, Inga. Essaie de ne pas mourir avant la réunion, j'ai encore besoin de toi pour te battre.", qui: "Zacharias" },
             "Elle l'était, avant que tu appelles.",
             { texte: "Elle raccroche.", qui: "" }
         ]
     },
 
-    // 4. la sortie
+    // 4. l'appel au Conseil : Inga parle aux primogènes, par téléphone
+    conseil: {
+        lignes: [
+            "Maintenant, le Conseil. Pas question d'aller à l'Élysium. Je n'ai pas l'intention de traverser la ville pour qu'on me regarde comme une tache sur un tapis.",
+            { texte: "Le Héraut accepte d'ouvrir une ligne. Une à une, des respirations s'ajoutent à l'appel. Personne ne se présente : ils savent tous qui appelle.", qui: "" },
+            { texte: "Inga. Nous ne savions plus si nous devions encore t'attendre.", qui: "Sophia" },
+            "Je sais. Désolée pour ceux qui avaient parié sur ma mort. Ils peuvent réclamer leur argent à Zacharias, il gère très bien les pertes.",
+            "Je serai brève, vous n'aimez pas m'entendre et je n'aime pas parler. Les Anarchs ont changé de serveur. Nous les avons retrouvés. Nous lisons tout ce qu'ils écrivent, encore.",
+            "Je dis « nous », parce que Zacharias y a travaillé avec moi. Ses scripts, ses goules, ses heures. Il ne voulait pas vous appeler lui-même. Je ne vais pas vous expliquer pourquoi, vous connaissez la Pyramide mieux que moi.",
+            "Ce qu'on a trouvé : un homme en costume qui surveille la station Konak, que même les Anarchs ne savent pas placer. Et six corps sur le port, déchirés. Eux disent : six, puis plus rien. Eux disent : le Sabbat. Ils ne vous l'ont pas dit, évidemment. Ils préfèrent mourir que de vous rendre service.",
+            "Le problème, c'est qu'on ramasse tout. Leurs disputes, leurs anniversaires, leurs films. Ça coûte des machines, des goules et des nuits, et plus on écoute, moins on entend.",
+            "Alors dites-nous ce qui compte. Le port. Konak. Le Baron. Choisissez. C'est votre travail, pas le mien. Moi, je trouve. Vous, vous décidez quoi faire de ce que je trouve.",
+            { texte: "Un silence. Quelqu'un tousse. Quelqu'un d'autre, sans doute, prend des notes qu'il ne relira jamais.", qui: "" },
+            { texte: "Nous en discuterons. Merci, Inga. La ville t'est… reconnaissante.", qui: "Sophia" },
+            "Elle ne l'est pas. Mais c'est gentil de faire semblant. Vous avez jusqu'à la nuit prochaine. Après, je choisis seule, et vous n'aimerez pas ce que je choisirai.",
+            { texte: "Elle raccroche avant qu'on puisse lui répondre.", qui: "" }
+        ]
+    },
+
+    // 5. la sortie
     sortie: {
         lignes: [
-            "Avec cette force supplémentaire, je peux déplacer la pile de meuble qui bloque l'entrée. Le bois craque avant de se briser.",
-            "L'air du couloir est froid. Silencieux.",
-            { texte: "Je ne serais surement pas la seule dehors ce soir, j'espère ne croiser personne qui me reconnaitrai . . .", humeur: "degoutee" },
-            { texte: "Loué soit les villes ou les sous terrains appartiennent aux nosferatu seuls, et pas à absolument tous le monde", humeur: "degoutee" },
-            "Les primogènes d'abord. Ils vont adorer me voir débarquer.",
-            "Je sors enfin, j'ai à faire."
+            "Avec cette force nouvelle, je peux déplacer la pile de meubles qui bloque l'entrée. Le bois craque avant de se briser. Neuf mois de déchets s'effondrent dans le couloir comme une digue qui lâche.",
+            "L'air du couloir est froid. Silencieux. Il sent la javel et le chou des voisins, et c'est la plus belle odeur que j'ai sentie depuis longtemps.",
+            { texte: "Je ne serai sûrement pas la seule dehors ce soir. J'espère ne croiser personne qui me reconnaîtrait. Ou pire, quelqu'un qui voudrait discuter.", humeur: "degoutee" },
+            { texte: "Loués soient les villes où les souterrains appartiennent aux Nosferatu seuls, et pas à absolument tout le monde.", humeur: "degoutee" },
+            "D'abord, manger quelque chose qui ne ronronne pas. Ensuite, le travail. Il y a toujours du travail.",
+            "Je sors enfin. J'ai à faire."
         ]
     },
 
@@ -305,5 +331,6 @@ DeadDogs`,
 
 // les autres personnages qui parlent dans les interruptions (« qui » dans une ligne) : leur icône
 const interlocuteurs = {
-    "Zacharias": "/img/wiki/tremere/zacharias.png"
+    "Zacharias": "/img/wiki/tremere/zacharias.png",
+    "Sophia": "/img/wiki/tremere/sophia.png"
 };
