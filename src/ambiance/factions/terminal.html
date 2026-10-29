@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+<meta charset="UTF-8">
+<title>PC 2</title>
+
+<!--
+    Le PC 2 d'Inga : un terminal façon PowerShell, verrouillé par un mot de passe.
+    Le mot de passe est sur le PC 1, dans la petite fenêtre ouverte sur le bureau (12-289-8208).
+    Une fois ouvert, il le reste (le navigateur s'en souvient).
+
+    Les dossiers et les fichiers sont écrits dans « disque », en bas : c'est là qu'on ajoute,
+    renomme ou réécrit les fichiers. Un fichier est un texte ; un raccourci (.lnk) ouvre une page.
+-->
+
+<link rel="stylesheet" href="terminal.css">
+<style>
+/* le look commun des terminaux est dans terminal.css ; ici, ce qui est propre à cette page */
+
+#console {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 20px;
+    cursor: text;
+    scrollbar-color: #1d2e1c transparent;
+}
+
+.sortie {
+    margin: 0;
+    font: inherit;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.invite { color: var(--vert); }
+.erreur { color: #e07a6a; text-shadow: 0 0 4px rgba(224, 122, 106, .4); }
+.discret { color: var(--vert-pale); text-shadow: none; }
+.titre { color: var(--ambre); text-shadow: 0 0 8px rgba(227, 196, 106, .45); }
+
+/* dossiers et fichiers cliquables dans « ls » */
+.lien {
+    color: var(--vert);
+    cursor: pointer;
+}
+
+.lien.dossier { color: var(--ambre); }
+
+.lien:hover {
+    background: var(--vert);
+    color: var(--fond);
+    text-shadow: none;
+}
+
+/* la ligne où l'on écrit */
+#ligne {
+    display: flex;
+    white-space: pre;
+}
+
+#saisie {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    color: inherit;
+    font: inherit;
+    text-shadow: inherit;
+    caret-color: var(--vert);
+}
+
+/* une page ouverte par un raccourci (.lnk) */
+#fenetre {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+}
+
+#fenetre[hidden] { display: none; }
+
+#fenetre header button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--vert-pale);
+    font: inherit;
+    cursor: pointer;
+}
+
+#fenetre header button:hover { color: var(--vert); }
+
+#fenetre iframe {
+    flex: 1;
+    border: 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <span class="points"><span></span><span></span><span></span></span>
+    <span>PC-INGA · terminal</span>
+</header>
+
+<div id="console">
+    <div id="sortie"></div>
+    <label id="ligne"><span id="invite" class="invite"></span><input id="saisie" autocomplete="off" spellcheck="false" aria-label="commande"></label>
+</div>
+
+<div id="fenetre" hidden>
+    <header><span class="points"><span></span><span></span><span></span></span><span id="fenetre-titre"></span><button type="button" id="fenetre-fermer">[ fermer ]</button></header>
+    <iframe id="fenetre-page" title="page"></iframe>
+</div>
+
+
+<script>
+/* =========================
+   LE MOT DE PASSE
+   On compare seulement les chiffres et les lettres : « 12-289-8208 » et « 122898208 » marchent tous les deux.
+========================= */
+
+const MOT_DE_PASSE = "12-289-8208";
+
+
+/* =========================
+   LE DISQUE
+   Un dossier = un objet { ... } ; un fichier texte = un texte entre ` ` ;
+   un raccourci = { ouvre: "adresse de la page" }.
+========================= */
+
+const disque = {
+
+    "sabbat": {
+        "lisez-moi.txt": `Ce que je sais du Sabbat d'Izmir.
+Pas grand-chose, et c'est déjà trop.
+
+Ils ont un site. Ils ont toujours un site.
+Raccourci dans ce dossier : portail.lnk`,
+        "portail.lnk": { ouvre: "sabbat/test.html" }
+    },
+
+    "ashugh": {
+        "lisez-moi.txt": `ASHUGH
+Les ashugh étaient les poètes errants. Ils chantaient ce qu'on leur interdisait de dire.
+
+[ à écrire : qui nous sommes, ce que nous faisons, pourquoi ]`,
+
+        "membres.txt": `MEMBRES ACTIFS
+
+Aram    — coordination
+Siran   — ██████████
+Varto   — ██████████
+Inga    — archives, réseau
+
+Ne jamais imprimer ce fichier.`,
+
+        "logs": {
+            "log_01.txt": `LOG 01 — ██/██/████
+[ à écrire ]`,
+            "log_02.txt": `LOG 02 — ██/██/████
+[ à écrire ]`,
+            "log_03.txt": `LOG 03 — ██/██/████
+[ à écrire ]
+
+(le prochain log est en retard)`
+        }
+    }
+};
+
+
+/* =========================
+   LE FONCTIONNEMENT
+========================= */
+
+const sortie = document.getElementById("sortie");
+const saisie = document.getElementById("saisie");
+const invite = document.getElementById("invite");
+const consoleZone = document.getElementById("console");
+
+let chemin = [];                 // le dossier où l'on est : [] = la racine, ["ashugh", "logs"]…
+let ouvert = false;              // le mot de passe a-t-il été donné ?
+const historique = [];
+let positionHistorique = 0;
+
+try { ouvert = localStorage.getItem("inga-pc2") === "ouvert"; } catch (e) {}
+
+const simplifier = (texte) => texte.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+function ecrire(texte, classe = "") {
+    const ligne = document.createElement("pre");
+    ligne.className = "sortie " + classe;
+    ligne.textContent = texte;
+    sortie.appendChild(ligne);
+    consoleZone.scrollTop = consoleZone.scrollHeight;
+    return ligne;
+}
+
+function dossierActuel() {
+    return chemin.reduce((dossier, nom) => dossier[nom], disque);
+}
+
+function cheminAffiche() {
+    return "C:\\Users\\inga" + chemin.map((nom) => "\\" + nom).join("");
+}
+
+function majInvite() {
+    invite.textContent = ouvert ? `PS ${cheminAffiche()}> ` : "Mot de passe : ";
+    saisie.type = ouvert ? "text" : "password";
+}
+
+// trouve un élément du dossier actuel sans tenir compte des majuscules
+function trouver(nom) {
+    const dossier = dossierActuel();
+    const cle = Object.keys(dossier).find((k) => k.toLowerCase() === nom.toLowerCase());
+    return cle ? { cle, element: dossier[cle] } : null;
+}
+
+const estDossier = (element) => typeof element === "object" && !element.ouvre;
+
+
+/* les commandes */
+
+const commandes = {
+
+    help() {
+        ecrire(`Commandes :
+  ls / dir            liste le dossier
+  cd <dossier>        entre dans un dossier   (cd ..  pour remonter)
+  cat / type <fich.>  affiche un fichier
+  start <fich.lnk>    ouvre un raccourci
+  cls / clear         efface l'écran
+  exit                verrouille la session
+
+Astuce : on peut aussi cliquer sur les noms, et Tab complète un nom.`, "discret");
+    },
+
+    ls() {
+        const dossier = dossierActuel();
+        const noms = Object.keys(dossier);
+        ecrire(`\n    Répertoire : ${cheminAffiche()}\n`, "discret");
+        if (!noms.length) ecrire("    (vide)", "discret");
+        for (const nom of noms) {
+            const element = dossier[nom];
+            const ligne = ecrire("", "");
+            const type = estDossier(element) ? "<DIR>  " : "       ";
+            ligne.append(document.createTextNode("    " + type));
+            const lien = document.createElement("a");
+            lien.className = "lien" + (estDossier(element) ? " dossier" : "");
+            lien.textContent = nom;
+            lien.addEventListener("click", () => executer(
+                (estDossier(element) ? "cd " : nom.endsWith(".lnk") ? "start " : "cat ") + nom));
+            ligne.appendChild(lien);
+        }
+        ecrire("");
+
+        // Inga réagit en ouvrant les logs, si elle a lu la lettre d'Aram
+        if (chemin.join("/") === "ashugh/logs") reactionLogs();
+    },
+
+    cd(nom) {
+        if (!nom || nom === "~" || nom === "\\") { chemin = []; return; }
+        if (nom === "..") { chemin.pop(); return; }
+        for (const morceau of nom.split(/[\\/]/).filter(Boolean)) {
+            if (morceau === "..") { chemin.pop(); continue; }
+            const trouve = trouver(morceau);
+            if (!trouve || !estDossier(trouve.element)) {
+                ecrire(`cd : Impossible de trouver le chemin « ${nom} », car il n'existe pas.`, "erreur");
+                return;
+            }
+            chemin.push(trouve.cle);
+        }
+        commandes.ls();
+    },
+
+    cat(nom) {
+        const trouve = nom && trouver(nom);
+        if (!trouve || estDossier(trouve.element)) {
+            ecrire(`cat : Impossible de trouver le fichier « ${nom || ""} ».`, "erreur");
+            return;
+        }
+        if (trouve.element.ouvre) {
+            ecrire(`${trouve.cle} est un raccourci : utilise « start ${trouve.cle} ».`, "discret");
+            return;
+        }
+        ecrire(trouve.element);
+        ecrire("");
+    },
+
+    start(nom) {
+        const trouve = nom && trouver(nom);
+        if (!trouve || !trouve.element.ouvre) {
+            ecrire(`start : « ${nom || ""} » n'est pas un raccourci.`, "erreur");
+            return;
+        }
+        document.getElementById("fenetre-titre").textContent = trouve.cle;
+        document.getElementById("fenetre-page").src = trouve.element.ouvre;
+        document.getElementById("fenetre").hidden = false;
+    },
+
+    cls() {
+        sortie.innerHTML = "";
+    },
+
+    exit() {
+        ouvert = false;
+        chemin = [];
+        try { localStorage.removeItem("inga-pc2"); } catch (e) {}
+        commandes.cls();
+        accueil();
+    }
+};
+
+// les autres noms des mêmes commandes
+Object.assign(commandes, {
+    dir: commandes.ls, "get-childitem": commandes.ls,
+    type: commandes.cat, "get-content": commandes.cat,
+    clear: commandes.cls, open: commandes.start, "?": commandes.help
+});
+
+
+function executer(texte) {
+
+    texte = texte.trim();
+
+    if (!ouvert) {
+        ecrire("Mot de passe : " + "•".repeat(texte.length), "invite");
+        if (simplifier(texte) === simplifier(MOT_DE_PASSE)) {
+            ouvert = true;
+            try { localStorage.setItem("inga-pc2", "ouvert"); } catch (e) {}
+            ecrire("Accès autorisé.\n", "titre");
+            bienvenue();
+        } else {
+            ecrire("Accès refusé.", "erreur");
+            ecrire("Indice : ce que ton bureau garde ouvert.\n", "discret");
+        }
+        majInvite();
+        return;
+    }
+
+    ecrire(`PS ${cheminAffiche()}> ${texte}`, "invite");
+    if (texte) {
+        historique.push(texte);
+        positionHistorique = historique.length;
+    }
+
+    const [nom, ...reste] = texte.split(/\s+/);
+    const commande = commandes[(nom || "").toLowerCase()];
+
+    if (!nom) {
+        // ligne vide : rien
+    } else if (commande) {
+        commande(reste.join(" ").replace(/^["']|["']$/g, ""));
+    } else {
+        ecrire(`${nom} : Le terme « ${nom} » n'est pas reconnu comme nom de commande. Tape « help ».`, "erreur");
+    }
+
+    majInvite();
+}
+
+
+function accueil() {
+    ecrire("PC-INGA · session verrouillée", "titre");
+    ecrire("");
+    majInvite();
+}
+
+function bienvenue() {
+    ecrire(`Deux espaces sur cette machine :
+
+    sabbat     ce que je sais d'eux
+    ashugh     nous
+
+Tape « cd ashugh » ou « cd sabbat », ou clique sur un nom. « help » pour les commandes.`, "discret");
+    commandes.ls();
+}
+
+
+// la réaction d'Inga aux logs (une seule fois, et seulement après la lettre d'Aram)
+function reactionLogs() {
+    let progression = {};
+    try { progression = JSON.parse(localStorage.getItem("inga-progression")) || {}; } catch (e) {}
+    if (!progression.chatSorti || progression.logVu) return;
+
+    progression.logVu = true;
+    try { localStorage.setItem("inga-progression", JSON.stringify(progression)); } catch (e) {}
+    setTimeout(() => chambreDInga()?.ingaInterrompt("log"), 1200);
+}
+
+// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
+function chambreDInga() {
+    try {
+        let fenetre = window;
+        while (fenetre !== fenetre.parent) {
+            fenetre = fenetre.parent;
+            if (typeof fenetre.ingaInterrompt === "function") return fenetre;
+        }
+    } catch (e) {}
+    return null;
+}
+
+
+/* le clavier : Entrée, l'historique (↑ ↓) et la complétion (Tab) */
+
+saisie.addEventListener("keydown", (e) => {
+
+    if (e.key === "Enter") {
+        const texte = saisie.value;
+        saisie.value = "";
+        executer(texte);
+        return;
+    }
+
+    if (!ouvert) return;
+
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+        e.preventDefault();
+        positionHistorique += e.key === "ArrowUp" ? -1 : 1;
+        positionHistorique = Math.max(0, Math.min(historique.length, positionHistorique));
+        saisie.value = historique[positionHistorique] || "";
+    }
+
+    if (e.key === "Tab") {
+        e.preventDefault();
+        const morceaux = saisie.value.split(" ");
+        const debut = morceaux.pop().toLowerCase();
+        const nom = Object.keys(dossierActuel()).find((k) => k.toLowerCase().startsWith(debut));
+        if (nom) saisie.value = [...morceaux, nom].join(" ");
+    }
+});
+
+consoleZone.addEventListener("click", () => {
+    if (!getSelection().toString()) saisie.focus();
+});
+
+document.getElementById("fenetre-fermer").addEventListener("click", () => {
+    document.getElementById("fenetre").hidden = true;
+    document.getElementById("fenetre-page").src = "about:blank";
+    saisie.focus();
+});
+
+
+if (ouvert) {
+    ecrire("PC-INGA · session ouverte", "titre");
+    ecrire("");
+    bienvenue();
+} else {
+    accueil();
+}
+majInvite();
+saisie.focus();
+</script>
+
+</body>
+</html>

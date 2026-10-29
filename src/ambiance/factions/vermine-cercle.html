@@ -4,6 +4,7 @@
 <link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
 <meta charset="UTF-8">
 <title>◈</title>
+<link rel="stylesheet" href="terminal.css">
 
 <!--
     vermine.exe, la face cachée : l'espace des membres du culte (des Setites).
@@ -14,74 +15,10 @@
 -->
 
 <style>
+/* le look commun des terminaux est dans terminal.css ; ici, ce qui est propre à cette page */
+
 /* Le look : un vieux terminal un peu cheap (texte vert phosphore, lignes de balayage),
    mais propre : une fenêtre avec sa barre de titre, des marges, une lueur douce. */
-
-* { box-sizing: border-box; }
-
-:root {
-    --vert: #8fdc8a;        /* le texte de la voix */
-    --vert-pale: #4f7a4c;   /* les détails : invites, bordures */
-    --ambre: #e3c46a;       /* les révélations */
-    --fond: #050805;
-}
-
-html, body {
-    margin: 0;
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    background: var(--fond);
-    color: var(--vert);
-    font: 15px/1.55 "Lucida Console", "Courier New", monospace;
-    text-shadow: 0 0 4px rgba(143, 220, 138, .35);
-    overflow: hidden;
-}
-
-/* lignes de balayage et bords assombris, par-dessus tout */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 50;
-    background:
-        radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, .55) 100%),
-        repeating-linear-gradient(to bottom, rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px);
-}
-
-/* la barre de titre de la fenêtre */
-header {
-    flex: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px 10px;
-    background: #0d140d;
-    border-bottom: 1px solid #1d2e1c;
-    color: var(--vert-pale);
-    font-size: 12px;
-    text-shadow: none;
-}
-
-header .points span {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-right: 4px;
-    border: 1px solid var(--vert-pale);
-}
-
-header .retour {
-    margin-left: auto;
-    color: var(--vert-pale);
-    text-decoration: none;
-}
-
-header .retour:hover { color: var(--vert); }
 
 /* le serpent en caractères, en haut de la conversation */
 #serpent {

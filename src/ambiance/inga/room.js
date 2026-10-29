@@ -163,9 +163,9 @@ function ingaInterrompt(id) {
     if (!dialogue) return Promise.resolve();
 
     const lignes = dialogue.lignes || [dialogue.first, ...(dialogue.repeat || [])];
-    const etaitSurLePC = !ecran.hidden;
+    const etaitSurLePC = ecran && !ecran.hidden;
 
-    ecran.hidden = true;
+    if (ecran) ecran.hidden = true;
     hideFocusItem();
     speaker.src = ingaPortrait;
 
@@ -176,9 +176,11 @@ function ingaInterrompt(id) {
         phraseSuivante = () => {
 
             if (n < lignes.length) {
-                text.textContent = lignes[n++];
+                // une ligne est un texte, ou { texte: "…", humeur: "degoutee" } pour changer de sprite
+                const ligne = lignes[n++];
+                text.textContent = typeof ligne === "string" ? ligne : ligne.texte;
                 dialog.style.display = "block";
-                showSprite(dialogue.humeur || "base");
+                showSprite(ligne.humeur || dialogue.humeur || "base");
                 return;
             }
 
@@ -226,7 +228,7 @@ document.querySelectorAll(".zone").forEach(zone => {
 //   dialogue : ce qu'Inga dit en l'éteignant (dans dialogues.js)
 const ordinateurs = [
     { nom: "PC 1 · bureau", page: "/ambiance/factions/", dialogue: "pc1" },
-    { nom: "PC 2 · ???", page: "/ambiance/factions/sabbat/test.html", dialogue: "pc2" }
+    { nom: "PC 2 · ???", page: "/ambiance/factions/terminal.html", dialogue: "pc2" }
 ];
 
 // les pages des PC sont faites pour un écran de 1200 × 820 pixels
@@ -243,8 +245,8 @@ const pages = []; // une <iframe> par PC, créée au premier allumage puis gard�
                   // les fenêtres ouvertes sur un PC y sont toujours quand on revient dessus
 
 
-// un onglet par PC
-ordinateurs.forEach((pc, n) => {
+// un onglet par PC (seulement dans la scène qui a les ordinateurs)
+if (ecran) ordinateurs.forEach((pc, n) => {
     const onglet = document.createElement("button");
     onglet.type = "button";
     onglet.textContent = pc.nom;
@@ -321,15 +323,15 @@ function ajusterEcran() {
 }
 
 
-window.addEventListener("resize", () => { if (!ecran.hidden) ajusterEcran(); });
+window.addEventListener("resize", () => { if (ecran && !ecran.hidden) ajusterEcran(); });
 
-document.getElementById("ecran-changer").addEventListener("click", changerPC);
-document.getElementById("ecran-eteindre").addEventListener("click", eteindrePC);
+document.getElementById("ecran-changer")?.addEventListener("click", changerPC);
+document.getElementById("ecran-eteindre")?.addEventListener("click", eteindrePC);
 
 // raccourcis : Tab pour changer de PC, Échap pour éteindre
 // (ils ne marchent que quand on n'a pas cliqué dans la page d'un PC)
 document.addEventListener("keydown", (e) => {
-    if (ecran.hidden) return;
+    if (!ecran || ecran.hidden) return;
     if (e.key === "Escape") eteindrePC();
     if (e.key === "Tab") { e.preventDefault(); changerPC(); }
 });

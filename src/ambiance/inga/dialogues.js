@@ -88,7 +88,7 @@ travail: {
             "Personne ne doit savoir ce qu'il y a là-dessus."
         ]
     },
-    
+
 
     // Les interruptions
 
@@ -110,6 +110,83 @@ travail: {
             "Je devrais pouvoir récupérer ce que je cherche bientot, s'il reste trop peu méfiant.",
             "Reste à savoir ce que lui cherche, en continuant à me parler."
         ] 
+    },
+
+
+    // ===== LA QUÊTE DU CHAT (voir quete.js) =====
+
+    // le tas, après avoir vu le chat, mais sans rien pour attraper les rats
+    tasMainsNues: {
+        first: "Ça couine là-dedans. Je plonge le bras… et ils me filent entre les doigts. À mains nues, je n'y arriverai pas. Il me faudrait de quoi les piéger.",
+        repeat: [
+            "Ils sont trop rapides. Il me faut un sac, quelque chose.",
+            "Je ne vais pas fouiller ce tas à mains nues une deuxième fois."
+        ]
+    },
+
+    // dans le tas d'oreillers, une fois qu'Inga sait qu'il lui faut un sac
+    taie: {
+        lignes: [
+            "Une taie d'oreiller. Volée à l'Elysium, si je me souviens bien.",
+            "Ça fera un très bon sac à rats. Ils ne remarqueront rien."
+        ]
+    },
+
+    // les rats attrapés avec la taie, dans le tas
+    rat1: {
+        lignes: [
+            "Je plonge la taie dans le tas, je la referme d'un coup… Un.",
+            "Il s'agite. Encore un, et ce sera bon."
+        ]
+    },
+
+    rat2: {
+        lignes: [
+            "Deux. Un pour lui… et un pour moi.",
+            { texte: "Ils sentent le linge mouillé et la poubelle. Je ne vais pas réfléchir à ce qu'ils ont mangé.", humeur: "degoutee" }
+        ]
+    },
+
+    // quand on retourne voir le chat avec les rats
+    nourrir: {
+        lignes: [
+            "Viens. Doucement. Celui-là est pour toi.",
+            "…Il hésite, puis il mord. Bien.",
+            { texte: "Et celui-là, c'est pour moi.", humeur: "degoutee" },
+            { texte: "C'est immonde. Ça a le goût de la poussière, de la peur et des câbles électriques.", humeur: "degoutee" },
+            "Le chat sort enfin de sous la pile. Il y avait quelque chose coincé derrière lui… une lettre."
+        ]
+    },
+
+    // le tas, une fois les rats attrapés
+    tasVide: {
+        first: "Plus rien ne couine là-dedans. Je préfère ne pas savoir ce qui reste au fond.",
+        repeat: [
+            "Le tas a l'air presque vexé.",
+            "Je devrais vraiment faire le ménage. Un jour."
+        ]
+    },
+
+    // la lettre trouvée derrière le chat (les retours à la ligne sont gardés)
+    lettre: `Inga,
+
+Trois semaines sans nouvelles. Varto pense que tu es morte, Siran pense que tu boudes. Moi je pense que tu travailles, et que tu as encore oublié le reste du monde.
+
+Il nous faut un log. Tout ce que tu as récupéré depuis la dernière fois, propre, daté, sur la machine du fond, avec les autres. Pas de copie ailleurs.
+
+Le mot de passe n'a pas changé. Tu le laisses toujours ouvert sur ton bureau, idiote.
+
+Nourris ton chat.
+
+— Aram`,
+
+    // dans le terminal du PC 2, quand on ouvre le dossier des logs après avoir lu la lettre
+    log: {
+        lignes: [
+            "Les logs. Aram attend le prochain.",
+            "Je n'ai rien écrit depuis des semaines. Il va me tuer, si quelqu'un d'autre ne le fait pas avant.",
+            "Plus tard. Encore un peu plus tard."
+        ]
     }
 
 };
