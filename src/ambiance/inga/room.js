@@ -156,25 +156,131 @@ document.querySelectorAll(".zone").forEach(zone => {
 
 
 /* =========================
-   PAGES INTERNES
+   LES ORDINATEURS
 ========================= */
 
-function openPage(page) {
+// Les deux PC de la chambre, dans l'ordre des onglets.
+//   nom      : le texte de l'onglet
+//   page     : la page affichée sur l'écran
+//   dialogue : ce qu'Inga dit en l'éteignant (dans dialogues.js)
+const ordinateurs = [
+    { nom: "PC 1 · bureau", page: "/ambiance/factions/", dialogue: "pc1" },
+    { nom: "PC 2 · ???", page: "/ambiance/factions/sabbat/test.html", dialogue: "pc2" }
+];
 
-    const viewer = document.getElementById("page-viewer");
-    const frame = document.getElementById("page-frame");
+// les pages des PC sont faites pour un écran de 1200 × 820 pixels
+const LARGEUR_PC = 1200;
+const HAUTEUR_PC = 820;
 
-    frame.src = page;
-    viewer.style.display = "block";
+const ecran = document.getElementById("ecran");
+const ecranPages = document.getElementById("ecran-pages");
+const ecranOnglets = document.getElementById("ecran-onglets");
+const moniteur = document.getElementById("ecran-moniteur");
+
+let pcActuel = null;
+const pages = []; // une <iframe> par PC, créée au premier allumage puis gardée :
+                  // les fenêtres ouvertes sur un PC y sont toujours quand on revient dessus
+
+
+// un onglet par PC
+ordinateurs.forEach((pc, n) => {
+    const onglet = document.createElement("button");
+    onglet.type = "button";
+    onglet.textContent = pc.nom;
+    onglet.addEventListener("click", () => montrerPC(n));
+    ecranOnglets.appendChild(onglet);
+});
+
+
+function allumerPC(n) {
+
+    dialog.style.display = "none";
+    hideFocusItem();
+    hideSprite();
+
+    ecran.hidden = false;
+    ajusterEcran();
+    montrerPC(n);
 }
 
 
-function closePage() {
+function montrerPC(n) {
 
-    const viewer = document.getElementById("page-viewer");
-    const frame = document.getElementById("page-frame");
+    if (!pages[n]) {
+        const frame = document.createElement("iframe");
+        frame.src = ordinateurs[n].page;
+        frame.title = ordinateurs[n].nom;
+        ecranPages.appendChild(frame);
+        pages[n] = frame;
+    }
 
-    frame.src = "about:blank";
-    viewer.style.display = "none";
+    pages.forEach((frame, i) => { if (frame) frame.hidden = i !== n; });
+
+    ecranOnglets.querySelectorAll("button").forEach((onglet, i) => {
+        onglet.classList.toggle("actif", i === n);
+    });
+
+    // petit grésillement de l'écran à chaque changement
+    moniteur.classList.remove("allumage");
+    moniteur.offsetHeight;
+    moniteur.classList.add("allumage");
+
+    pcActuel = n;
 }
 
+
+function changerPC() {
+    montrerPC((pcActuel + 1) % ordinateurs.length);
+}
+
+
+function eteindrePC() {
+
+    if (ecran.hidden) return;
+
+    const pc = ordinateurs[pcActuel];
+    ecran.hidden = true;
+
+    // si on vient d'ouvrir vermine.exe sur le PC 1, Inga en parle
+    // (vermine.html le note en s'ouvrant ; on l'efface pour ne le dire qu'une fois par visite)
+    let vermine = null;
+    try {
+        vermine = sessionStorage.getItem("inga-vermine");
+        sessionStorage.removeItem("inga-vermine");
+    } catch (e) {}
+    if (vermine === "vue") {
+        talk("vermine");
+        return;
+    }
+
+    // sinon, Inga réagit au PC qu'on vient de regarder
+    if (pc.dialogue) talk(pc.dialogue);
+}
+
+
+// l'écran garde les proportions du PC et prend toute la place disponible
+function ajusterEcran() {
+
+    const echelle = Math.min(
+        moniteur.clientWidth / LARGEUR_PC,
+        moniteur.clientHeight / HAUTEUR_PC
+    );
+
+    ecranPages.style.width = LARGEUR_PC + "px";
+    ecranPages.style.height = HAUTEUR_PC + "px";
+    ecranPages.style.transform = `translate(-50%, -50%) scale(${echelle})`;
+}
+
+
+window.addEventListener("resize", () => { if (!ecran.hidden) ajusterEcran(); });
+
+document.getElementById("ecran-changer").addEventListener("click", changerPC);
+document.getElementById("ecran-eteindre").addEventListener("click", eteindrePC);
+
+// raccourcis : Tab pour changer de PC, Échap pour éteindre
+// (ils ne marchent que quand on n'a pas cliqué dans la page d'un PC)
+document.addEventListener("keydown", (e) => {
+    if (ecran.hidden) return;
+    if (e.key === "Escape") eteindrePC();
+    if (e.key === "Tab") { e.preventDefault(); changerPC(); }
+});

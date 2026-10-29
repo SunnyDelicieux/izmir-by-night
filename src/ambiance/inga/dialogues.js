@@ -70,6 +70,33 @@ travail: {
         "Nous avons trop évolué pour ne pas impliquer la machine dans le concept même du monde, l'idée de quelque chose qui suit un but, et qui cherche à briser les limites sans les comprendre.",
         "Pas maintenant."
     ]
-}
+},
+
+    // ce qu'Inga dit en éteignant un PC (voir « ordinateurs » dans room.js)
+    pc1: {
+        first: "Mon ordinateur. Il ne s'éteint jamais vraiment, il attend juste que je revienne.",
+        repeat: [
+            "Il faudrait vraiment que je pense à nourrir le chat.",
+            "Encore quelques heures de jeu et j'irai dormir. Peut-être."
+        ]
+    },
+
+    pc2: {
+        first: "L'autre machine. Elle n'est branchée sur rien d'autre, et c'est très bien comme ça.",
+        repeat: [
+            "Je n'aime pas laisser ces fichiers ouverts trop longtemps.",
+            "Personne ne doit savoir ce qu'il y a là-dessus."
+        ]
+    },
+
+    // après avoir ouvert vermine.exe sur le PC 1 (voir eteindrePC dans room.js)
+    vermine: {
+        humeur: "degoutee",
+        first: "Un humain m'a envoyé ce lien en jurant que ça allait « changer ma vie ». C'est nul à chier. Les Setites recrutent avec un site qui a l'air codé en 2004 par un prof de yoga.",
+        repeat: [
+            "Et le pire, c'est que ça marche. Les gens veulent tellement qu'on leur dise que leurs pires envies sont une forme de liberté.",
+            "Je devrais signaler ce site à quelqu'un. Mais qui ? Le Prince ? Il va me demander comment je l'ai trouvé."
+        ]
+    }
 
 };
