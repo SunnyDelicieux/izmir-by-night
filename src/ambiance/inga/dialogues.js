@@ -143,6 +143,7 @@ travail: {
     rat2: {
         lignes: [
             "Deux. Un pour lui… et un pour moi.",
+            "Ce sont sûrement les derniers de l'appartement. Après eux, plus rien ne couinera ici.",
             { texte: "Ils sentent le linge mouillé et la poubelle. Je ne vais pas réfléchir à ce qu'ils ont mangé.", humeur: "degoutee" }
         ]
     },
@@ -154,6 +155,9 @@ travail: {
             "…Il hésite, puis il mord. Bien.",
             { texte: "Et celui-là, c'est pour moi.", humeur: "degoutee" },
             { texte: "C'est immonde. Ça a le goût de la poussière, de la peur et des câbles électriques.", humeur: "degoutee" },
+            "Il n'y a plus de rats. La prochaine fois, ce sera lui. Mon dernier chat.",
+            "Il faudra que je me débrouille pour en trouver d'autres. Pour sortir, déjà.",
+            "Je suis sacrément isolée, ces derniers temps.",
             "Le chat sort enfin de sous la pile. Il y avait quelque chose coincé derrière lui… une lettre."
         ]
     },
@@ -185,8 +189,45 @@ Nourris ton chat.
         lignes: [
             "Les logs. Aram attend le prochain.",
             "Je n'ai rien écrit depuis des semaines. Il va me tuer, si quelqu'un d'autre ne le fait pas avant.",
-            "Plus tard. Encore un peu plus tard."
+            "Le fichier est déjà là, vide. Il n'y a plus qu'à l'écrire."
         ]
-    }
+    },
+
+    // dans le terminal, une fois le log écrit
+    logEcrit: {
+        lignes: [
+            "Voilà. Daté, propre, pas de copie ailleurs. Aram n'aura rien à redire.",
+            "Pour une fois."
+        ]
+    },
+
+
+    // ===== LA FIN (voir quete.js) =====
+
+    // quand le log est écrit et que tout a été lu : le soleil se lève
+    aube: {
+        lignes: [
+            "La lumière passe sous le carton de la fenêtre. Le soleil s'est levé, trop haut, trop vite.",
+            "J'ai trop traîné. Mes paupières pèsent des tonnes.",
+            "La torpeur me prend avant que je n'atteigne les oreillers."
+        ]
+    },
+
+    // le texte sur l'écran noir, entre les deux nuits
+    nuitSuivante: "La nuit suivante.",
+
+    lendemain: {
+        lignes: [
+            "La faim est revenue. Le rat n'a pas suffi, évidemment.",
+            "Il est là, roulé en boule contre moi. Il me fait confiance.",
+            { texte: "Pardon.", humeur: "degoutee" },
+            "Le sang est chaud. Enfin quelque chose qui ressemble à de la force.",
+            "La pile devant la porte cède d'un seul coup d'épaule. Vêtements, cartons, déchets… tout part.",
+            "L'air du couloir est froid. Je sors."
+        ]
+    },
+
+    // l'écran de fin
+    fin: "FIN — pour l'instant."
 
 };

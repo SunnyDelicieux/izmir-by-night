@@ -40,6 +40,9 @@ function talk(id) {
 
     text.textContent = lignes[index];
 
+    // pour la fin de l'histoire (quete.js) : combien de phrases de ce dialogue ont été lues
+    if (typeof noterDialogue === "function") noterDialogue(id, index + 1);
+
     if (index + 1 < lignes.length) {
         seen[id] = index + 1;
     } else if (dialogue.boucle !== false) {
@@ -143,6 +146,9 @@ dialog.addEventListener("click", () => {
 
     hideFocusItem();
     hideSprite();
+
+    // tout a-t-il été lu ? (quete.js)
+    if (typeof verifierFin === "function") verifierFin();
 });
 
 
@@ -189,6 +195,8 @@ function ingaInterrompt(id) {
             dialog.style.display = "none";
             hideSprite();
 
+            if (typeof noterDialogue === "function") noterDialogue(id, lignes.length);
+
             if (etaitSurLePC) {
                 ecran.hidden = false;
                 ajusterEcran();
@@ -196,6 +204,8 @@ function ingaInterrompt(id) {
             }
 
             fini();
+
+            if (typeof verifierFin === "function") verifierFin();
         };
 
         phraseSuivante();

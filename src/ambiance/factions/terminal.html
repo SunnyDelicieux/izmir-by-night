@@ -168,7 +168,21 @@ Ne jamais imprimer ce fichier.`,
             "log_03.txt": `LOG 03 — ██/██/████
 [ à écrire ]
 
-(le prochain log est en retard)`
+(le prochain log est en retard)`,
+
+            // le log qu'Aram attend : vide tant qu'Inga ne l'a pas écrit (voir ecrireLeLog, plus bas).
+            // Le texte ci-dessous s'écrit tout seul quand on l'ouvre, une fois la lettre d'Aram lue.
+            "log_04.txt": { aEcrire: `LOG 04 — ██/██/████
+
+- Un humain m'a fait passer une clé : un site de recrutement setite,
+  façade « bien-être », espace membres derrière (mot de passe : SET).
+  Ils prennent les gens par leurs envies, pas par la force.
+- Zacharias continue de me parler. Il cherche quelque chose.
+  À surveiller.
+- [ à compléter ]
+
+Aucune copie ailleurs.
+— I.` }
         }
     }
 };
@@ -221,7 +235,7 @@ function trouver(nom) {
     return cle ? { cle, element: dossier[cle] } : null;
 }
 
-const estDossier = (element) => typeof element === "object" && !element.ouvre;
+const estDossier = (element) => typeof element === "object" && !element.ouvre && !element.aEcrire;
 
 
 /* les commandes */
@@ -256,6 +270,7 @@ Astuce : on peut aussi cliquer sur les noms, et Tab complète un nom.`, "discret
             lien.addEventListener("click", () => executer(
                 (estDossier(element) ? "cd " : nom.endsWith(".lnk") ? "start " : "cat ") + nom));
             ligne.appendChild(lien);
+            if (element.aEcrire && !progression().logEcrit) ligne.append(document.createTextNode("   (vide)"));
         }
         ecrire("");
 
@@ -286,6 +301,10 @@ Astuce : on peut aussi cliquer sur les noms, et Tab complète un nom.`, "discret
         }
         if (trouve.element.ouvre) {
             ecrire(`${trouve.cle} est un raccourci : utilise « start ${trouve.cle} ».`, "discret");
+            return;
+        }
+        if (trouve.element.aEcrire) {
+            ecrireLeLog(trouve.cle, trouve.element.aEcrire);
             return;
         }
         ecrire(trouve.element);
@@ -381,15 +400,57 @@ Tape « cd ashugh » ou « cd sabbat », ou clique sur un nom. « help » pour l
 }
 
 
+// la progression de la chambre d'Inga (écrite aussi par quete.js)
+function progression() {
+    try { return JSON.parse(localStorage.getItem("inga-progression")) || {}; } catch (e) { return {}; }
+}
+
+function noterProgression(changements) {
+    try { localStorage.setItem("inga-progression", JSON.stringify(Object.assign(progression(), changements))); } catch (e) {}
+}
+
 // la réaction d'Inga aux logs (une seule fois, et seulement après la lettre d'Aram)
 function reactionLogs() {
-    let progression = {};
-    try { progression = JSON.parse(localStorage.getItem("inga-progression")) || {}; } catch (e) {}
-    if (!progression.chatSorti || progression.logVu) return;
-
-    progression.logVu = true;
-    try { localStorage.setItem("inga-progression", JSON.stringify(progression)); } catch (e) {}
+    const p = progression();
+    if (!p.chatSorti || p.logVu || p.logEcrit) return;
+    noterProgression({ logVu: true });
     setTimeout(() => chambreDInga()?.ingaInterrompt("log"), 1200);
+}
+
+// le log d'Aram : vide avant la lettre ; ensuite, il s'écrit sous nos yeux, une seule fois
+let ecritureEnCours = false;
+
+async function ecrireLeLog(nom, texte) {
+
+    const p = progression();
+
+    if (p.logEcrit) {
+        ecrire(texte);
+        ecrire("");
+        return;
+    }
+
+    if (!p.chatSorti) {
+        ecrire(`${nom} est vide.`, "discret");
+        return;
+    }
+
+    if (ecritureEnCours) return;
+    ecritureEnCours = true;
+
+    ecrire(`Ouverture de ${nom} en écriture…\n`, "discret");
+    const ligne = ecrire("");
+    for (const lettre of texte) {
+        ligne.textContent += lettre;
+        consoleZone.scrollTop = consoleZone.scrollHeight;
+        await new Promise((ok) => setTimeout(ok, lettre === "\n" ? 250 : 22));
+    }
+    ecrire(`\n${nom} enregistré.\n`, "titre");
+
+    noterProgression({ logEcrit: true });
+    ecritureEnCours = false;
+
+    setTimeout(() => chambreDInga()?.ingaInterrompt("logEcrit"), 1500);
 }
 
 // la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
