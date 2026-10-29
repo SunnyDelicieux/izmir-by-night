@@ -402,7 +402,7 @@ DeadDogs`,
             { texte: "J'ai le sens de la hiérarchie. C'est une notion qui t'échappe, je sais.", qui: "Zacharias" },
             "Bon. Je leur parlerai. C'est mon projet de toute façon, tu as fait que l'améliorer.",
             { texte: "« Améliorer ». Je note que tu l'as dit.", qui: "Zacharias" },
-             { texte: "Ne t'habitue pas.", humeur: "degoutee" } 
+             { texte: "Ne t'habitue pas.", humeur: "degoutee" } ,
             "Et Il sera au courant, de toute façon, par moi ou quelqu'un d'autre.",
             { texte: "Atam fera ce qu'Atam fait. Je ne prétends pas comprendre ton sire, et je n'ai pas l'intention d'essayer. Ce n'est pas mon domaine.", qui: "Zacharias" },
             "Personne le comprend. C'est un peu le principe.",
