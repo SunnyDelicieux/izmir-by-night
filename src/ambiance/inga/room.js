@@ -228,8 +228,8 @@ function montrerQuiParle(qui) {
         text.before(nom);
     }
 
-    nom.textContent = qui || "";
-    nom.hidden = !qui;
+   nom.textContent = qui === undefined ? "Inga" : qui;
+    nom.hidden = qui === "";
     text.classList.toggle("narration", qui === "");
 
     const icone = qui && typeof interlocuteurs !== "undefined" ? interlocuteurs[qui] : null;

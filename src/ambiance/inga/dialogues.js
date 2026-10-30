@@ -8,11 +8,13 @@
 // Les interruptions et les réactions ont des « lignes » : toutes les bulles, à la suite.
 //   Facultatif : telephone: true pour afficher le téléphone d'Inga pendant la conversation.
 //
+// Une bulle simple "…" : Inga parle à voix haute, toute seule (son nom s'affiche).
 // Une bulle peut aussi être un objet :
 //   { texte: "…", humeur: "degoutee" }   change le sprite d'Inga pour cette bulle
 //   { texte: "…", qui: "Zacharias" }     quelqu'un d'autre parle : son nom et son icône s'affichent
 //                                        (voir « interlocuteurs » tout en bas)
-//   { texte: "…", qui: "" }              de la narration, sans personne
+//   { texte: "…", qui: "" }              une description : pas de nom, en italique
+//                                        (à la 3e personne, au présent : « Elle raccroche. »)
 
 const dialogues = {
 
@@ -227,7 +229,7 @@ const dialogues = {
     tasMainsNues: {
         first: [
             "Allez. Pour le chat.",
-            "Je plonge le bras dans le tas… Un truc me file entre les doigts. Puis un deuxième.",
+            { texte: "Elle plonge le bras dans le tas. Un truc lui file entre les doigts. Puis un deuxième.", qui: "" },
             "Ils sont rapides, ces cons.",
             "À mains nues, j'y arriverai jamais. Faudrait un sac. Un piège. Un truc."
         ],
@@ -240,6 +242,7 @@ const dialogues = {
     // dans le tas d'oreillers, une fois qu'Inga sait qu'il lui faut un sac
     taie: {
         lignes: [
+            { texte: "Elle tire une taie de sous les oreillers et la secoue.", qui: "" },
             "Une taie d'oreiller. Brodée main. Volée à l'Élysium.",
             "Quelque part, un Toréador a payé une fortune pour que ça finisse en sac à rats.",
             "Ça me fait plaisir d'une façon que je vais pas analyser."
@@ -249,7 +252,7 @@ const dialogues = {
     // les rats attrapés avec la taie, dans le tas
     rat1: {
         lignes: [
-            "Taie dans le tas. Je referme d'un coup.",
+            { texte: "Elle enfonce la taie dans le tas et la referme d'un coup.", qui: "" },
             "… Un.",
             "Il gigote. Encore un et c'est bon."
         ]
@@ -257,6 +260,7 @@ const dialogues = {
 
     rat2: {
         lignes: [
+            { texte: "Elle recommence. La taie se tortille un peu plus.", qui: "" },
             "Deux. Un pour lui, un pour moi.",
             "Sûrement les derniers de l'appart. Après eux, plus rien couinera ici. Même pas moi.",
             { texte: "Ils sentent le linge mouillé et la poubelle. Je vais pas réfléchir à ce qu'ils ont mangé.", humeur: "degoutee" }
@@ -267,7 +271,8 @@ const dialogues = {
     nourrir: {
         lignes: [
             "Viens. Doucement. Celui-là est pour toi.",
-            "… Il hésite, puis il mord. Bien.",
+            { texte: "Le chat hésite. Puis il mord.", qui: "" },
+            "… Bien.",
             { texte: "Et celui-là, c'est pour moi.", humeur: "degoutee" },
             { texte: "C'est immonde. Le goût est de plus en plus fade, presque comme boire de l'eau croupie.", humeur: "degoutee" },
             "Plus de rats, plus qu'un seul chat, et personne est venu ici depuis des lustres.",
@@ -276,9 +281,10 @@ const dialogues = {
             { texte: "Mais non. Il préfère aller voir les autres… sous prétexte qu'ils sont amis.", humeur: "degoutee" },
             "Je lui suis utile. C'est censé être mieux. Tellement mieux.",
             ". . .",
-            ". . .",
+            { texte: "Ça remue sous la pile de linge.", qui: "" },
             ". . . ?",
-            "Le chat sort enfin de sous la pile, laissant une carcasse derrière lui. Il y avait quelque chose coincé là-dessous… une lettre."
+            { texte: "Le chat sort enfin de sa cachette, laissant une carcasse derrière lui. Il y a quelque chose de coincé là-dessous.", qui: "" },
+            "… Une lettre ?"
         ]
     },
 
@@ -315,11 +321,11 @@ DeadDogs`,
     // le soleil se lève
     aube: {
         lignes: [
-            "La lumière passe sous le carton de la fenêtre. Faible, lointaine, mais présente tout de même.",
+            { texte: "La lumière passe sous le carton de la fenêtre. Faible, lointaine, mais présente tout de même.", qui: "" },
             "Il doit bien être sept heures, et j'ai trop repoussé la torpeur.",
             "Mes paupières pèsent des tonnes.",
             "J'ai rien fait aujourd'hui encore, et je pense pas faire plus demain.",
-            "La torpeur me prend avant que j'atteigne les oreillers, et je m'effondre sur le sol."
+            { texte: "La torpeur la prend avant qu'elle atteigne les oreillers. Elle s'effondre sur le sol.", qui: "" }
         ]
     },
 
@@ -334,7 +340,8 @@ DeadDogs`,
         lignes: [
             { texte: "Un bourdonnement contre le carrelage. Le téléphone vibre, s'arrête, recommence.", qui: "" },
             "Hm.",
-            "Le soleil est couché depuis des heures. Je me suis endormie là où je suis tombée, la joue sur le carrelage, entre deux boîtes de nouilles.",
+            { texte: "Elle s'est endormie là où elle est tombée, la joue sur le carrelage, entre deux boîtes de nouilles. Le soleil est couché depuis des heures.", qui: "" },
+            { texte: "Elle attrape le téléphone.", qui: "" },
             "Onze appels manqués. Zacharias.",
             "La dernière fois qu'il a appelé, c'était… juin ? Quatre mois. Et là, onze appels en une journée.",
             "Soit quelqu'un est mort, soit il croit que c'est moi.",
@@ -347,11 +354,12 @@ DeadDogs`,
         lignes: [
             "La faim est toujours là.",
             "Le rat a pas suffi. Celui d'hier non plus. Il m'avait prévenue. Il prévient toujours, et je l'écoute jamais.",
-            "Le chat est roulé en boule contre moi. Il a dormi ici toute la journée, contre la seule chose de l'appart qui bougeait pas.",
+            { texte: "Le chat est roulé en boule contre elle. Il a dormi là toute la journée, contre la seule chose de l'appart qui ne bougeait pas.", qui: "" },
             "Il me fait confiance. C'est mignon. C'est con.",
             { texte: ". . .", humeur: "degoutee" },
             "Je peux pas sortir comme ça. Si la Bête se réveille dans le couloir, c'est la voisine du dessous qui paye.",
             "Désolée, petit chat.",
+            { texte: "Elle le soulève doucement. Il ne se débat pas.", qui: "" },
             { texte: "Le sang est chaud. Enfin un truc qui ressemble à de la force.", humeur: "degoutee" },
             { texte: "Je déteste à quel point c'est bon.", humeur: "degoutee" }
         ]
@@ -394,15 +402,15 @@ DeadDogs`,
             { texte: "Et c'est là que tu interviens. Parle aux primogènes. Demande-leur sur quoi ils veulent qu'on se concentre.", qui: "Zacharias" },
             "Moi ? Parler à des gens ? Tu m'as vraiment crue morte, tu me confonds avec quelqu'un d'autre.",
             { texte: "Ils t'écoutent. Ils ne t'aiment pas, mais ils t'écoutent. La Cour t'a même proposé un titre, si je me souviens bien.", qui: "Zacharias" },
-            "Et j'ai dit non. Je n'ai pas que ça à faire, leur titre, c'était juste un moyen pour eux de me forcer à leur faire des faveurs en échange.",
-            { texte: "Soit, reste dans ton coin pour toujours. Cependant, ça reste à toi de le faire.", qui: "Zacharias" },
-            { texte: "Moi, si j'apporte ça, ils me demanderont comment je l'ai obtenu. Avec quelles ressources, et sur ordre de qui. Ca pourrait compléxifier la chose.", qui: "Zacharias" },
-            { texte: "Autant pour moi, toi, et mon sire.", qui: "Zacharias" },
+            "Et j'ai dit non. J'ai pas que ça à faire. Leur titre, c'était juste un moyen de me forcer à leur faire des faveurs en échange.",
+            { texte: "Soit. Reste dans ton coin pour toujours. Mais ça reste à toi de le faire.", qui: "Zacharias" },
+            { texte: "Moi, si j'apporte ça, ils me demanderont comment je l'ai obtenu. Avec quelles ressources, et sur ordre de qui. Ça pourrait compliquer les choses.", qui: "Zacharias" },
+            { texte: "Pour moi, pour toi, et pour mon sire.", qui: "Zacharias" },
             { texte: "Donc le grand génie de la Fondation a peur de se faire gronder par Dimitrios.", humeur: "degoutee" },
             { texte: "J'ai le sens de la hiérarchie. C'est une notion qui t'échappe, je sais.", qui: "Zacharias" },
             "Bon. Je leur parlerai. C'est mon projet de toute façon, tu as fait que l'améliorer.",
             { texte: "« Améliorer ». Je note que tu l'as dit.", qui: "Zacharias" },
-             { texte: "Ne t'habitue pas.", humeur: "degoutee" } ,
+            { texte: "Ne t'habitue pas.", humeur: "degoutee" },
             "Et Il sera au courant, de toute façon, par moi ou quelqu'un d'autre.",
             { texte: "Atam fera ce qu'Atam fait. Je ne prétends pas comprendre ton sire, et je n'ai pas l'intention d'essayer. Ce n'est pas mon domaine.", qui: "Zacharias" },
             "Personne le comprend. C'est un peu le principe.",
@@ -417,10 +425,11 @@ DeadDogs`,
     sortie: {
         lignes: [
             "Si je dois parler aux primogènes, ce sera le ventre plein. Un rat et un chat, c'est pas un repas. Et une Nosferatu affamée au téléphone avec le Conseil, ça finit mal pour tout le monde.",
-            "Avec cette force en plus, je peux enfin bouger la pile qui bloque l'entrée. Le bois craque avant de se briser.",
-            "L'air du couloir est froid. Silencieux. Ça sent la javel et le chou des voisins.",
+            "Avec cette force en plus, je peux enfin bouger la pile qui bloque l'entrée.",
+            { texte: "Elle pousse. Le bois craque avant de se briser.", qui: "" },
+            { texte: "L'air du couloir est froid. Silencieux. Ça sent la javel et le chou des voisins.", qui: "" },
             { texte: "Je serai sûrement pas la seule dehors ce soir. Pourvu que je croise personne qui me reconnaisse…", humeur: "degoutee" },
-            { texte: "Loués soient les villes où les souterrains appartiennent aux Nosferatu seuls, et pas à absolument tout le monde.", humeur: "degoutee" },
+            { texte: "Louées soient les villes où les souterrains appartiennent aux Nosferatu seuls, et pas à absolument tout le monde.", humeur: "degoutee" },
             "Je sors enfin. J'ai à faire."
         ]
     },
