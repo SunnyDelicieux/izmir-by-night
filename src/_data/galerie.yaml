@@ -485,6 +485,10 @@
   alt: Pyramide.
   tags: [sunny, tremere, tarik, eleni, canon]
   desc: Le visage de la pyramide.
+- src: sunny/what.webp
+  alt: What.
+  tags: [sunny, brujah, autre, noncanon, kaadir, gabriel, camil]
+  desc: What.
 - src: sunny/nebetted.webp
   alt: nebetta.
   tags: [sunny, nosferatu, nebetta, canon]
@@ -501,9 +505,13 @@
   alt: Duo.
   tags: [sunny, ventrue, toreador, louiza, angelos, canon]
   desc: Duo Angelos Louiza.
+- src: sunny/posture.webp
+  alt: Posture reveal.
+  tags: [sunny, nosferatu, inga]
+  desc: Posture reveal.
 - src: sunny/DECEMBRE.webp
   alt: Idia magic.
-  tags: [sunny, ventrue, calendrier]
+  tags: [sunny, ventrue, calendrier, noncanon]
   desc: Calendrier Decembre.
 - type: comic
   title: Sophia sprite
@@ -529,6 +537,14 @@
   alt: Idia magic.
   tags: [sunny, toreador, maliha, canon]
   desc: Maliha Sprite.
+- src: sunny/moires.webp
+  alt: Les moires de l'Elysium.
+  tags: [canon, sunny, tremere, ventrue, nosferatu, louiza, nebetta, sophia"]
+  desc: Les moires de l'Elysium.
+- src: sunny/oldzaya.webp
+  alt: Zaya old outfit.
+  tags: [canon, sunny, ventrue, zaya"]
+  desc: Zaya old outfit.
 - type: comic
   title: gif
   alt: gif
@@ -619,6 +635,10 @@
   alt: Lignée tremere.
   tags: [autriche, tremere, canon]
   desc: Lignée du clan tremere.
+  -src: sunny/baransketch.webp
+  alt: baran sketch.
+  tags: [sunny, brujah, baran, canon]
+  desc: emote issmini tired sip.
 - src: ashita/dimitri2.webp
   alt: Dimitri rework.
   tags: [ashita, official, ventrue, ghoule, canon, dimitri]
@@ -675,6 +695,10 @@
   alt: Lignée.
   tags: [noncanon, sunny, autre, kushi]
   desc: Claw fight.
+- src: sunny/sabbat.webp
+  alt: My sabbat wife.
+  tags: [noncanon, sunny, sabbat]
+  desc: My sabbat wife.
 - src: autriche/Esen__Atam.webp
   alt: Esem Atam.
   tags: [canon, autriche, tremere, nosferatu, esen, atam]
