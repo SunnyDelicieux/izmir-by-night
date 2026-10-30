@@ -5,6 +5,22 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sun/marikoo.webp
+  alt:  Doodles.
+  tags: [sunny, noncanon, tremere, lasombra, mariko, ketevan, dimitrios]
+  desc: Doodling around.
+- src: sun/ingasprite.webp
+  alt:  Inga Sprites.
+  tags: [sunny, canon, nosferatu, inga]
+  desc: Inga Sprites.
+- src: yolnir/TREMEREMOB.webp
+  alt:  Tremere mobile.
+  tags: [sunny, noncanon, tremere]
+  desc: Tremere mobile.
+- src: sun/INGAGIF.gif
+  alt:  lacey's game.
+  tags: [sunny, noncanon, nosferatu, inga]
+  desc: fear of being alone.
 - src: sun/hanged.webp
   alt: Hanged.
   tags: [sunny, noncanon, brujah, baran]
