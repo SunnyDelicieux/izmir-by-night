@@ -237,11 +237,7 @@ function montrerQuiParle(qui) {
 }
 
 
-/* =========================
-   INGA INTERROMPT
-   Appelée par les pages des PC et par la quête : on quitte l'écran, Inga dit toutes les bulles
-   du dialogue (« lignes » dans dialogues.js), puis on revient sur le PC, là où on en était.
-========================= */
+
 
 async function ingaInterrompt(id) {
 
@@ -272,7 +268,7 @@ async function ingaInterrompt(id) {
     if (typeof verifierFin === "function") verifierFin();
 }
 
-// le téléphone d'Inga (telephone.png, dans ce dossier), affiché pendant les appels
+// le téléphone 
 function montrerTelephone(visible) {
 
     let telephone = document.getElementById("telephone");
