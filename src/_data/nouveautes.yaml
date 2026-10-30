@@ -5,6 +5,12 @@
 #   lien : (facultatif) la page vers laquelle ça mène
 #   nouvel_onglet: true  (facultatif) pour ouvrir le lien dans un nouvel onglet
 
+- date: 28 Oct 26
+  texte: Fiche PNJ de Soteria
+  lien: /personnages/soteria/
+- date: 28 Oct 26
+  texte: Fiche PNJ du Prophète
+  lien: /personnages/prophete/
 - date: 27 Oct 26
   texte: Fiche PNJ de Ibrahim
   lien: /personnages/ibrahim/

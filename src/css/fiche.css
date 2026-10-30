@@ -433,6 +433,8 @@ footer {
   /*make sure it shows over the gallery elements that had their z-index raised*/
   z-index: 2;
 }
+footer:hover,
+footer:focus-within {opacity: 100%;}
 footer a {
   color: var(--link-color);
   text-decoration: underline;

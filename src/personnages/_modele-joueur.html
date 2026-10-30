@@ -1,0 +1,90 @@
+---
+# ════════════════════════════════════════════════════════════════════
+#  FICHE DE PNJ — modèle à remplir
+# ════════════════════════════════════════════════════════════════════
+#  1. Remplis ce fichier (avec le Bloc-notes, VS Code… n'importe quel éditeur de texte).
+#  2. Renomme-le avec le prénom de ton PNJ, en minuscules, sans accents ni espaces :
+#     par exemple « jiwoo.html » ou « anna-petrova.html ».
+#  3. Envoie-le à la MJ, avec l'image de ton PNJ (une image carrée, c'est l'idéal).
+#
+#  Les lignes qui commencent par # sont des explications : tu peux les laisser ou les effacer.
+#  Entre les deux lignes « --- » : la carte d'identité. Ne change que ce qui est après les « : ».
+#  Si un texte contient « : » (deux-points suivis d'une espace), mets-le entre guillemets "…".
+# ════════════════════════════════════════════════════════════════════
+
+titre: Prénom | Clan              # le titre de l'onglet du navigateur
+layout: fiche.njk                 # ne change pas cette ligne
+nom: Prénom                       # le nom affiché en haut de la fiche
+icone: /img/wiki/icon/no-icon.png # la MJ remplacera par ton image
+portrait: /img/wiki/icon/no-icon.png
+citation: « Une phrase que ton PNJ pourrait dire. »
+
+# Le tableau à côté du portrait. Garde les lignes qui t'intéressent, efface les autres,
+# ajoute-en si tu veux (une ligne = « Titre: valeur »).
+bio:
+  Nom: Prénom Nom
+  Clan: Clan
+  Sire: Nom du sire
+  Étreinte: année
+  Âge apparent: 30 ans
+  Statut: son rôle dans la ville
+---
+<!-- ══════════════════════════════════════════════════════════════════
+     Le texte de la fiche. Écris entre <p> et </p>.
+     Un nouveau paragraphe = un nouveau <p>…</p>.
+     Pour du gras : <b>mot</b> ; pour de l'italique : <i>mot</i>.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<section id="personality">
+  <h3 class="purple">Information connue</h3>
+  <p>
+    Ce que tout le monde sait de ton PNJ : son apparence, sa réputation, son caractère.
+  </p>
+</section>
+
+<section id="story">
+  <h3 class="red">Histoire</h3>
+  <p>
+    Son passé, son Étreinte, ce qu'il fait à Izmir.
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     Les relations : un bloc dl par personnage (dt = le nom, dd = le texte).
+     dt : le nom du personnage. S'il a une fiche sur le site, son nom devient
+            un lien tout seul (tu peux ajouter une précision après une virgule :
+            « Baran, son sheriff »).
+     dd : ce que ton PNJ pense de lui.
+     Copie-colle un bloc pour ajouter une relation.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<section id="relationships">
+  <h3 class="red">Relations</h3>
+
+  <h4>LIGNÉE</h4>
+  <dl>
+    <dt><img src="/img/wiki/icon/no-icon.png" class="icon" alt="">Nom du sire</dt>
+    <dd>Ce que ton PNJ pense de son sire.</dd>
+  </dl>
+
+  <h4>RELATIONS</h4>
+  <dl>
+    <dt><img src="/img/wiki/icon/no-icon.png" class="icon" alt="">Nom d'un personnage</dt>
+    <dd>Ce que ton PNJ en pense.</dd>
+  </dl>
+  <dl>
+    <dt><img src="/img/wiki/icon/no-icon.png" class="icon" alt="">Nom d'un autre personnage</dt>
+    <dd>Ce que ton PNJ en pense.</dd>
+  </dl>
+</section>
+
+<!-- Des petits détails amusants : un <li>…</li> par détail. -->
+<section id="trivia">
+  <h3 class="green">Trivia</h3>
+  <ul>
+    <li>Un détail amusant.</li>
+    <li>Un autre détail.</li>
+  </ul>
+</section>
+
+<!-- La galerie s'ajoute toute seule : les dessins tagués avec le nom de ton PNJ y apparaissent. -->
