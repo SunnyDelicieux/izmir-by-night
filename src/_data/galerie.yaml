@@ -383,7 +383,7 @@
   desc: Smoking kills.
 - src: autriche/sabbat.webp
   alt: Trio.
-  tags: [autriche, canon, sabbat]
+  tags: [autriche, canon, sabbat, pretre]
   desc: Les Infants de Scylla.
 - src: sunny/PRIMOGENANTT.webp
   alt: Trio.
@@ -557,11 +557,11 @@
     - src: autriche/guerre.webp
 - src: autriche/soteria.webp
   alt: soteria.
-  tags: [autriche, toreador, canon, ventrue]
+  tags: [autriche, toreador, canon, ventrue, soteria, atratinus]
   desc: Soteria et Atratinus.
 - src: autriche/marcusforain.webp
   alt: Marcus forain.
-  tags: [autriche, lasombra, canon]
+  tags: [autriche, lasombra, canon, marcus]
   desc: Marcus Forain.
 - src: ashita/raffi.webp
   alt: Raffi, ventrue.
