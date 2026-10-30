@@ -9,7 +9,7 @@
    Une page s'ajoute comme ça :
      Nav.pages["ege-chan.org/a"] = () => ({ titre: "...", html: "..." });
    Facultatif :
-     couleurs : { fond, texte, lien }      les couleurs du site
+     couleurs : { fond, texte, lien, lienVu }   les couleurs du site (lienVu : un lien déjà visité)
      apres(vue) : lancé une fois la page affichée (pour brancher un formulaire, par exemple)
 
    Les adresses s'écrivent sans http:// ni www : "ege-chan.org/a/6".
@@ -100,7 +100,6 @@ Nav.titre = (adresse) => {
 // la petite icône de l'onglet, selon le site
 Nav.icone = (adresse) => {
     if (adresse.startsWith("ege-chan.org")) return `<span class="favicon" style="background:#17296f;color:#8fb3ff">e</span>`;
-    if (adresse.startsWith("b0b1nes0.onion")) return `<span class="favicon" style="background:#1a0000;color:#ff4d4d">&#9654;</span>`;
     if (adresse.startsWith(RECHERCHE)) return `<span class="favicon" style="background:#fff;color:#4285f4">g</span>`;
     if (adresse.startsWith("chrome://")) return `<span class="favicon" style="background:#9e9e9e;color:#fff">&#9679;</span>`;
     return `<span class="favicon" style="background:#ddd;color:#777">&#9675;</span>`;
@@ -130,6 +129,7 @@ Nav.aller = (adresse, nouvelleVisite = true) => {
     vue.style.background = couleurs.fond || "#fff";
     vue.style.color = couleurs.texte || "#222";
     vue.style.setProperty("--lien", couleurs.lien || "#1a0dab");
+    vue.style.setProperty("--lien-vu", couleurs.lienVu || couleurs.lien || "#1a0dab");
     vue.className = page.classe || "";
     vue.innerHTML = page.html;
     vue.scrollTop = 0;
@@ -141,6 +141,12 @@ Nav.aller = (adresse, nouvelleVisite = true) => {
 
     document.getElementById("precedent").disabled = Nav.position <= 0;
     document.getElementById("suivant").disabled = Nav.position >= Nav.visites.length - 1;
+
+    // les liens déjà visités (l'historique d'Inga, et ce qu'on a ouvert depuis), comme dans un vrai navigateur
+    const visitees = new Set([...(Nav.historique || []).map((visite) => visite.adresse), ...Nav.visites]);
+    vue.querySelectorAll("a[data-lien]").forEach((lien) => {
+        if (visitees.has(nettoyer(lien.dataset.lien))) lien.classList.add("vu");
+    });
 
     if (page.apres) page.apres(vue);
 };

@@ -1,3 +1,23 @@
+// LES DIALOGUES DE LA CHAMBRE D'INGA
+//
+// Les objets (un clic) :
+//   first  : le premier clic, un dialogue plus long (plusieurs bulles : ["…", "…", "…"]) ;
+//   repeat : les clics suivants, deux répliques courtes qui tournent en boucle.
+//   Facultatif : image (un objet en gros plan), humeur: "degoutee" (le sprite dégoûté/surpris).
+//
+// Les interruptions et les réactions ont des « lignes » : toutes les bulles, à la suite.
+//   Facultatif : telephone: true pour afficher le téléphone d'Inga pendant la conversation.
+//
+// Une bulle simple "…" : Inga parle à voix haute, toute seule (son nom s'affiche).
+// Une bulle peut aussi être un objet :
+//   { texte: "…", humeur: "degoutee" }   change le sprite d'Inga pour cette bulle
+//   { texte: "…", qui: "Zacharias" }     quelqu'un d'autre parle : son nom et son icône s'affichent
+//                                        (voir « interlocuteurs » tout en bas)
+//   { texte: "…", qui: "" }              une description : pas de nom, en italique
+//                                        (à la 3e personne, au présent : « Elle raccroche. »)
+//
+// ATTENTION : une virgule après chaque bulle, sauf la dernière d'une liste.
+
 const dialogues = {
 
     // ===== SCÈNE 1 =====
@@ -5,7 +25,7 @@ const dialogues = {
     window: {
         first: [
             "La porte. Enfin, ce qu'on en devine derrière la pile.",
-            "Ça fait si longtemps que je suis pas sortie que les fringues ont formé une sorte de barrière. Ca, et l'armoire que j'ai déplacé devant pour coincer.",
+            "Ça fait si longtemps que je suis pas sortie que les fringues ont formé une sorte de barrière. Ça, et l'armoire que j'ai déplacée devant pour la coincer.",
             "Le carton sur la fenêtre date de… 2008 ? 2009 ? Le scotch a jauni, le carton a gondolé.",
             "Je devrais probablement sortir bientôt. Tout est quasiment mort ici, et la faim commence à me déchirer le crâne.",
             "… Bon. Pas ce soir."
@@ -19,7 +39,7 @@ const dialogues = {
     chat: {
         image: "https://i.postimg.cc/yx3hXVzt/image.png",
         first: [
-            "Le chat blanc. T'es toujours en vie toi ?",
+            "Le chat blanc. T'es toujours en vie, toi ?",
             "Tu me regardes comme si j'allais te bouffer. Vu le contexte, c'est une lecture assez lucide de la situation.",
             "Il a faim. Moi aussi. J'ai rien à lui donner.",
             "Faudrait trouver un truc. N'importe quoi qui bouge encore dans cet appart."
@@ -38,7 +58,7 @@ const dialogues = {
             "Je m'assois jamais dessus et personne vient ici pour l'utiliser, alors elle sert de stockage."
         ],
         repeat: [
-            "Si tu es le genre d'objet avec une conscience, je suis désolé pour toi."
+            "Si tu es le genre d'objet avec une conscience, je suis désolée pour toi."
         ]
     },
 
@@ -53,7 +73,7 @@ const dialogues = {
         ],
         repeat: [
             "2012. Une bonne année. Pour les posters.",
-            "Je devrais peut etre reflechir à un cadeau en retour."
+            "Je devrais peut-être réfléchir à un cadeau en retour."
         ]
     },
 
@@ -76,21 +96,21 @@ const dialogues = {
     flesh: {
         first: [
             "Mon lit. Enfin, mon tas d'oreillers. La moitié vient de l'Élysium.",
-            "Certains ont été volé, la majorité c'est Nebetta qui me les a gentiment donné après ma visite.",
-            "Qu'elle est gentille, et puis, ça n'a rien à voir avec le fait qu'elle ne voulait pas garder quelque chose que j'ai touché."
-            "Mine de rien ils sentent encore l'encens et le parfum de riche. Ça couvre un peu le reste.",
+            "Certains ont été volés, la majorité, c'est Nebetta qui me les a gentiment donnés après ma visite.",
+            "Qu'elle est gentille, et puis, ça n'a rien à voir avec le fait qu'elle ne voulait pas garder quelque chose que j'ai touché.",
+            "Mine de rien, ils sentent encore l'encens et le parfum de riche. Ça couvre un peu le reste.",
             "Faudrait que je m'achète un vrai lit. Mais il faudrait qu'un livreur monte, qu'il voie l'appart, qu'il voie ma tête. Non merci."
         ],
         repeat: [
             "Plus tard, la torpeur.",
-            "Je peut tenir encore un peu."
+            "Je peux tenir encore un peu."
         ]
     },
 
     code: {
         first: [
             "La demande d'archivage. Encore.",
-            "Ils veulent que je stocke les données des archives. Des copies de copies répartis sur trois serveurs, avec chacun deux sauvegardes et un disque dur dans un coffre, au cas où.",
+            "Ils veulent que je stocke les données des archives. Des copies de copies réparties sur trois serveurs, avec chacun deux sauvegardes et un disque dur dans un coffre, au cas où.",
             "Je sais pas pour qui ça reste un secret à la fin, mais si Il le demande, c'est que ce sera utile plus tard.",
             "J'ai vraiment pas envie de m'y mettre."
         ],
@@ -106,7 +126,7 @@ const dialogues = {
             "Les choses fonctionnent mieux en système de trois, mais je ne crois pas non plus au principe d'alchimie. Il y a quelque chose d'autre.",
             "Nous avons trop évolué pour ne pas impliquer la machine dans le concept même du monde. L'idée de quelque chose qui suit un but, et qui cherche à briser les limites sans les comprendre.",
             "Je me demande si Il pourrait m'aider.",
-            "… Le jour on Il viendra me voir."
+            "… Le jour où Il viendra me voir."
         ],
         repeat: [
             "Pas maintenant.",
@@ -118,8 +138,8 @@ const dialogues = {
     pc1: {
         first: [
             "Ça fait un moment que j'ai pas eu de problème informatique à régler pour les autres.",
-            "Personne a cliqué sur une pièce jointe louche et mis en ligne ses brisures de mascarades. Personne m'a demandé de pirater son ex.",
-            "Soit la ville est devenue adulte, soit elle a trouvé quelqu'un d'autre. Je me demande lequel des deux autres s'y collent.",
+            "Personne a cliqué sur une pièce jointe louche et mis en ligne ses brisures de Mascarade. Personne m'a demandé de pirater son ex.",
+            "Soit la ville est devenue adulte, soit elle a trouvé quelqu'un d'autre. Je me demande lequel des deux autres s'y colle.",
             "Hm. Ça arrange mes affaires, en soi."
         ],
         repeat: [
@@ -159,9 +179,9 @@ const dialogues = {
     // PC 1 : en ouvrant le dossier Anarch
     anarch: {
         lignes: [
-            "Le blog des Anarchs, de ce que j'en tire c'est leur cinuième.",
-            "Ils vivent comme s'ils étaient encore humains, comme si de rien était.",
-            "Et entre deux engueulades, un truc comme ça : des infos sur le sabbat, la mort de gens dont on a jamais entendu parler.",
+            "Le blog des Anarchs. De ce que j'en tire, c'est leur cinquième.",
+            "Ils vivent comme s'ils étaient encore humains, comme si de rien n'était.",
+            "Et entre deux engueulades, un truc comme ça : des infos sur le Sabbat, la mort de gens dont on a jamais entendu parler.",
             "Ils voient des trucs que la Cour verra jamais.",
             "Ils savent pas que je les lis. Ou ils savent, et ils s'en foutent. Je sais pas ce qui est le plus vexant."
         ]
@@ -266,7 +286,7 @@ const dialogues = {
     // le tas, une fois les rats attrapés
     tasVide: {
         first: [
-            "Plus rien couine là-dedans.",
+            "Plus rien couine là-dedans."
         ],
         repeat: [
             "Silence radio.",
@@ -312,7 +332,7 @@ DeadDogs`,
     // 1. le réveil : Zacharias a appelé
     lendemain: {
         lignes: [
-            { texte: "Un bourdonnement contre le carrelage. Un des téléphones sonne, vu la sonnerie, c'est celui destiné aux communications avec les Tremere.", qui: "" },
+            { texte: "Un bourdonnement contre le carrelage. Un des téléphones sonne. Vu la sonnerie, c'est celui destiné aux communications avec les Tremere.", qui: "" },
             "Hm.",
             { texte: "Elle s'est endormie là où elle est tombée, la joue sur le carrelage, entre deux boîtes de nouilles. Le soleil est couché depuis trois heures.", qui: "" },
             { texte: "Elle attrape le téléphone.", qui: "" },
@@ -333,8 +353,8 @@ DeadDogs`,
             "Je peux pas sortir comme ça. Si la Bête se réveille dans le couloir, c'est la voisine du dessous qui paye.",
             "Désolée, petit chat.",
             { texte: "Elle le soulève doucement. Il ne se débat pas, et l'observe avec de grands yeux.", qui: "" },
-            { texte: "Le sang est chaud, le gout est meilleur que celui du rongeur, bien qu'il reste quelque peu fade.", humeur: "degoutee" },
-            { texte: "Il était clair que tout ça n'avait encore rien de naturel pour elle.", humeur: "degoutee" }
+            { texte: "Le sang est chaud, le goût est meilleur que celui du rongeur, bien qu'il reste quelque peu fade.", qui: "", humeur: "degoutee" },
+            { texte: "Il est clair que tout ça n'a encore rien de naturel pour elle.", qui: "", humeur: "degoutee" }
         ]
     },
 
@@ -344,11 +364,11 @@ DeadDogs`,
     appel: {
         telephone: true,   // le téléphone s'affiche pendant la conversation (telephone.png)
         lignes: [
-            "Bon. Rappelons-le, avant qu'il n'annonce ma mort",
+            "Bon. Rappelons-le, avant qu'il annonce ma mort.",
             { texte: "Une sonnerie. Il décroche avant la deuxième.", qui: "" },
-            { texte: "Cinq appels, Inga. Cinw. J'avais commencé à rédiger ta nécrologie.", qui: "Zacharias" }
-             "Et tu l'écrivais comment ?",
-             { texte: "Elle était sobre, élégante et légèrement condescendante.", qui: "Zacharias" }
+            { texte: "Cinq appels, Inga. Cinq. J'avais commencé à rédiger ta nécrologie.", qui: "Zacharias" },
+            "Et tu l'écrivais comment ?",
+            { texte: "Elle était sobre, élégante et légèrement condescendante.", qui: "Zacharias" },
             "Tu aurais dû la publier. J'aurais adoré corriger tes fautes.",
             { texte: "Je ne fais pas de fautes.", qui: "Zacharias" },
             "C'est ce que disent tous les gens qui font des fautes.",
@@ -358,17 +378,17 @@ DeadDogs`,
             { texte: "Bref. Les Anarchs ont encore migré. Nouveau blog, nouveau serveur, et ils semblent commencer à apprendre les bases de la sécurité informatique.", qui: "Zacharias" },
             "Je sais. Lil a cliqué sur un lien qu'il aurait pas dû. Ils ont tout déménagé en une nuit.",
             "C'était presque attendrissant.",
-            { texte: "Il nous a fallut quatre jour pour les retrouver, ce qui reste court, mais ça risque d'etre plus difficile plus tard.", qui: "Zacharias" },
+            { texte: "Il nous a fallu quatre jours pour les retrouver, ce qui reste court, mais ça risque d'être plus difficile plus tard.", qui: "Zacharias" },
             { texte: "Le problème n'est pas de les retrouver. C'est ce qu'on remonte dans le filet.", qui: "Zacharias" },
             { texte: "Plus de scripts, plus de goules, plus de nuits passées à trier. Chaque migration nous coûte un peu plus.", qui: "Zacharias" },
             { texte: "Et qu'est-ce qu'on récupère ? Des anniversaires. Des recommandations de films. Un tableau des terrains de chasse.", qui: "Zacharias" },
             "Le tableau est super, j'ai rien à redire sur le tableau.",
             { texte: "Ce n'est pas rien. Mais c'est noyé dans tout le reste. On creuse trop large, on ramasse tout et n'importe quoi.", qui: "Zacharias" },
-            "On a juste à resserer un peu, se concentrer sur un truc.",
-            { texte: "Sur quoi ? Le port ? Konak ? Le Baron ? Ce n'est pas à nous de choisir. En théorie, c'est le Conseil qui décide de ce qui compte pour la ville..", qui: "Zacharias" },
-            "En théorie oui. Après ils savent pas ce que ça implique",
-            { texte: "Et c'est là que tu interviens. Parle leur. Demande-leur sur quoi ils veulent qu'on se concentre.", qui: "Zacharias" },
-            "Moi ? C'est toi qui à un primogène, fais le toi meme.",
+            "On a juste à resserrer un peu, se concentrer sur un truc.",
+            { texte: "Sur quoi ? Le port ? Konak ? Le Baron ? Ce n'est pas à nous de choisir. En théorie, c'est le Conseil qui décide de ce qui compte pour la ville.", qui: "Zacharias" },
+            "En théorie, oui. Après, ils savent pas ce que ça implique.",
+            { texte: "Et c'est là que tu interviens. Parle-leur. Demande-leur sur quoi ils veulent qu'on se concentre.", qui: "Zacharias" },
+            "Moi ? C'est toi qui as un primogène, fais-le toi-même.",
             { texte: "Ils t'écoutent. Ils ne t'aiment pas, mais ils t'écoutent. La Cour t'a même proposé un titre, si je me souviens bien.", qui: "Zacharias" },
             "Et j'ai dit non. J'ai pas que ça à faire. Leur titre, c'était juste un moyen de me forcer à leur faire des faveurs en échange.",
             { texte: "Soit. Reste dans ton coin pour toujours. Mais ça reste à toi de le faire.", qui: "Zacharias" },
@@ -383,7 +403,7 @@ DeadDogs`,
             { texte: "Atam fera ce qu'Atam fait. Je ne prétends pas comprendre ton sire, et je n'ai pas l'intention d'essayer. Ce n'est pas mon domaine.", qui: "Zacharias" },
             "Personne le comprend. C'est un peu le principe.",
             { texte: "Il voit le Régent plus souvent que nous tous réunis. Ça me suffit, comme mystère.", qui: "Zacharias" },
-            "Tu m'en diras des nouvelles, oui."
+            "Tu m'en diras des nouvelles, oui.",
             { texte: "Bonne nuit, Inga. Ne meurs pas avant d'avoir parlé au Conseil. Ta nécrologie n'est pas finie.", qui: "Zacharias" },
             "Bonne nuit, Zacharias. Garde-la au chaud.",
             { texte: "Elle raccroche.", qui: "" }

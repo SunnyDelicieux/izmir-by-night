@@ -134,6 +134,10 @@ html, body {
 	cursor: pointer;
 }
 
+#vue a.vu {
+	color: var(--lien-vu);
+}
+
 .favicon {
 	display: inline-block;
 	width: 16px;

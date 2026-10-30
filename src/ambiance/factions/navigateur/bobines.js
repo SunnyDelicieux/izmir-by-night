@@ -5,9 +5,14 @@
 //  Gore, cassettes « vérité », thrillers psychologiques violents, et les introuvables.
 //  Le comptoir est tenu par Pic4Death. DeadDogs y est client.
 //
+//  LE LOOK : une page HTML de débutant, sans aucun style (bobines.css).
+//  Times, fond blanc, liens bleus soulignés, violets une fois visités, des tableaux à bordure.
+//  C'est voulu : le contenu fait peur, la page ne fait aucun effort.
+//  Seule la vitrine (le vrai vidéoclub, devant) a l'air d'un site normal.
+//
 //  CASSETTES : une ligne par cassette, sa fiche est générée (catalogue/<id>).
 //    affiche   : l'image de la jaquette, navigateur/images/cassettes/<id>.jpg
-//                (un cadre avec ce texte s'affiche tant qu'elle n'existe pas)
+//                (tant qu'elle n'existe pas : une image cassée avec ce texte)
 //    etat      : stock, derniere, reservee, surplace, introuvable, retiree, precommande
 //    coms      : les commentaires, [pseudo, date, texte]
 //
@@ -20,25 +25,25 @@
 
   // ---------- Les rayons ----------
   const RAYONS = {
-    kan:    { nom: 'KAN',    sous: 'gore',                          couleur: '#cc0000',
+    kan:    { nom: 'KAN',    sous: 'gore',
               texte: 'du sang, du vrai maquillage, parfois de la vraie viande. tout est joué. (tout est joué.)' },
-    gercek: { nom: 'GERÇEK', sous: 'cassettes « vérité »',          couleur: '#e0e0e0',
+    gercek: { nom: 'GERÇEK', sous: 'cassettes « vérité »',
               texte: 'des cassettes sans générique. vendues comme fiction. personne au comptoir ne vous dira le contraire.' },
-    zihin:  { nom: 'ZİHİN',  sous: 'thrillers psychologiques',      couleur: '#9966ff',
+    zihin:  { nom: 'ZİHİN',  sous: 'thrillers psychologiques',
               texte: 'ceux qui ne montrent rien et qui restent. on ne les reprend pas.' },
-    kayip:  { nom: 'KAYIP',  sous: 'introuvables',                  couleur: '#ff9900',
+    kayip:  { nom: 'KAYIP',  sous: 'introuvables',
               texte: 'les films que le Cercle cherche. une prime pour chacun. apportez-les au comptoir, pas à la police.' }
   };
 
   // ---------- Les états ----------
   const ETATS = {
-    stock:       { texte: 'EN STOCK',               couleur: '#33cc33', reservable: true },
-    derniere:    { texte: 'DERNIÈRE COPIE',         couleur: '#ffaa00', reservable: true, blink: true },
-    precommande: { texte: 'PRÉCOMMANDE',            couleur: '#cc66ff', reservable: true },
-    reservee:    { texte: 'RÉSERVÉE',               couleur: '#888888' },
-    surplace:    { texte: 'CONSULTATION SUR PLACE', couleur: '#3399ff' },
-    introuvable: { texte: 'INTROUVABLE',            couleur: '#ff3333' },
-    retiree:     { texte: 'RETIRÉE',                couleur: '#555555' }
+    stock:       { texte: 'en stock',               reservable: true },
+    derniere:    { texte: 'dernière copie',         reservable: true },
+    precommande: { texte: 'précommande',            reservable: true },
+    reservee:    { texte: 'réservée' },
+    surplace:    { texte: 'consultation sur place' },
+    introuvable: { texte: 'introuvable' },
+    retiree:     { texte: 'RETIRÉE',                rouge: true }
   };
 
   // ============================================================
@@ -366,55 +371,42 @@
   //  MORCEAUX DE PAGE
   // ============================================================
   const menu = `
-    <table width="100%" cellpadding="4" cellspacing="0" bgcolor="#1a0000"><tr><td>
-      <font face="Courier New" size="2">
-        ${L('', 'ACCUEIL')} ▪ ${L('catalogue', 'CATALOGUE')} ▪
-        <font color="#cc0000">${L('rayon/kan', 'KAN')}</font> ▪ ${L('rayon/gercek', 'GERÇEK')} ▪ ${L('rayon/zihin', 'ZİHİN')} ▪ ${L('rayon/kayip', 'KAYIP')} ▪
-        ${L('nouveautes', 'nouveautés')} ▪ ${L('commander', 'commander')} ▪ ${L('cercle', 'le cercle')} ▪ ${L('pic4death', 'P4D')}
-      </font>
-    </td></tr></table>`;
+    <p>[ ${L('', 'accueil')} | ${L('catalogue', 'catalogue')} | ${L('nouveautes', 'nouveautés')} | ${L('commander', 'commander')} | ${L('cercle', 'le cercle')} | ${L('pic4death', 'contact')} ]</p>
+    <hr>`;
 
   const pied = `
-    <hr color="#330000" size="1">
-    <center>${Nav.blinkie('vhs.gif', 'VHS 4 EVER')} ${Nav.blinkie('rewind.gif', 'BE KIND REWIND')}</center>
-    <center><font size="1" color="#665555" face="Courier New">
-      tout ce qui est vendu ici est une œuvre de fiction. (P4D : presque tout.)<br>
-      on ne rembourse pas. on ne rembobine pas pour vous. on ne connaît pas votre nom et on ne veut pas le connaître.
-    </font></center>`;
+    <hr>
+    <p><small>tout ce qui est vendu ici est une œuvre de fiction. (P4D : presque tout.)<br>
+    on ne rembourse pas. on ne rembobine pas pour vous. on ne connaît pas votre nom et on ne veut pas le connaître.</small></p>
+    <p><small>dernière mise à jour : 06/03/2013</small></p>`;
 
-  const page = contenu => `<div style="padding:8px"><font face="Courier New">${menu}${contenu}${pied}</font></div>`;
+  const page = contenu => `<div class="bobines">${menu}${contenu}${pied}</div>`;
 
-  function badge(c) {
+  function etat(c) {
     const et = ETATS[c.etat];
-    const t = `<font color="${et.couleur}"><b>[ ${et.texte} ]</b></font>`;
-    return et.blink ? `<blink>${t}</blink>` : t;
+    return et.rouge ? `<font color="red">${et.texte}</font>` : et.texte;
   }
 
-  function ligne(c) {
-    const r = RAYONS[c.rayon];
-    return `<tr>
-      <td><font color="${r.couleur}">${r.nom}</font></td>
-      <td>${L('catalogue/' + c.id, c.titre)}${c.nouveau ? ' <blink><font color="#ffcc00" size="1">YENİ</font></blink>' : ''}</td>
+  const ligne = c => `
+    <tr>
+      <td>${L('catalogue/' + c.id, c.titre)}${c.nouveau ? ' <font color="red"><small>nouveau</small></font>' : ''}</td>
       <td>${c.annee}</td>
-      <td><font size="2">${badge(c)}</font></td>
-      <td align="right"><font size="2">${c.coms.length} com.</font></td>
+      <td>${RAYONS[c.rayon].nom}</td>
+      <td>${etat(c)}</td>
+      <td>${c.coms.length}</td>
     </tr>`;
-  }
 
   const tableau = liste => `
-    <table border="1" bordercolor="#330000" cellpadding="4" cellspacing="0" width="100%" bgcolor="#0f0505">
-      <tr bgcolor="#2a0000"><td><b>rayon</b></td><td><b>titre</b></td><td><b>année</b></td><td><b>état</b></td><td></td></tr>
+    <table border="1" cellpadding="3" cellspacing="0">
+      <tr><th>titre</th><th>année</th><th>rayon</th><th>état</th><th>com.</th></tr>
       ${liste.map(ligne).join('')}
     </table>`;
 
   function commentaire([pseudo, date, texte]) {
     const p4d = pseudo === 'Pic4Death';
     return `
-      <table width="100%" cellpadding="5" cellspacing="0" border="0" bgcolor="${p4d ? '#1f0000' : '#120808'}"><tr>
-        <td width="130" valign="top"><font size="2" color="${p4d ? '#ff3333' : '#cc9966'}"><b>${pseudo}</b>${p4d ? '<br><font size="1">[comptoir]</font>' : ''}</font><br><font size="1" color="#665555">${date}</font></td>
-        <td valign="top"><font size="2">${texte}</font></td>
-      </tr></table>
-      <hr color="#220000" size="1">`;
+      <p><b>${pseudo}</b>${p4d ? ' [comptoir]' : ''}${date ? ' - ' + date : ''}<br>
+      ${texte}</p>`;
   }
 
   // ============================================================
@@ -424,31 +416,29 @@
 
   // ---------- Accueil ----------
   pages[''] = () => page(`
-    <center>
-      <br><font face="Impact" size="7" color="#cc0000">LE CERCLE DES BOBINES PERDUES</font><br>
-      <font size="2" color="#887777">kaset · VHS · Super 8 · 16 mm · DVD-R — İzmir — depuis 2006</font><br>
-      <font size="2" color="#887777">derrière le rideau rouge d'<b>Ege Video</b>, Kemeraltı (${L('vitrine', 'la vitrine')})</font>
-    </center>
-    <br>
-    <marquee bgcolor="#1a0000"><font color="#ffcc00">YENİ GELDİ : KESİK (1995), six copies — DEVOUR ME SOFTLY (2013) — LA CAVE en précommande — retrait au comptoir du fond uniquement — LİMAN RIHTIM 3 : RETIRÉE — on ne rembourse pas</font></marquee>
-    <br>
-    <table width="100%" cellpadding="8" cellspacing="6"><tr>
+    <h1>le cercle des bobines perdues</h1>
+    <p>kaset · VHS · Super 8 · 16 mm · DVD-R<br>
+    İzmir, depuis 2006.</p>
+    <p>derrière le rideau rouge d'Ege Video, Kemeraltı. (${L('vitrine', 'la vitrine')})</p>
+    <p><b>nouveau :</b> Kesik (1995), six copies. Devour Me Softly (2013). La Cave en précommande.<br>
+    <b>retiré :</b> Liman, rıhtım 3.<br>
+    retrait au comptoir du fond uniquement. on ne rembourse pas.</p>
+    <h3>rayons</h3>
+    <ul>
       ${Object.entries(RAYONS).map(([id, r]) => `
-        <td width="25%" valign="top" bgcolor="#120606" style="border:1px solid ${r.couleur}">
-          <center><font face="Impact" size="6" color="${r.couleur}">${r.nom}</font><br><font size="2">${r.sous}</font></center>
-          <p><font size="2">${r.texte}</font></p>
-          <center>${L('rayon/' + id, '&gt;&gt; entrer')} <font size="1">(${CASSETTES.filter(c => c.rayon === id).length})</font></center>
-        </td>`).join('')}
-    </tr></table>
-    <p><font color="#cc0000"><b>▶ derniers commentaires</b></font></p>
-    ${CASSETTES.flatMap(c => c.coms.map(k => ({ c, k })))
-      .sort((a, b) => b.k[1].split('/').reverse().join('').localeCompare(a.k[1].split('/').reverse().join('')))
-      .slice(0, 6)
-      .map(({ c, k }) => `<font size="2"><b>${k[0]}</b> sur ${L('catalogue/' + c.id, c.titre)} : <i>${k[2]}</i></font><br>`).join('')}
-    <br>
-    <center><font size="2">vous êtes le client n° <font color="#cc0000">004133</font> à passer le rideau</font></center>`);
+        <li>${L('rayon/' + id, r.nom)} - ${r.sous} (${CASSETTES.filter(c => c.rayon === id).length})<br>
+        <small>${r.texte}</small></li>`).join('')}
+    </ul>
+    <h3>derniers commentaires</h3>
+    <ul>
+      ${CASSETTES.flatMap(c => c.coms.map(k => ({ c, k })))
+        .sort((a, b) => b.k[1].split('/').reverse().join('').localeCompare(a.k[1].split('/').reverse().join('')))
+        .slice(0, 6)
+        .map(({ c, k }) => `<li><b>${k[0]}</b> sur ${L('catalogue/' + c.id, c.titre)} : <i>${k[2]}</i></li>`).join('')}
+    </ul>
+    <p>vous êtes le visiteur n° 004133.</p>`);
 
-  // ---------- La vitrine : le vrai vidéoclub, devant ----------
+  // ---------- La vitrine : le vrai vidéoclub, devant (lui, il a l'air normal) ----------
   pages['vitrine'] = `
     <div style="background:#ffffee;color:#003366;padding:10px;font-family:Arial;min-height:100%">
       <center><font face="Arial Black" size="6" color="#0055aa">EGE VİDEO</font><br>
@@ -478,16 +468,17 @@
   for (let n = 1; n <= nbPages; n++) {
     const chemin = n === 1 ? 'catalogue' : 'catalogue/page-' + n;
     pages[chemin] = () => page(`
-      <h2><font color="#cc0000">CATALOGUE</font> <font size="2">(${CASSETTES.length} titres · page ${n}/${nbPages})</font></h2>
+      <h2>catalogue</h2>
+      <p>${CASSETTES.length} titres. page ${n} sur ${nbPages}.</p>
       ${tableau(CASSETTES.slice((n - 1) * PAR_PAGE, n * PAR_PAGE))}
-      <p><center>${Array.from({ length: nbPages }, (_, i) => i + 1)
-        .map(k => k === n ? `<b>[${k}]</b>` : L(k === 1 ? 'catalogue' : 'catalogue/page-' + k, `[${k}]`)).join(' ')}</center></p>`);
+      <p>pages : ${Array.from({ length: nbPages }, (_, i) => i + 1)
+        .map(k => k === n ? `${k}` : L(k === 1 ? 'catalogue' : 'catalogue/page-' + k, `${k}`)).join(' ')}</p>`);
   }
 
   // ---------- Rayons ----------
   Object.entries(RAYONS).forEach(([id, r]) => {
     pages['rayon/' + id] = () => page(`
-      <h2><font face="Impact" size="6" color="${r.couleur}">${r.nom}</font> <font size="3">— ${r.sous}</font></h2>
+      <h2>${r.nom} - ${r.sous}</h2>
       <p><i>${r.texte}</i></p>
       ${tableau(CASSETTES.filter(c => c.rayon === id))}
       ${id === 'kayip' ? `<p>voir aussi : ${L('recherches', 'nos recherches sur A. Belgin')}</p>` : ''}`);
@@ -499,43 +490,47 @@
       const r = RAYONS[c.rayon];
       const et = ETATS[c.etat];
       return page(`
-        <p><font size="2">${L('catalogue', 'catalogue')} &gt; ${L('rayon/' + c.rayon, r.nom)} &gt; ${c.titre}</font></p>
-        <table cellpadding="8" cellspacing="0" width="100%"><tr>
-          <td width="220" valign="top">${Nav.affiche('cassettes/' + c.id + '.jpg', c.affiche, 200, 300)}</td>
+        <p><small>${L('catalogue', 'catalogue')} &gt; ${L('rayon/' + c.rayon, r.nom)} &gt; ${c.titre}</small></p>
+        <h2>${c.titre}</h2>
+        ${c.fr ? `<p><i>${c.fr}</i></p>` : ''}
+        <table border="0" cellpadding="0" cellspacing="10"><tr>
+          <td valign="top">${Nav.affiche('cassettes/' + c.id + '.jpg', c.affiche, 200, 300)}</td>
           <td valign="top">
-            <font face="Impact" size="6" color="${r.couleur}">${c.titre}</font><br>
-            ${c.fr ? `<font color="#887777">${c.fr}</font><br>` : ''}
-            <br>
-            <table cellpadding="3" cellspacing="0">
-              <tr><td><font color="#887777">année</font></td><td>${c.annee}</td></tr>
-              <tr><td><font color="#887777">durée</font></td><td>${c.duree}</td></tr>
-              <tr><td><font color="#887777">support</font></td><td>${c.support}</td></tr>
-              <tr><td><font color="#887777">rayon</font></td><td><font color="${r.couleur}">${r.nom}</font> (${r.sous})</td></tr>
-              <tr><td><font color="#887777">prix</font></td><td>${c.prix}</td></tr>
-              <tr><td><font color="#887777">état</font></td><td>${badge(c)}</td></tr>
+            <table border="1" cellpadding="3" cellspacing="0">
+              <tr><td>année</td><td>${c.annee}</td></tr>
+              <tr><td>durée</td><td>${c.duree}</td></tr>
+              <tr><td>support</td><td>${c.support}</td></tr>
+              <tr><td>rayon</td><td>${r.nom} (${r.sous})</td></tr>
+              <tr><td>prix</td><td>${c.prix}</td></tr>
+              <tr><td>état</td><td>${etat(c)}</td></tr>
             </table>
-            <p>${c.description}</p>
-            ${et.reservable ? `
-              <form class="form-reservation">
-                <font size="2">réserver · n° client</font> <input name="client" size="6" autocomplete="off">
-                <button type="submit">réserver</button>
-              </form>
-              <p class="reservation-reponse"><font size="1" color="#665555">retrait au comptoir du fond sous 7 jours. pas de livraison. ${L('commander', 'comment ça marche')}</font></p>`
-            : `<p><font size="2" color="#887777">${c.etat === 'introuvable' ? 'recherchée par le Cercle. si vous l\'avez, apportez-la au comptoir.'
-                : c.etat === 'surplace' ? 'consultation sur place uniquement, dans l\'arrière-salle. 1 personne à la fois.'
-                : 'non réservable.'}</font></p>`}
           </td>
         </tr></table>
-        <p><font color="#cc0000"><b>▶ ${c.coms.length} commentaire${c.coms.length > 1 ? 's' : ''}</b></font></p>
+        <p>${c.description}</p>
+        ${et.reservable ? `
+          <form class="form-reservation">
+            réserver. n° client : <input name="client" size="6" autocomplete="off">
+            <input type="submit" value="réserver">
+          </form>
+          <p class="reservation-reponse"><small>retrait au comptoir du fond sous 7 jours. pas de livraison. ${L('commander', 'comment ça marche')}</small></p>`
+        : `<p><small>${c.etat === 'introuvable' ? 'recherchée par le Cercle. si vous l\'avez, apportez-la au comptoir.'
+            : c.etat === 'surplace' ? 'consultation sur place uniquement, dans l\'arrière-salle. 1 personne à la fois.'
+            : 'non réservable.'}</small></p>`}
+        <hr>
+        <h3>commentaires (${c.coms.length})</h3>
         ${c.coms.map(commentaire).join('')}
-        <form class="site-form"><font size="2">commenter :</font><br><textarea rows="2" cols="50"></textarea><br><button>envoyer</button></form>
+        <form class="site-form">
+          commenter :<br>
+          <textarea rows="3" cols="40"></textarea><br>
+          <input type="submit" value="envoyer">
+        </form>
         <p class="site-reponse"></p>`);
     };
   });
 
   // ---------- Nouveautés ----------
   pages['nouveautes'] = () => page(`
-    <h2><font color="#ffcc00">YENİ GELENLER</font> · nouveautés</h2>
+    <h2>nouveautés</h2>
     ${tableau(CASSETTES.filter(c => c.nouveau))}
     <p><b>Pic4Death</b> : arrivage samedi. un grenier de Bornova. six Kesik, deux cassettes sans étiquette que je n'ai pas encore regardées, et une boîte de bobines 16 mm qui sent la cire. je trie.</p>
     <p><b>Pic4Death</b> : <s>Liman, rıhtım 3</s>. retirée.</p>`);
@@ -546,18 +541,18 @@
     <ol>
       <li>Vous avez un numéro client. Si vous n'en avez pas, vous n'êtes pas ici.</li>
       <li>Vous réservez sur la fiche de la cassette, avec votre numéro.</li>
-      <li>Vous allez à <b>Ege Video, Kemeraltı</b>. Vous traversez le rayon des comédies. Au fond, le rideau rouge.</li>
+      <li>Vous allez à Ege Video, Kemeraltı. Vous traversez le rayon des comédies. Au fond, le rideau rouge.</li>
       <li>Au comptoir, vous dites « <i>geri sarmaya geldim</i> » (je viens rembobiner). Pas votre nom. Votre numéro.</li>
       <li>Vous payez en liquide. Vous repartez avec un sac Ege Video et une comédie par-dessus, pour la forme.</li>
     </ol>
     <p>Les cassettes « vérité » ne sont jamais réservées deux fois par le même numéro. Si vous redemandez une cassette que vous avez déjà, c'est que ce n'est pas vous.</p>
-    <p>${L('retrait', 'horaires du comptoir')} · ${L('regles', 'règles')}</p>`);
+    <p>${L('retrait', 'horaires du comptoir')}<br>${L('regles', 'règles')}</p>`);
 
   pages['retrait'] = page(`
     <h2>horaires du comptoir</h2>
     <p>Ege Video ouvre de 10 h à 22 h. Le comptoir du fond ouvre quand Ege Video ferme.</p>
-    <p>22 h – 2 h, tous les soirs sauf le vendredi.<br>Le samedi : arrivages. Ne venez pas, on trie.</p>
-    <p><font size="2" color="#887777">Si le rideau est tiré, le comptoir est fermé. Si le rideau est tiré et qu'il y a de la lumière, partez.</font></p>`);
+    <p>22 h - 2 h, tous les soirs sauf le vendredi.<br>Le samedi : arrivages. Ne venez pas, on trie.</p>
+    <p>Si le rideau est tiré, le comptoir est fermé. Si le rideau est tiré et qu'il y a de la lumière, partez.</p>`);
 
   pages['regles'] = page(`
     <h2>règles du comptoir</h2>
@@ -572,18 +567,18 @@
 
   // ---------- Pic4Death ----------
   pages['pic4death'] = page(`
-    <h2><font color="#ff3333">Pic4Death</font></h2>
-    <table cellpadding="8"><tr>
+    <h2>contact</h2>
+    <table border="0" cellpadding="0" cellspacing="10"><tr>
       <td valign="top">${Nav.affiche('cassettes/pic4death.jpg', 'pas de photo du comptoir (règle 2).', 120, 120)}</td>
       <td valign="top">
         <p>Je tiens le comptoir depuis 2009. Avant moi, c'était le Cercle, des gens qui achetaient des VHS 2 TL au marché aux puces et qui avaient peur de les regarder.</p>
         <p>Je regarde tout ce qui passe le rideau. Tout. C'est mon travail. Je ne vous dirai pas ce qui est vrai.</p>
         <p>Je ne vends pas aux gens qui posent trop de questions, ni aux gens qui en posent trop peu.</p>
         <p>Je réponds aux mails. Je ne réponds pas aux appels vidéo.</p>
-        <p align="right">— P4D</p>
+        <p>- P4D</p>
       </td>
     </tr></table>
-    <p><font size="2">clients fidèles ce mois-ci : kırmızı_perde · VHS_Baba · DeadDogs · d34danim · et_suyu</font></p>`);
+    <p>clients fidèles ce mois-ci : kırmızı_perde, VHS_Baba, DeadDogs, d34danim, et_suyu</p>`);
 
   // ---------- Le Cercle (forum des membres) ----------
   const posts = [
@@ -614,11 +609,19 @@
   ];
   const fil = liste => liste.map(([pseudo, texte]) => commentaire([pseudo, '', texte])).join('');
   pages['cercle'] = page(`
-    <h2>le cercle · forum des membres</h2>
-    <p><font size="2">14 membres. cotisation : 10 TL par an, ou une cassette. réunions le premier jeudi du mois, au fond du café sans enseigne de Basmane.</font></p>
+    <h2>le cercle</h2>
+    <p>forum des membres. 14 membres. cotisation : 10 TL par an, ou une cassette.<br>
+    réunions le premier jeudi du mois, au fond du café sans enseigne de Basmane.</p>
+    <hr>
     ${fil(posts)}
-    <p>${L('cercle/2', 'page 2 &gt;&gt;')} · ${L('adhesion', 'adhérer')} · ${L('projets', 'nos projets')} · ${L('recherches', 'recherches')}</p>`);
-  pages['cercle/2'] = page(`<h2>le cercle · page 2</h2>${fil(posts2)}<p>${L('cercle', '&lt;&lt; page 1')}</p>`);
+    <hr>
+    <p>${L('cercle/2', 'page 2')}<br>${L('adhesion', 'adhérer')}<br>${L('projets', 'nos projets')}<br>${L('recherches', 'recherches')}</p>`);
+  pages['cercle/2'] = page(`
+    <h2>le cercle (page 2)</h2>
+    <hr>
+    ${fil(posts2)}
+    <hr>
+    <p>${L('cercle', 'page 1')}</p>`);
 
   pages['adhesion'] = page(`
     <h2>adhérer au Cercle</h2>
@@ -641,7 +644,7 @@
     <h2>recherches en cours : A. Belgin</h2>
     <p>Actrice et réalisatrice d'İzmir, connue pour ses films érotiques à petit budget, souvent rangés à tort dans l'horreur. Le Cercle s'intéresse à elle pour une autre raison.</p>
     ${tableau(['devour', 'apartment-12', 'body-language', 'gece-kusu', 'photo-1944'].map(id => parId[id]))}
-    <p><font size="2">membre « Projeksiyon » (avant) : <i>quelqu'un a une idée de son âge ? sur Devour Me Softly elle fait 35-40 ans max.</i></font></p>`);
+    <p>membre « Projeksiyon » (avant) : <i>quelqu'un a une idée de son âge ? sur Devour Me Softly elle fait 35-40 ans max.</i></p>`);
   pages['recherches/1961'] = pages['catalogue/gece-kusu'];
   pages['recherches/1944'] = pages['catalogue/photo-1944'];
 
@@ -652,13 +655,13 @@
     vue.querySelectorAll('.form-reservation').forEach(form => {
       form.addEventListener('submit', ev => {
         ev.preventDefault();
-        vue.querySelector('.reservation-reponse').innerHTML = '<font size="2" color="#ffcc00">numéro client inconnu. demandez au comptoir.</font>';
+        vue.querySelector('.reservation-reponse').innerHTML = 'numéro client inconnu. demandez au comptoir.';
       });
     });
     vue.querySelectorAll('.site-form').forEach(form => {
       form.addEventListener('submit', ev => {
         ev.preventDefault();
-        vue.querySelector('.site-reponse').innerHTML = '<font size="2" color="#887777">commentaire envoyé au comptoir. il sera lu. peut-être.</font>';
+        vue.querySelector('.site-reponse').innerHTML = 'commentaire envoyé au comptoir. il sera lu. peut-être.';
         form.querySelector('textarea').value = '';
       });
     });
@@ -671,11 +674,16 @@
     const vitrine = chemin.startsWith('vitrine');
     const cassette = parId[chemin.replace('catalogue/', '')];
     Nav.pages[S + (chemin ? '/' + chemin : '')] = () => ({
-      titre: vitrine ? 'EGE VİDEO' : cassette ? cassette.titre + ' · le cercle des bobines perdues' : 'LE CERCLE DES BOBINES PERDUES',
+      titre: vitrine ? 'EGE VİDEO'
+        : !chemin ? 'le cercle des bobines perdues'
+        : 'le cercle - ' + (cassette ? cassette.titre
+          : chemin.startsWith('rayon/') ? RAYONS[chemin.slice(6)].nom
+          : chemin.split('/')[0]).toLowerCase(),
       html: typeof contenu === 'function' ? contenu() : contenu,
       couleurs: vitrine
         ? { fond: '#ffffee', texte: '#003366', lien: '#0055aa' }
-        : { fond: '#080303', texte: '#d8cfc0', lien: '#ff4d4d' },
+        : { fond: '#ffffff', texte: '#000000', lien: '#0000ee', lienVu: '#551a8b' },
+      classe: vitrine ? '' : 'site-bobines',
       apres: brancherFormulaires
     });
   });
