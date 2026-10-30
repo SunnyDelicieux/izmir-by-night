@@ -68,6 +68,38 @@
 			overflow-y: auto;
 		}
 
+		.wandow.little {
+			z-index: 5;
+		}
+
+		/* le dossier caché, sous la petite fenêtre des mots de passe (on le voit en la déplaçant) */
+		.dossier-cache {
+			position: absolute;
+			left: 418px;
+			top: 424px;
+			width: 74px;
+			padding: 6px;
+			text-align: center;
+			font-size: 9px;
+			border: 1px dashed transparent;
+			border-radius: 6px;
+			cursor: pointer;
+			text-decoration: none;
+			z-index: 1;
+		}
+
+		.dossier-cache:hover {
+			background: #ffffff42;
+			border: 1px dashed black;
+		}
+
+		.dossier-cache img {
+			display: block;
+			width: 40px;
+			margin: auto;
+			margin-bottom: 4px;
+		}
+
 		.header {
 			background: black;
 			color: #848484;
@@ -209,14 +241,13 @@
 			$(this).css("z-index", windowCount + 10);
 		});
 
-		$(".open-page").on("click", function(e) {
+		$(document).on("click", ".open-page", function(e) {
 			e.preventDefault();
+			ouvrirFenetre($(this).data("url"), $(this).data("title"), $(this).data("width"), $(this).data("height"));
+		});
 
-			const url = $(this).data("url");
-			const title = $(this).data("title");
-
-			const width = $(this).data("width");
-			const height = $(this).data("height");
+		// ouvre une page dans une nouvelle fenêtre du bureau (cache.html s'en sert pour le PDF)
+		window.ouvrirFenetre = function(url, title, width, height) {
 
 			windowCount++;
 
@@ -255,7 +286,7 @@
 			newWindow.find(".close").on("click", function() {
 				newWindow.remove();
 			});
-		});
+		};
 	});
 	</script>
 </head>
@@ -278,6 +309,11 @@
 			<span class="menu-label">Anarch</span>
 		</a>
 
+
+		<a href="navigateur.html" class="open-page" data-url="navigateur.html" data-title="Google Chrome" data-width="860" data-height="600">
+			<img src="navigateur/chrome.svg">
+			<span class="menu-label">Chrome</span>
+		</a>
 
 		<a href="vermine.html" class="open-page" data-url="vermine.html" data-title="VERMINE.EXE — Internet Explorer" data-width="820" data-height="620">
 			<img src="https://s3.amazonaws.com/cloud.kumu.io/accounts/608519/1283709/2e7c5ff1-ed8a-4c6a-b0a4-84616fd52861.png">
@@ -304,6 +340,11 @@
 	</a>
 
 </div>
+
+	<a class="open-page dossier-cache" data-url="cache.html" data-title="nouveau dossier (2)" data-width="420" data-height="260">
+		<img src="folder.png">
+		<span class="menu-label">nouveau dossier (2)</span>
+	</a>
 
 	<div class="wandow little">
 		<div class="header">  ପ(๑•ᴗ•๑)ଓ ♡ </div>
