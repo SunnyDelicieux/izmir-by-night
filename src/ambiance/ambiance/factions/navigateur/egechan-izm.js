@@ -1,7 +1,6 @@
 // ============================================================
 //  EGE-CHAN \\izm\\ : la page écrite par l'autrice (EGECHAN/index.html de l'ancien site),
-//  reprise telle quelle. Seules les dates ont été décalées en mars 2013.
-//  Les posts class="hidden" ne sont visibles qu'en mode modérateur.
+//  reprise telle quelle, sans les posts cachés. Seules les dates ont été décalées en mars 2013.
 // ============================================================
 
 Nav.EGECHAN_IZM = `
@@ -11,7 +10,6 @@ Nav.EGECHAN_IZM = `
 				<li><strong>1. </strong>Don't be a dick</li>
 				<li><strong>2. </strong>Izmir and Aegean topics only, go to \\a\\ for everything else</li>
 				<li><strong>3. </strong>Don't get doxxed like the last guy</li>
-				<li class="hidden"><strong>4. </strong>Ce qui est posté en hidden reste en hidden. Ici personne sait qui vous êtes. Même eux.</li>
 				</ul>
 
 
@@ -34,7 +32,6 @@ Nav.EGECHAN_IZM = `
 						comme d'hab</p>
 					</div>
 				</div>
-
 
 
 				<!-- ===== LE PORT ===== -->
@@ -67,13 +64,6 @@ Nav.EGECHAN_IZM = `
 						<p>mon cousin est vigile là-bas. les caméras du quai 3 étaient coupées depuis minuit. « maintenance ».</p>
 					</div>
 
-					<div class="reply hidden" id="p9343504">
-						<i><span class="tag">[hidden]</span> Anonymous 03/04/13(Mon)05:06:13 No.9343504</i>
-						<p>c'était pas des chiens. j'étais sur le quai 4.<br>
-						un mec est sorti d'entre les conteneurs après. il a marché jusqu'à une voiture. il marchait normal, il se pressait pas.<br>
-						du sang jusqu'aux coudes. il s'est essuyé les mains avec un mouchoir en tissu, comme après un kumru.</p>
-					</div>
-
 					<div class="reply" id="p9343505">
 						<i>liman35 03/04/13(Mon)05:09:44 No.9343505</i>
 						<p><a href="#p9343503">&gt;&gt;9343503</a><br>
@@ -99,157 +89,6 @@ Nav.EGECHAN_IZM = `
 					<div class="reply" id="p9343531">
 						<i>liman35 03/05/13(Tue)02:03:12 No.9343531</i>
 						<p>toujours rien. mon père veut plus en parler. il dit qu'on lui a fait signer un papier.</p>
-					</div>
-				</div>
-
-
-				<!-- ===== PLAQUES ===== -->
-				<div class="post hidden" id="p9343540">
-					<h2><span class="tag">[hidden]</span> plaques</h2>
-					<i>Anonymous 03/05/13(Tue)03:12:55 No.9343540</i>
-					<p>
-					quelqu'un a relevé les plaques des voitures banalisées du port ? je paie bien.<br>
-					pas besoin de savoir pourquoi.
-					</p>
-
-					<div class="reply hidden" id="p9343543">
-						<i>Anonymous 03/05/13(Tue)03:20:08 No.9343543</i>
-						<p>06 quelque chose. trois Passat noires. 06 c'est Ankara lol, cherche pas plus loin</p>
-					</div>
-
-					<div class="reply hidden" id="p9343546">
-						<i>Anonymous 03/05/13(Tue)03:24:41 No.9343546</i>
-						<p><a href="#p9343540">&gt;&gt;9343540</a><br>
-						qui demande ?</p>
-					</div>
-
-					<div class="reply hidden" id="p9343547">
-						<i>Anonymous 03/05/13(Tue)03:25:02 No.9343547</i>
-						<p><a href="#p9343546">&gt;&gt;9343546</a><br>
-						personne.</p>
-					</div>
-				</div>
-
-
-				<!-- ===== LE CLUB ===== -->
-				<div class="post hidden" id="p9343380">
-					<h2><span class="tag">[hidden]</span> le club sans nom</h2>
-					<i>Anonymous 02/27/13(Wed)04:40:19 No.9343380</i>
-					<p>
-					<span class="green">&gt;Alsancak, pas d'enseigne, toujours la queue</span><br>
-					<span class="green">&gt;réussis à rentrer, on m'a choisi dans la file</span><br>
-					<span class="green">&gt;un verre offert, un papier à signer, je lis pas</span><br>
-					<span class="green">&gt;me réveille chez moi à 16h</span><br>
-					<span class="green">&gt;500 TL dans la poche et un bleu dans le cou</span><br>
-					<span class="green">&gt;aucun souvenir</span><br>
-					j'y retourne samedi.
-					</p>
-
-					<div class="reply hidden" id="p9343384">
-						<i>Anonymous 02/27/13(Wed)04:52:33 No.9343384</i>
-						<p>ils prennent que les jolis. t'es joli anon ?</p>
-					</div>
-
-					<div class="reply hidden" id="p9343389">
-						<i>Anonymous 02/27/13(Wed)05:30:10 No.9343389</i>
-						<p>mon ex y est allée six fois. elle mange plus, elle dort le jour, elle a lâché la fac. elle dit qu'elle a jamais été aussi bien.</p>
-					</div>
-
-					<div class="reply hidden" id="p9343392">
-						<i>Anonymous 02/27/13(Wed)06:01:47 No.9343392</i>
-						<p>j'ai vu un adjoint de la belediye dans la file. et un juge. pas dans la file, eux. ils rentraient direct.</p>
-					</div>
-
-					<div class="reply hidden" id="p9343395">
-						<i>Anonymous 02/27/13(Wed)06:14:20 No.9343395</i>
-						<p>j'ai le numéro du videur. 50 TL. MP</p>
-					</div>
-				</div>
-
-
-				<!-- ===== MANTEAU VERT ===== -->
-				<div class="post hidden" id="p9343260">
-					<h2><span class="tag">[hidden]</span> manteau vert, vapur de 7h40</h2>
-					<i>Anonymous 02/25/13(Mon)23:58:02 No.9343260</i>
-					<p>
-					Karşıyaka → Konak, tous les matins, 7h40. manteau vert, sac en toile, elle lit sur le pont même quand il pleut.<br>
-					quelqu'un a son nom ?
-					</p>
-
-					<div class="reply hidden" id="p9343263">
-						<i>Anonymous 02/26/13(Tue)00:10:39 No.9343263</i>
-						<p>elle descend à Pasaport. bosse à la banque en face, guichet 2.</p>
-					</div>
-
-					<div class="reply hidden" id="p9343266">
-						<i>Anonymous 02/26/13(Tue)00:31:15 No.9343266</i>
-						<p>elle habite à Bostanlı. balcon au 4e, des géraniums. elle les arrose à 22h.</p>
-					</div>
-
-					<div class="reply hidden" id="p9343270">
-						<i>B. #mod 02/26/13(Tue)01:02:44 No.9343270</i>
-						<p>pas de photo de visage. pas de nom complet. le reste je m'en fous.</p>
-					</div>
-
-					<div class="reply hidden" id="p9343274">
-						<i>Anonymous 02/26/13(Tue)01:15:30 No.9343274</i>
-						<p>Ayşe. ça suffit pour l'instant.</p>
-					</div>
-				</div>
-
-
-				<!-- ===== LE LIEN ===== -->
-				<div class="post hidden" id="p9343350">
-					<h2><span class="tag">[hidden]</span> lien mis à jour</h2>
-					<i>B. #mod 03/01/13(Fri)02:22:22 No.9343350</i>
-					<p>
-					l'ancien est mort. le nouveau finit en .onion, vous savez où le trouver.<br>
-					pas de flics, pas de gosses. le reste c'est entre vous.
-					</p>
-
-					<div class="reply hidden" id="p9343353">
-						<i>Anonymous 03/01/13(Fri)02:40:51 No.9343353</i>
-						<p>quelqu'un vend des fiches de la sécu là-bas. nom, adresse, téléphone, médecin traitant. 5 TL la fiche.</p>
-					</div>
-
-					<div class="reply hidden" id="p9343356">
-						<i>Anonymous 03/01/13(Fri)03:07:18 No.9343356</i>
-						<p>j'ai acheté la mienne pour voir. tout est juste. même l'ancienne adresse de ma mère.</p>
-					</div>
-
-					<div class="reply hidden" id="p9343359">
-						<i>Anonymous 03/01/13(Fri)03:44:06 No.9343359</i>
-						<p>y a un mec qui vend des listes « d'abonnés de nuit ». des gens qui sortent jamais le jour. adresse et horaires. qui achète ça ?</p>
-					</div>
-
-					<div class="reply hidden" id="p9343360">
-						<i>Anonymous 03/01/13(Fri)03:45:30 No.9343360</i>
-						<p><a href="#p9343359">&gt;&gt;9343359</a><br>
-						des gens qui ont peur du noir</p>
-					</div>
-				</div>
-
-
-				<!-- ===== POURQUOI ON TIENT ===== -->
-				<div class="post hidden" id="p9343200">
-					<h2><span class="tag">[hidden]</span> pourquoi on tient</h2>
-					<i>B. #mod 03/01/13(Fri)04:04:04 No.9343200</i>
-					<p>
-					on me demande pourquoi egechan tient encore alors que tout le reste tombe.<br>
-					eux ils ont l'argent, la police, les juges, des siècles d'avance. ils achètent tout ce qui a un visage.<br>
-					nous on en a pas. tant que personne sait qui poste, personne peut rien acheter.<br>
-					pas même eux.
-					</p>
-
-					<div class="reply hidden" id="p9343204">
-						<i>Anonymous 03/01/13(Fri)04:10:47 No.9343204</i>
-						<p>« eux » c'est qui</p>
-					</div>
-
-					<div class="reply hidden" id="p9343205">
-						<i>Anonymous 03/01/13(Fri)04:11:20 No.9343205</i>
-						<p><a href="#p9343204">&gt;&gt;9343204</a><br>
-						si tu demandes, t'as pas encore besoin de savoir</p>
 					</div>
 				</div>
 
@@ -282,10 +121,6 @@ Nav.EGECHAN_IZM = `
 						<p>t'attends pas à ce que ça tienne</p>
 					</div>
 
-					<div class="reply hidden" id="p9343133">
-						<i><span class="tag">[hidden]</span> Anonymous 03/01/13(Fri)03:52:30 No.9343133</i>
-						<p>le sous-board arménien a pas fermé pour « contenu inapproprié ». quelqu'un a donné les IP. trois mecs ont perdu leur boulot la même semaine. personne a rien posté depuis.</p>
-					</div>
 				</div>
 
 
@@ -310,10 +145,6 @@ Nav.EGECHAN_IZM = `
 						<p>pas de raison. je dors jamais avant le premier ezan.</p>
 					</div>
 
-					<div class="reply hidden" id="p9343226">
-						<i><span class="tag">[hidden]</span> Anonymous 03/02/13(Sat)03:48:09 No.9343226</i>
-						<p>moi. je regarde la fenêtre du 3e en face. elle laisse toujours la lumière. elle sait pas que la rue est en pente et qu'on voit tout de chez moi.</p>
-					</div>
 				</div>
 
 
@@ -366,12 +197,6 @@ Nav.EGECHAN_IZM = `
 						<p>mon oncle a pris un fumigène dans la jambe en 98 au derby. il le raconte à chaque bayram. il montre la cicatrice. tous les ans. on connaît la cicatrice.</p>
 					</div>
 
-					<div class="reply hidden" id="p9343324">
-						<i><span class="tag">[hidden]</span> Anonymous 02/26/13(Tue)22:24:56 No.9343324</i>
-						<p><a href="#p9343322">&gt;&gt;9343322</a><br>
-						le mec qui l'a lancé vit toujours à Buca. j'ai l'adresse si ton oncle veut finir l'histoire.</p>
-					</div>
-
 					<div class="reply" id="p9343330">
 						<i>Anonymous 02/26/13(Tue)22:41:09 No.9343330</i>
 						<p>
@@ -415,10 +240,6 @@ Nav.EGECHAN_IZM = `
 						<p>feels bad</p>
 					</div>
 
-					<div class="reply hidden" id="p9343161">
-						<i><span class="tag">[hidden]</span> Anonymous 03/03/13(Sun)08:30:02 No.9343161</i>
-						<p>le boyozcu de Kıbrıs Şehitleri ouvre à 6h. la fille de la pâtisserie d'en face ferme à 6h20 et rentre seule par la petite rue. pas de caméra dans la petite rue.</p>
-					</div>
 				</div>
 
 
@@ -487,9 +308,5 @@ Nav.EGECHAN_IZM = `
 						Ege. et si on t'invite aux soirées gratuites du nouveau club étudiant, dis non. tu peux pas faire une soirée avec eux sans que les flics débarquent et tabassent tout le monde.</p>
 					</div>
 
-					<div class="reply hidden" id="p9343448">
-						<i><span class="tag">[hidden]</span> Anonymous 03/01/13(Fri)00:20:41 No.9343448</i>
-						<p>le club étudiant paye les entrées et choisit qui reste à la fin. regarde qui revient pas en cours le lundi. regarde qui revient, surtout.</p>
-					</div>
 				</div>
 `;

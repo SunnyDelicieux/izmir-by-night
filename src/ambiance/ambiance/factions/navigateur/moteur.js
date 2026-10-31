@@ -2,18 +2,17 @@
    LE NAVIGATEUR DU PC 1 (un faux Chrome de 2014)
 
    Les pages des sites sont dans les autres fichiers de ce dossier :
-     bobines.js       le Cercle des bobines perdues (b0b1nes0.onion)
-     egechan.js       ege-chan.org (et egechan-izm.js pour le board \izm\)
+     egechan.js       ege-chan.org (et egechan-izm.js pour le contenu du board \izm\)
      historique.js    l'historique d'Inga, ses recherches, les sites les plus visités
 
    Une page s'ajoute comme ça :
-     Nav.pages["ege-chan.org/a"] = () => ({ titre: "...", html: "..." });
+     Nav.pages["ege-chan.org/izm"] = () => ({ titre: "...", html: "..." });
    Facultatif :
-     couleurs : { fond, texte, lien, lienVu }   les couleurs du site (lienVu : un lien déjà visité)
+     couleurs : { fond, texte, lien }      les couleurs du site
      apres(vue) : lancé une fois la page affichée (pour brancher un formulaire, par exemple)
 
-   Les adresses s'écrivent sans http:// ni www : "ege-chan.org/a/6".
-   Un lien vers une autre page : <a data-lien="ege-chan.org/a">...</a>
+   Les adresses s'écrivent sans http:// ni www : "ege-chan.org/izm".
+   Un lien vers une autre page : <a data-lien="ege-chan.org/izm">...</a>
    Une adresse inconnue affiche la page d'erreur de Chrome.
 ========================= */
 
@@ -37,17 +36,6 @@ const RECHERCHE = "google.fr/search?q=";
 // <a data-lien="adresse">texte</a>
 Nav.lien = (adresse, texte) => `<a data-lien="${adresse}">${texte}</a>`;
 
-// Une image de nav/images/, ou un cadre avec sa description tant qu'elle n'existe pas
-Nav.affiche = (chemin, description, largeur, hauteur) => `
-    <div class="affiche" style="width:${largeur}px;height:${hauteur}px">
-        <span>${description}</span>
-        <img src="navigateur/images/${chemin}" alt="" onerror="this.remove()">
-    </div>`;
-
-// Un petit bouton clignotant de site perso (88 x 31) ; le texte s'affiche tant que le gif n'existe pas
-Nav.blinkie = (gif, texte) => `
-    <span class="blinkie"><img src="navigateur/images/blinkies/${gif}" alt="" onerror="this.remove()">${texte}</span>`;
-
 // La date d'il y a « jours » jours, en 2014 (comme le livre d'or de vermine.html)
 Nav.date = (jours) => {
     const aujourdhui = new Date();
@@ -62,7 +50,7 @@ Nav.dateEnToutesLettres = (date) =>
    TROUVER UNE PAGE
 ========================= */
 
-// "https://www.ege-chan.org/a/" → "ege-chan.org/a"
+// "https://www.ege-chan.org/izm/" → "ege-chan.org/izm"
 function nettoyer(adresse) {
     return adresse.trim()
         .replace(/^https?:\/\//i, "")
@@ -129,7 +117,6 @@ Nav.aller = (adresse, nouvelleVisite = true) => {
     vue.style.background = couleurs.fond || "#fff";
     vue.style.color = couleurs.texte || "#222";
     vue.style.setProperty("--lien", couleurs.lien || "#1a0dab");
-    vue.style.setProperty("--lien-vu", couleurs.lienVu || couleurs.lien || "#1a0dab");
     vue.className = page.classe || "";
     vue.innerHTML = page.html;
     vue.scrollTop = 0;
@@ -141,12 +128,6 @@ Nav.aller = (adresse, nouvelleVisite = true) => {
 
     document.getElementById("precedent").disabled = Nav.position <= 0;
     document.getElementById("suivant").disabled = Nav.position >= Nav.visites.length - 1;
-
-    // les liens déjà visités (l'historique d'Inga, et ce qu'on a ouvert depuis), comme dans un vrai navigateur
-    const visitees = new Set([...(Nav.historique || []).map((visite) => visite.adresse), ...Nav.visites]);
-    vue.querySelectorAll("a[data-lien]").forEach((lien) => {
-        if (visitees.has(nettoyer(lien.dataset.lien))) lien.classList.add("vu");
-    });
 
     if (page.apres) page.apres(vue);
 };

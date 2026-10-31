@@ -4,7 +4,7 @@
    Une ligne par visite, la plus récente en haut.
      jour    : 0 = aujourd'hui, 1 = hier, 2 = avant-hier… (la date s'écrit toute seule, en 2014)
      heure   : l'heure de la visite
-     adresse : une page qui existe (voir bobines.js et egechan.js),
+     adresse : une page qui existe (voir egechan.js),
                ou une recherche : recherche("ce qu'elle a tapé")
    Une adresse qui n'existe pas affiche la page d'erreur de Chrome.
 ========================= */
@@ -12,43 +12,24 @@
 const recherche = (texte) => "google.fr/search?q=" + encodeURIComponent(texte);
 
 Nav.historique = [
-    { jour: 0, heure: "05:02", adresse: "ege-chan.org/a/6" },
-    { jour: 0, heure: "04:58", adresse: "ege-chan.org/a" },
+    { jour: 0, heure: "05:02", adresse: "ege-chan.org/izm" },
     { jour: 0, heure: "04:47", adresse: recherche("attraper un rat sans piège") },
     { jour: 0, heure: "04:40", adresse: "ege-chan.org/izm" },
-    { jour: 0, heure: "04:12", adresse: "b0b1nes0.onion/catalogue/kirmizi-oda" },
-    { jour: 0, heure: "04:09", adresse: "b0b1nes0.onion/catalogue/ayna" },
-    { jour: 0, heure: "04:05", adresse: "b0b1nes0.onion/rayon/zihin" },
-    { jour: 0, heure: "04:03", adresse: "b0b1nes0.onion" },
 
     { jour: 1, heure: "06:31", adresse: recherche("chat ne mange plus se cache") },
-    { jour: 1, heure: "05:58", adresse: "ege-chan.org/pol" },
-    { jour: 1, heure: "05:40", adresse: "ege-chan.org/turkey" },
-    { jour: 1, heure: "03:15", adresse: "b0b1nes0.onion/catalogue/liman" },
-    { jour: 1, heure: "03:11", adresse: "b0b1nes0.onion/nouveautes" },
+    { jour: 1, heure: "05:40", adresse: "ege-chan.org/izm" },
 
     { jour: 3, heure: "02:20", adresse: recherche("combien de temps sans sortir de chez soi") },
-    { jour: 3, heure: "01:48", adresse: "b0b1nes0.onion/recherches" },
-    { jour: 3, heure: "01:46", adresse: "b0b1nes0.onion/catalogue/gece-kusu" },
-    { jour: 3, heure: "01:30", adresse: "b0b1nes0.onion/cercle/2" },
-    { jour: 3, heure: "01:29", adresse: "b0b1nes0.onion/cercle" },
+    { jour: 3, heure: "01:48", adresse: "ege-chan.org/izm" },
 
-    { jour: 6, heure: "23:58", adresse: "ege-chan.org/turkey/2" },
-    { jour: 6, heure: "23:40", adresse: "b0b1nes0.onion/vitrine" }
+    { jour: 6, heure: "23:58", adresse: "ege-chan.org/izm" }
 ];
 
 
 /* Les vignettes de la page « Nouvel onglet » (8 au maximum) */
 
 Nav.plusVisites = [
-    "ege-chan.org/izm",
-    "b0b1nes0.onion",
-    "ege-chan.org/a",
-    "b0b1nes0.onion/catalogue",
-    "ege-chan.org/pol",
-    "b0b1nes0.onion/cercle",
-    "ege-chan.org/turkey",
-    "b0b1nes0.onion/rayon/gercek"
+    "ege-chan.org/izm"
 ];
 
 

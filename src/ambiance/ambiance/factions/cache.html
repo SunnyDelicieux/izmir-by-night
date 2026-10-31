@@ -61,7 +61,7 @@
 <body>
 
 <!-- LE DOSSIER CACHÉ du PC 1 : il est sous la petite fenêtre des mots de passe du bureau (index.html).
-     Il ne contient qu'un PDF, qui s'ouvre dans une fenêtre du faux PC.
+     Il ne contient qu'un PDF, qui s'ouvre dans une fenêtre du faux PC, comme une image (lecteur-pdf.html).
      Le PDF va dans src/ambiance/factions/cache/ ; si son nom change, change data-url et le texte ci-dessous. -->
 
 <div class="chemin">C:\Users\Inga\Bureau\nouveau dossier (2)\</div>
@@ -72,11 +72,13 @@
 </a>
 
 <script>
-// le PDF s'ouvre dans une nouvelle fenêtre du bureau (ouvrirFenetre, dans index.html)
+// le PDF s'ouvre dans une nouvelle fenêtre du bureau (ouvrirFenetre, dans index.html),
+// avec lecteur-pdf.html : la page seule, sans les boutons du lecteur de Chrome.
+// 420 x 600 : une fenêtre à peu près au format d'une feuille A4.
 document.querySelector(".fichier").addEventListener("click", (e) => {
 	e.preventDefault();
 	const fichier = e.currentTarget;
-	parent.ouvrirFenetre(fichier.dataset.url, fichier.dataset.title, 640, 560);
+	parent.ouvrirFenetre("lecteur-pdf.html?pdf=" + fichier.dataset.url, fichier.dataset.title, 420, 600);
 });
 </script>
 

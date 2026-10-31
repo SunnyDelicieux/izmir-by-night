@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>document</title>
+	<style>
+		html, body {
+			margin: 0;
+			height: 100%;
+			overflow: hidden;
+			background: #000;
+		}
+
+		/* la page du PDF : sa place et son zoom sont réglés par le script (molette de la souris) */
+		#page {
+			position: absolute;
+			left: 0;
+			top: 0;
+			transform-origin: 0 0;
+		}
+
+		#page canvas {
+			display: block;
+		}
+
+		/* le texte du PDF, invisible mais sélectionnable, posé sur l'image */
+		.textLayer {
+			position: absolute;
+			inset: 0;
+			overflow: hidden;
+			line-height: 1;
+			text-size-adjust: none;
+			transform-origin: 0 0;
+		}
+
+		.textLayer span,
+		.textLayer br {
+			color: transparent;
+			position: absolute;
+			white-space: pre;
+			cursor: text;
+			transform-origin: 0% 0%;
+		}
+
+		.textLayer ::selection {
+			background: rgba(0, 0, 255, 0.3);
+		}
+
+		#erreur {
+			color: #848484;
+			font: 12px monospace;
+			padding: 14px;
+		}
+	</style>
+</head>
+<body>
+
+<!-- LE LECTEUR DE PDF DU PC 1 : il affiche la première page d'un PDF comme une image,
+     sans les boutons du lecteur de Chrome, et le texte reste sélectionnable.
+     La molette de la souris zoome là où se trouve le curseur (jusqu'à ZOOM_MAX).
+     Le PDF à ouvrir est dans l'adresse : lecteur-pdf.html?pdf=cache/document.pdf
+     Il utilise pdf.js (la bibliothèque de Mozilla qui lit les PDF), chargée depuis cdnjs comme jQuery. -->
+
+<div id="page"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+const ZOOM_MAX = 3;   // jusqu'à 3 fois la taille de départ
+
+const zone = document.getElementById("page");
+
+// LE ZOOM À LA MOLETTE : on zoome vers le curseur, et la page ne sort jamais de la fenêtre
+function brancherLeZoom(largeur, hauteur) {
+
+	let zoom = 1, x = 0, y = 0;
+
+	function placer() {
+		// plus petite que la fenêtre : centrée ; plus grande : elle ne laisse pas de vide sur les bords
+		const l = largeur * zoom, h = hauteur * zoom;
+		x = l <= innerWidth ? (innerWidth - l) / 2 : Math.min(0, Math.max(innerWidth - l, x));
+		y = h <= innerHeight ? (innerHeight - h) / 2 : Math.min(0, Math.max(innerHeight - h, y));
+		zone.style.transform = `translate(${x}px, ${y}px) scale(${zoom})`;
+	}
+
+	addEventListener("wheel", (e) => {
+		e.preventDefault();
+		const nouveau = Math.min(ZOOM_MAX, Math.max(1, zoom * (e.deltaY < 0 ? 1.2 : 1 / 1.2)));
+		// le point sous le curseur reste sous le curseur
+		x = e.clientX - (e.clientX - x) * (nouveau / zoom);
+		y = e.clientY - (e.clientY - y) * (nouveau / zoom);
+		zoom = nouveau;
+		placer();
+	}, { passive: false });
+
+	placer();
+	requestAnimationFrame(() => (zone.style.transition = "transform 0.08s ease-out"));
+}
+
+(async () => {
+
+	const fichier = new URLSearchParams(location.search).get("pdf");
+
+	try {
+		pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+		const pdf = await pdfjsLib.getDocument(fichier).promise;
+		const page = await pdf.getPage(1);
+
+		// la page entière tient dans la fenêtre
+		const taille = page.getViewport({ scale: 1 });
+		const echelle = Math.min(innerWidth / taille.width, innerHeight / taille.height);
+		const vue = page.getViewport({ scale: echelle });
+
+		// l'image, dessinée assez fine pour rester nette quand on zoome
+		const nettete = (window.devicePixelRatio || 1) * ZOOM_MAX;
+		const canvas = document.createElement("canvas");
+		canvas.width = Math.floor(vue.width * nettete);
+		canvas.height = Math.floor(vue.height * nettete);
+		canvas.style.width = Math.floor(vue.width) + "px";
+		canvas.style.height = Math.floor(vue.height) + "px";
+		zone.append(canvas);
+
+		await page.render({
+			canvasContext: canvas.getContext("2d"),
+			viewport: vue,
+			transform: [nettete, 0, 0, nettete, 0, 0]
+		}).promise;
+
+		brancherLeZoom(Math.floor(vue.width), Math.floor(vue.height));
+
+		// le texte par-dessus, pour pouvoir le sélectionner
+		const texte = document.createElement("div");
+		texte.className = "textLayer";
+		texte.style.setProperty("--scale-factor", echelle);
+		zone.append(texte);
+
+		await pdfjsLib.renderTextLayer({
+			textContentSource: await page.getTextContent(),
+			container: texte,
+			viewport: vue
+		}).promise;
+
+	} catch (e) {
+		zone.outerHTML = `<p id="erreur">impossible d'ouvrir ${fichier}.</p>`;
+	}
+})();
+</script>
+
+</body>
+</html>

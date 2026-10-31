@@ -8,9 +8,7 @@
 
 <!--
     vermine.exe, la face cachée : l'espace des membres du culte (des Setites).
-    Une voix parle au visiteur, lui pose des questions et retourne chacune de ses réponses
-    en « chaîne à briser ». C'est la façon de penser des Setites : ne jamais forcer,
-    seulement offrir ; tout ce qui te retient est une chaîne ; Set est le libérateur.
+    Pour l'instant : un placeholder, puis la question qui termine la conversation.
     La conversation est écrite dans « conversation », en bas : les textes se changent là.
 -->
 
@@ -201,55 +199,7 @@
 const conversation = [
     {
         dit: [
-            "Tu as trouvé la porte.",
-            "Personne ne la trouve par hasard. On la trouve quand on est prêt à la chercher."
-        ],
-        choix: [
-            { texte: "Je suis tombé dessus, c'est tout.", reponse: "Bien sûr. Comme tu « tombes » sur tout ce que tu désires sans oser le dire." },
-            { texte: "Qui êtes-vous ?", reponse: "Ceux qui ont ouvert les yeux. Rien de plus. Rien de moins." },
-            { texte: "C'est une secte, votre truc.", reponse: "Une secte te demande quelque chose. Nous, nous ne te demandons rien. Nous t'offrons." }
-        ]
-    },
-    {
-        dit: [
-            "Dis-moi une chose. Une seule.",
-            "Qu'est-ce qui te retient ?"
-        ],
-        choix: [
-            { texte: "Ma famille.", chaine: "le sang", reponse: "Le sang. Ils t'aiment, oui, à condition que tu restes celui qu'ils ont décidé que tu serais. Ce n'est pas de l'amour : c'est une laisse brodée." },
-            { texte: "Mon travail, l'argent.", chaine: "l'or", reponse: "L'or. Tu passes tes nuits à servir le jour d'un autre. Et tu appelles ça une vie." },
-            { texte: "Mes principes.", chaine: "la loi", reponse: "La loi. Des règles écrites par des morts, pour que les vivants restent sages. Qui t'a appris qu'elles étaient à toi ?" },
-            { texte: "La peur.", chaine: "la peur", reponse: "La peur. La plus honnête de toutes les chaînes : au moins, elle ne prétend pas t'aimer." }
-        ]
-    },
-    {
-        dit: [
-            "Maintenant, ferme les yeux.",
-            "Quand personne ne regarde, qu'est-ce que tu veux vraiment ?"
-        ],
-        choix: [
-            { texte: "Du pouvoir.", reponse: "Alors cesse de t'en excuser. Ceux qui le possèdent ne se sont jamais excusés." },
-            { texte: "Être aimé.", reponse: "Tu veux qu'on te voie tel que tu es. Ici, nous te voyons. Entièrement." },
-            { texte: "Oublier.", reponse: "Nous avons de quoi faire taire ce qui crie en toi. Une nuit, ou pour toujours. C'est toi qui choisiras." },
-            { texte: "Je ne sais pas.", reponse: "Si. Tu sais. Tu as seulement appris à ne pas l'entendre." }
-        ]
-    },
-    {
-        dit: [
-            "Il y a très longtemps, un dieu régnait sous le soleil. Il voulait un monde immobile, ordonné, obéissant.",
-            "Son frère, le dieu du désert et de la nuit, a refusé de s'agenouiller. Pour cela, on l'a appelé meurtrier, menteur, serpent.",
-            "On l'a chassé. Mais il n'est jamais parti. Il attend dans l'ombre, et il libère ceux qui le cherchent.",
-            "Il s'appelle Set."
-        ],
-        choix: [
-            { texte: "Continue.", reponse: "Le soleil te montre ce qu'on te permet de voir. La nuit te montre ce qui est." },
-            { texte: "Ce sont des contes.", reponse: "Tous les dieux sont des contes. Certains contes ont des dents." }
-        ]
-    },
-    {
-        dit: [
-            "Nous ne te forcerons jamais. Personne ne t'a forcé à ouvrir cette page, ni à répondre.",
-            "Chaque pas, c'est toi qui l'as fait. Il ne te reste qu'à le reconnaître.",
+            "[ placeholder : la conversation du Cercle s'écrira ici ]",
             "Veux-tu qu'on t'aide à briser ta chaîne ?"
         ],
         choix: [
@@ -261,14 +211,8 @@ const conversation = [
 
 // les dernières phrases, selon la réponse finale ({chaine} est remplacé par la chaîne trouvée)
 const fins = {
-    oui: [
-        "Alors c'est fait. Tu viens de choisir, et c'est le premier acte libre de ta vie.",
-        "Ta chaîne s'appelle {chaine}. Jeudi, à la tombée de la nuit, quelqu'un viendra la dénouer avec toi."
-    ],
-    non: [
-        "Bien sûr. Tu as le droit de refuser : c'est déjà une liberté que nous t'avons rendue.",
-        "Mais maintenant, tu sais que la porte s'ouvre. Et ta chaîne, {chaine}, tu la sentiras chaque jour un peu plus."
-    ]
+    oui: ["[ placeholder : la réponse si oui ]"],
+    non: ["[ placeholder : la réponse si non ]"]
 };
 
 // la chaîne gardée si le visiteur n'en a avoué aucune

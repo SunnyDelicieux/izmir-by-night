@@ -228,7 +228,9 @@ function montrerQuiParle(qui) {
         text.before(nom);
     }
 
-   nom.textContent = qui === undefined ? "Inga" : qui;
+    // pas de « qui » : Inga parle à voix haute, son nom s'affiche
+    // qui: "" : une description, sans nom et en italique
+    nom.textContent = qui === undefined ? "Inga" : qui;
     nom.hidden = qui === "";
     text.classList.toggle("narration", qui === "");
 
@@ -237,7 +239,11 @@ function montrerQuiParle(qui) {
 }
 
 
-
+/* =========================
+   INGA INTERROMPT
+   Appelée par les pages des PC et par la quête : on quitte l'écran, Inga dit toutes les bulles
+   du dialogue (« lignes » dans dialogues.js), puis on revient sur le PC, là où on en était.
+========================= */
 
 async function ingaInterrompt(id) {
 
@@ -268,7 +274,7 @@ async function ingaInterrompt(id) {
     if (typeof verifierFin === "function") verifierFin();
 }
 
-// le téléphone 
+// le téléphone d'Inga (telephone.png, dans ce dossier), affiché pendant les appels
 function montrerTelephone(visible) {
 
     let telephone = document.getElementById("telephone");
