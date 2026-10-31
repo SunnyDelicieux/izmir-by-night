@@ -6,7 +6,9 @@ pagination:
 permalink: "{{ ancienne }}"
 eleventyExcludeFromCollections: true
 ---
-
+{#- Fabrique une petite page à chaque ancienne adresse de src/_data/redirections.yaml,
+    qui envoie le visiteur vers la nouvelle (liens Kumu, favoris des joueurs…). -#}
+{%- set nouvelle = redirections[ancienne] -%}
 <!DOCTYPE html>
 <html lang="fr">
 <head>

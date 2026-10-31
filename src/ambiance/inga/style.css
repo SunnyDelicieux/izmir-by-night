@@ -126,6 +126,12 @@ html, body {
     cursor: pointer;
 }
 
+/* quand l'objet cliqué est dans le bas de l'image, la boîte passe en haut (room.js, placerDialogue) */
+#dialog.en-haut {
+    bottom: auto;
+    top: 30px;
+}
+
 #speaker {
     width: 110px;
     height: 110px;
@@ -134,6 +140,25 @@ html, body {
     margin-right: 22px;
     border: 1px solid #333;
     image-rendering: pixelated;
+}
+
+/* le nom de celui qui parle, quand ce n'est pas Inga (« qui » dans dialogues.js) */
+#nom {
+    margin-bottom: 4px;
+    color: #c00000;
+    font: 12px Georgia, serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#nom[hidden] {
+    display: none;
+}
+
+/* une bulle de narration (qui: "") */
+#text.narration {
+    color: #999;
+    font-style: italic;
 }
 
 #dialog-content {
@@ -198,7 +223,7 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 14px;
+    padding: 56px 14px 14px; /* en haut : la place du bouton de connexion du site */
     box-sizing: border-box;
     background: rgba(0, 0, 0, .82);
     animation: ecranFondu .25s ease-out;
@@ -297,4 +322,143 @@ html, body {
     20%  { filter: brightness(.3); opacity: 1; }
     40%  { filter: brightness(1.6); }
     100% { filter: none; }
+}
+
+
+/* LA LETTRE (quete.js) */
+
+#lettre {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, .75);
+    cursor: pointer;
+}
+
+#lettre[hidden] {
+    display: none;
+}
+
+#lettre .papier {
+    width: min(520px, 80%);
+    max-height: 80%;
+    overflow-y: auto;
+    padding: 28px 32px;
+    background: #e9e1cf;
+    color: #2a2520;
+    font: 17px/1.55 Georgia, serif;
+    white-space: pre-line;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 10px 40px #000, inset 0 0 40px rgba(120, 90, 50, .25);
+}
+
+#lettre .fermer {
+    color: #777;
+    font: 11px Georgia, serif;
+    letter-spacing: 2px;
+}
+
+
+/* LE COMPTEUR « rats : 1 / 2 » (quete.js) */
+
+#compteur {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 35;
+    padding: 6px 16px;
+    background: rgba(0, 0, 0, .85);
+    border: 1px solid #555;
+    color: #ddd;
+    font: 14px Georgia, serif;
+    letter-spacing: 2px;
+    pointer-events: none;
+}
+
+#compteur[hidden] {
+    display: none;
+}
+
+
+/* L'ÉCRAN NOIR DE LA FIN (quete.js) */
+
+#noir {
+    position: absolute;
+    inset: 0;
+    z-index: 22; /* devant la chambre, derrière Inga (25) et la boîte de dialogue (30) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: #000;
+    color: #bbb;
+    font: italic 22px Georgia, serif;
+    letter-spacing: 4px;
+    animation: noirFondu 1.5s ease-out;
+    transition: background 1.5s;
+}
+
+#noir.transparent {
+    background: rgba(0, 0, 0, .55);
+}
+
+#noir span {
+    animation: noirFondu 2s ease-out;
+}
+
+#noir .fin-titre {
+    color: #ddd;
+    font-style: normal;
+    letter-spacing: 8px;
+}
+
+#noir .fin-recommencer {
+    padding: 8px 18px;
+    background: #000;
+    border: 1px solid #555;
+    color: #999;
+    font: 12px Georgia, serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+#noir .fin-recommencer:hover {
+    color: #fff;
+    border-color: #c00000;
+}
+
+@keyframes noirFondu {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+/* LE TÉLÉPHONE, pendant les appels (room.js, montrerTelephone) */
+
+#room > #telephone { /* « #room > » pour passer avant la règle « #room > img » du fond */
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    height: 55%;
+    z-index: 20; /* comme un objet en gros plan : derrière Inga et la boîte de dialogue */
+    transform: translate(-50%, -50%) rotate(-12deg); /* centré, légèrement tourné vers la gauche */
+    filter: drop-shadow(0 0 5px #000) drop-shadow(0 0 20px #000);
+    pointer-events: none;
+    animation: telephoneArrive .5s ease-out;
+}
+
+#room > #telephone[hidden] {
+    display: none;
+}
+
+@keyframes telephoneArrive {
+    from { opacity: 0; transform: translate(-50%, -45%) rotate(-12deg); }
+    to   { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg); }
 }

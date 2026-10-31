@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+	<!-- l'icône du navigateur sur le bureau : trois parts de couleur et un rond bleu -->
+	<path d="M24 24 L24 2 A22 22 0 0 1 43.05 35 Z" fill="#db4437"/>
+	<path d="M24 24 L43.05 35 A22 22 0 0 1 4.95 35 Z" fill="#0f9d58"/>
+	<path d="M24 24 L4.95 35 A22 22 0 0 1 24 2 Z" fill="#f4b400"/>
+	<circle cx="24" cy="24" r="10" fill="#fff"/>
+	<circle cx="24" cy="24" r="8" fill="#4285f4"/>
+</svg>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Nouvel onglet</title>
+	<link rel="stylesheet" href="navigateur/navigateur.css">
+	<link rel="stylesheet" href="navigateur/egechan.css">
+</head>
+<body>
+
+<!-- LE NAVIGATEUR DU PC 1 : un faux Chrome de 2014, ouvert depuis l'icône « Chrome » du bureau (index.html).
+     Le fonctionnement est dans navigateur/moteur.js, le site et l'historique dans les autres fichiers de navigateur/. -->
+
+<div id="onglets">
+	<div class="onglet">
+		<span id="onglet-icone"></span>
+		<span id="onglet-titre">Nouvel onglet</span>
+		<span class="onglet-fermer">×</span>
+	</div>
+	<button id="onglet-nouveau" title="Nouvel onglet"></button>
+</div>
+
+<div id="barre">
+	<button id="precedent" title="Page précédente">&#8592;</button>
+	<button id="suivant" title="Page suivante">&#8594;</button>
+	<button id="actualiser" title="Actualiser">&#8635;</button>
+	<form id="omnibox"><input id="adresse" autocomplete="off" spellcheck="false"></form>
+	<span class="etoile">&#9734;</span>
+	<button id="menu-historique" title="Historique">&#9776;</button>
+</div>
+
+<div id="vue"></div>
+
+<script src="navigateur/moteur.js"></script>
+<script src="navigateur/egechan.js"></script>
+<script src="navigateur/egechan-izm.js"></script>
+<script src="navigateur/historique.js"></script>
+<script>Nav.demarrer();</script>
+
+</body>
+</html>
