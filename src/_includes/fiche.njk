@@ -6,9 +6,22 @@ js: [/js/costumes.js, /js/galerie-fiche.js]
 {#- La fiche d'un personnage. Les infos viennent de l'en-tête du fichier dans src/personnages/ :
       nom, icone, portrait, halloween (portrait du thème Halloween), citation,
       bio: les lignes du tableau, dans l'ordre (ex. Clan: Ventrue),
-      tag_galerie: son tag dans la galerie, s'il n'est pas le nom du fichier (ex. enry pour henri.html) -#}
+      tag_galerie: son tag dans la galerie, s'il n'est pas le nom du fichier (ex. enry pour henri.html),
+      auteur: qui a écrit la fiche (ex. auteur: sunny, ou auteur: [sunny, florelys]),
+              affiché sous le nom ; les noms sont dans src/_data/auteurs.yaml -#}
 <main>
-  <h2 class="character-name">{% if icone %}<img src="{{ icone }}" class="icon" alt="">{% endif %}{{ nom | safe }}</h2>
+  {%- set auteurs_fiche = [auteur] if auteur is string else auteur %}
+  <h2 class="character-name">
+    {%- if icone %}<img src="{{ icone }}" class="icon" alt="">{% endif %}
+    <span>{{ nom | safe }}
+    {%- if auteurs_fiche and auteurs_fiche.length %}
+      <small class="auteurs">par
+      {%- for id in auteurs_fiche %}
+        {%- set qui = auteurs[id | lower] %} {{ qui.nom if qui else id }}
+        {%- if loop.revindex == 2 %} et{% elif not loop.last %},{% endif %}
+      {%- endfor %}</small>
+    {%- endif %}</span>
+  </h2>
 {%- if portrait or bio %}
   <aside class="bio">
   {%- if portrait %}
@@ -59,17 +72,4 @@ js: [/js/costumes.js, /js/galerie-fiche.js]
 </main>
 <footer>
   <a href="/personnages/">← tous les personnages</a> · © 2026 [Izmir by Night]
-  {%- set signatures = [auteur] if auteur is string else auteur %}
-  {%- if signatures and signatures.length %}
-  <div class="signatures">
-    {%- for id in signatures %}
-           {%- set qui = auteurs[id | lower] %}
-      {%- if qui %}
-    <img src="{{ qui.gif }}" alt="{{ qui.nom }}" title="{{ qui.nom }}" onerror="this.replaceWith(this.alt)">
-      {%- else %}
-    <span>{{ id }}</span>
-      {%- endif %}
-    {%- endfor %}
-  </div>
-  {%- endif %}
 </footer>

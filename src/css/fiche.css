@@ -1,4 +1,4 @@
-@import url("/css/theme.css");
+@import url('/css/theme.css');
 
 :root {
   --text-color: var(--iz-text);
@@ -55,41 +55,26 @@ body {
   line-height: 1.5;
   margin: 0;
   color: var(--text-color);
-}
+  }
 
 /*some quality-of-life styles*/
-html {
-  scroll-behavior: smooth;
-}
-details > summary {
-  cursor: pointer;
-}
-* {
-  box-sizing: border-box;
-}
+html {scroll-behavior: smooth;}
+details > summary {cursor: pointer;}
+* {box-sizing: border-box;}
 
 /*highlighted text styles*/
-::selection {
-  background: var(--iz-accent);
-  color: var(--iz-bg);
-}
+::selection {background: var(--iz-accent);
+  color: var(--iz-bg);}
 
 /*links*/
-main a {
-  color: var(--link-color);
-}
-main a:visited {
-  color: var(--subtle);
-}
-main a:hover {
-  color: var(--link-color);
-}
+main a {color: var(--link-color);}
+main a:visited {color: var(--subtle);}
+main a:hover {color: var(--link-color);}
 a:hover {
   color: var(--link-color);
   text-decoration: none;
 }
-header,
-footer {
+header, footer {
   background: var(--banner-color);
   color: var(--banner-text-color);
 }
@@ -107,10 +92,8 @@ header a {
   text-decoration: none;
   color: var(--banner-text-color);
 }
-header a:visited,
-header a:hover {
-  color: var(--banner-text-color);
-}
+header a:visited, 
+header a:hover {color: var(--banner-text-color);}
 
 main {
   width: 900px;
@@ -123,15 +106,13 @@ main {
   padding: 12px 48px;
 }
 /*some spacing for list elements*/
-li {
-  margin-bottom: 4px;
-}
+li {margin-bottom: 4px;}
 
 /*for the 32x32 character icon*/
 .icon {
   height: 32px;
   width: 32px;
-  border-radius: 0.2em;
+  border-radius: .2em;
   display: inline-block;
   vertical-align: text-bottom;
   margin-right: 8px;
@@ -143,7 +124,7 @@ li {
   background-color: var(--heading-color);
   border: 1px dashed var(--iz-border-strong);
   border-radius: var(--iz-radius);
-  padding: 0.5em;
+  padding: .5em;
   font: italic normal 26px var(--iz-font-title);
   letter-spacing: 1px;
   color: var(--iz-text);
@@ -155,7 +136,7 @@ main h3 {
   background-color: var(--heading-color);
   border-left: 3px solid var(--iz-accent);
   border-radius: 0 var(--iz-radius) var(--iz-radius) 0;
-  padding: 0.4em 0.6em;
+  padding: .4em .6em;
   font-family: var(--iz-font-title);
   font-style: italic;
   font-weight: normal;
@@ -169,12 +150,8 @@ main h4 {
 }
 
 /*detailed list elements (for listing other characters under "relationships"*/
-dt {
-  font-weight: bold;
-}
-dd {
-  margin-bottom: 8px;
-}
+dt {font-weight: bold;}
+dd {margin-bottom: 8px;}
 
 /*make sure images don't go out of our container*/
 main img,
@@ -233,17 +210,13 @@ main img,
   width: 35%;
 }
 /*alternate the colors~*/
-.bio tr:nth-child(odd) {
-  background: var(--td-odd-color);
-}
-.bio tr:nth-child(even) {
-  background: var(--td-even-color);
-}
+.bio tr:nth-child(odd) {background: var(--td-odd-color);}
+.bio tr:nth-child(even) {background: var(--td-even-color);}
 
 /*this is shown in the info section, but you don't have to use it*/
 .quote {
   border-left: 3px solid var(--iz-border-strong);
-  padding: 0.5em 1em;
+  padding: .5em 1em;
   font-family: var(--iz-font-title);
   font-style: italic;
   color: var(--iz-text-soft);
@@ -253,8 +226,8 @@ main img,
 .spoilers {
   background: var(--highlight);
   border: dashed 2px var(--link-color);
-  margin: 0.5em 2px;
-  padding: 0.5em;
+  margin: .5em 2px;
+  padding: .5em;
 }
 .spoilers summary {
   color: var(--iz-accent);
@@ -282,9 +255,7 @@ main img,
   grid-row: 2;
   grid-column: 1 / -1;
 }
-.galerie-onglets details:not([open])::details-content {
-  display: none;
-}
+.galerie-onglets details:not([open])::details-content {display: none;}
 .galerie-onglets summary {
   grid-column: var(--n) / span 1;
   grid-row: 1;
@@ -295,26 +266,19 @@ main img,
   border-radius: 999px;
   color: var(--subtle);
   white-space: nowrap;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  transition: background .2s, color .2s;
   z-index: 1;
 }
-.galerie-onglets summary::-webkit-details-marker {
-  display: none;
-}
-.galerie-onglets summary:hover {
-  color: var(--text-color);
-  border-color: var(--link-color);
-}
+.galerie-onglets summary::-webkit-details-marker {display: none;}
+.galerie-onglets summary:hover {color: var(--text-color); border-color: var(--link-color);}
 .galerie-onglets details[open] > summary {
   background: var(--heading-color);
   color: var(--text-color);
   border-color: var(--link-color);
 }
 .galerie-onglets .nombre {
-  font-size: 0.8em;
-  opacity: 0.7;
+  font-size: .8em;
+  opacity: .7;
   margin-left: 4px;
 }
 
@@ -340,35 +304,27 @@ main img,
   height: 100%;
   object-fit: cover;
   object-position: center 20%; /* garde les visages, souvent en haut */
-  transition: transform 0.3s;
+  transition: transform .3s;
 }
 .galerie-dessins .legende {
   position: absolute;
   inset: auto 0 0 0;
   padding: 24px 8px 6px;
-  font-size: 0.8rem;
+  font-size: .8rem;
   line-height: 1.3;
   color: #fff;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  background: linear-gradient(transparent, rgba(0, 0, 0, .85));
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity .2s;
 }
 .galerie-dessins a:hover,
-.galerie-dessins a:focus-visible {
-  border-color: var(--link-color);
-}
+.galerie-dessins a:focus-visible {border-color: var(--link-color);}
 .galerie-dessins a:hover img,
-.galerie-dessins a:focus-visible img {
-  transform: scale(1.05);
-}
+.galerie-dessins a:focus-visible img {transform: scale(1.05);}
 .galerie-dessins a:hover .legende,
-.galerie-dessins a:focus-visible .legende {
-  opacity: 1;
-}
+.galerie-dessins a:focus-visible .legende {opacity: 1;}
 @media (hover: none) {
-  .galerie-dessins .legende {
-    opacity: 1;
-  } /* sur téléphone, pas de survol : légende toujours visible */
+  .galerie-dessins .legende {opacity: 1;} /* sur téléphone, pas de survol : légende toujours visible */
 }
 
 /* l'image agrandie (src/js/galerie-fiche.js) */
@@ -381,9 +337,7 @@ main img,
   background: var(--iz-sheet);
   color: var(--text-color);
 }
-.galerie-zoom::backdrop {
-  background: rgba(0, 0, 0, 0.8);
-}
+.galerie-zoom::backdrop {background: rgba(0, 0, 0, .8);}
 .galerie-zoom img {
   display: block;
   max-width: 100%;
@@ -394,7 +348,7 @@ main img,
   margin: 0;
   padding: 10px 14px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: .9rem;
 }
 .galerie-zoom button {
   position: absolute;
@@ -406,31 +360,22 @@ main img,
   height: 40px;
   font-size: 1.4rem;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, .55);
   color: #fff;
 }
-.galerie-zoom .precedent {
-  left: 8px;
-}
-.galerie-zoom .suivant {
-  right: 8px;
-}
-.galerie-zoom .fermer {
-  top: 24px;
-  right: 8px;
-}
+.galerie-zoom .precedent {left: 8px;}
+.galerie-zoom .suivant {right: 8px;}
+.galerie-zoom .fermer {top: 24px; right: 8px;}
 
 /*fake comments section!!!!*/
 .comment {
   border: 2px solid var(--comment-border-color);
-  border-radius: 0.3em;
-  padding: 0.5em 1em;
+  border-radius: .3em;
+  padding: .5em 1em;
   margin-bottom: 10px;
 }
 /*indent replies to differentiate them from the original comment*/
-.reply {
-  margin-left: 20px;
-}
+.reply {margin-left: 20px;}
 /*for the "view replies" button*/
 .reply summary {
   text-decoration: underline;
@@ -443,41 +388,20 @@ main img,
   text-decoration: none;
 }
 /*hide the "view replies" text after it's clicked*/
-.reply[open] summary {
-  display: none;
-}
+.reply[open] summary {display:none;}
 
 /*username styles*/
-.user {
-  font-weight: bold;
-}
-.user small {
-  font-weight: normal;
-  margin-left: 8px;
-}
+.user {font-weight:bold;}
+.user small {font-weight: normal; margin-left: 8px;}
 
 /*this is an easy way to replace the background colors on the headings, i just use the color classes like this*/
-.red {
-  background: var(--red) !important;
-}
-.orange {
-  background: var(--orange) !important;
-}
-.gold {
-  background: var(--gold) !important;
-}
-.green {
-  background: var(--green) !important;
-}
-.blue {
-  background: var(--blue) !important;
-}
-.purple {
-  background: var(--purple) !important;
-}
-.pink {
-  background: var(--pink) !important;
-}
+.red {background: var(--red)!important;}
+.orange {background: var(--orange)!important;}
+.gold {background: var(--gold)!important;}
+.green {background:  var(--green)!important;}
+.blue {background:  var(--blue)!important;}
+.purple {background:  var(--purple)!important;}
+.pink {background: var(--pink)!important;}
 /*!important means it will take priority over whatever existing color there is*/
 
 /*nav is at the bottom of the page as a list of links...*/
@@ -488,20 +412,12 @@ nav ul {
   padding: 0;
 }
 /*link colors*/
-nav a {
-  color: var(--subtle);
-}
-nav a:hover {
-  color: var(--subtle);
-}
+nav a {color: var(--subtle);}
+nav a:hover {color: var(--subtle);}
 
-nav li {
-  padding-left: 4px;
-}
+nav li {padding-left: 4px;}
 /*remove this if you don't want the slashes between list items*/
-nav li:after {
-  content: " /";
-}
+nav li:after {content: " /"}
 
 /*i wanted the footer to be locked to the bottom of the page, even if your page is really short... it covers up a small section of the screen, so i changed it to 50% opacity for that reason*/
 footer {
@@ -518,9 +434,7 @@ footer {
   z-index: 2;
 }
 footer:hover,
-footer:focus-within {
-  opacity: 100%;
-}
+footer:focus-within {opacity: 100%;}
 footer a {
   color: var(--link-color);
   text-decoration: underline;
@@ -537,10 +451,7 @@ footer a:hover {
 /*now to make the page responsive!*/
 @media only screen and (max-width: 800px) {
   /*i think this one was for if your header text was kinda long...*/
-  h1 {
-    font-size: 24px;
-    padding-inline: 12px;
-  }
+  h1 {font-size: 24px; padding-inline: 12px;}
   main {
     border-radius: 0;
     border-left: none;
@@ -549,86 +460,86 @@ footer a:hover {
   }
   /*center the bio, there's no room to have it float*/
   .bio {
-    float: none;
+    float:none;
     max-width: 100%;
     width: 280px;
     margin: 0 auto;
   }
 }
 
-h4 {
-  margin-bottom: 15px;
-  padding-bottom: 6px;
-  border-bottom: 1px dashed var(--iz-border-strong);
+h4{
+    margin-bottom:15px;
+    padding-bottom:6px;
+    border-bottom:1px dashed var(--iz-border-strong);
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
 }
 
-.card {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.card{
+    display:flex;
+    align-items:center;
+    gap:10px;
 
-  padding: 10px 12px;
+    padding:10px 12px;
 
-  text-decoration: none;
-  color: inherit;
+    text-decoration:none;
+    color:inherit;
 
-  border: 1px solid transparent;
-  border-radius: var(--iz-radius);
+    border:1px solid transparent;
+    border-radius:var(--iz-radius);
 
-  transition: all 0.2s ease;
+    transition:all .2s ease;
 }
 
-.card:hover {
-  border-color: var(--iz-border-strong);
-  background: var(--iz-box);
-  transform: translateY(-2px);
+.card:hover{
+    border-color:var(--iz-border-strong);
+    background:var(--iz-box);
+    transform:translateY(-2px);
 }
 
-.icon {
-  width: 42px;
-  height: 42px;
+.icon{
+    width:42px;
+    height:42px;
 
-  border-radius: 6px;
-  object-fit: cover;
+    border-radius:6px;
+    object-fit:cover;
 
-  flex-shrink: 0;
+    flex-shrink:0;
 }
 
-.content {
-  flex: 1;
-  text-align: center;
+.content{
+    flex:1;
+    text-align:center;
 }
 
-.content h5 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
+.content h5{
+    margin:0;
+    font-size:14px;
+    font-weight:600;
 }
 
-.content p {
-  margin: 3px 0 0;
-  font-size: 12px;
-  color: var(--iz-muted);
-  line-height: 1.3;
+.content p{
+    margin:3px 0 0;
+    font-size:12px;
+    color:var(--iz-muted);
+    line-height:1.3;
 }
 
-@media (max-width: 900px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width:900px){
+    .card-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
 /*"read more" button for long posts*/
 .readmore {
   border: 2px solid var(--border-color);
-  border-radius: 0.3em;
-  padding: 0.5em 1em;
+  border-radius: .3em;
+  padding: .5em 1em;
   margin-bottom: 10px;
 }
 .readmore summary {
@@ -640,19 +551,18 @@ h4 {
 /*optional border to denote a border was there before*/
 .readmore[open] {
   border-top: 2px;
-  padding-top: 0.5em;
+  padding-top:0.5em;
 }
 
-/*for the collapsible sections at the top (status and tag filters)*/
+
 .pinned {
   background: var(--iz-box);
   font-size: smaller;
-  padding: 0.5em;
+  padding: .5em;
   border-radius: var(--iz-radius);
   margin: 1em 0;
   border: 1px dashed var(--iz-border-strong);
 }
-/*the heading for those blocks*/
 .pinned summary,
 .pinned .titre-clan {
   color: var(--iz-accent);
@@ -660,27 +570,11 @@ h4 {
   letter-spacing: 1px;
   list-style: none;
   border-bottom: 1px dashed var(--iz-border-strong);
-  margin: 0.5em;
+  margin: .5em;
 }
-/*since the summary uses the special font, switch back to the other one for the timestamp*/
 .pinned time {
-  font-family: "Atkinson Hyperlegible", Verdana, Tahoma, sans-serif;
+  font-family: 'Atkinson Hyperlegible', Verdana, Tahoma, sans-serif;
   float: right;
   font-weight: normal;
   font-size: small;
-}
-
-/* les signatures des auteurs, dans le pied de page */
-footer .signatures {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin-top: 6px;
-}
-
-footer .signatures img {
-  height: 31px;
-  image-rendering: pixelated;
 }
