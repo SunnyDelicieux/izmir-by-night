@@ -1,10 +1,3 @@
-// La galerie : grille, filtres, pagination et zoom.
-// Les dessins sont listés dans src/_data/galerie.yaml, les boutons de filtre dans src/_data/galerie_filtres.yaml.
-// La page (src/galerie/index.njk) les met dans window.GALERIE.
-
-// ===== ADRESSES DES IMAGES =====
-// « src » d'un dessin = son chemin dans src/galerie/dessins/ (ex. sun/hanged.webp).
-// Les miniatures et grandes images sont fabriquées à la construction du site (config/galerie.js).
 
 const isVideo = (src) => /\.(mp4|webm)$/i.test(src || "");
 const telQuel = (src) => isVideo(src) || /\.gif$/i.test(src || "");
