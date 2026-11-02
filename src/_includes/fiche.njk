@@ -59,4 +59,16 @@ js: [/js/costumes.js, /js/galerie-fiche.js]
 </main>
 <footer>
   <a href="/personnages/">← tous les personnages</a> · © 2026 [Izmir by Night]
+  {%- set signatures = [auteur] if auteur is string else auteur %}
+  {%- if signatures and signatures.length %}
+  <div class="signatures">
+    {%- for id in signatures %}
+      {%- if auteurs[id] %}
+    <img src="{{ auteurs[id].gif }}" alt="{{ auteurs[id].nom }}" title="{{ auteurs[id].nom }}">
+      {%- else %}
+    <span>{{ id }}</span>
+      {%- endif %}
+    {%- endfor %}
+  </div>
+  {%- endif %}
 </footer>
