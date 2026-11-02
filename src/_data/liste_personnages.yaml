@@ -146,6 +146,9 @@
         - nom: Ketevan
           icone: /img/wiki/autre/ketevan.png
           role: Goule & PDG Lasombra
+        - fiche: emre
+          icone: /img/wiki/icon/no-icon.png
+          role: Goule & cheffe d'Uyanık Göz
 - titre: Factions ennemies
   id: ennemis
   groupes:
@@ -174,13 +177,16 @@
           role: Anarch
     - titre: Sabbat
       cartes:
-        - nom: '"Le ductus"'
-          icone: https://i.pinimg.com/736x/a7/7f/3b/a77f3b0b96c31603a4dee2fa85f4e22c.jpg
-          role: L'infante de Scilla
+        - fiche: pretre
+          nom: 'Le pretre'
+          role: L'infant de Scylla
         - role: Estimation de 10 membres
     - titre: Setites
       cartes:
         - role: Estimation de 4 membres
+        - fiche: serpent
+          nom: Serpent
+          note: Femme aux yeux de serpent
 - titre: Absents
   id: absents
   groupes:
@@ -194,9 +200,10 @@
           icone: /img/wiki/icon/no-icon.png
           role: Sheriff Brujah
           note: Mort finale en 1920
-        - nom: Alkinoos Kerkyra
-          icone: /img/wiki/icon/no-icon.png
+        - fiche: alkinoos
+          nom: Alkinoos Kerkyra
           role: Régent de Smyrne
+          note: Mort finale en 1922
         - nom: Shahar
           icone: /img/wiki/icon/no-icon.png
           role: Vizir de l'Ashira
@@ -205,3 +212,14 @@
       cartes:
         - fiche: ibrahim
           role: Ancien primogene Ventrue
+- titre: Autre
+  id: antique
+  groupes:
+    - titre: Antiquité
+      cartes:
+        - fiche: soteria
+          role: Première toreador
+        - fiche: atratinus
+          role: Prince de Smyrne
+        - fiche: prophete
+          role: Prophète du jardin

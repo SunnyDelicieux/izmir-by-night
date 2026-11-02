@@ -13,8 +13,34 @@
 
   const docs = new Map();
   function loadDoc(url) {
-    if (!docs.has(url)) docs.set(url, pdfjs().then((lib) => lib.getDocument({ url }).promise));
+    // pdf.js ne télécharge que les morceaux du PDF dont il a besoin (la 1re page pour une couverture)
+    if (!docs.has(url)) docs.set(url, pdfjs().then((lib) =>
+      lib.getDocument({ url, disableAutoFetch: true, disableStream: true }).promise));
     return docs.get(url);
+  }
+
+  // Couvertures déjà dessinées, gardées dans le navigateur : on ne retélécharge plus le PDF pour les afficher.
+  const COUVERTURES = "izmir-couvertures";
+  const cleCouverture = (cle) => new URL(`/__couverture/${encodeURIComponent(cle)}`, location.origin).href;
+
+  async function couvertureGardee(cle, canvas) {
+    const res = await (await caches.open(COUVERTURES)).match(cleCouverture(cle));
+    if (!res) return null;
+    const image = await createImageBitmap(await res.blob());
+    const ratio = window.devicePixelRatio || 1;
+    canvas.width = image.width;
+    canvas.height = image.height;
+    canvas.style.width = `${Math.floor(image.width / ratio)}px`;
+    canvas.style.height = `${Math.floor(image.height / ratio)}px`;
+    canvas.getContext("2d").drawImage(image, 0, 0);
+    return Number(res.headers.get("x-pages")) || 1;
+  }
+
+  async function garderCouverture(cle, canvas, pages) {
+    const image = await new Promise((ok) => canvas.toBlob(ok, "image/jpeg", 0.8));
+    if (!image) return;
+    await (await caches.open(COUVERTURES)).put(cleCouverture(cle),
+      new Response(image, { headers: { "content-type": "image/jpeg", "x-pages": String(pages) } }));
   }
 
   async function paint(page, canvas, scale) {
@@ -32,11 +58,17 @@
     return viewport;
   }
 
-  async function cover(url, canvas) {
+  // cle : le chemin du fichier dans Supabase (le lien, lui, change tous les 7 jours)
+  async function cover(url, canvas, cle) {
+    if (cle) {
+      const pages = await couvertureGardee(cle, canvas).catch(() => null);
+      if (pages) return pages;
+    }
     const doc = await loadDoc(url);
     const page = await doc.getPage(1);
     const base = page.getViewport({ scale: 1 });
     await paint(page, canvas, 280 / base.width);
+    if (cle) garderCouverture(cle, canvas, doc.numPages).catch(() => {}); // navigation privée : tant pis
     return doc.numPages;
   }
 

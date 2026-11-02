@@ -257,6 +257,17 @@
     renderSent();
   }
 
+  // une couverture ne se charge qu'en arrivant à l'écran
+  const covers = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      covers.unobserve(entry.target);
+      const canvas = entry.target;
+      izmirLecteur.cover(canvas.dataset.url, canvas, canvas.dataset.path)
+        .then(() => canvas.classList.add("ready")).catch(() => {});
+    }
+  }, { rootMargin: "200px" });
+
   function renderSent() {
     const q = plain(filter.value);
     const shown = sent.filter((h) => !q || plain([h.titre, h.source, ...(h.tags || [])].join(" ")).includes(q));
@@ -282,8 +293,10 @@
         thumb.addEventListener("click", () => izmirLecteur.open({ title: h.titre, kind: "texte", html: izmirPartage.format(h.contenu), author: h.author_name }));
       } else if (h._url && isPdf) {
         const canvas = el("canvas");
+        canvas.dataset.url = h._url;
+        canvas.dataset.path = h.path;
         thumb.appendChild(canvas);
-        izmirLecteur.cover(h._url, canvas).then(() => canvas.classList.add("ready")).catch(() => {});
+        covers.observe(canvas);
         thumb.addEventListener("click", () => izmirLecteur.open({ title: h.titre, url: h._url, kind: "pdf" }));
       } else if (h._url) {
         const img = el("img");

@@ -15,7 +15,7 @@
       if (!entry.isIntersecting) continue;
       covers.unobserve(entry.target);
       const canvas = entry.target;
-      izmirLecteur.cover(canvas.dataset.url, canvas)
+      izmirLecteur.cover(canvas.dataset.url, canvas, canvas.dataset.path)
         .then((n) => {
           const meta = canvas.closest(".vault-item").querySelector(".vault-meta");
           if (meta.textContent === "pdf") meta.textContent = `pdf · ${n} page${n > 1 ? "s" : ""}`;
@@ -61,6 +61,7 @@
       } else if (kind === "pdf" && url) {
         const canvas = document.createElement("canvas");
         canvas.dataset.url = url;
+        canvas.dataset.path = f.path;
         thumb.appendChild(canvas);
         covers.observe(canvas);
       } else {

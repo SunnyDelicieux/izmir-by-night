@@ -5,6 +5,22 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sun/marikoo.webp
+  alt:  Doodles.
+  tags: [sunny, noncanon, tremere, lasombra, mariko, ketevan, dimitrios]
+  desc: Doodling around.
+- src: sun/ingasprite.webp
+  alt:  Inga Sprites.
+  tags: [sunny, canon, nosferatu, inga]
+  desc: Inga Sprites.
+- src: yolnir/tremeremob.webp
+  alt:  Tremere mobile.
+  tags: [yolnir, noncanon, tremere]
+  desc: Tremere mobile.
+- src: sun/INGAGIF.gif
+  alt:  lacey's game.
+  tags: [sunny, noncanon, nosferatu, inga]
+  desc: fear of being alone.
 - src: sun/hanged.webp
   alt: Hanged.
   tags: [sunny, noncanon, brujah, baran]
@@ -383,7 +399,7 @@
   desc: Smoking kills.
 - src: autriche/sabbat.webp
   alt: Trio.
-  tags: [autriche, canon, sabbat]
+  tags: [autriche, canon, sabbat, pretre]
   desc: Les Infants de Scylla.
 - src: sunny/PRIMOGENANTT.webp
   alt: Trio.
@@ -469,6 +485,10 @@
   alt: Pyramide.
   tags: [sunny, tremere, tarik, eleni, canon]
   desc: Le visage de la pyramide.
+- src: sun/what.webp
+  alt: What.
+  tags: [sunny, brujah, autre, noncanon, kaadir, gabriel, camil]
+  desc: What.
 - src: sunny/nebetted.webp
   alt: nebetta.
   tags: [sunny, nosferatu, nebetta, canon]
@@ -485,9 +505,13 @@
   alt: Duo.
   tags: [sunny, ventrue, toreador, louiza, angelos, canon]
   desc: Duo Angelos Louiza.
+- src: sun/posture.webp
+  alt: Posture reveal.
+  tags: [sunny, canon, nosferatu, inga]
+  desc: Posture reveal.
 - src: sunny/DECEMBRE.webp
   alt: Idia magic.
-  tags: [sunny, ventrue, calendrier]
+  tags: [sunny, ventrue, calendrier, noncanon]
   desc: Calendrier Decembre.
 - type: comic
   title: Sophia sprite
@@ -513,6 +537,14 @@
   alt: Idia magic.
   tags: [sunny, toreador, maliha, canon]
   desc: Maliha Sprite.
+- src: sun/moires.webp
+  alt: Les moires de l'Elysium.
+  tags: [canon, sunny, tremere, ventrue, nosferatu, louiza, nebetta, sophia]
+  desc: Les moires de l'Elysium.
+- src: sun/oldzaya.webp
+  alt: Zaya old outfit.
+  tags: [canon, sunny, ventrue, zaya]
+  desc: Zaya old outfit.
 - type: comic
   title: gif
   alt: gif
@@ -557,11 +589,11 @@
     - src: autriche/guerre.webp
 - src: autriche/soteria.webp
   alt: soteria.
-  tags: [autriche, toreador, canon, ventrue]
+  tags: [autriche, toreador, canon, ventrue, soteria, atratinus]
   desc: Soteria et Atratinus.
 - src: autriche/marcusforain.webp
   alt: Marcus forain.
-  tags: [autriche, lasombra, canon]
+  tags: [autriche, lasombra, canon, marcus]
   desc: Marcus Forain.
 - src: ashita/raffi.webp
   alt: Raffi, ventrue.
@@ -603,6 +635,10 @@
   alt: Lignée tremere.
   tags: [autriche, tremere, canon]
   desc: Lignée du clan tremere.
+- src: sun/baransketch.webp
+  alt: baran sketch.
+  tags: [sunny, brujah, baran, canon]
+  desc: Baran sketch.
 - src: ashita/dimitri2.webp
   alt: Dimitri rework.
   tags: [ashita, official, ventrue, ghoule, canon, dimitri]
@@ -659,6 +695,10 @@
   alt: Lignée.
   tags: [noncanon, sunny, autre, kushi]
   desc: Claw fight.
+- src: sun/sabbat.webp
+  alt: My sabbat wife.
+  tags: [noncanon, sunny, sabbat]
+  desc: My sabbat wife.
 - src: autriche/Esen__Atam.webp
   alt: Esem Atam.
   tags: [canon, autriche, tremere, nosferatu, esen, atam]
