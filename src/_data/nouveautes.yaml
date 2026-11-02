@@ -5,6 +5,30 @@
 #   lien : (facultatif) la page vers laquelle ça mène
 #   nouvel_onglet: true  (facultatif) pour ouvrir le lien dans un nouvel onglet
 
+- date: 02 Nov 26
+  texte: Fiche PNJ de Shahar
+  lien: /personnages/shahar/
+- date: 30 Oct 26
+  texte: « Légende vêtue de noir. »
+  lien: /univers/ventrue/atratinus
+- date: 30 Oct 26
+  texte: Fiche PNJ de Marcus Forain
+  lien: /personnages/marcus/
+- date: 29 Oct 26
+  texte: Fiche PNJ de la femme aux yeux de Serpents
+  lien: /personnages/serpent/
+- date: 29 Oct 26
+  texte: Fiche PNJ du Pretre du sabbat
+  lien: /personnages/pretre/
+- date: 29 Oct 26
+  texte: Fiche PNJ de Atratinus
+  lien: /personnages/atratinus/
+- date: 29 Oct 26
+  texte: Fiche PNJ de Atratinus
+  lien: /personnages/atratinus/
+- date: 28 Oct 26
+  texte: Fiche PNJ de Alkinoos
+  lien: /personnages/alkinoos/
 - date: 28 Oct 26
   texte: Fiche PNJ de Soteria
   lien: /personnages/soteria/
