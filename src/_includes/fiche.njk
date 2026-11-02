@@ -63,8 +63,9 @@ js: [/js/costumes.js, /js/galerie-fiche.js]
   {%- if signatures and signatures.length %}
   <div class="signatures">
     {%- for id in signatures %}
-      {%- if auteurs[id] %}
-    <img src="{{ auteurs[id].gif }}" alt="{{ auteurs[id].nom }}" title="{{ auteurs[id].nom }}">
+           {%- set qui = auteurs[id | lower] %}
+      {%- if qui %}
+    <img src="{{ qui.gif }}" alt="{{ qui.nom }}" title="{{ qui.nom }}" onerror="this.replaceWith(this.alt)">
       {%- else %}
     <span>{{ id }}</span>
       {%- endif %}
