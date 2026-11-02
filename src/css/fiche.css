@@ -578,3 +578,21 @@ h4{
   font-weight: normal;
   font-size: small;
 }
+
+/* le nom en haut de la fiche, avec ses auteurs en dessous (« par Sunny et Florelys ») */
+.character-name {
+  display: flex;
+  align-items: center;
+}
+
+/* « main img » centre les images avec margin: auto ; ici, l'icône reste collée à gauche */
+.character-name .icon {
+  margin-left: 0;
+}
+
+.character-name .auteurs {
+  display: block;
+  font: italic 13px var(--iz-font-title);
+  letter-spacing: 0;
+  color: var(--iz-text-soft);
+}

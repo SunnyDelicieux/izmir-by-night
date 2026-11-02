@@ -1,5 +1,5 @@
-@import url("/css/theme.css");
-@import url("/css/coin.css");
+@import url('/css/theme.css');
+@import url('/css/coin.css');
 
 * {
   box-sizing: border-box;
@@ -18,20 +18,10 @@ body {
   position: relative;
 }
 
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-}
+button, input, select, textarea { font-family: inherit; }
 
-a {
-  color: var(--iz-accent);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--iz-accent-hover);
-}
+a { color: var(--iz-accent); text-decoration: none; }
+a:hover { color: var(--iz-accent-hover); }
 
 .page-wrap {
   display: flex;
@@ -80,11 +70,7 @@ a:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at center,
-    color-mix(in srgb, var(--iz-accent) 7%, transparent),
-    transparent 70%
-  );
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--iz-accent) 7%, transparent), transparent 70%);
   pointer-events: none;
 }
 
@@ -145,9 +131,7 @@ a:hover {
   background: var(--iz-button-active);
 }
 
-.navi > a.active {
-  cursor: default;
-}
+.navi > a.active { cursor: default; }
 
 .navi-group {
   position: relative;
@@ -283,15 +267,9 @@ a:hover {
   opacity: 0.6;
 }
 
-.header-img--jour {
-  display: none;
-}
-body.light .header-img--nuit {
-  display: none;
-}
-body.light .header-img--jour {
-  display: inline;
-}
+.header-img--jour { display: none; }
+body.light .header-img--nuit { display: none; }
+body.light .header-img--jour { display: inline; }
 
 .imgblock {
   position: relative;
@@ -312,7 +290,7 @@ body.light .header-img--jour {
 }
 
 .imgblock:hover img {
-  opacity: 0.8;
+  opacity: 0.80;
 }
 
 .imgblock .imgcaption {
@@ -321,7 +299,7 @@ body.light .header-img--jour {
   left: 0;
   right: 0;
   padding: 8px 12px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+  background: linear-gradient(transparent, rgba(0,0,0,0.72));
   color: var(--iz-text);
   font: italic 11px var(--iz-font-title);
   letter-spacing: 1px;
@@ -330,6 +308,7 @@ body.light .header-img--jour {
 .imgblock.tall {
   height: 200px;
 }
+
 
 .tag-btn {
   padding: 4px 12px;
@@ -340,16 +319,8 @@ body.light .header-img--jour {
   border-radius: 4px;
   cursor: pointer;
 }
-.tag-btn:hover {
-  color: var(--iz-button-text-hover);
-  background: var(--iz-button-hover);
-  border-color: var(--iz-border-hover);
-}
-.tag-btn.active {
-  color: var(--iz-accent);
-  border-color: var(--iz-accent);
-  background: var(--iz-button-active);
-}
+.tag-btn:hover  { color: var(--iz-button-text-hover); background: var(--iz-button-hover); border-color: var(--iz-border-hover); }
+.tag-btn.active { color: var(--iz-accent); border-color: var(--iz-accent); background: var(--iz-button-active); }
 
 .flowchart-horizontal {
   display: flex;
@@ -374,15 +345,9 @@ body.light .header-img--jour {
   font-weight: bold;
 }
 
-.flow-box.warning {
-  border-color: #d6a500;
-}
-.flow-box.danger {
-  border-color: #c0392b;
-}
-.flow-box.loss {
-  border-color: #8e44ad;
-}
+.flow-box.warning { border-color: #d6a500; }
+.flow-box.danger  { border-color: #c0392b; }
+.flow-box.loss    { border-color: #8e44ad; }
 
 @media (max-width: 768px) {
   .navi {
@@ -417,27 +382,16 @@ body.light .header-img--jour {
 }
 
 body.light .header {
-  background:
-    linear-gradient(rgba(100, 55, 20, 0.48), rgba(120, 65, 25, 0.65)),
-    url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Izmir_kordon_sunset.jpg/1280px-Izmir_kordon_sunset.jpg");
+  background: linear-gradient(rgba(100, 55, 20, 0.48), rgba(120, 65, 25, 0.65)),
+              url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Izmir_kordon_sunset.jpg/1280px-Izmir_kordon_sunset.jpg");
   background-size: cover;
   background-position: center top;
 }
-body.light .site-name {
-  color: #fdf0e0;
-  text-shadow: 0 1px 3px rgba(60, 20, 5, 0.55);
-}
-body.light .sub-title {
-  color: #f0c898;
-  text-shadow: 0 1px 2px rgba(60, 20, 5, 0.4);
-}
+body.light .site-name { color: #fdf0e0; text-shadow: 0 1px 3px rgba(60,20,5,0.55); }
+body.light .sub-title { color: #f0c898; text-shadow: 0 1px 2px rgba(60,20,5,0.4); }
 
-body.light .imgblock img {
-  opacity: 0.82;
-}
-body.light .imgblock:hover img {
-  opacity: 0.96;
-}
+body.light .imgblock img { opacity: 0.82; }
+body.light .imgblock:hover img { opacity: 0.96; }
 body.light .imgblock .imgcaption {
   color: #fdf0e0;
   background: linear-gradient(transparent, rgba(80, 35, 10, 0.68));
