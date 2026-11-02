@@ -5,20 +5,28 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sun/pentacle.webp
+  alt: Page of pentacles.
+  tags: [sunny, canon, toreador, ines]
+  desc: spark-in-his-eyes-dimitrios challenge.
+- src: sun/dimitrios.webp
+  alt: Dimitrios icon.
+  tags: [sunny, canon, tremere, dimitrios]
+  desc: spark-in-his-eyes-dimitrios challenge.
 - src: sun/marikoo.webp
-  alt:  Doodles.
+  alt: Doodles.
   tags: [sunny, noncanon, tremere, lasombra, mariko, ketevan, dimitrios]
   desc: Doodling around.
 - src: sun/ingasprite.webp
-  alt:  Inga Sprites.
+  alt: Inga Sprites.
   tags: [sunny, canon, nosferatu, inga]
   desc: Inga Sprites.
 - src: yolnir/tremeremob.webp
-  alt:  Tremere mobile.
+  alt: Tremere mobile.
   tags: [yolnir, noncanon, tremere]
   desc: Tremere mobile.
 - src: sun/INGAGIF.gif
-  alt:  lacey's game.
+  alt: lacey's game.
   tags: [sunny, noncanon, nosferatu, inga]
   desc: fear of being alone.
 - src: sun/hanged.webp
@@ -191,7 +199,24 @@
   desc: Fils de Carthage.
 - src: yolnir/ARR.mp4
   alt: Animation Nour
-  tags: [video, yolnir, canon, brujah, tremere, toreador, ventrue, esen, arslan, enry, nafissa, gabriel, tarik, chae-yeong, kaadir]
+  tags:
+    [
+      video,
+      yolnir,
+      canon,
+      brujah,
+      tremere,
+      toreador,
+      ventrue,
+      esen,
+      arslan,
+      enry,
+      nafissa,
+      gabriel,
+      tarik,
+      chae-yeong,
+      kaadir,
+    ]
   desc: Animation de Nour.
 - src: sunny/green.webp
   alt: Green if for brujah.
@@ -383,7 +408,19 @@
   desc: Les Songes de la Pyramide Extérieure.
 - src: autriche/interior.webp
   alt: Trois.
-  tags: [autriche, canon, tremere, zacharias, eylem, dimitrios, ismini, mariko, calliope, arslan]
+  tags:
+    [
+      autriche,
+      canon,
+      tremere,
+      zacharias,
+      eylem,
+      dimitrios,
+      ismini,
+      mariko,
+      calliope,
+      arslan,
+    ]
   desc: Les Rêveries de la Pyramide Intérieure.
 - src: sunny/shadow.webp
   alt: Shadow.
@@ -745,7 +782,20 @@
   desc: Coterie des problèèmes.
 - src: autriche/enluminured.webp
   alt: Lignée.
-  tags: [canon, autriche, toreador, brujah, ventrue, tremere, primogene, nafissa, enry, esen, arslan]
+  tags:
+    [
+      canon,
+      autriche,
+      toreador,
+      brujah,
+      ventrue,
+      tremere,
+      primogene,
+      nafissa,
+      enry,
+      esen,
+      arslan,
+    ]
   desc: Enluminure conseil des primogene.
 - src: sunny/coteried.webp
   alt: Lignée.
@@ -777,7 +827,20 @@
   desc: "Un endroit ou mourir. "
 - src: sunny/PRIMOGENANT.webp
   alt: Primo.
-  tags: [canon, sunny, toreador, brujah, ventrue, tremere, primogene, nafissa, enry, esen, arslan]
+  tags:
+    [
+      canon,
+      sunny,
+      toreador,
+      brujah,
+      ventrue,
+      tremere,
+      primogene,
+      nafissa,
+      enry,
+      esen,
+      arslan,
+    ]
   desc: "Watching. "
 - src: sunny/scourge.webp
   alt: Scourge.

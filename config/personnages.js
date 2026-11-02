@@ -1,4 +1,3 @@
-// Les fiches de personnages : un fichier par personnage dans src/personnages/.
 // Le nom du fichier (sans .html) sert d'identifiant : "thouros" pour src/personnages/thouros.html.
 
 let fiches = [];
@@ -33,15 +32,6 @@ export function relation(texte, id, nom) {
   <dd>${texte.trim()}</dd>
 </dl>`;
 }
-
-// Les noms des relations deviennent des liens vers les fiches.
-// Dans une fiche, chaque <dt> (le nom d'une relation) qui n'a pas encore de lien est comparé aux personnages :
-// s'il correspond à une seule fiche, il devient un lien vers elle. Sinon, il ne change pas.
-// Un nom correspond à une fiche si c'est (avant une éventuelle virgule) :
-//   - le nom du fichier, le « nom », le « Nom » du tableau ou le « tag_galerie » de la fiche (ex. « Henri, son époux ») ;
-//   - ou le prénom d'une seule fiche, avec un nom complet qui ne contredit pas la fiche : soit tous ses mots sont
-//     dans la fiche (« Baran Serra »), soit tous les mots de la fiche sont dans le nom (« Calliope Doukakis »
-//     pour une fiche qui dit juste « Calliope »). « Anna Comnène » ne devient donc pas un lien vers Anna Petrova.
 const simple = (texte) =>
   String(texte ?? "")
     .replace(/<[^>]+>/g, " ")
@@ -73,7 +63,6 @@ export function ficheDuNom(texte) {
   return parPrenom.length === 1 ? parPrenom[0].f : null;
 }
 
-// {{ content | lierRelations | safe }} dans le modèle des fiches
 export function lierRelations(html) {
   return html.replace(/<dt\b([^>]*)>((?:(?!<dt\b)[\s\S])*?)<\/dt>/g, (tout, attributs, dedans) => {
     if (/<a\b/i.test(dedans)) return tout;

@@ -1,6 +1,3 @@
-// La galerie en bas des fiches : un clic sur un dessin l'agrandit dans la page.
-// Les flèches (ou ← →) passent au dessin suivant de l'onglet ; Échap ou un clic à côté ferme.
-// Sans ce script, le lien ouvre simplement l'image dans un nouvel onglet.
 (function () {
   const galerie = document.getElementById("galerie");
   if (!galerie) return;
