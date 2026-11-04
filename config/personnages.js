@@ -92,7 +92,6 @@ export function lierRelations(html) {
 
 export function avecEtreintes(html, toutes) {
   html = String(html);
-  // les repères : les événements et les titres qui ont une année, dans l'ordre de la page
   const reperes = [];
   for (const m of html.matchAll(
     /<div class="chrono-evenement">|<h2[^>]*>([\s\S]*?)<\/h2>/g,
@@ -118,7 +117,6 @@ export function avecEtreintes(html, toutes) {
     html.indexOf('<div class="chronologie">') +
     '<div class="chronologie">'.length;
 
-  // chaque Étreinte va après le dernier repère qui la précède
   const ajouts = new Map();
   for (const f of toutes) {
     const date = sansBalises(f.data.bio?.["Étreinte"] ?? f.data.bio?.Etreinte);
@@ -130,7 +128,6 @@ export function avecEtreintes(html, toutes) {
     ajouts.get(position).push({ annee, html: ligneEtreinte(f, date) });
   }
 
-  // on colle les Étreintes en partant de la fin, pour que les positions restent justes
   for (const position of [...ajouts.keys()].sort((a, b) => b - a)) {
     const lignes = ajouts
       .get(position)
@@ -157,7 +154,6 @@ function ligneEtreinte(f, date) {
 `;
 }
 
-// la fin d'un <div …> : là où se ferme le </div> qui lui correspond
 function finDuBloc(html, debut) {
   let profondeur = 0;
   const balises = /<div\b|<\/div>/g;
@@ -181,9 +177,6 @@ const echapper = (texte) =>
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
-// L'année, à peu près, pour ranger : « 1851 », « ~1830 », « vers 1750 », « Vers -1000 », « 1450–1540 » → la première année ;
-// « Début du XIIIe siècle » → 1210, « Milieu du XIXe siècle » → 1850, « Fin XIIIe » → 1290, « Au 18ème siècle » → 1750 ;
-// « … avant J.C » → une année négative. Sans date lisible (« Antiquité ») : null.
 function anneeDe(texte) {
   const debut = texte.split("–")[0];
   const negatif = /av(?:ant|\.)\s*J/i.test(debut) ? -1 : 1;
@@ -196,7 +189,6 @@ function anneeDe(texte) {
   return ((n - 1) * 100 + dans) * negatif;
 }
 
-// « XIX » → 19
 function nombre(texte) {
   for (const [valeur, lettres] of [
     [10, "X"],
