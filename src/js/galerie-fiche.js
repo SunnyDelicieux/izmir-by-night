@@ -32,14 +32,21 @@
     e.preventDefault();
     liens = [...lien.parentElement.querySelectorAll("a")];
     montrer(liens.indexOf(lien));
-    for (const bouton of zoom.querySelectorAll(".precedent, .suivant")) bouton.hidden = liens.length < 2;
+    for (const bouton of zoom.querySelectorAll(".precedent, .suivant"))
+      bouton.hidden = liens.length < 2;
     zoom.showModal();
   });
 
-  zoom.querySelector(".precedent").addEventListener("click", () => montrer(numero - 1));
-  zoom.querySelector(".suivant").addEventListener("click", () => montrer(numero + 1));
+  zoom
+    .querySelector(".precedent")
+    .addEventListener("click", () => montrer(numero - 1));
+  zoom
+    .querySelector(".suivant")
+    .addEventListener("click", () => montrer(numero + 1));
   zoom.querySelector(".fermer").addEventListener("click", () => zoom.close());
-  zoom.addEventListener("click", (e) => { if (e.target === zoom) zoom.close(); }); // clic sur le fond
+  zoom.addEventListener("click", (e) => {
+    if (e.target === zoom) zoom.close();
+  }); // clic sur le fond
   zoom.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") montrer(numero - 1);
     if (e.key === "ArrowRight") montrer(numero + 1);

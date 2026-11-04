@@ -4,10 +4,16 @@
   if (!toc || !contents) return;
 
   // même règle que dans DATA/search.js, pour que les liens de la recherche tombent sur ces ancres
-  const slug = (s) => s.toLowerCase().replace(/ı/g, "i")
-    .normalize("NFD").replace(/[̀-ͯ]/g, "")
-    .replace(/[-_]+/g, " ").trim()
-    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const slug = (s) =>
+    s
+      .toLowerCase()
+      .replace(/ı/g, "i")
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/[-_]+/g, " ")
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
 
   let liste = toc;
   let niveau = 0;

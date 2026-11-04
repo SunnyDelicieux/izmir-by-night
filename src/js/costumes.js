@@ -1,6 +1,7 @@
 function costumes() {
   const body = document.body;
-  const actif = body.classList.contains("halloween") && !body.classList.contains("light");
+  const actif =
+    body.classList.contains("halloween") && !body.classList.contains("light");
 
   for (const img of document.querySelectorAll("img[data-halloween]")) {
     if (!img.dataset.normal) {
@@ -12,7 +13,10 @@ function costumes() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  costumes(); 
+  costumes();
 
-  new MutationObserver(costumes).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  new MutationObserver(costumes).observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 });

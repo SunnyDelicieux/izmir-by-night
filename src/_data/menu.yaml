@@ -18,6 +18,8 @@
           url: /univers/lois/
         - texte: Carte
           url: /outils/carte/
+        - texte: Carte de la région
+          url: /univers/map/
     - titre: Les clans
       liens:
         - texte: Tous les clans
