@@ -1,0 +1,80 @@
+
+- lieu: Izmir
+  lat: 38.42
+  lon: 27.14
+  personnages: [meryem, tarik, cem, raffi, kerem]
+
+- lieu: Manisa # vault
+  lat: 38.61
+  lon: 27.43
+  personnages: [eylem]
+
+- lieu: Istanbul
+  lat: 41.01
+  lon: 28.98
+  personnages: [ahmet]
+
+- lieu: Athènes
+  lat: 37.98
+  lon: 23.73
+  personnages: [dimitrios, sophia]
+
+- lieu: Thessalonique # vault
+  lat: 40.64
+  lon: 22.94
+  personnages: [eleni-paschalia]
+
+- lieu: Grèce
+  lat: 39.5
+  lon: 22
+  personnages: [dimitri]
+
+- lieu: Crète
+  lat: 35.24
+  lon: 24.9
+  personnages: [ismini]
+
+- lieu: Parga
+  lat: 39.29
+  lon: 20.4
+  personnages: [ibrahim]
+
+- lieu: Cappadoce
+  lat: 38.64
+  lon: 34.83
+  personnages: [emine]
+
+- lieu: Venise
+  lat: 45.44
+  lon: 12.33
+  personnages: [henri]
+
+- lieu: Italie
+  lat: 42.8
+  lon: 12.6
+  personnages: [gabriel]
+
+- lieu: Gascogne
+  lat: 43.65
+  lon: 0.59
+  personnages: [thouros]
+
+- lieu: Fès
+  lat: 34.03
+  lon: -5
+  personnages: [nafissa]
+
+- lieu: Libye
+  lat: 28
+  lon: 17
+  personnages: [essil]
+
+- lieu: Inde # vault
+  lat: 23
+  lon: 78
+  personnages: [ajit]
+
+- lieu: Steppes mongoles
+  lat: 48.5
+  lon: 89.5
+  personnages: [kushi, zaya]

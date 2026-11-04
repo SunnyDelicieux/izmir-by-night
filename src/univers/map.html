@@ -12,6 +12,21 @@ js: [/espace-joueur/lecteur.js, /js/carte.js]
         src="/img/map.webp"
         alt="Carte de la Méditerranée et du Moyen-Orient"
       />
+
+      {% for o in origines %}
+      <span
+        class="lieu origine"
+        tabindex="0"
+        style="left: {{ ((o.lon + 13.07) / 104 * 100) | round(2) }}%; top: {{ ((52.93 - o.lat) / 35.2 * 100) | round(2) }}%"
+      >
+        <span
+          >{{ o.lieu }} : {% for id in o.personnages %}{% set f = id | fiche
+          %}<a href="{{ f.url }}">{{ f.data.nom }}</a>{% if not loop.last %}, {%
+          endif %}{% endfor %}</span
+        >
+      </span>
+      {% endfor %}
+
       <a class="lieu" href="/univers/" style="left: 38.7%; top: 41.2%"
         ><span>Izmir</span></a
       >
@@ -51,4 +66,5 @@ js: [/espace-joueur/lecteur.js, /js/carte.js]
       >
     </div>
   </div>
+  <p>● un lieu de la chronique &nbsp;·&nbsp; ◯ d'où viennent des personnages</p>
 </div>
