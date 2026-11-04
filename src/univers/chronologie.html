@@ -80,10 +80,34 @@ ordre: 3
 
 }
 
+
+/* =========================
+   LES CASES EN HAUT : montrer ou cacher les événements et les Étreintes
+   ========================= */
+
+body:has(#voir-evenements:not(:checked)) .chrono-evenement:not(.chrono-etreinte),
+body:has(#voir-etreintes:not(:checked)) .chrono-etreinte {
+    display: none;
+}
+
+.chrono-etreinte .chrono-titre {
+    font-size: 16px;
+    font-style: italic;
+}
 </style>
 <div id="toc"></div>
 
 <div id="contents">
+
+<p>
+    Afficher :
+    <label><input type="checkbox" id="voir-evenements" checked> les événements</label>
+    &nbsp;
+    <label><input type="checkbox" id="voir-etreintes"> les Étreintes</label>
+</p>
+
+{#- Les Étreintes viennent du champ « Étreinte » de la bio des fiches (src/personnages/) : elles se placent toutes seules. #}
+{% set evenements %}
 
 
 
@@ -704,4 +728,6 @@ zone d’influence.
 </div>
 
 </div>
+{% endset %}
+{{ evenements | avecEtreintes(collections.personnages) | safe }}
 </div>

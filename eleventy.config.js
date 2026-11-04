@@ -6,6 +6,7 @@ import { indexerRecherche } from "./config/recherche.js";
 import {
   fiche,
   carteDe,
+  avecEtreintes,
   relation,
   fichesDe,
   lierRelations,
@@ -33,6 +34,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("personnages", (api) => fichesDe(api));
   eleventyConfig.addFilter("fiche", fiche);
   eleventyConfig.addFilter("carteDe", carteDe);
+  eleventyConfig.addFilter("avecEtreintes", avecEtreintes);
   eleventyConfig.addPairedShortcode("relation", relation);
   eleventyConfig.addFilter("lierRelations", lierRelations);
   eleventyConfig.addFilter("dessinsDe", dessinsDe);

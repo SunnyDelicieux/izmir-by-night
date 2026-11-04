@@ -1,6 +1,4 @@
-// À coller dans la console (F12) de la page MJ, connecté en admin.
-//   await izmirTexte()      → montre seulement ce qui serait converti (rien n'est modifié)
-//   await izmirTexte(true)  → convertit pour de vrai
+
 window.izmirTexte = async (pourDeVrai = false) => {
   const { client, isAdmin } = izmirAccount.state;
   if (!isAdmin) return console.warn("Connecte-toi en admin d'abord.");
