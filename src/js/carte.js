@@ -21,7 +21,7 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
   }
 
   function demarrer() {
-    largeur = Math.max(minimum(), image.naturalWidth);
+    largeur = minimum(); // au départ : dézoomée au maximum
     carte.style.width = largeur + "px";
     cadre.scrollLeft = (carte.offsetWidth - cadre.clientWidth) / 2;
     cadre.scrollTop = (carte.offsetHeight - cadre.clientHeight) / 2;

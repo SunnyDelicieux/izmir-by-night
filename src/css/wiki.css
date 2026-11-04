@@ -388,14 +388,26 @@ td:nth-child(odd) {
   background: var(--iz-accent);
 }
 
+/* les triangles : d'où viennent les personnages, dessinés un peu à droite de leur lieu */
 .carte .origine {
-  width: 22px;
-  height: 22px;
+  margin-left: 16px;
+  border: none;
   background: none;
-  border-color: var(--iz-accent);
 }
 
-.carte .lieu span {
+.carte .origine::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  border: 8px solid transparent;
+  border-top: none;
+  border-bottom: 14px solid color-mix(in srgb, var(--iz-accent), #a0303c 40%);
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
+}
+
+/* au survol : le nom du lieu (ou, pour un triangle, le panneau avec les cartes des personnages) */
+.carte .lieu > * {
   display: none;
   position: absolute;
   bottom: 16px;
@@ -407,7 +419,18 @@ td:nth-child(odd) {
   white-space: nowrap;
 }
 
-.carte .lieu:hover span,
-.carte .lieu:focus span {
+.carte .origine > * {
+  top: 100%;
+  bottom: auto;
+  padding: 6px;
+}
+
+.carte .lieu:hover,
+.carte .lieu:focus-within {
+  z-index: 1;
+}
+
+.carte .lieu:hover > *,
+.carte .lieu:focus-within > * {
   display: block;
 }

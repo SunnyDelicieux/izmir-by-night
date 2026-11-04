@@ -1,11 +1,17 @@
+# D'où viennent les personnages : les triangles de la carte (src/univers/map.html).
+# Au survol, un panneau montre leurs cartes, comme dans la liste des personnages.
+#   lieu : le nom affiché au survol
+#   lat, lon : la latitude et la longitude du lieu, en degrés (sur Wikipédia : cliquer sur les coordonnées en haut de l'article)
+#   personnages : les noms des fichiers des fiches (src/personnages/<nom>.html), sans .html
+# Seulement ce qui est public ! Les lignes marquées « vault » ne sont pas encore écrites dans le wiki.
 
 - lieu: Izmir
   lat: 38.42
   lon: 27.14
   personnages: [meryem, tarik, cem, raffi, kerem]
 
-- lieu: Manisa # vault
-  lat: 38.61
+- lieu: Manisa # vault ; un peu remonté, pour ne pas cacher Izmir
+  lat: 39.2
   lon: 27.43
   personnages: [eylem]
 
