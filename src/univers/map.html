@@ -14,13 +14,16 @@ js: [/espace-joueur/lecteur.js, /js/carte.js]
       />
 
       <!-- les triangles : d'où viennent les personnages. La liste est dans src/_data/origines.yaml -->
-      {% for o in origines %}
+      {% for o in origines %} {% set haut = ((52.93 - o.lat) / 35.2 * 100) |
+      round(2) %}
       <div
         class="lieu origine"
         tabindex="0"
-        style="left: {{ ((o.lon + 13.07) / 104 * 100) | round(2) }}%; top: {{ ((52.93 - o.lat) / 35.2 * 100) | round(2) }}%"
+        style="left: {{ ((o.lon + 13.07) / 104 * 100) | round(2) }}%; top: {{ haut }}%"
       >
-        <div>
+        <div
+          class="{{ 'large' if o.personnages | length > 6 }} {{ 'vers-le-haut' if haut > 75 }}"
+        >
           <b>{{ o.lieu }}</b>
           {% for id in o.personnages %}{% set carte = id |
           carteDe(liste_personnages) %}{% include "carte-personnage.njk" %}{%

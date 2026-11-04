@@ -421,6 +421,17 @@ td:nth-child(odd) {
   text-align: left;
 }
 
+/* un panneau avec beaucoup de personnages (plus de 6) : sur deux colonnes */
+.carte .origine > .large {
+  columns: 2;
+}
+
+/* un triangle tout en bas de la carte : son panneau s'ouvre vers le haut */
+.carte .origine > .vers-le-haut {
+  top: auto;
+  bottom: 12px;
+}
+
 /* au survol : le nom du lieu (ou, pour un triangle, le panneau avec les cartes des personnages) */
 .carte .lieu > * {
   display: none;

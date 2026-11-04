@@ -8,7 +8,7 @@
 - lieu: Izmir
   lat: 38.42
   lon: 27.14
-  personnages: [meryem, tarik, cem, raffi, kerem]
+  personnages: [meryem, tarik, cem, raffi, kerem, zaya, inga, nebetta, baran, kaadir, aaron]
 
 - lieu: Manisa # vault ; un peu remonté, pour ne pas cacher Izmir
   lat: 39.2
@@ -55,9 +55,9 @@
   lon: 12.33
   personnages: [henri]
 
-- lieu: Italie
-  lat: 42.8
-  lon: 12.6
+- lieu: Pise
+  lat: 43.72
+  lon: 10.4
   personnages: [gabriel]
 
 - lieu: Gascogne
@@ -75,12 +75,47 @@
   lon: 17
   personnages: [essil]
 
-- lieu: Inde # vault
-  lat: 23
-  lon: 78
+- lieu: Goa
+  lat: 18.2 # Goa est un peu plus bas (15,5), sous le bord de la carte
+  lon: 74
   personnages: [ajit]
 
 - lieu: Steppes mongoles
-  lat: 48.5
-  lon: 89.5
-  personnages: [kushi, zaya]
+  lat: 47.5 # rapproché du bord, pour que son panneau tienne dans la carte
+  lon: 84
+  personnages: [kushi]
+
+- lieu: Turquie (une ville moyenne)
+  lat: 38.8
+  lon: 30.5
+  personnages: [max, maliha]
+
+- lieu: Tokat
+  lat: 40.31
+  lon: 36.55
+  personnages: [aylin]
+
+- lieu: Adana
+  lat: 37
+  lon: 35.32
+  personnages: [angelos]
+
+- lieu: Skiathos
+  lat: 39.16
+  lon: 23.49
+  personnages: [calliope]
+
+- lieu: Marrakech
+  lat: 31.63
+  lon: -7.99
+  personnages: [ines]
+
+- lieu: Chiraz
+  lat: 29.59
+  lon: 52.58
+  personnages: [nour]
+
+- lieu: Mumbai
+  lat: 19.08
+  lon: 72.88
+  personnages: [kejal]
