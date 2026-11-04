@@ -406,6 +406,21 @@ td:nth-child(odd) {
   filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
 }
 
+/* dans le panneau : les cartes des personnages en petit */
+.carte .origine .card {
+  padding: 2px 6px;
+  gap: 8px;
+}
+
+.carte .origine .card .icon {
+  width: 28px;
+  height: 28px;
+}
+
+.carte .origine .content {
+  text-align: left;
+}
+
 /* au survol : le nom du lieu (ou, pour un triangle, le panneau avec les cartes des personnages) */
 .carte .lieu > * {
   display: none;
