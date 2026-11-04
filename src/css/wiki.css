@@ -361,9 +361,11 @@ td:nth-child(odd) {
 }
 
 .carte-cadre {
-  height: 70vh;
+  height: 55vh;
   overflow: auto;
   cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: var(--iz-accent) transparent;
 }
 
 .carte-cadre.glisse {

@@ -21,8 +21,10 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
   }
 
   function demarrer() {
-    largeur = minimum(); // au départ : dézoomée au maximum
-    carte.style.width = largeur + "px";
+    for (let fois = 0; fois < 2; fois++) {
+      largeur = minimum(); // au départ : dézoomée au maximum
+      carte.style.width = largeur + "px";
+    }
     cadre.scrollLeft = (carte.offsetWidth - cadre.clientWidth) / 2;
     cadre.scrollTop = (carte.offsetHeight - cadre.clientHeight) / 2;
   }

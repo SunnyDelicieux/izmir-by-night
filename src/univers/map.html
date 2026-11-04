@@ -13,7 +13,7 @@ js: [/espace-joueur/lecteur.js, /js/carte.js]
         alt="Carte de la Méditerranée et du Moyen-Orient"
       />
 
-      <!-- les triangles : d'où viennent les personnages. La liste est dans src/_data/origines.yaml -->
+      <!-- les triangles  -->
       {% for o in origines %} {% set haut = ((52.93 - o.lat) / 35.2 * 100) |
       round(2) %}
       <div
