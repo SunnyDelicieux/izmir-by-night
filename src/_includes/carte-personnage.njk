@@ -1,8 +1,31 @@
-src/
-  _includes/
-    base.njk
-    barre.njk
-    carte-personnage.njk   ← ici
-    fiche.njk
-    hub.njk
-    wiki.njk
+{#- Une carte de personnage : son image, son nom et son rôle, qui mène à sa fiche.
+    Utilisée par la liste des personnages (src/personnages/index.njk) et par la carte du monde (src/univers/map.html).
+    Il faut une variable « carte » : une carte de src/_data/liste_personnages.yaml (fiche, nom, icone, role, note).
+    Son style est dans /css/cartes.css. -#}
+{%- set f = (carte.fiche | fiche) if carte.fiche else null %}
+{%- set nom = carte.nom or (f.data.nom if f else "") %}
+{%- set icone = carte.icone or (f.data.icone if f else "") %}
+{%- if f %}
+<a class="card" href="{{ f.url }}">
+{%- else %}
+<div class="card">
+{%- endif %}
+{%- if icone %}
+  <img src="{{ icone }}" class="icon" alt="{{ nom }}">
+{%- endif %}
+  <div class="content">
+  {%- if nom %}
+    <h5>{{ nom }}</h5>
+  {%- endif %}
+  {%- if carte.role %}
+    <p>{{ carte.role }}</p>
+  {%- endif %}
+  {%- if carte.note %}
+    <p>{{ carte.note }}</p>
+  {%- endif %}
+  </div>
+{%- if f %}
+</a>
+{%- else %}
+</div>
+{%- endif %}
