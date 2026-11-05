@@ -231,7 +231,7 @@
 
 	function ouvrirDossier(dossier) {
 		if (dossier.pdf) ouvrirPdf(dossier.pdf);
-		else if (dossier.image) ouvrirImage(dossier.image);
+		else if (dossier.images || dossier.image) ouvrirImage(dossier.images || dossier.image);
 	}
 
 	// QUELLE CHEMISE EST SOUS LA SOURIS ? La plus en avant dont l'image n'est pas transparente à cet endroit

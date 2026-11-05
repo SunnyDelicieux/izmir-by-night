@@ -1,7 +1,7 @@
 // CE QUI SERT AUX DEUX PAGES (la salle et le classeur) :
 //   construireClasseur(element, classeur, cliquer) : l'image d'un classeur, et ses trois tiroirs par-dessus
 //   dire(texte, image)       : la boîte de dialogue, en bas, et l'objet en grand au-dessus
-//   ouvrirPdf(nom), ouvrirImage(nom) : un document par-dessus la page
+//   ouvrirPdf(nom), ouvrirImage(noms) : un document par-dessus la page
 //   la lumière qui vacille, de temps en temps
 
 // LES TROIS TIROIRS DE L'IMAGE img/classeur.png : leur haut et leur hauteur, en % de l'image.
@@ -94,10 +94,13 @@ function ouvrirPdf(nom) {
 	boite.showModal();
 }
 
-function ouvrirImage(nom) {
+// une image, ou plusieurs côte à côte (noms : un nom, ou une liste de noms)
+function ouvrirImage(noms) {
+	const liste = [].concat(noms);
 	const boite = fenetre();
 	boite.className = "image";
-	boite.innerHTML = `<img src="enluminures/${echapper(nom)}" alt="">`;
+	boite.style.setProperty("--nombre", liste.length);
+	boite.innerHTML = liste.map((nom) => `<img src="enluminures/${echapper(nom)}" alt="">`).join("");
 	boite.onclick = () => boite.close();
 	boite.showModal();
 }

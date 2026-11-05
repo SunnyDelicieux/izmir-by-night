@@ -6,6 +6,7 @@
 // Un dossier : l'image de sa chemise (dans chemises/), et ce qu'il ouvre :
 //   pdf: "mon-document.pdf"   (rangé dans docs/)
 //   image: "mon-dessin.webp"  (rangée dans enluminures/)
+//   images: ["un.webp", "deux.webp", "trois.webp"]  (plusieurs images, montrées côte à côte)
 // Sur une chemise vierge (voir plus bas), on ajoute son nom : nom: "Mon dossier"
 // (le site l'écrit en majuscules sur l'onglet, et l'écrit plus petit s'il est très long).
 //
@@ -20,6 +21,7 @@ const CLASSEURS = [
 				dossiers: [
 					{ chemise: "atratinus-009.webp", pdf: "une-legende-vetue-de-noir.pdf" },
 					{ chemise: "atratinus-010.webp", pdf: "exemple.pdf" },
+					{ chemise: "vierge-rose-gauche.webp", nom: "Mort d'Eudokia", image: "mort-d-eudokia.webp" },
 				],
 			},
 			{
@@ -27,6 +29,7 @@ const CLASSEURS = [
 				dossiers: [
 					{ chemise: "vierge-bleue.webp", nom: "L'infernalisme", pdf: "l-infernalisme-a-smyrne.pdf" },
 					{ chemise: "marcus-forain.webp", pdf: "marcus-forain.pdf" },
+					{ chemise: "vierge-bleue.webp", nom: "Enluminure de Marcus Forain", image: "marcus-forain.webp" },
 				],
 			},
 			{
@@ -45,11 +48,17 @@ const CLASSEURS = [
 	{
 		nom: "Histoire des clans",
 		tiroirs: [
-			{ etiquette: "A — F", dossiers: [] },
 			{
-				etiquette: "G — O",
+				etiquette: "A — M",
 				dossiers: [
 					{ chemise: "vierge-peche.webp", nom: "Mythes de Smyrne", pdf: "mythes-de-smyrne.pdf" },
+				],
+			},
+			{
+				etiquette: "N — Z",
+				dossiers: [
+					{ chemise: "vierge-rose-gauche.webp", nom: "Sabbat", image: "sabbat.webp" },
+					{ chemise: "vierge-bleue.webp", nom: "Sigils", images: ["sigils-brujah.webp", "sigils-tremere.webp"] },
 				],
 			},
 			{

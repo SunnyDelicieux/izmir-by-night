@@ -155,6 +155,7 @@ button.tiroir:focus-visible {
 ========================= */
 
 #fenetre {
+	outline: none; /* pas de liseré blanc autour quand elle s'ouvre */
 	padding: 0;
 	border: 1px solid var(--trait);
 	background: #0d0c0b;
@@ -202,10 +203,31 @@ html:has(#fenetre[open]) {
 	cursor: pointer;
 }
 
+/* une ou plusieurs images, côte à côte (--nombre : combien il y en a) */
+#fenetre.image[open] {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
 #fenetre.image img {
 	display: block;
-	max-width: 80vw;
+	max-width: min(80vw, 92vw / var(--nombre, 1) - 16px);
 	max-height: 86vh;
+}
+
+/* sur un téléphone, les unes sous les autres */
+@media (max-width: 700px) {
+	#fenetre.image[open] {
+		flex-direction: column;
+		max-height: 92vh;
+		overflow-y: auto;
+	}
+
+	#fenetre.image img {
+		max-width: 86vw;
+		max-height: none;
+	}
 }
 
 
