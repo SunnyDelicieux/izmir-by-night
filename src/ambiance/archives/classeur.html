@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Un classeur · Les Archives de Smyrne</title>
+	<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Kalam&display=swap">
+	<link rel="stylesheet" href="archives.css">
+	<style>
+		body {
+			min-height: 100vh;
+			background-attachment: fixed;
+		}
+
+		/* le nom du classeur, en haut */
+		h1 {
+			margin: 0;
+			padding: 18px 0 0;
+			text-align: center;
+			font: 500 14px var(--mono);
+			letter-spacing: 0.3em;
+			text-transform: uppercase;
+			color: var(--pale);
+		}
+
+		/* LE CLASSEUR, en très grand : on fait défiler la page pour atteindre les tiroirs du bas,
+		   et la page s'arrête au bas du classeur */
+		#grand {
+			width: min(52vw, 760px);
+			margin: 4vh auto 0;
+			filter: drop-shadow(0 2vw 3vw rgba(0, 0, 0, 0.9));
+		}
+
+		#grand .tiroir:hover,
+		#grand .tiroir:focus-visible {
+			transform: scale(1.015);
+		}
+
+		/* LE TIROIR OUVERT : par-dessus la page, les chemises debout, celle du fond en haut */
+		/* (au-dessus du lien « ← la salle » de la page, sous la lumière qui vacille) */
+		#ouvert {
+			position: fixed;
+			inset: 0;
+			z-index: 55;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-end;
+			background: rgba(6, 5, 4, 0.94);
+		}
+
+		/* pendant qu'un tiroir est ouvert, la page derrière ne défile pas */
+		html:has(#ouvert:not([hidden])) {
+			overflow: hidden;
+		}
+
+		#ouvert .titre {
+			position: absolute;
+			top: 18px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			font: 500 14px var(--mono);
+			letter-spacing: 0.3em;
+			text-transform: uppercase;
+			color: var(--pale);
+		}
+
+		/* l'intérieur du tiroir, avec ses chemises */
+		#chemises {
+			position: relative;
+			width: min(980px, 84vw);
+			height: 64vh;
+			overflow: hidden;
+			background: linear-gradient(#1a1816, #0c0b0a);
+			box-shadow: inset 0 3vh 4vh -1vh #000, inset 4vw 0 3vw -3vw #000, inset -4vw 0 3vw -3vw #000;
+		}
+
+		/* une chemise : son image ; la souris est suivie par #chemises (voir plus bas), pas par la chemise elle-même */
+		.chemise {
+			position: absolute;
+			left: 6%;
+			width: 88%;
+			padding: 0;
+			border: none;
+			background: none;
+			pointer-events: none;
+			container-type: inline-size;
+			filter: brightness(var(--lumiere)) drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.55));
+			transition: transform 0.18s ease, filter 0.18s ease;
+		}
+
+		.chemise img {
+			display: block;
+			width: 100%;
+		}
+
+		/* le nom écrit sur l'onglet d'une chemise vierge, comme à la main */
+		.chemise .nom {
+			position: absolute;
+			transform: translate(-50%, -50%) skewX(-8deg);
+			white-space: nowrap;
+			font: 2.6cqi "Kalam", cursive;
+			text-transform: uppercase;
+			color: #1d1b24;
+		}
+
+		/* tirée vers le haut, quand on la survole */
+		.chemise.tiree,
+		.chemise:focus-visible {
+			transform: translateY(-11%);
+			filter: brightness(1) drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.55));
+			outline: none;
+		}
+
+		/* le devant du tiroir, qui cache le bas des chemises */
+		#chemises .devant {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 16%;
+			z-index: 500;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(#77797a, #545657 40%, #3c3e3f);
+			border-top: 1px solid #9a9c9d;
+		}
+
+		#chemises .devant span {
+			padding: 4px 18px;
+			font: 500 16px var(--mono);
+			color: #1c1a17;
+			background: #e9e2d0;
+		}
+
+		#chemises .vide {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 40%;
+			text-align: center;
+			font: 14px var(--mono);
+			color: var(--pale);
+		}
+	</style>
+</head>
+<body class="mur">
+
+<!-- UN CLASSEUR, VU DE PRÈS : classeur.html?classeur=1&tiroir=2
+     (le numéro du classeur dans contenu.js, et le tiroir devant lequel on arrive).
+     Un clic sur un tiroir : il s'ouvre, et on voit ses chemises. Un clic sur une chemise : son PDF ou son image. -->
+<a class="retour" href="./">← la salle</a>
+<h1 id="nom"></h1>
+<div id="grand"></div>
+
+<section id="ouvert" hidden>
+	<a class="retour" href="#" id="fermer-tiroir">← le classeur</a>
+	<div class="titre" id="titre-tiroir"></div>
+	<div id="chemises"></div>
+</section>
+
+<script src="contenu.js"></script>
+<script src="commun.js"></script>
+<script>
+	const adresse = new URLSearchParams(location.search);
+	const classeur = CLASSEURS[(Number(adresse.get("classeur")) || 1) - 1] || CLASSEURS[0];
+	// un classeur de décor ne s'ouvre pas : on retourne dans la salle
+	if (classeur.decor) location.replace("./");
+	document.getElementById("nom").textContent = classeur.nom;
+	document.title = classeur.nom + " · Les Archives de Smyrne";
+
+	const grand = document.getElementById("grand");
+	construireClasseur(grand, classeur, ouvrirTiroir);
+
+	// on arrive devant le tiroir sur lequel on a cliqué dans la salle
+	const arrivee = grand.querySelectorAll(".tiroir")[(Number(adresse.get("tiroir")) || 1) - 1];
+	if (arrivee) addEventListener("load", () => arrivee.scrollIntoView({ block: "center" }));
+
+
+	/* =========================
+	   LE TIROIR OUVERT
+	========================= */
+
+	const ouvert = document.getElementById("ouvert");
+	const boite = document.getElementById("chemises");
+	let chemises = []; // les chemises du tiroir ouvert, de la plus au fond à la plus devant
+
+	function ouvrirTiroir(t) {
+		const tiroir = classeur.tiroirs[t];
+		document.getElementById("titre-tiroir").textContent = `${classeur.nom} · ${tiroir.etiquette}`;
+		boite.innerHTML = `<div class="devant"><span>${echapper(tiroir.etiquette)}</span></div>`;
+		chemises = [];
+		if (!tiroir.dossiers.length) boite.insertAdjacentHTML("beforeend", `<p class="vide">Ce tiroir est vide.</p>`);
+
+		// Les chemises sont posées au fond du tiroir : celle de devant s'enfonce derrière le devant du tiroir,
+		// chacune des autres dépasse un peu plus haut derrière elle (de « pas » % de la hauteur du tiroir).
+		const nombre = tiroir.dossiers.length;
+		const pas = Math.min(11, 44 / Math.max(1, nombre - 1));
+		tiroir.dossiers.forEach((dossier, rang) => {
+			const chemise = document.createElement("button");
+			chemise.className = "chemise";
+			chemise.style.bottom = (nombre - 1 - rang) * pas - 4 + "%";
+			chemise.style.zIndex = rang + 1;
+			// celles du fond sont un peu plus sombres
+			chemise.style.setProperty("--lumiere", tiroir.dossiers.length > 1 ? 0.62 + (0.33 * rang) / (tiroir.dossiers.length - 1) : 0.95);
+			chemise.innerHTML = `<img src="chemises/${echapper(dossier.chemise)}" alt="">`;
+			// sur une chemise vierge, on écrit son nom sur l'onglet
+			const onglet = CHEMISES_VIERGES[dossier.chemise];
+			if (onglet && dossier.nom) {
+				chemise.insertAdjacentHTML("beforeend", `<span class="nom" style="left: ${onglet[0]}%; top: ${onglet[1]}%">${echapper(dossier.nom)}</span>`);
+			}
+			chemise.dossier = dossier;
+			chemise.onclick = () => ouvrirDossier(dossier); // au clavier (Tab, puis Entrée)
+			boite.append(chemise);
+			chemises.push(chemise);
+		});
+		ouvert.hidden = false;
+	}
+
+	document.getElementById("fermer-tiroir").onclick = (e) => {
+		e.preventDefault();
+		ouvert.hidden = true;
+	};
+
+	function ouvrirDossier(dossier) {
+		if (dossier.pdf) ouvrirPdf(dossier.pdf);
+		else if (dossier.image) ouvrirImage(dossier.image);
+	}
+
+	// QUELLE CHEMISE EST SOUS LA SOURIS ? La plus en avant dont l'image n'est pas transparente à cet endroit
+	// (les bords transparents d'une chemise ne doivent pas cacher l'onglet de celle de derrière).
+	// On regarde la chemise à sa place de départ, même quand elle est tirée vers le haut.
+	const pinceaux = new Map(); // pour chaque image, une petite copie dont on peut lire les pixels
+	function opaque(chemise, x, y) {
+		const img = chemise.querySelector("img");
+		if (!img.complete || !img.naturalWidth) return false;
+		if (!pinceaux.has(img.src)) {
+			const toile = document.createElement("canvas");
+			toile.width = img.naturalWidth;
+			toile.height = img.naturalHeight;
+			const pinceau = toile.getContext("2d", { willReadFrequently: true });
+			pinceau.drawImage(img, 0, 0);
+			pinceaux.set(img.src, pinceau);
+		}
+		const px = Math.floor((x / chemise.offsetWidth) * img.naturalWidth);
+		const py = Math.floor((y / chemise.offsetHeight) * img.naturalHeight);
+		if (px < 0 || py < 0 || px >= img.naturalWidth || py >= img.naturalHeight) return false;
+		return pinceaux.get(img.src).getImageData(px, py, 1, 1).data[3] > 40;
+	}
+
+	function chemiseSous(e) {
+		const cadre = boite.getBoundingClientRect();
+		const x = e.clientX - cadre.left;
+		const y = e.clientY - cadre.top;
+		if (y > cadre.height * 0.84) return null; // derrière le devant du tiroir
+		for (let i = chemises.length - 1; i >= 0; i--) {
+			const c = chemises[i];
+			if (opaque(c, x - c.offsetLeft, y - c.offsetTop)) return c;
+		}
+		return null;
+	}
+
+	boite.addEventListener("pointermove", (e) => {
+		const sous = chemiseSous(e);
+		chemises.forEach((c) => c.classList.toggle("tiree", c === sous));
+		boite.style.cursor = sous ? "pointer" : "";
+	});
+	boite.addEventListener("pointerleave", () => chemises.forEach((c) => c.classList.remove("tiree")));
+	boite.addEventListener("click", (e) => {
+		const sous = chemiseSous(e);
+		if (sous) ouvrirDossier(sous.dossier);
+	});
+</script>
+
+</body>
+</html>

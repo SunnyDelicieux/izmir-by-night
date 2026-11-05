@@ -1,0 +1,220 @@
+/* =========================
+   LES ARCHIVES DE SMYRNE : sobre, sombre, administratif
+========================= */
+
+:root {
+	--texte: #d8d2c6;
+	--pale: #8c857a;
+	--trait: #3b3631;
+	--mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+html,
+body {
+	margin: 0;
+	background: #080706;
+	color: var(--texte);
+	font-family: var(--mono);
+}
+
+[hidden] {
+	display: none !important;
+}
+
+/* le mur de briques, dans la pénombre */
+.mur {
+	background:
+		linear-gradient(rgba(6, 5, 4, 0.62), rgba(6, 5, 4, 0.62)),
+		url("img/briques.jpg") 0 0 / 30cqw auto,
+		#14110e;
+}
+
+/* un lien de retour, en haut à gauche */
+.retour {
+	position: fixed;
+	top: 18px;
+	left: 22px;
+	z-index: 50;
+	font: 14px var(--mono);
+	color: var(--pale);
+	text-decoration: none;
+}
+
+.retour:hover {
+	color: var(--texte);
+}
+
+
+/* =========================
+   UN CLASSEUR : l'image du meuble, et ses tiroirs par-dessus.
+   Les tailles en « cqi » suivent la largeur du classeur : petit dans la salle, grand dans sa page.
+========================= */
+
+.classeur {
+	position: relative;
+	aspect-ratio: 408 / 905;
+	container-type: inline-size;
+}
+
+.classeur > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	filter: brightness(0.72);
+}
+
+.tiroir {
+	position: absolute;
+	left: 3.68%;
+	width: 93.14%;
+	padding: 0;
+	border: none;
+	background: none;
+	filter: brightness(0.72);
+	transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+button.tiroir {
+	cursor: pointer;
+}
+
+.tiroir > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* au survol, le tiroir s'avance très légèrement (pas ceux d'un classeur de décor, qui ne sont pas des boutons) */
+button.tiroir:hover,
+button.tiroir:focus-visible {
+	z-index: 1;
+	transform: scale(1.025);
+	filter: brightness(0.82);
+	outline: none;
+}
+
+/* l'étiquette, tapée à la machine, dans le porte-étiquette de la poignée */
+.tiroir .etiquette {
+	position: absolute;
+	left: 38.6%;
+	width: 22.4%;
+	top: 18.5%;
+	height: 12%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	white-space: nowrap;
+	font: 500 3.1cqi var(--mono);
+	color: #1c1a17;
+	background: #e9e2d0;
+}
+
+
+/* =========================
+   LA BOÎTE DE DIALOGUE, et l'objet en grand au-dessus
+========================= */
+
+#voile {
+	position: fixed;
+	inset: 0;
+	z-index: 70;
+	background: rgba(0, 0, 0, 0.72);
+}
+
+#gros-plan {
+	position: fixed;
+	left: 50%;
+	top: 42%;
+	z-index: 75;
+	max-width: 60vw;
+	max-height: 62vh;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+
+#dialogue {
+	position: fixed;
+	left: 50%;
+	bottom: 4vh;
+	z-index: 80;
+	width: min(820px, 88vw);
+	box-sizing: border-box;
+	transform: translateX(-50%);
+	padding: 18px 22px;
+	font: 15px/1.6 var(--mono);
+	color: var(--texte);
+	background: rgba(10, 9, 8, 0.96);
+	border: 1px solid var(--trait);
+	cursor: pointer;
+}
+
+
+/* =========================
+   UN DOCUMENT PAR-DESSUS LA PAGE
+========================= */
+
+#fenetre {
+	padding: 0;
+	border: 1px solid var(--trait);
+	background: #0d0c0b;
+	color: var(--texte);
+}
+
+#fenetre::backdrop {
+	background: rgba(0, 0, 0, 0.82);
+}
+
+/* pendant qu'un document est ouvert, la page derrière ne défile pas (une seule barre de défilement) */
+html:has(#fenetre[open]) {
+	overflow: hidden;
+}
+
+#fenetre.pdf[open] {
+	display: flex;
+	flex-direction: column;
+	width: min(960px, 94vw);
+	height: 92vh;
+}
+
+#fenetre.pdf iframe {
+	flex: 1;
+	border: none;
+}
+
+#fenetre .fermer {
+	align-self: flex-end;
+	padding: 8px 14px;
+	font: 13px var(--mono);
+	color: var(--pale);
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+#fenetre .fermer:hover {
+	color: var(--texte);
+}
+
+#fenetre.image {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+#fenetre.image img {
+	display: block;
+	max-width: 80vw;
+	max-height: 86vh;
+}
+
+
+/* LA LUMIÈRE QUI VACILLE (commun.js) : un voile noir, qui passe un instant */
+#vacillement {
+	position: fixed;
+	inset: 0;
+	z-index: 60;
+	background: #000;
+	opacity: 0;
+	pointer-events: none;
+}
