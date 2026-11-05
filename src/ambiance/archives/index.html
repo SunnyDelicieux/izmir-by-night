@@ -48,21 +48,19 @@
 			border-top: 0.25cqw solid #2a241f;
 		}
 
-		/* LES TABLEAUX (sans cadre) */
+		/* LES TABLEAUX : l'image (avec son cadre) donne la forme ; on ne règle que la hauteur */
 		.tableau {
 			padding: 0;
 			background: none;
 			border: none;
 			cursor: pointer;
-			filter: brightness(0.7);
+			filter: brightness(0.7) drop-shadow(0 0.5cqw 0.8cqw rgba(0, 0, 0, 0.7));
 			transition: transform 0.15s ease, filter 0.15s ease;
 		}
 
 		.tableau img {
 			display: block;
-			width: 100%;
 			height: 100%;
-			object-fit: cover;
 		}
 
 		/* LES CLASSEURS : posés sur le sol */
@@ -86,24 +84,19 @@
 			background: #cfc7b4;
 		}
 
-		/* L'ARMOIRE ET SES ÉTAGÈRES */
-		.armoire {
-			left: 74%;
-			width: 22.4%;
-			top: 14.3%;
-			bottom: 9.3%;
-			box-sizing: border-box;
-			background: linear-gradient(#0e0b09, #16110d);
-			border: 0.9cqw solid #2a1f17;
-			box-shadow: inset 0 1.5cqw 2cqw rgba(0, 0, 0, 0.9), 0 1cqw 2cqw rgba(0, 0, 0, 0.8);
+		/* LE BUREAU (une image), à gauche : il sort du cadre, comme la deuxième étagère */
+		.bureau {
+			left: -20%;
+			bottom: 0.5%;
+			height: 33%;
+			filter: brightness(0.8) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
 		}
 
-		.planche {
-			left: 74%;
-			width: 22.4%;
-			height: 1.1%;
-			background: #2f2319;
-			box-shadow: 0 0.4cqw 0.6cqw rgba(0, 0, 0, 0.7);
+		/* LES ÉTAGÈRES (une image) : posées sur le sol, un peu assombries comme les classeurs */
+		.armoire {
+			top: 4%;
+			height: 87%;
+			filter: brightness(0.62) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
 		}
 
 		/* un objet posé sur une planche : son bas touche la planche */
@@ -133,7 +126,7 @@
 		.tableau:hover,
 		.tableau:focus-visible {
 			transform: scale(1.02);
-			filter: brightness(0.85);
+			filter: brightness(0.85) drop-shadow(0 0.5cqw 0.8cqw rgba(0, 0, 0, 0.7));
 			outline: none;
 		}
 	</style>
@@ -148,25 +141,26 @@
 	<div class="sol"></div>
 
 	<!-- les tableaux -->
-	<button class="tableau" style="left: 3%; top: 7%; width: 11.5%; height: 28%" data-texte="test">
+	<button class="tableau" style="left: 3%; top: 6%; height: 31%" data-texte="test">
 		<img src="img/femme-a-l-epee.webp" alt="Portrait d'une femme à l'épée">
 	</button>
-	<button class="tableau" style="left: 20%; top: 4.5%; width: 22%; height: 24.5%" data-texte="test">
+	<button class="tableau" style="left: 20%; top: 4.5%; height: 27%" data-texte="test">
 		<img src="img/vue-de-smyrne.webp" alt="Vue de Smyrne">
 	</button>
 
-	<!-- l'armoire, ses planches, et les objets posés dessus (left, top : le bas de l'objet ; height : sa taille) -->
-	<div class="armoire"></div>
-	<div class="planche" style="top: 31.5%"></div>
-	<div class="planche" style="top: 48.5%"></div>
-	<div class="planche" style="top: 61.8%"></div>
+	<!-- le bureau, à gauche, et les étagères, à droite : ils sortent du cadre, pour que la salle paraisse plus grande -->
+	<img class="bureau" src="img/bureau.webp" alt="">
+	<img class="armoire" src="img/etagere.webp" alt="" style="left: 73%">
+	<img class="armoire" src="img/etagere.webp" alt="" style="left: 94.8%">
 
-	<button class="objet" style="left: 79.5%; top: 31.5%; height: 12%" data-texte="test"><img src="img/astrolabe.webp" alt="Un astrolabe"></button>
-	<button class="objet" style="left: 90.5%; top: 31.5%; height: 14.5%" data-texte="test"><img src="img/statue-croissant.webp" alt="Une statuette au croissant de lune"></button>
-	<button class="objet" style="left: 79.5%; top: 48.5%; height: 11%" data-texte="test"><img src="img/mosaique.webp" alt="Une mosaïque : un aigle et des serpents"></button>
-	<button class="objet" style="left: 90.5%; top: 48.5%; height: 12%" data-texte="test"><img src="img/vase.webp" alt="Une jarre peinte"></button>
-	<button class="objet" style="left: 79.5%; top: 61.8%; height: 11.5%" data-texte="test"><img src="img/statue-bronze.webp" alt="Une statuette de bronze"></button>
-	<button class="objet" style="left: 90.5%; top: 61.8%; height: 11.5%" data-texte="test"><img src="img/aiguiere.webp" alt="Une aiguière"></button>
+	<!-- les objets posés sur les planches de la première (left, top : le bas de l'objet ; height : sa taille).
+	     Ses planches sont à top: 39.6 %, 50.9 % et 62.1 % de la salle. -->
+	<button class="objet" style="left: 80%; top: 39.6%; height: 7.5%" data-texte="test"><img src="img/astrolabe.webp" alt="Un astrolabe"></button>
+	<button class="objet" style="left: 87.1%; top: 39.6%; height: 9%" data-texte="test"><img src="img/statue-croissant.webp" alt="Une statuette au croissant de lune"></button>
+	<button class="objet" style="left: 80%; top: 50.9%; height: 7%" data-texte="test"><img src="img/mosaique.webp" alt="Une mosaïque : un aigle et des serpents"></button>
+	<button class="objet" style="left: 87.1%; top: 50.9%; height: 8%" data-texte="test"><img src="img/vase.webp" alt="Une jarre peinte"></button>
+	<button class="objet" style="left: 80%; top: 62.1%; height: 8.5%" data-texte="test"><img src="img/statue-bronze.webp" alt="Une statuette de bronze"></button>
+	<button class="objet" style="left: 87.1%; top: 62.1%; height: 8%" data-texte="test"><img src="img/aiguiere.webp" alt="Une aiguière"></button>
 
 	<!-- les trois classeurs : le script plus bas les pose ici, d'après contenu.js -->
 
