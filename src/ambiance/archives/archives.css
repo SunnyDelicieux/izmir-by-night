@@ -1,5 +1,5 @@
 /* =========================
-   LES ARCHIVES DE SMYRNE : sobre, sombre, administratif
+   LES ARCHIVES DE SMYRNE 
 ========================= */
 
 :root {
@@ -45,11 +45,6 @@ body {
 }
 
 
-/* =========================
-   UN CLASSEUR : l'image du meuble, et ses tiroirs par-dessus.
-   Les tailles en « cqi » suivent la largeur du classeur : petit dans la salle, grand dans sa page.
-========================= */
-
 .classeur {
 	position: relative;
 	aspect-ratio: 408 / 905;
@@ -83,8 +78,6 @@ button.tiroir {
 	width: 100%;
 	height: 100%;
 }
-
-/* au survol, le tiroir s'avance très légèrement (pas ceux d'un classeur de décor, qui ne sont pas des boutons) */
 button.tiroir:hover,
 button.tiroir:focus-visible {
 	z-index: 1;
@@ -93,7 +86,6 @@ button.tiroir:focus-visible {
 	outline: none;
 }
 
-/* l'étiquette, tapée à la machine, dans le porte-étiquette de la poignée */
 .tiroir .etiquette {
 	position: absolute;
 	left: 38.6%;
@@ -111,9 +103,6 @@ button.tiroir:focus-visible {
 }
 
 
-/* =========================
-   LA BOÎTE DE DIALOGUE, et l'objet en grand au-dessus
-========================= */
 
 #voile {
 	position: fixed;
@@ -150,9 +139,6 @@ button.tiroir:focus-visible {
 }
 
 
-/* =========================
-   UN DOCUMENT PAR-DESSUS LA PAGE
-========================= */
 
 #fenetre {
 	outline: none; /* pas de liseré blanc autour quand elle s'ouvre */
@@ -166,7 +152,6 @@ button.tiroir:focus-visible {
 	background: rgba(0, 0, 0, 0.82);
 }
 
-/* pendant qu'un document est ouvert, la page derrière ne défile pas (une seule barre de défilement) */
 html:has(#fenetre[open]) {
 	overflow: hidden;
 }
@@ -203,7 +188,6 @@ html:has(#fenetre[open]) {
 	cursor: pointer;
 }
 
-/* une ou plusieurs images, côte à côte (--nombre : combien il y en a) */
 #fenetre.image[open] {
 	display: flex;
 	align-items: center;
@@ -216,7 +200,6 @@ html:has(#fenetre[open]) {
 	max-height: 86vh;
 }
 
-/* sur un téléphone, les unes sous les autres */
 @media (max-width: 700px) {
 	#fenetre.image[open] {
 		flex-direction: column;
@@ -231,7 +214,6 @@ html:has(#fenetre[open]) {
 }
 
 
-/* LA LUMIÈRE QUI VACILLE (commun.js) : un voile noir, qui passe un instant */
 #vacillement {
 	position: fixed;
 	inset: 0;

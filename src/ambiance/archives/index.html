@@ -16,8 +16,6 @@
 			overflow: hidden;
 		}
 
-		/* LA SALLE : en 16/9, aussi grande que la fenêtre le permet.
-		   Tout y est placé en % ; les tailles en « cqw » suivent sa largeur. */
 		.salle {
 			position: relative;
 			width: min(100vw, 177.78vh);
@@ -30,7 +28,6 @@
 			position: absolute;
 		}
 
-		/* la lumière qui tombe du plafond, sur le mur */
 		.lumiere {
 			inset: 0;
 			pointer-events: none;
@@ -38,7 +35,6 @@
 				radial-gradient(ellipse 80% 90% at 55% 30%, transparent 50%, rgba(0, 0, 0, 0.6));
 		}
 
-		/* le sol */
 		.sol {
 			left: 0;
 			right: 0;
@@ -48,7 +44,6 @@
 			border-top: 0.25cqw solid #2a241f;
 		}
 
-		/* LES TABLEAUX : l'image (avec son cadre) donne la forme ; on ne règle que la hauteur */
 		.tableau {
 			padding: 0;
 			background: none;
@@ -63,7 +58,6 @@
 			height: 100%;
 		}
 
-		/* LES CLASSEURS : posés sur le sol */
 		.salle > .classeur {
 			bottom: 11%;
 			height: 52%;
@@ -71,7 +65,6 @@
 			filter: drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
 		}
 
-		/* le nom du classeur, sur une fiche posée dessus */
 		.salle > .classeur .nom {
 			position: absolute;
 			bottom: 100%;
@@ -84,7 +77,6 @@
 			background: #cfc7b4;
 		}
 
-		/* LE BUREAU (une image), à gauche : il sort du cadre, comme la deuxième étagère */
 		.bureau {
 			left: -20%;
 			bottom: 0.5%;
@@ -92,14 +84,12 @@
 			filter: brightness(0.8) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
 		}
 
-		/* LES ÉTAGÈRES (une image) : posées sur le sol, un peu assombries comme les classeurs */
 		.armoire {
 			top: 4%;
 			height: 87%;
 			filter: brightness(0.62) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
 		}
 
-		/* un objet posé sur une planche : son bas touche la planche */
 		.objet {
 			padding: 0;
 			border: none;
@@ -115,7 +105,6 @@
 			height: 100%;
 		}
 
-		/* au survol, un objet ou un tableau grossit très légèrement et s'éclaire un peu */
 		.objet:hover,
 		.objet:focus-visible {
 			transform: translate(-50%, -100%) scale(1.05);
@@ -133,14 +122,9 @@
 </head>
 <body>
 
-<!-- LA SALLE DES ARCHIVES.
-     Les tableaux et les objets de l'étagère : un clic les montre en grand, avec leur texte (data-texte) dans la boîte de dialogue.
-     Les classeurs : un clic sur un tiroir mène au classeur, vu de près (classeur.html).
-     Ce que contiennent les classeurs est dans contenu.js. -->
 <main class="salle mur" id="salle">
 	<div class="sol"></div>
 
-	<!-- les tableaux -->
 	<button class="tableau" style="left: 3%; top: 6%; height: 31%" data-texte="test">
 		<img src="img/femme-a-l-epee.webp" alt="Portrait d'une femme à l'épée">
 	</button>
@@ -148,21 +132,16 @@
 		<img src="img/vue-de-smyrne.webp" alt="Vue de Smyrne">
 	</button>
 
-	<!-- le bureau, à gauche, et les étagères, à droite : ils sortent du cadre, pour que la salle paraisse plus grande -->
 	<img class="bureau" src="img/bureau.webp" alt="">
 	<img class="armoire" src="img/etagere.webp" alt="" style="left: 73%">
 	<img class="armoire" src="img/etagere.webp" alt="" style="left: 94.8%">
 
-	<!-- les objets posés sur les planches de la première (left, top : le bas de l'objet ; height : sa taille).
-	     Ses planches sont à top: 39.6 %, 50.9 % et 62.1 % de la salle. -->
 	<button class="objet" style="left: 80%; top: 39.6%; height: 7.5%" data-texte="test"><img src="img/astrolabe.webp" alt="Un astrolabe"></button>
 	<button class="objet" style="left: 87.1%; top: 39.6%; height: 9%" data-texte="test"><img src="img/statue-croissant.webp" alt="Une statuette au croissant de lune"></button>
 	<button class="objet" style="left: 80%; top: 50.9%; height: 7%" data-texte="test"><img src="img/mosaique.webp" alt="Une mosaïque : un aigle et des serpents"></button>
 	<button class="objet" style="left: 87.1%; top: 50.9%; height: 8%" data-texte="test"><img src="img/vase.webp" alt="Une jarre peinte"></button>
 	<button class="objet" style="left: 80%; top: 62.1%; height: 8.5%" data-texte="test"><img src="img/statue-bronze.webp" alt="Une statuette de bronze"></button>
 	<button class="objet" style="left: 87.1%; top: 62.1%; height: 8%" data-texte="test"><img src="img/aiguiere.webp" alt="Une aiguière"></button>
-
-	<!-- les trois classeurs : le script plus bas les pose ici, d'après contenu.js -->
 
 	<div class="lumiere"></div>
 </main>
@@ -172,19 +151,15 @@
 <script>
 	const salle = document.getElementById("salle");
 
-	// les tableaux et les objets : leur texte dans la boîte de dialogue, et leur image en grand au-dessus
 	salle.querySelectorAll("[data-texte]").forEach((el) => {
 		el.onclick = () => dire(el.dataset.texte, el.querySelector("img")?.src);
 	});
 
-	// LES CLASSEURS, côte à côte, près de l'armoire.
-	// Leur place : le milieu de chacun, en % de la largeur de la salle.
 	const PLACES_CLASSEURS = [32, 47, 62];
 	const lumiere = salle.querySelector(".lumiere");
 	CLASSEURS.forEach((classeur, c) => {
 		const meuble = document.createElement("div");
 		meuble.style.left = PLACES_CLASSEURS[c] + "%";
-		// un clic sur un tiroir : on va voir ce classeur de près, devant ce tiroir (sauf pour un classeur de décor)
 		const aller = (t) => (location.href = `classeur.html?classeur=${c + 1}&tiroir=${t + 1}`);
 		construireClasseur(meuble, classeur, classeur.decor ? null : aller);
 		meuble.insertAdjacentHTML("beforeend", `<span class="nom">${echapper(classeur.nom)}</span>`);

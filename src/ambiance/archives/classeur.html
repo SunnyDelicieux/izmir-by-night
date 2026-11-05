@@ -24,8 +24,6 @@
 			color: var(--pale);
 		}
 
-		/* LE CLASSEUR, en très grand : on fait défiler la page pour atteindre les tiroirs du bas,
-		   et la page s'arrête au bas du classeur */
 		#grand {
 			width: min(52vw, 760px);
 			margin: 4vh auto 0;
@@ -37,8 +35,6 @@
 			transform: scale(1.015);
 		}
 
-		/* LE TIROIR OUVERT : par-dessus la page, les chemises debout, celle du fond en haut */
-		/* (au-dessus du lien « ← la salle » de la page, sous la lumière qui vacille) */
 		#ouvert {
 			position: fixed;
 			inset: 0;
@@ -50,7 +46,6 @@
 			background: rgba(6, 5, 4, 0.94);
 		}
 
-		/* pendant qu'un tiroir est ouvert, la page derrière ne défile pas */
 		html:has(#ouvert:not([hidden])) {
 			overflow: hidden;
 		}
@@ -67,7 +62,6 @@
 			color: var(--pale);
 		}
 
-		/* l'intérieur du tiroir, avec ses chemises */
 		#chemises {
 			position: relative;
 			width: min(980px, 84vw);
@@ -77,7 +71,6 @@
 			box-shadow: inset 0 3vh 4vh -1vh #000, inset 4vw 0 3vw -3vw #000, inset -4vw 0 3vw -3vw #000;
 		}
 
-		/* une chemise : son image ; la souris est suivie par #chemises (voir plus bas), pas par la chemise elle-même */
 		.chemise {
 			position: absolute;
 			left: 6%;
@@ -96,7 +89,6 @@
 			width: 100%;
 		}
 
-		/* le nom écrit sur l'onglet d'une chemise vierge, comme à la main */
 		.chemise .nom {
 			position: absolute;
 			transform: translate(-50%, -50%) skewX(-8deg);
@@ -106,7 +98,6 @@
 			color: #1d1b24;
 		}
 
-		/* tirée vers le haut, quand on la survole */
 		.chemise.tiree,
 		.chemise:focus-visible {
 			transform: translateY(-11%);
@@ -114,7 +105,6 @@
 			outline: none;
 		}
 
-		/* le devant du tiroir, qui cache le bas des chemises */
 		#chemises .devant {
 			position: absolute;
 			left: 0;
@@ -149,9 +139,6 @@
 </head>
 <body class="mur">
 
-<!-- UN CLASSEUR, VU DE PRÈS : classeur.html?classeur=1&tiroir=2
-     (le numéro du classeur dans contenu.js, et le tiroir devant lequel on arrive).
-     Un clic sur un tiroir : il s'ouvre, et on voit ses chemises. Un clic sur une chemise : son PDF ou son image. -->
 <a class="retour" href="./">← la salle</a>
 <h1 id="nom"></h1>
 <div id="grand"></div>
@@ -167,7 +154,6 @@
 <script>
 	const adresse = new URLSearchParams(location.search);
 	const classeur = CLASSEURS[(Number(adresse.get("classeur")) || 1) - 1] || CLASSEURS[0];
-	// un classeur de décor ne s'ouvre pas : on retourne dans la salle
 	if (classeur.decor) location.replace("./");
 	document.getElementById("nom").textContent = classeur.nom;
 	document.title = classeur.nom + " · Les Archives de Smyrne";
@@ -175,14 +161,9 @@
 	const grand = document.getElementById("grand");
 	construireClasseur(grand, classeur, ouvrirTiroir);
 
-	// on arrive devant le tiroir sur lequel on a cliqué dans la salle
 	const arrivee = grand.querySelectorAll(".tiroir")[(Number(adresse.get("tiroir")) || 1) - 1];
 	if (arrivee) addEventListener("load", () => arrivee.scrollIntoView({ block: "center" }));
 
-
-	/* =========================
-	   LE TIROIR OUVERT
-	========================= */
 
 	const ouvert = document.getElementById("ouvert");
 	const boite = document.getElementById("chemises");
@@ -196,10 +177,6 @@
 		if (!tiroir.dossiers.length) boite.insertAdjacentHTML("beforeend", `<p class="vide">Ce tiroir est vide.</p>`);
 		ouvert.hidden = false; // (on l'affiche tout de suite, pour pouvoir mesurer le tiroir)
 
-		// Les chemises sont posées au fond du tiroir : celle de devant s'enfonce derrière le devant du tiroir,
-		// chacune des autres dépasse un peu plus haut derrière elle (de « pas » % de la hauteur du tiroir),
-		// et celle du fond ne sort pas du tiroir par le haut.
-		// (une chemise fait 88 % de la largeur du tiroir, et ses images font 1108 × 424 pixels)
 		const nombre = tiroir.dossiers.length;
 		const hauteurChemise = ((boite.clientWidth * 0.88 * 424) / 1108 / boite.clientHeight) * 100;
 		const pas = Math.min(11, (100 - hauteurChemise) / Math.max(1, nombre - 1));
@@ -208,17 +185,15 @@
 			chemise.className = "chemise";
 			chemise.style.bottom = (nombre - 1 - rang) * pas - 4 + "%";
 			chemise.style.zIndex = rang + 1;
-			// celles du fond sont un peu plus sombres
 			chemise.style.setProperty("--lumiere", tiroir.dossiers.length > 1 ? 0.62 + (0.33 * rang) / (tiroir.dossiers.length - 1) : 0.95);
 			chemise.innerHTML = `<img src="chemises/${echapper(dossier.chemise)}" alt="">`;
-			// sur une chemise vierge, on écrit son nom sur l'onglet
 			const onglet = CHEMISES_VIERGES[dossier.chemise];
 			if (onglet && dossier.nom) {
 				const taille = Math.min(2.6, 59 / dossier.nom.length); // un nom très long est écrit plus petit
 				chemise.insertAdjacentHTML("beforeend", `<span class="nom" style="left: ${onglet[0]}%; top: ${onglet[1]}%; font-size: ${taille}cqi">${echapper(dossier.nom)}</span>`);
 			}
 			chemise.dossier = dossier;
-			chemise.onclick = () => ouvrirDossier(dossier); // au clavier (Tab, puis Entrée)
+			chemise.onclick = () => ouvrirDossier(dossier); 
 			boite.append(chemise);
 			chemises.push(chemise);
 		});
@@ -234,10 +209,7 @@
 		else if (dossier.images || dossier.image) ouvrirImage(dossier.images || dossier.image);
 	}
 
-	// QUELLE CHEMISE EST SOUS LA SOURIS ? La plus en avant dont l'image n'est pas transparente à cet endroit
-	// (les bords transparents d'une chemise ne doivent pas cacher l'onglet de celle de derrière).
-	// On regarde la chemise à sa place de départ, même quand elle est tirée vers le haut.
-	const pinceaux = new Map(); // pour chaque image, une petite copie dont on peut lire les pixels
+	const pinceaux = new Map(); 
 	function opaque(chemise, x, y) {
 		const img = chemise.querySelector("img");
 		if (!img.complete || !img.naturalWidth) return false;
@@ -259,7 +231,7 @@
 		const cadre = boite.getBoundingClientRect();
 		const x = e.clientX - cadre.left;
 		const y = e.clientY - cadre.top;
-		if (y > cadre.height * 0.84) return null; // derrière le devant du tiroir
+		if (y > cadre.height * 0.84) return null; 
 		for (let i = chemises.length - 1; i >= 0; i--) {
 			const c = chemises[i];
 			if (opaque(c, x - c.offsetLeft, y - c.offsetTop)) return c;
