@@ -21,7 +21,8 @@ const CLASSEURS = [
 				dossiers: [
 					{ chemise: "atratinus-009.webp", pdf: "une-legende-vetue-de-noir.pdf" },
 					{ chemise: "atratinus-010.webp", pdf: "exemple.pdf" },
-					{ chemise: "vierge-rose-gauche.webp", nom: "Mort d'Eudokia", image: "mort-d-eudokia.webp" },
+					{ chemise: "vierge-peche.webp", nom: "Enluminure des cavaliers", images: ["cavalier-conquerant.webp", "cavalier-atratinus.webp", "cavalier-kushi.webp"] },
+					{ chemise: "vierge-rose-gauche.webp", nom: "Enluminure d'Eudokia", image: "mort-d-eudokia.webp" },
 				],
 			},
 			{
@@ -57,8 +58,10 @@ const CLASSEURS = [
 			{
 				etiquette: "N — Z",
 				dossiers: [
-					{ chemise: "vierge-rose-gauche.webp", nom: "Sabbat", image: "sabbat.webp" },
-					{ chemise: "vierge-bleue.webp", nom: "Sigils", images: ["sigils-brujah.webp", "sigils-tremere.webp"] },
+					{ chemise: "vierge-rose.webp", nom: "Enluminure des Primogènes", image: "primogene.webp" },
+					{ chemise: "vierge-rose-gauche.webp", nom: "Enluminure du Sabbat", image: "sabbat.webp" },
+					{ chemise: "vierge-bleue.webp", nom: "Enluminure des sigils", images: ["sigils-brujah.webp", "sigils-tremere.webp"] },
+					{ chemise: "vierge-peche.webp", nom: "Enluminure de la lignée Tremere", image: "lignee-tremere.webp" },
 				],
 			},
 			{

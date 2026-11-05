@@ -81,7 +81,7 @@
 			const page = await pdf.getPage(numero);
 			// la page prend la largeur de la fenêtre (sans dépasser 900 pixels)
 			const taille = page.getViewport({ scale: 1 });
-			const echelle = Math.min(900, innerWidth - 32) / taille.width;
+			const echelle = Math.min(680, innerWidth - 32) / taille.width; // une page fait au plus 680 pixels de large
 			const vue = page.getViewport({ scale: echelle });
 
 			const bloc = document.createElement("div");

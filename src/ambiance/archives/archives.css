@@ -174,7 +174,7 @@ html:has(#fenetre[open]) {
 #fenetre.pdf[open] {
 	display: flex;
 	flex-direction: column;
-	width: min(960px, 94vw);
+	width: min(760px, 94vw);
 	height: 92vh;
 }
 
