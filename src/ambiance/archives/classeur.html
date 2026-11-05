@@ -194,11 +194,15 @@
 		boite.innerHTML = `<div class="devant"><span>${echapper(tiroir.etiquette)}</span></div>`;
 		chemises = [];
 		if (!tiroir.dossiers.length) boite.insertAdjacentHTML("beforeend", `<p class="vide">Ce tiroir est vide.</p>`);
+		ouvert.hidden = false; // (on l'affiche tout de suite, pour pouvoir mesurer le tiroir)
 
 		// Les chemises sont posées au fond du tiroir : celle de devant s'enfonce derrière le devant du tiroir,
-		// chacune des autres dépasse un peu plus haut derrière elle (de « pas » % de la hauteur du tiroir).
+		// chacune des autres dépasse un peu plus haut derrière elle (de « pas » % de la hauteur du tiroir),
+		// et celle du fond ne sort pas du tiroir par le haut.
+		// (une chemise fait 88 % de la largeur du tiroir, et ses images font 1108 × 424 pixels)
 		const nombre = tiroir.dossiers.length;
-		const pas = Math.min(11, 44 / Math.max(1, nombre - 1));
+		const hauteurChemise = ((boite.clientWidth * 0.88 * 424) / 1108 / boite.clientHeight) * 100;
+		const pas = Math.min(11, (100 - hauteurChemise) / Math.max(1, nombre - 1));
 		tiroir.dossiers.forEach((dossier, rang) => {
 			const chemise = document.createElement("button");
 			chemise.className = "chemise";
@@ -210,14 +214,14 @@
 			// sur une chemise vierge, on écrit son nom sur l'onglet
 			const onglet = CHEMISES_VIERGES[dossier.chemise];
 			if (onglet && dossier.nom) {
-				chemise.insertAdjacentHTML("beforeend", `<span class="nom" style="left: ${onglet[0]}%; top: ${onglet[1]}%">${echapper(dossier.nom)}</span>`);
+				const taille = Math.min(2.6, 59 / dossier.nom.length); // un nom très long est écrit plus petit
+				chemise.insertAdjacentHTML("beforeend", `<span class="nom" style="left: ${onglet[0]}%; top: ${onglet[1]}%; font-size: ${taille}cqi">${echapper(dossier.nom)}</span>`);
 			}
 			chemise.dossier = dossier;
 			chemise.onclick = () => ouvrirDossier(dossier); // au clavier (Tab, puis Entrée)
 			boite.append(chemise);
 			chemises.push(chemise);
 		});
-		ouvert.hidden = false;
 	}
 
 	document.getElementById("fermer-tiroir").onclick = (e) => {

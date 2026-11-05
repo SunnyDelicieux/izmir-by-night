@@ -97,7 +97,7 @@ function ouvrirPdf(nom) {
 function ouvrirImage(nom) {
 	const boite = fenetre();
 	boite.className = "image";
-	boite.innerHTML = `<img src="img/${echapper(nom)}" alt="">`;
+	boite.innerHTML = `<img src="enluminures/${echapper(nom)}" alt="">`;
 	boite.onclick = () => boite.close();
 	boite.showModal();
 }

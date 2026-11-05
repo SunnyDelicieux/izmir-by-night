@@ -5,9 +5,9 @@
 // Un tiroir : son étiquette, et ses dossiers (le premier de la liste est rangé tout au fond).
 // Un dossier : l'image de sa chemise (dans chemises/), et ce qu'il ouvre :
 //   pdf: "mon-document.pdf"   (rangé dans docs/)
-//   image: "mon-dessin.webp"  (rangée dans img/)
+//   image: "mon-dessin.webp"  (rangée dans enluminures/)
 // Sur une chemise vierge (voir plus bas), on ajoute son nom : nom: "Mon dossier"
-// (le site l'écrit en majuscules sur l'onglet ; au-delà d'une quinzaine de lettres, il dépasse).
+// (le site l'écrit en majuscules sur l'onglet, et l'écrit plus petit s'il est très long).
 //
 // Atratinus #010 ouvre encore le PDF d'exemple.
 
@@ -32,8 +32,12 @@ const CLASSEURS = [
 			{
 				etiquette: "P — Z",
 				dossiers: [
+					{ chemise: "vierge-rose-gauche.webp", nom: "Le Prophète", pdf: "le-prophete.pdf" },
 					{ chemise: "vierge-peche.webp", nom: "Shahar", pdf: "shahar-de-l-aube.pdf" },
 					{ chemise: "soteria-012.webp", pdf: "les-fruits-du-jardin.pdf" },
+					{ chemise: "vierge-rose-gauche.webp", nom: "Origines de Soteria", pdf: "origines-de-soteria.pdf" },
+					{ chemise: "vierge-bleue.webp", nom: "Paroles de Soteria", pdf: "paroles-de-soteria.pdf" },
+					{ chemise: "vierge-rose-gauche.webp", nom: "Enluminure de Soteria", image: "soteria-et-atratinus.webp" },
 				],
 			},
 		],
@@ -73,4 +77,5 @@ const CHEMISES_VIERGES = {
 	"vierge-bleue.webp": [64, 16.4],
 	"vierge-peche.webp": [48.6, 15.9],
 	"vierge-rose.webp": [73.9, 15.2],
+	"vierge-rose-gauche.webp": [24, 15.8],
 };
