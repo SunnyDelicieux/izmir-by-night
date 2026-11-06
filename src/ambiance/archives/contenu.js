@@ -41,7 +41,7 @@ const CLASSEURS = [
             image: "marcus-forain.webp",
           },
           {
-            chemise: "vierge-bleue.webp",
+            chemise: "vierge-peche.webp",
             nom: "Peau du Lupin",
             pdf: "peau-de-lupin.pdf",
           },
@@ -129,7 +129,7 @@ const CLASSEURS = [
           {
             chemise: "vierge-peche.webp",
             nom: "Lettre de tolède",
-            pdf: "tolède.pdf",
+            pdf: "tolede.pdf",
           },
         ],
       },
