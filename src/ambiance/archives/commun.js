@@ -15,10 +15,10 @@ function construireClasseur(element, classeur, cliquer) {
 		if (!TIROIRS[i]) return;
 		const bouton = document.createElement(cliquer ? "button" : "span");
 		bouton.className = "tiroir";
-		if (cliquer) bouton.title = `${classeur.nom} · ${tiroir.etiquette}`;
+		if (cliquer) bouton.title = [classeur.nom, tiroir.etiquette].filter(Boolean).join(" · ");
 		bouton.style.top = TIROIRS[i].haut + "%";
 		bouton.style.height = TIROIRS[i].hauteur + "%";
-		bouton.innerHTML = `<img src="img/tiroir-${i + 1}.png" alt=""><span class="etiquette">${echapper(tiroir.etiquette)}</span>`;
+		bouton.innerHTML = `<img src="img/tiroir-${i + 1}.png" alt=""><span class="etiquette${tiroir.etiquette.length > 11 ? " longue" : ""}">${echapper(tiroir.etiquette)}</span>`;
 		if (cliquer) bouton.onclick = () => cliquer(i);
 		element.append(bouton);
 	});

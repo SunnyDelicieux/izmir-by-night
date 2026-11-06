@@ -1,66 +1,10 @@
 const CLASSEURS = [
   {
-    nom: "Histoire antique",
+    nom: "Origines",
     tiroirs: [
       {
-        etiquette: "A — F",
+        etiquette: "Soteria",
         dossiers: [
-          {
-            chemise: "atratinus-009.webp",
-            pdf: "une-legende-vetue-de-noir.pdf",
-          },
-          { chemise: "atratinus-010.webp", pdf: "exemple.pdf" },
-          {
-            chemise: "vierge-peche.webp",
-            nom: "Enluminure des cavaliers",
-            images: [
-              "cavalier-conquerant.webp",
-              "cavalier-atratinus.webp",
-              "cavalier-kushi.webp",
-            ],
-          },
-          {
-            chemise: "vierge-rose-gauche.webp",
-            nom: "Enluminure d'Eudokia",
-            image: "mort-d-eudokia.webp",
-          },
-        ],
-      },
-      {
-        etiquette: "G — O",
-        dossiers: [
-          {
-            chemise: "vierge-bleue.webp",
-            nom: "L'infernalisme",
-            pdf: "l-infernalisme-a-smyrne.pdf",
-          },
-          { chemise: "marcus-forain.webp", pdf: "marcus-forain.pdf" },
-          {
-            chemise: "vierge-bleue.webp",
-            nom: "Enluminure de Marcus Forain",
-            image: "marcus-forain.webp",
-          },
-          {
-            chemise: "vierge-peche.webp",
-            nom: "Peau du Lupin",
-            pdf: "peau-de-lupin.pdf",
-          },
-        ],
-      },
-      {
-        etiquette: "P — Z",
-        dossiers: [
-          {
-            chemise: "vierge-rose-gauche.webp",
-            nom: "Le Prophète",
-            pdf: "le-prophete.pdf",
-          },
-          {
-            chemise: "vierge-peche.webp",
-            nom: "Shahar",
-            pdf: "shahar-de-l-aube.pdf",
-          },
-          { chemise: "soteria-012.webp", pdf: "les-fruits-du-jardin.pdf" },
           {
             chemise: "vierge-rose-gauche.webp",
             nom: "Origines de Soteria",
@@ -71,56 +15,54 @@ const CLASSEURS = [
             nom: "Paroles de Soteria",
             pdf: "paroles-de-soteria.pdf",
           },
+          { chemise: "soteria-012.webp", pdf: "les-fruits-du-jardin.pdf" },
           {
-            chemise: "vierge-rose-gauche.webp",
+            chemise: "vierge-peche.webp",
             nom: "Enluminure de Soteria",
             image: "soteria-et-atratinus.webp",
+          },
+        ],
+      },
+      {
+        etiquette: "Atratinus",
+        dossiers: [
+          {
+            chemise: "atratinus-009.webp",
+            pdf: "une-legende-vetue-de-noir.pdf",
+          },
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Enluminure des cavaliers",
+            images: [
+              "cavalier-conquerant.webp",
+              "cavalier-atratinus.webp",
+              "cavalier-kushi.webp",
+            ],
+          },
+        ],
+      },
+      {
+        etiquette: "Le Prophète",
+        dossiers: [
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Le Prophète",
+            pdf: "le-prophete.pdf",
           },
         ],
       },
     ],
   },
   {
-    nom: "Histoire des clans",
     tiroirs: [
       {
-        etiquette: "A — M",
+        etiquette: "Kushi",
         dossiers: [
-          {
-            chemise: "vierge-peche.webp",
-            nom: "Mythes de Smyrne",
-            pdf: "mythes-de-smyrne.pdf",
-          },
-        ],
-      },
-      {
-        etiquette: "N — Z",
-        dossiers: [
-          {
-            chemise: "vierge-rose.webp",
-            nom: "Enluminure des Primogènes",
-            image: "primogene.webp",
-          },
-          {
-            chemise: "vierge-rose-gauche.webp",
-            nom: "Enluminure du Sabbat",
-            image: "sabbat.webp",
-          },
           {
             chemise: "vierge-bleue.webp",
-            nom: "Enluminure des sigils",
-            images: ["sigils-brujah.webp", "sigils-tremere.webp"],
+            nom: "L'infernalisme",
+            pdf: "l-infernalisme-a-smyrne.pdf",
           },
-          {
-            chemise: "vierge-peche.webp",
-            nom: "Enluminure de la lignée Tremere",
-            image: "lignee-tremere.webp",
-          },
-        ],
-      },
-      {
-        etiquette: "Autre",
-        dossiers: [
           {
             chemise: "vierge-rose.webp",
             nom: "Lettre de tribut",
@@ -131,17 +73,80 @@ const CLASSEURS = [
             nom: "Lettre de tolède",
             pdf: "tolede.pdf",
           },
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "La peau de lupin",
+            pdf: "peau-de-lupin.pdf",
+          },
+        ],
+      },
+      {
+        etiquette: "La décennie des pleurs",
+        dossiers: [
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Enluminure d'Eudokia",
+            image: "mort-d-eudokia.webp",
+          },
+          {
+            chemise: "vierge-peche.webp",
+            nom: "Shahar",
+            pdf: "shahar-de-l-aube.pdf",
+          },
+        ],
+      },
+      {
+        etiquette: "Sabbat",
+        dossiers: [
+          { chemise: "marcus-forain.webp", pdf: "marcus-forain.pdf" },
+          {
+            chemise: "vierge-bleue.webp",
+            nom: "Enluminure de Marcus Forain",
+            image: "marcus-forain.webp",
+          },
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Enluminure du Sabbat",
+            image: "sabbat.webp",
+          },
         ],
       },
     ],
   },
   {
-    nom: "Histoire moderne",
-    decor: true,
+    nom: "Les clans",
     tiroirs: [
-      { etiquette: "A — F", dossiers: [] },
-      { etiquette: "G — O", dossiers: [] },
-      { etiquette: "P — Z", dossiers: [] },
+      {
+        etiquette: "La cour",
+        dossiers: [
+          {
+            chemise: "vierge-rose.webp",
+            nom: "Enluminure des Primogènes",
+            image: "primogene.webp",
+          },
+          {
+            chemise: "vierge-peche.webp",
+            nom: "Mythes de Smyrne",
+            pdf: "mythes-de-smyrne.pdf",
+          },
+        ],
+      },
+      {
+        etiquette: "Les clans",
+        dossiers: [
+          {
+            chemise: "vierge-bleue.webp",
+            nom: "Enluminure de la lignée Tremere",
+            image: "lignee-tremere.webp",
+          },
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Enluminure des sigils",
+            images: ["sigils-brujah.webp", "sigils-tremere.webp"],
+          },
+        ],
+      },
+      { etiquette: "À trier", dossiers: [] },
     ],
   },
 ];

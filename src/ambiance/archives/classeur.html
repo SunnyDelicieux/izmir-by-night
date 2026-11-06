@@ -171,7 +171,7 @@
 
 	function ouvrirTiroir(t) {
 		const tiroir = classeur.tiroirs[t];
-		document.getElementById("titre-tiroir").textContent = `${classeur.nom} · ${tiroir.etiquette}`;
+		document.getElementById("titre-tiroir").textContent = [classeur.nom, tiroir.etiquette].filter(Boolean).join(" · ");
 		boite.innerHTML = `<div class="devant"><span>${echapper(tiroir.etiquette)}</span></div>`;
 		chemises = [];
 		if (!tiroir.dossiers.length) boite.insertAdjacentHTML("beforeend", `<p class="vide">Ce tiroir est vide.</p>`);
