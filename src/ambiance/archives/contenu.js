@@ -1,17 +1,3 @@
-// CE QUI EST RANGÉ DANS LES ARCHIVES.
-//
-// Les classeurs, de gauche à droite dans la salle. Chacun a trois tiroirs, de haut en bas.
-// Avec « decor: true », un classeur reste dans la salle, mais on ne peut pas l'ouvrir.
-// Un tiroir : son étiquette, et ses dossiers (le premier de la liste est rangé tout au fond).
-// Un dossier : l'image de sa chemise (dans chemises/), et ce qu'il ouvre :
-//   pdf: "mon-document.pdf"   (rangé dans docs/)
-//   image: "mon-dessin.webp"  (rangée dans enluminures/)
-//   images: ["un.webp", "deux.webp", "trois.webp"]  (plusieurs images, montrées côte à côte)
-// Sur une chemise vierge (voir plus bas), on ajoute son nom : nom: "Mon dossier"
-// (le site l'écrit en majuscules sur l'onglet, et l'écrit plus petit s'il est très long).
-//
-// Atratinus #010 ouvre encore le PDF d'exemple.
-
 const CLASSEURS = [
 	{
 		nom: "Histoire antique",
@@ -74,7 +60,7 @@ const CLASSEURS = [
 	},
 	{
 		nom: "Histoire moderne",
-		decor: true, // pour l'instant, ce classeur n'est que du décor : on ne peut pas l'ouvrir
+		decor: true, 
 		tiroirs: [
 			{ etiquette: "A — F", dossiers: [] },
 			{ etiquette: "G — O", dossiers: [] },
@@ -83,8 +69,7 @@ const CLASSEURS = [
 	},
 ];
 
-// LES CHEMISES VIERGES : des copies de chemises dont on a effacé le nom.
-// Pour chacune, où écrire le nom : le milieu de son onglet [à gauche, en haut], en % de l'image.
+
 const CHEMISES_VIERGES = {
 	"vierge-bleue.webp": [64, 16.4],
 	"vierge-peche.webp": [48.6, 15.9],

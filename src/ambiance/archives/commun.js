@@ -1,25 +1,13 @@
-// CE QUI SERT AUX DEUX PAGES (la salle et le classeur) :
-//   construireClasseur(element, classeur, cliquer) : l'image d'un classeur, et ses trois tiroirs par-dessus
-//   dire(texte, image)       : la boîte de dialogue, en bas, et l'objet en grand au-dessus
-//   ouvrirPdf(nom), ouvrirImage(noms) : un document par-dessus la page
-//   la lumière qui vacille, de temps en temps
-
-// LES TROIS TIROIRS DE L'IMAGE img/classeur.png : leur haut et leur hauteur, en % de l'image.
-// Chaque tiroir a sa propre image (img/tiroir-1.png…), pour pouvoir s'avancer seul.
 const TIROIRS = [
 	{ haut: 2.98, hauteur: 26.96 },
 	{ haut: 32.93, hauteur: 27.62 },
 	{ haut: 64.53, hauteur: 26.96 },
 ];
 
-// pour écrire un texte dans la page sans risque
 function echapper(texte) {
 	return String(texte ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-// UN CLASSEUR : l'image du meuble, et ses trois tiroirs, chacun avec son étiquette.
-// cliquer(numéro du tiroir) : ce qui se passe quand on clique sur un tiroir.
-// Sans « cliquer », les tiroirs ne sont que du décor : on ne peut pas cliquer dessus.
 function construireClasseur(element, classeur, cliquer) {
 	element.classList.add("classeur");
 	element.innerHTML = `<img src="img/classeur.png" alt="">`;

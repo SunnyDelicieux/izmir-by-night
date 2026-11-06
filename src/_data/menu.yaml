@@ -1,6 +1,3 @@
-# La barre de navigation en haut des pages.
-# Une entrée avec « url » est un lien direct ; une entrée avec « colonnes » est un menu déroulant.
-
 - titre: Hub
   url: /
 
@@ -40,10 +37,12 @@
           url: /outils/relations/
     - titre: Rencontres
       liens:
-        - texte: Inga
+        - texte: Inga (Factions)
           url: /ambiance/inga/
         - texte: Nebetta (Elysium)
           url: /ambiance/elysium/
+        - texte: Atam (Archives)
+          url: /ambiance/archives/
 
 - titre: Jouer
   colonnes:
