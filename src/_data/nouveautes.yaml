@@ -1,10 +1,9 @@
-# La liste « Updates » du hub (la page d'accueil), de la plus récente à la plus ancienne.
-# Pour ajouter une nouveauté, copie un bloc tout en haut :
-#   date : comme elle doit s'afficher
-#   texte : ce qui est écrit
-#   lien : (facultatif) la page vers laquelle ça mène
-#   nouvel_onglet: true  (facultatif) pour ouvrir le lien dans un nouvel onglet
-
+- date: 06 Nov 26
+  texte: Archives Atam
+  lien: /ambiance/archives/
+- date: 04 Nov 26
+  texte: Map région
+  lien: /univers/map/
 - date: 02 Nov 26
   texte: Fiche PNJ de Shahar
   lien: /personnages/shahar/
