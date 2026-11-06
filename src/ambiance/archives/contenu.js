@@ -3,8 +3,13 @@ const CLASSEURS = [
     nom: "Origines",
     tiroirs: [
       {
-        etiquette: "Soteria",
+        etiquette: "Le Jardin",
         dossiers: [
+		   {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Le Prophète",
+            pdf: "le-prophete.pdf",
+          },
           {
             chemise: "vierge-rose-gauche.webp",
             nom: "Origines de Soteria",
@@ -42,14 +47,13 @@ const CLASSEURS = [
         ],
       },
       {
-        etiquette: "Le Prophète",
+        etiquette: "Travaux de recherche",   ",
         dossiers: [
-          {
-            chemise: "vierge-rose-gauche.webp",
-            nom: "Le Prophète",
-            pdf: "le-prophete.pdf",
-          },
-        ],
+   {
+            chemise: "vierge-peche.webp",
+            nom: "Mythes de Smyrne",
+            pdf: "mythes-de-smyrne.pdf",
+          },        ],
       },
     ],
   },
@@ -124,11 +128,7 @@ const CLASSEURS = [
             nom: "Enluminure des Primogènes",
             image: "primogene.webp",
           },
-          {
-            chemise: "vierge-peche.webp",
-            nom: "Mythes de Smyrne",
-            pdf: "mythes-de-smyrne.pdf",
-          },
+
         ],
       },
       {
