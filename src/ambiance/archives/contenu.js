@@ -5,8 +5,8 @@ const CLASSEURS = [
       {
         etiquette: "Le Jardin",
         dossiers: [
-		   {
-            chemise: "vierge-rose-gauche.webp",
+          {
+            chemise: "vierge-rose.webp",
             nom: "Le Prophète",
             pdf: "le-prophete.pdf",
           },
@@ -47,17 +47,19 @@ const CLASSEURS = [
         ],
       },
       {
-        etiquette: "Travaux de recherche",   ",
+        etiquette: "Travaux de recherche",
         dossiers: [
-   {
+          {
             chemise: "vierge-peche.webp",
             nom: "Mythes de Smyrne",
             pdf: "mythes-de-smyrne.pdf",
-          },        ],
+          },
+        ],
       },
     ],
   },
   {
+    nom: "Age moderne",
     tiroirs: [
       {
         etiquette: "Kushi",
@@ -128,7 +130,6 @@ const CLASSEURS = [
             nom: "Enluminure des Primogènes",
             image: "primogene.webp",
           },
-
         ],
       },
       {
