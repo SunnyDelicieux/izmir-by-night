@@ -5,6 +5,18 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sun/kushibeast.webp
+  alt: kushi.
+  tags: [sunny, canon, autre, kushi]
+  desc: Taken by surprise.
+- src: sun/raffi.webp
+  alt: Raffied.
+  tags: [sunny, canon, ventrue, raffi]
+  desc: Blind devotion.
+- src: sun/eylem.webp
+  alt: Piercing the veil.
+  tags: [sunny, canon, tremere, eylem]
+  desc: Piercing the veil.
 - src: sun/pentacle.webp
   alt: Page of pentacles.
   tags: [sunny, canon, toreador, ines]

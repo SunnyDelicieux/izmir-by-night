@@ -1,9 +1,3 @@
-// Prépare les images de la galerie à partir de src/galerie/dessins/ :
-//   - une miniature de 600 px    → /GALLERIE/thumbs/dessin/<chemin>.webp
-//   - une grande image de 2000 px → /GALLERIE/web/dessin/<chemin>.webp
-//   - les vidéos et les gifs sont copiés tels quels → /GALLERIE/dessin/<chemin>
-// Ce sont les adresses de l'ancien site : les liens qui existent déjà (calendrier, Kumu…) continuent de marcher.
-// Une image n'est retraitée que si elle a changé depuis la dernière construction.
 
 import fs from "node:fs/promises";
 import path from "node:path";
