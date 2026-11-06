@@ -54,6 +54,11 @@ const CLASSEURS = [
             nom: "Mythes de Smyrne",
             pdf: "mythes-de-smyrne.pdf",
           },
+          {
+            chemise: "vierge-bleue.webp",
+            nom: "L'infernalisme",
+            pdf: "l-infernalisme-a-smyrne.pdf",
+          },
         ],
       },
     ],
@@ -64,11 +69,6 @@ const CLASSEURS = [
       {
         etiquette: "Kushi",
         dossiers: [
-          {
-            chemise: "vierge-bleue.webp",
-            nom: "L'infernalisme",
-            pdf: "l-infernalisme-a-smyrne.pdf",
-          },
           {
             chemise: "vierge-rose.webp",
             nom: "Lettre de tribut",
