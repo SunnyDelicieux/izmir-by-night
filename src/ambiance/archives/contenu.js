@@ -130,6 +130,11 @@ const CLASSEURS = [
             nom: "Enluminure des Primogènes",
             image: "primogene.webp",
           },
+		    {
+            chemise: "vierge-bleue.webp",
+            nom: "Charites d'Izmir",
+            pdf: "les-charites-d-izmir.pdf",
+          },
         ],
       },
       {
