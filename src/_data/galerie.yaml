@@ -5,10 +5,27 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
-- src: sun/kushibeast.webp
-  alt: kushi.
+
+- src: sun/webcrawleer.png
+  alt: Web crawler.
+  tags: [sunny, noncanon, tremere, nosferatu, ventrue, inga, zacharias, cem]
+  desc: Web crawler.
+- src: sun/learninpower.png
+  alt: Getting started.
+  tags: [sunny, canon, brujah, autre, toreador, gabriel, ines, camil]
+  desc: Getting started.
+- src: sun/socialpower.png
+  alt: Social power.
+  tags: [sunny, canon, ventrue, tremere, nosferatu, sofia, louiza, nebetta]
+  desc: Social power.
+- type: comic
+  title: The chase
+  alt: The chase
   tags: [sunny, canon, autre, kushi]
-  desc: Taken by surprise.
+  desc: The chase.
+  pages:
+    - src: sun/wolfed.png
+    - src: sun/kushibeast.webp
 - src: sun/raffied.webp
   alt: Raffied.
   tags: [sunny, canon, ventrue, raffi]
