@@ -94,6 +94,11 @@ const CLASSEURS = [
             nom: "Enluminure d'Eudokia",
             image: "mort-d-eudokia.webp",
           },
+            {
+            chemise: "vierge-bleue.webp",
+            nom: "Procès d'Eudokia la Séditieuse.",
+            pdf: "procés-eudokia.pdf",
+          },
           {
             chemise: "vierge-peche.webp",
             nom: "Shahar",
