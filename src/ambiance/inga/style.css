@@ -1,21 +1,53 @@
-html, body {
+/* =========================================================
+   L'APPARENCE DE LA CHAMBRE D'INGA
+     1. la page et les pièces
+     2. les zones et les flèches
+     3. le dialogue, Inga, les objets
+     4. les écrans par-dessus (ENTER, noir, la feuille, les erreurs)
+     5. les ordinateurs : ce qu'ils ont en commun
+     6. le PC 1 (le bureau)
+     7. le PC 2 (le terminal)
+
+   Les couches, de l'arrière vers l'avant :
+     la pièce → objets en gros plan (20) → Inga (25) → la boîte de dialogue (30)
+     → les ordinateurs (10000) → Inga et la boîte quand elle parle sur un PC (10025, 10030)
+     → l'écran noir (10050) → la feuille (10060) → ENTER (99999)
+   ========================================================= */
+
+
+/* ===== 1. LA PAGE ET LES PIÈCES ===== */
+
+html,
+body {
     margin: 0;
     padding: 0;
     background: #000;
 }
 
-#room {
+#scene {
     position: relative;
     width: fit-content;
     margin: auto;
 }
 
-#room > img {
+.piece {
+    position: relative;
+}
+
+.piece[hidden] {
+    display: none;
+}
+
+.piece > img {
     display: block;
     max-width: 100%;
     height: auto;
 }
 
+
+/* ===== 2. LES ZONES ET LES FLÈCHES ===== */
+
+/* x1 y1 x2 y2 sont en pixels de l'image d'origine (1366 × 768) */
 .zone {
     position: absolute;
     left: calc(var(--x1) / 1366 * 100%);
@@ -25,125 +57,117 @@ html, body {
     padding: 0;
     background: none;
     border: none;
-    font: inherit;
     cursor: pointer;
-}
 
-.zone:focus-visible {
-    outline: 1px dashed #c00000;
-}
-
-
-/* ÉTOILES */
-
-.hint {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    /* l'étoile ✦ au milieu */
     color: #650000;
     font-size: 30px;
     opacity: .8;
-    pointer-events: none;
     text-shadow: 0 0 4px #300000, 0 0 10px #600000;
     transition: .2s;
 }
 
-.zone:hover .hint,
-.zone:focus-visible .hint {
+.zone:hover,
+.zone:focus-visible {
     color: #c00000;
     opacity: 1;
+    outline: none;
     text-shadow: 0 0 5px #500000, 0 0 12px #900000, 0 0 25px #d00000;
 }
 
-
-/* ITEM */
-
-#focus-item {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 420px;
-    z-index: 20;
-    image-rendering: pixelated;
-    filter: drop-shadow(0 0 5px #000) drop-shadow(0 0 20px #000);
-    pointer-events: none;
-}
-
-
-/* SPRITE D'INGA (quand elle parle) */
-
-#room > #sprite { /* « #room > » pour passer avant la règle « #room > img » du fond */
+.zone[hidden] {
     display: none;
+}
+
+.fleche {
     position: absolute;
-    left: 3%;
-    bottom: 0;
-    height: 95%;
-    z-index: 25; /* devant la chambre, derrière la boîte de dialogue */
-    pointer-events: none;
-    filter: drop-shadow(0 0 12px #000);
-    animation: spriteIn .35s ease-out;
+    top: 10px;
+    padding: 0 25px;
+    background: none;
+    border: none;
+    color: #fff;
+    font: bold 80px Arial, sans-serif;
+    text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
+    cursor: pointer;
+    transition: .2s;
 }
 
-/* dégoûtée / surprise : un petit sursaut */
-#room > #sprite.degoutee {
-    animation: spriteSursaut .4s ease-out;
+.fleche:hover {
+    text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 0 0 15px #fff;
 }
 
-@keyframes spriteIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: none; }
+.fleche.gauche { left: 10px; }
+.fleche.droite { right: 10px; }
+
+/* le mode #zones : les zones encadrées avec leur nom, toutes visibles */
+.mode-zones .zone,
+.mode-zones .zone[hidden] {
+    display: block;
+    outline: 2px dashed #ff0;
+    background: rgba(255, 255, 0, .12);
 }
 
-@keyframes spriteSursaut {
-    0%   { opacity: 0; transform: translateY(0); }
-    30%  { opacity: 1; transform: translateY(-25px); }
-    60%  { transform: translateY(4px); }
-    100% { transform: none; }
+.mode-zones .zone::after {
+    content: attr(data-nom);
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    color: #ff0;
+    font: 12px monospace;
+    text-shadow: 0 0 3px #000;
+}
+
+#coordonnees {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 100000;
+    color: #ff0;
+    font: 16px monospace;
+    text-shadow: 0 0 3px #000;
 }
 
 
-/* DIALOGUE */
+/* ===== 3. LE DIALOGUE, INGA, LES OBJETS ===== */
 
-#dialog {
-    display: none;
+#dialogue {
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 10030;
     width: 88%;
     max-width: 950px;
     min-height: 130px;
     box-sizing: border-box;
     padding: 18px;
-    background: rgba(0,0,0,.96);
+    background: rgba(0, 0, 0, .96);
     color: #eee;
     font: 18px/1.5 Georgia, serif;
     border: 2px solid #555;
     box-shadow: 0 0 25px #000;
-    z-index: 30;
     cursor: pointer;
 }
 
-/* quand l'objet cliqué est dans le bas de l'image, la boîte passe en haut (room.js, placerDialogue) */
-#dialog.en-haut {
-    bottom: auto;
-    top: 30px;
+#dialogue[hidden] {
+    display: none;
 }
 
-#speaker {
+#dialogue-portrait {
+    float: left;
     width: 110px;
     height: 110px;
-    object-fit: cover;
-    float: left;
     margin-right: 22px;
+    object-fit: cover;
     border: 1px solid #333;
     image-rendering: pixelated;
 }
 
-/* le nom de celui qui parle, quand ce n'est pas Inga (« qui » dans dialogues.js) */
-#nom {
+#dialogue-portrait[hidden] {
+    display: none;
+}
+
+#dialogue-nom {
     margin-bottom: 4px;
     color: #c00000;
     font: 12px Georgia, serif;
@@ -151,186 +175,184 @@ html, body {
     text-transform: uppercase;
 }
 
-#nom[hidden] {
-    display: none;
+#dialogue-texte {
+    min-height: 70px;
+    padding-top: 4px;
 }
 
-/* une bulle de narration (qui: "") */
-#text.narration {
+/* la narration (« * … » dans les fichiers d'histoire) */
+#dialogue-texte.narration {
     color: #999;
     font-style: italic;
 }
 
-#dialog-content {
-    min-height: 110px;
-    overflow: hidden;
-}
-
-#text {
-    padding: 8px 5px 0 0;
-}
-
-#dialog span {
+#dialogue .suite {
     display: block;
+    clear: both;
     margin-top: 10px;
     color: #777;
     font: 11px Arial, sans-serif;
     text-align: right;
     letter-spacing: 1px;
-    animation: breathe 1.8s infinite;
+    animation: respire 1.8s infinite;
 }
 
-@keyframes breathe {
-    0%,100% { opacity: .3; }
+@keyframes respire {
+    0%, 100% { opacity: .3; }
     50% { opacity: .9; }
 }
 
-
-/* FLÈCHES */
-
-.page-arrow {
-    position: fixed;
-    top: 10px;
-    z-index: 9999;
-    font: bold 80px Arial, sans-serif;
+/* Inga, quand elle parle */
+#sprite {
+    position: absolute;
+    left: 3%;
+    bottom: 0;
+    height: 95%;
+    z-index: 10025;
+    pointer-events: none;
+    filter: drop-shadow(0 0 12px #000);
+    animation: arrivee .35s ease-out;
 }
 
-.page-arrow a {
-    display: block;
-    padding: 0 25px;
-    color: #fff;
-    text-decoration: none;
-    -webkit-text-stroke: 3px #000;
-    text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
-    transition: .2s;
+/* une humeur (« Inga (dégoûtée) ») : un petit sursaut */
+#sprite.sursaut {
+    animation: sursaut .4s ease-out;
 }
 
-.page-arrow a:hover {
-    color: #eee;
-    text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 0 0 15px #fff;
-}
-
-.page-arrow.left { left: 10px; }
-.page-arrow.right { right: 10px; }
-
-
-/* L'ÉCRAN DES ORDINATEURS */
-
-#ecran {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 56px 14px 14px; /* en haut : la place du bouton de connexion du site */
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, .82);
-    animation: ecranFondu .25s ease-out;
-}
-
-#ecran[hidden] {
+#sprite[hidden] {
     display: none;
 }
 
-#ecran-barre {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font: 12px Georgia, serif;
-    letter-spacing: 2px;
+@keyframes arrivee {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
 }
 
-#ecran-onglets {
-    display: flex;
-    gap: 6px;
-    margin-right: auto;
+@keyframes sursaut {
+    0% { opacity: 0; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-25px); }
+    60% { transform: translateY(4px); }
+    100% { transform: none; }
 }
 
-#ecran-barre button {
-    padding: 7px 14px;
-    background: rgba(0, 0, 0, .85);
-    border: 1px solid #555;
-    color: #999;
-    font: inherit;
-    letter-spacing: inherit;
-    cursor: pointer;
-    transition: .2s;
-}
-
-#ecran-barre button:hover,
-#ecran-barre button:focus-visible {
-    color: #fff;
-    border-color: #c00000;
-}
-
-#ecran-onglets button.actif {
-    color: #fff;
-    border-color: #c00000;
-    box-shadow: 0 0 10px #600000;
-}
-
-/* le moniteur : un cadre sombre avec une lueur rouge, comme les étoiles de la chambre */
-#ecran-moniteur {
-    position: relative;
-    flex: 1;
-    overflow: hidden;
-    border: 2px solid #222;
-    border-radius: 10px;
-    background: #000;
-    box-shadow: 0 0 30px #300000, inset 0 0 40px #000;
-}
-
-#ecran-pages {
+/* [image …] : un objet en gros plan */
+#gros-plan {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform-origin: center;
+    width: 420px;
+    max-width: 40%;
+    z-index: 10020;
+    transform: translate(-50%, -50%);
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 5px #000) drop-shadow(0 0 20px #000);
+    pointer-events: none;
 }
 
-#ecran-pages iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    background: #000;
+/* [téléphone] */
+#telephone {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    height: 55%;
+    z-index: 10020;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    filter: drop-shadow(0 0 5px #000) drop-shadow(0 0 20px #000);
+    pointer-events: none;
 }
 
-#ecran-pages iframe[hidden] {
+#gros-plan[hidden],
+#telephone[hidden] {
     display: none;
 }
 
-/* des lignes de balayage très légères, par-dessus la page */
-#ecran-grain {
-    position: absolute;
+
+/* ===== 4. LES ÉCRANS PAR-DESSUS ===== */
+
+/* ENTER : le premier clic, qui lance la musique */
+#entrer {
+    position: fixed;
     inset: 0;
-    pointer-events: none;
-    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .025) 0 1px, transparent 1px 3px);
-    box-shadow: inset 0 0 80px rgba(0, 0, 0, .7);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    cursor: pointer;
 }
 
-#ecran-moniteur.allumage #ecran-pages {
-    animation: ecranAllumage .45s ease-out;
+#entrer[hidden] {
+    display: none;
 }
 
-@keyframes ecranFondu {
+#entrer span {
+    color: #777;
+    font: 14px Georgia, serif;
+    letter-spacing: 6px;
+    animation: respire 2s infinite;
+}
+
+#entrer:hover span {
+    color: #fff;
+}
+
+/* [noir …] et l'écran de fin */
+#noir {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: #000;
+    color: #bbb;
+    font: italic 22px Georgia, serif;
+    letter-spacing: 4px;
+    animation: fondu 1.5s ease-out;
+    transition: opacity 1.5s;
+}
+
+#noir[hidden] {
+    display: none;
+}
+
+#noir.disparait {
+    opacity: 0;
+}
+
+#noir .fin-titre {
+    color: #ddd;
+    font-style: normal;
+    letter-spacing: 8px;
+}
+
+#noir button {
+    padding: 8px 18px;
+    background: #000;
+    border: 1px solid #555;
+    color: #999;
+    font: 12px Georgia, serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+#noir button:hover {
+    color: #fff;
+    border-color: #c00000;
+}
+
+@keyframes fondu {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to { opacity: 1; }
 }
 
-@keyframes ecranAllumage {
-    0%   { filter: brightness(3) contrast(.4); opacity: .2; }
-    20%  { filter: brightness(.3); opacity: 1; }
-    40%  { filter: brightness(1.6); }
-    100% { filter: none; }
-}
-
-
-/* LA LETTRE (quete.js) */
-
-#lettre {
-    position: absolute;
+/* [document …] : une feuille en plein écran */
+#papier {
+    position: fixed;
     inset: 0;
-    z-index: 40;
+    z-index: 10060;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -340,11 +362,11 @@ html, body {
     cursor: pointer;
 }
 
-#lettre[hidden] {
+#papier[hidden] {
     display: none;
 }
 
-#lettre .papier {
+#papier .feuille {
     width: min(520px, 80%);
     max-height: 80%;
     overflow-y: auto;
@@ -357,108 +379,376 @@ html, body {
     box-shadow: 0 10px 40px #000, inset 0 0 40px rgba(120, 90, 50, .25);
 }
 
-#lettre .fermer {
+#papier .reposer {
     color: #777;
     font: 11px Georgia, serif;
     letter-spacing: 2px;
 }
 
-
-/* LE COMPTEUR « rats : 1 / 2 » (quete.js) */
-
-#compteur {
+/* les erreurs dans les fichiers d'histoire */
+#erreurs {
     position: fixed;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 35;
-    padding: 6px 16px;
-    background: rgba(0, 0, 0, .85);
-    border: 1px solid #555;
-    color: #ddd;
-    font: 14px Georgia, serif;
-    letter-spacing: 2px;
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    max-height: 40%;
+    overflow-y: auto;
+    padding: 6px 14px;
+    background: #600;
+    color: #fff;
+    font: 13px monospace;
 }
 
-#compteur[hidden] {
+#erreurs[hidden] {
     display: none;
 }
 
+#erreurs p {
+    margin: 4px 0;
+}
 
-/* L'ÉCRAN NOIR DE LA FIN (quete.js) */
 
-#noir {
-    position: absolute;
+/* ===== 5. LES ORDINATEURS : CE QU'ILS ONT EN COMMUN ===== */
+
+.ordinateur {
+    position: fixed;
     inset: 0;
-    z-index: 22; /* devant la chambre, derrière Inga (25) et la boîte de dialogue (30) */
+    z-index: 10000;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    padding: 56px 14px 14px;   /* en haut : la place de la barre du site */
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .94);
+    animation: fondu .25s ease-out;
+}
+
+.ordinateur[hidden],
+.ordinateur [hidden] {
+    display: none;
+}
+
+.barre-pc {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 24px;
-    background: #000;
-    color: #bbb;
-    font: italic 22px Georgia, serif;
-    letter-spacing: 4px;
-    animation: noirFondu 1.5s ease-out;
-    transition: background 1.5s;
-}
-
-#noir.transparent {
-    background: rgba(0, 0, 0, .55);
-}
-
-#noir span {
-    animation: noirFondu 2s ease-out;
-}
-
-#noir .fin-titre {
-    color: #ddd;
-    font-style: normal;
-    letter-spacing: 8px;
-}
-
-#noir .fin-recommencer {
-    padding: 8px 18px;
-    background: #000;
-    border: 1px solid #555;
+    justify-content: space-between;
     color: #999;
     font: 12px Georgia, serif;
     letter-spacing: 2px;
+}
+
+.barre-pc button {
+    padding: 7px 14px;
+    background: #000;
+    border: 1px solid #555;
+    color: #999;
+    font: inherit;
+    letter-spacing: inherit;
     cursor: pointer;
 }
 
-#noir .fin-recommencer:hover {
+.barre-pc button:hover {
     color: #fff;
     border-color: #c00000;
 }
 
-@keyframes noirFondu {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+/* l'écran : un cadre sombre avec une lueur rouge */
+.ecran {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    border: 2px solid #222;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #300000;
 }
 
-
-/* LE TÉLÉPHONE, pendant les appels (room.js, montrerTelephone) */
-
-#room > #telephone { /* « #room > » pour passer avant la règle « #room > img » du fond */
+/* la fenêtre où s'ouvrent les fichiers */
+.fenetre {
     position: absolute;
-    left: 50%;
-    top: 42%;
-    height: 55%;
-    z-index: 20; /* comme un objet en gros plan : derrière Inga et la boîte de dialogue */
-    transform: translate(-50%, -50%) rotate(-12deg); /* centré, légèrement tourné vers la gauche */
-    filter: drop-shadow(0 0 5px #000) drop-shadow(0 0 20px #000);
+    inset: 4% 6%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.fenetre-barre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fenetre-barre button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.fenetre-contenu {
+    flex: 1;
+    overflow: auto;
+}
+
+.fenetre-contenu iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.fenetre-contenu img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+}
+
+.fenetre-contenu pre {
+    margin: 0;
+    padding: 14px 18px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+
+/* ===== 6. LE PC 1 (le bureau) ===== */
+
+.bureau-pc {
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    font: 14px "Trebuchet MS", sans-serif;
+}
+
+.bureau-titre {
+    position: absolute;
+    left: 42px;
+    top: 30px;
+    color: #fff;
+    font: 36px "Courier New", monospace;
+    text-shadow: 0 0 16px #000;
+}
+
+/* les colonnes d'icônes */
+.icones {
+    position: absolute;
+    left: 40px;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 76px;
+    text-align: center;
+}
+
+.icones.decor {
+    left: 130px;
+}
+
+.icones.dossier-oublie {
+    left: auto;
+    right: 40px;
+    top: auto;
+    bottom: 40px;
+}
+
+.icones a,
+.icones > span {
+    display: block;
+    padding: 6px;
+    border: 1px dashed transparent;
+    border-radius: 6px;
+    color: inherit;
+    font-size: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.icones.decor > span {
+    cursor: default;
+}
+
+.icones a:hover,
+.icones > span:hover {
+    background: rgba(255, 255, 255, .26);
+    border-color: #000;
+}
+
+.icones img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 4px;
+    object-fit: contain;
+}
+
+.icones span span,
+.icones a span {
+    display: inline-block;
+    padding: 2px 5px;
+    background: #000;
+    color: #fff;
+}
+
+/* le pense-bête avec le mot de passe du PC 2 */
+.pense-bete {
+    position: absolute;
+    right: 40px;
+    top: 110px;
+    width: 250px;
+    padding: 4px;
+    background: grey;
+    border: 1px solid #000;
+    border-radius: 2px;
+    box-shadow: 2px 2px 14px rgba(0, 0, 0, .6);
+}
+
+.pense-bete-titre {
+    padding: 6px 12px;
+    background: #000;
+    color: #848484;
+    font: 12px monospace;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+
+.pense-bete p {
+    margin: 4px 0 0;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+
+/* la fenêtre façon vieux Windows */
+.bureau-pc .fenetre {
+    padding: 4px;
+    background: grey;
+    border: 1px solid #000;
+    border-radius: 2px;
+    box-shadow: 2px 2px 14px rgba(0, 0, 0, .6);
+}
+
+.bureau-pc .fenetre-barre {
+    margin-bottom: 4px;
+    padding: 6px 12px;
+    background: #000;
+    color: #848484;
+    font: 12px monospace;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+
+.bureau-pc .fenetre-barre button {
+    color: #848484;
+    font: 16px monospace;
+}
+
+.bureau-pc .fenetre-barre button:hover {
+    color: #fff;
+}
+
+.bureau-pc .fenetre-contenu {
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+
+
+/* ===== 7. LE PC 2 (le terminal) ===== */
+
+.terminal .ecran {
+    padding: 14px 20px;
+    background: #050805;
+    color: #8fdc8a;
+    font: 15px/1.55 "Lucida Console", "Courier New", monospace;
+    text-shadow: 0 0 4px rgba(143, 220, 138, .35);
+    overflow-y: auto;
+}
+
+/* les lignes de balayage */
+.terminal .ecran::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 20;
     pointer-events: none;
-    animation: telephoneArrive .5s ease-out;
+    background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px);
 }
 
-#room > #telephone[hidden] {
-    display: none;
+.terminal .terminal-titre,
+.terminal .discret {
+    color: #4f7a4c;
+    text-shadow: none;
 }
 
-@keyframes telephoneArrive {
-    from { opacity: 0; transform: translate(-50%, -45%) rotate(-12deg); }
-    to   { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg); }
+.terminal .terminal-titre {
+    margin-bottom: 14px;
+    font-size: 12px;
+}
+
+.terminal .ambre {
+    color: #e3c46a;
+}
+
+.terminal .refus {
+    color: #e07a6a;
+}
+
+.terminal pre {
+    margin: 0 0 12px;
+    font: inherit;
+}
+
+.terminal input {
+    background: none;
+    border: none;
+    outline: none;
+    color: inherit;
+    font: inherit;
+    caret-color: #8fdc8a;
+}
+
+.terminal .fichiers {
+    margin: 0;
+    padding: 0 0 0 30px;
+    list-style: none;
+}
+
+.terminal a {
+    color: #8fdc8a;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.terminal a:hover {
+    background: #8fdc8a;
+    color: #050805;
+    text-shadow: none;
+}
+
+.terminal .fenetre {
+    inset: 0;
+    background: #050805;
+}
+
+.terminal .fenetre-barre {
+    padding: 6px 12px;
+    background: #0d140d;
+    border-bottom: 1px solid #1d2e1c;
+    color: #4f7a4c;
+    font-size: 12px;
+    text-shadow: none;
+}
+
+.terminal .fenetre-barre button {
+    color: #4f7a4c;
+    font: inherit;
+}
+
+.terminal .fenetre-barre button:hover {
+    color: #8fdc8a;
+}
+
+.terminal .fenetre-contenu iframe {
+    background: #000;
 }

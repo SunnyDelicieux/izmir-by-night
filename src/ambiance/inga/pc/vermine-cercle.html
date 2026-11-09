@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+<title>◈</title>
+<link rel="stylesheet" href="vermine-terminal.css">
+</head>
+
+<body>
+
+<!--
+    VERMINE.EXE, la face cachée : l'espace des membres du Cercle (les Setites).
+    On y arrive depuis vermine.html (Espace membres, mot de passe SET).
+
+    La conversation s'écrit directement ici :
+      ce que dit la voix :  <p class="ligne voix">…</p>
+      une révélation :      <p class="ligne revelation">…</p>
+    À la fin, la question (Oui / Non). La réponse affiche son paragraphe (id="si-oui" ou id="si-non"),
+    puis on passe à vermine-fin.html (l'œil). C'est là qu'Inga réagit : « == vu vermine-fin == ».
+-->
+
+<header>
+    <span class="points"><span></span><span></span><span></span></span>
+    <span>C:\CERCLE\MEMBRES\vermine.exe</span>
+    <a class="retour" href="vermine.html">[ quitter ]</a>
+</header>
+
+<main id="fil">
+
+<pre id="serpent">
+        /^\/^\
+      _|__|  O|        LE CERCLE :: ceux qui ont vu
+\/     /~     \_/ \    connexion chiffrée . . . . ok
+ \____|__________/  \  membre : invité
+        \_______      \
+                `\     \
+</pre>
+
+    <p class="ligne voix">[ placeholder : la conversation du Cercle s'écrira ici ]</p>
+    <p class="ligne voix">Veux-tu qu'on t'aide à briser ta chaîne ?</p>
+
+    <div id="choix">
+        <button type="button" onclick="repondre('oui')"><span class="touche">[1]</span>Oui.</button>
+        <button type="button" onclick="repondre('non')"><span class="touche">[2]</span>Non.</button>
+    </div>
+
+    <div id="si-oui" hidden>
+        <p class="ligne toi">Oui.</p>
+        <p class="ligne revelation">[ placeholder : la réponse si oui ]</p>
+    </div>
+
+    <div id="si-non" hidden>
+        <p class="ligne toi">Non.</p>
+        <p class="ligne revelation">[ placeholder : la réponse si non ]</p>
+    </div>
+
+</main>
+
+
+<script>
+// La réponse : on cache les boutons, on montre le paragraphe de la réponse,
+// et quelques secondes plus tard, on passe à l'œil (vermine-fin.html?oui ou vermine-fin.html?non).
+function repondre(reponse) {
+    if (document.getElementById("choix").hidden) return;   // déjà répondu
+    document.getElementById("choix").hidden = true;
+    document.getElementById("si-" + reponse).hidden = false;
+    setTimeout(() => {
+        location.href = "vermine-fin.html?" + reponse;
+    }, 3500);
+}
+
+// on peut aussi répondre avec les touches 1 et 2
+document.addEventListener("keydown", (evenement) => {
+    if (evenement.key === "1") repondre("oui");
+    if (evenement.key === "2") repondre("non");
+});
+</script>
+
+</body>
+</html>

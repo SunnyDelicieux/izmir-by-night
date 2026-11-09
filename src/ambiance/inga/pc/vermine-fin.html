@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+<title>◈</title>
+<link rel="stylesheet" href="vermine-terminal.css">
+</head>
+
+<body>
+
+<!--
+    VERMINE.EXE, la fin de l'espace membres : l'œil s'ouvre.
+    On y arrive après avoir répondu au Cercle (vermine-cercle.html).
+    Inga réagit en arrivant ici : « == vu vermine-fin == » dans histoire/nuit-1.txt.
+-->
+
+<main id="oeil">
+<pre>
+          .-'"""""'-.
+        .'           '.
+       /    .-----.    \
+      |    /  (@)  \    |
+       \   '-------'   /
+        '.           .'
+          '-.......-'
+</pre>
+    <p id="oeil-texte">Il t'a vu.</p>
+    <a class="retour" href="vermine.html">[ retour au site ]</a>
+</main>
+
+<script>
+// si on a répondu « oui » (vermine-fin.html?oui), le Cercle en dit un peu plus
+if (location.search === "?oui") {
+    document.getElementById("oeil-texte").textContent = "Il t'a vu. Il t'attend.";
+}
+</script>
+
+</body>
+</html>

@@ -92,8 +92,8 @@
 /legacy/OLDINDEX.html: /archives/ancien-hub.html
 /ELYSIUM/index.html: /ambiance/elysium/
 /INGA/index.html: /ambiance/inga/
-/INGA/inga.html: /ambiance/inga/inga.html
-/INGA/inga2.html: /ambiance/inga/inga2.html
+/INGA/inga.html: /ambiance/inga/
+/INGA/inga2.html: /ambiance/inga/
 /JOURNAL/index.html: /ambiance/journal/
 /SITE/FACTIONS/ANARCH/baron.html: /ambiance/factions/ANARCH/baron.html
 /SITE/FACTIONS/ANARCH/ciné.html: /ambiance/factions/ANARCH/ciné.html
@@ -102,14 +102,22 @@
 /SITE/FACTIONS/ANARCH/nightcore.html: /ambiance/factions/ANARCH/nightcore.html
 /SITE/FACTIONS/ANARCH/sidebar.html: /ambiance/factions/ANARCH/sidebar.html
 /SITE/FACTIONS/ANARCH/spotting.html: /ambiance/factions/ANARCH/spotting.html
-/SITE/FACTIONS/index.html: /ambiance/factions/
-/SITE/FACTIONS/inga.html: /ambiance/factions/inga.html
-/SITE/FACTIONS/mdp.html: /ambiance/factions/mdp.html
+/SITE/FACTIONS/index.html: /ambiance/inga/
+/SITE/FACTIONS/inga.html: /ambiance/inga/pc/steam.html
+/SITE/FACTIONS/mdp.html: /ambiance/inga/
 /SITE/FACTIONS/sabbat/anarch.html: /ambiance/factions/sabbat/anarch.html
 /SITE/FACTIONS/sabbat/camarilla.html: /ambiance/factions/sabbat/camarilla.html
 /SITE/FACTIONS/sabbat/inqui.html: /ambiance/factions/sabbat/inqui.html
 /SITE/FACTIONS/sabbat/sabbat.html: /ambiance/factions/sabbat/sabbat.html
 /SITE/FACTIONS/sabbat/test.html: /ambiance/factions/sabbat/test.html
-/SITE/FACTIONS/vermine.html: /ambiance/factions/vermine.html
-/SITE/FACTIONS/welcome.html: /ambiance/factions/welcome.html
+/SITE/FACTIONS/vermine.html: /ambiance/inga/pc/vermine.html
+/SITE/FACTIONS/welcome.html: /ambiance/inga/
 /legacy/BLOG/index.html: /archives/ancien-blog/
+
+# La chambre d'Inga refaite (novembre 2026) : les anciennes pages du VN et des PC
+/ambiance/inga/inga.html: /ambiance/inga/
+/ambiance/inga/inga2.html: /ambiance/inga/
+/ambiance/factions/index.html: /ambiance/inga/
+/ambiance/factions/terminal.html: /ambiance/inga/
+/ambiance/factions/inga.html: /ambiance/inga/pc/steam.html
+/ambiance/factions/vermine.html: /ambiance/inga/pc/vermine.html

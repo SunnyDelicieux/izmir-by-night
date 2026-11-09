@@ -1,0 +1,95 @@
+// =========================================================
+// NUIT 2 — la nuit suivante
+// Pour l'instant, elle se joue toute seule : le réveil, le repas, l'appel de Zacharias, la sortie.
+//
+// Pour la rendre jouable : enlever le [nuit suivante] tout en bas du bloc « début »,
+// puis ajouter des blocs pour les zones (== chat ==, == pc1 ==…) et un bloc
+// « == fin de nuit si … == » qui se termine par [nuit suivante].
+// =========================================================
+
+
+== début ==
+[pièce chambre]
+[noir La nuit suivante.]
+
+// 1. le réveil : Zacharias a appelé
+* Un bourdonnement contre le carrelage. Un des téléphones sonne. Vu la sonnerie, c'est celui destiné aux communications avec les Tremere.
+Inga : Hm.
+* Elle s'est endormie là où elle est tombée, la joue sur le carrelage, entre deux boîtes de nouilles. Le soleil est couché depuis trois heures.
+* Elle attrape le téléphone.
+Inga : Cinq appels manqués. Zacharias.
+Inga : La dernière fois qu'il a appelé, c'était… juin ? Quatre mois. Et là, cinq appels en une journée.
+Inga : Soit quelqu'un est mort, soit il croit que c'est moi.
+Inga : Il attendra. J'ai faim.
+
+// 2. le repas : le chat
+Inga : Le rat a pas suffi. Celui d'hier non plus. Il m'avait prévenue que ça durerait pas.
+* Le chat est roulé en boule contre elle. Il a dormi là toute la journée, contre la seule chose de l'appart qui ne bougeait pas.
+Inga : Il me fait confiance. C'est mignon. C'est con.
+Inga (dégoûtée) : . . .
+Inga : Je peux pas sortir comme ça. Si la Bête se réveille dans le couloir, c'est la voisine du dessous qui paye.
+Inga : Désolée, petit chat.
+* Elle le soulève doucement. Il ne se débat pas, et l'observe avec de grands yeux.
+* Le sang est chaud, le goût est meilleur que celui du rongeur, bien qu'il reste quelque peu fade.
+* Il est clair que tout ça n'a encore rien de naturel pour elle.
+
+// 3. l'appel : Inga rappelle Zacharias. Ils jouent à se taper sur les nerfs, sans haine.
+//    Lore utilisé : la lettre de Zacharias à Esen sur les Anarchs (leurs deux méthodes, le jeu),
+//    le blog anarch du PC 1, le titre qu'Inga refuse, Dimitrios, Atam et le Régent.
+[téléphone]
+Inga : Bon. Rappelons-le, avant qu'il annonce ma mort.
+* Une sonnerie. Il décroche avant la deuxième.
+Zacharias : Cinq appels, Inga. Cinq. J'avais commencé à rédiger ta nécrologie.
+Inga : Et tu l'écrivais comment ?
+Zacharias : Elle était sobre, élégante et légèrement condescendante.
+Inga : Tu aurais dû la publier. J'aurais adoré corriger tes fautes.
+Zacharias : Je ne fais pas de fautes.
+Inga : C'est ce que disent tous les gens qui font des fautes.
+Zacharias : Quatre mois, Inga.
+Inga : Je n'avais rien à te dire.
+Zacharias : Tu n'as jamais rien à dire. D'habitude, ça ne t'empêche pas de parler.
+Zacharias : Bref. Les Anarchs ont encore migré. Nouveau blog, nouveau serveur, et ils semblent commencer à apprendre les bases de la sécurité informatique.
+Inga : Je sais. Lil a cliqué sur un lien qu'il aurait pas dû. Ils ont tout déménagé en une nuit.
+Inga : C'était presque attendrissant.
+Zacharias : Il nous a fallu quatre jours pour les retrouver, ce qui reste court, mais ça risque d'être plus difficile plus tard.
+Zacharias : Le problème n'est pas de les retrouver. C'est ce qu'on remonte dans le filet.
+Zacharias : Plus de scripts, plus de goules, plus de nuits passées à trier. Chaque migration nous coûte un peu plus.
+Zacharias : Et qu'est-ce qu'on récupère ? Des anniversaires. Des recommandations de films. Un tableau des terrains de chasse.
+Inga : Le tableau est super, j'ai rien à redire sur le tableau.
+Zacharias : Ce n'est pas rien. Mais c'est noyé dans tout le reste. On creuse trop large, on ramasse tout et n'importe quoi.
+Inga : On a juste à resserrer un peu, se concentrer sur un truc.
+Zacharias : Sur quoi ? Le port ? Konak ? Le Baron ? Ce n'est pas à nous de choisir. En théorie, c'est le Conseil qui décide de ce qui compte pour la ville.
+Inga : En théorie, oui. Après, ils savent pas ce que ça implique.
+Zacharias : Et c'est là que tu interviens. Parle-leur. Demande-leur sur quoi ils veulent qu'on se concentre.
+Inga : Moi ? C'est toi qui as un primogène, fais-le toi-même.
+Zacharias : Ils t'écoutent. Ils ne t'aiment pas, mais ils t'écoutent. La Cour t'a même proposé un titre, si je me souviens bien.
+Inga : Et j'ai dit non. J'ai pas que ça à faire. Leur titre, c'était juste un moyen de me forcer à leur faire des faveurs en échange.
+Zacharias : Soit. Reste dans ton coin pour toujours. Mais ça reste à toi de le faire.
+Zacharias : Moi, si j'apporte ça, ils me demanderont comment je l'ai obtenu. Avec quelles ressources, et sur ordre de qui. Ça pourrait compliquer les choses.
+Zacharias : Pour moi, pour toi, et pour mon sire.
+Inga (dégoûtée) : Donc le grand génie de la Fondation a peur de se faire gronder par Dimitrios.
+Zacharias : J'ai le sens de la hiérarchie. C'est une notion qui t'échappe, je sais.
+Inga : Bon. Je leur parlerai. C'est mon projet de toute façon, tu n'as fait que l'améliorer.
+Zacharias : « Améliorer ». Je note que tu l'as dit.
+Inga (dégoûtée) : Ne t'habitue pas.
+Inga : Et Il sera au courant, de toute façon, par moi ou quelqu'un d'autre.
+Zacharias : Atam fera ce qu'Atam fait. Je ne prétends pas comprendre ton sire, et je n'ai pas l'intention d'essayer. Ce n'est pas mon domaine.
+Inga : Personne le comprend. C'est un peu le principe.
+Zacharias : Il voit le Régent plus souvent que nous tous réunis. Ça me suffit, comme mystère.
+Inga : Tu m'en diras des nouvelles, oui.
+Zacharias : Bonne nuit, Inga. Ne meurs pas avant d'avoir parlé au Conseil. Ta nécrologie n'est pas finie.
+Inga : Bonne nuit, Zacharias. Garde-la au chaud.
+* Elle raccroche.
+[raccroche]
+
+// 4. la sortie
+Inga : Si je dois parler aux primogènes, ce sera le ventre plein. Un rat et un chat, c'est pas un repas. Et une Nosferatu affamée au téléphone avec le Conseil, ça finit mal pour tout le monde.
+Inga : Avec cette force en plus, je peux enfin bouger la pile qui bloque l'entrée.
+* Elle pousse. Le bois craque avant de se briser.
+* L'air du couloir est froid. Silencieux. Ça sent la javel et le chou des voisins.
+Inga (dégoûtée) : Je serai sûrement pas la seule dehors ce soir. Pourvu que je croise personne qui me reconnaisse…
+Inga (dégoûtée) : Louées soient les villes où les souterrains appartiennent aux Nosferatu seuls, et pas à absolument tout le monde.
+Inga : Je sors enfin. J'ai à faire.
+
+// il n'y a pas encore de nuit-3.txt : l'écran « FIN — pour l'instant » s'affiche
+[nuit suivante]
