@@ -5,6 +5,16 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- type: comic
+  title: Toujours trois
+  alt: Toujours trois
+  tags: [sunny, canon, autre, toreador, tremere, brujah, ventrue, nosferatu]
+  desc: The chase.
+  pages:
+    - src: sunn/canap.png
+    - src: sunn/princes.png
+    - src: sunn/troisroses.png
+    - src: sunn/archived.png
 - src: sun/snake.png
   alt: Femme aux yeux de serpent.
   tags: [sunny, noncanon, autre, serpent]
