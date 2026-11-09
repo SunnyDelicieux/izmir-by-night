@@ -11,12 +11,15 @@
 
 <!--
     STEAM, sur le PC 1 : la conversation d'Inga avec « motdepasse123 » (Zacharias).
-    Un message de lui :  <div class="chat-message lui">…</div>
-    Un message d'Inga :  <div class="chat-message moi">…</div>
-    Inga réagit en ouvrant cette page : bloc « == vu steam-chat == » dans histoire/nuit-1.txt.
+    Les anciens messages sont écrits ici, dans le HTML :
+      un message de lui :  <div class="chat-message lui">…</div>
+      un message d'Inga :  <div class="chat-message moi">…</div>
+    On peut lui écrire : il répond une phrase toute faite au hasard (« reponses », en bas).
+    Si on écrit « zacharias », c'est « echangeZacharias » qui s'affiche, puis Inga réagit :
+    bloc « == vu steam-zacharias == » dans histoire/nuit-1.txt.
 -->
 
-<div class="steam-page">
+<div class="steam-page chat">
 
 	<div class="chat-header">
 		<div class="chat-user">
@@ -29,7 +32,7 @@
 		<a href="steam.html">← retour au profil</a>
 	</div>
 
-	<div class="chat-messages">
+	<div class="chat-messages" id="messages">
 		<div class="chat-message lui">Je vais te bannir de la guilde si tu continue à jouer 15h par jour.</div>
 		<div class="chat-message moi">C'est contreproductif non ? Surtout venant de toi</div>
 		<div class="chat-message lui">Ce n'est juste pas possible, je sais que tu partages ton compte à quelqu'un d'autre.</div>
@@ -41,14 +44,78 @@
 		<div class="chat-message moi">je te montrerai</div>
 		<div class="chat-message moi">t'es là ?</div>
 		<div class="chat-message moi">t'es juste jaloux. Je retourne farmer d'ailleurs.</div>
-		<div class="chat-message moi">zacharias</div>
-		<div class="chat-message lui">Inga, si tu veux me doxx, on est deux à pouvoir jouer à ce jeu.</div>
-		<div class="chat-message moi">Je suis à ça de trouver sur quel serveur tu as le cache de ta camera, sale gosse.</div>
-		<div class="chat-message lui">Continue à essayer, sur ce terrain je gagnerai.</div>
 	</div>
 
+	<form class="chat-input" id="ecrire">
+		<input id="champ" type="text" autocomplete="off" placeholder="Send a message...">
+		<button type="submit">Send</button>
+	</form>
 
 </div>
+
+
+<script>
+// SES RÉPONSES : à chaque message, il en choisit une au hasard
+const reponses = [
+	"Je travaille, laisses moi tranquille.",
+	"Trouves toi une occupation.",
+	"Pas aujourd'hui.",
+	"J'ai pas le temps.",
+	"Non.",
+	"Tu peux arrêter de m'écrire ?",
+	"Je suis occupé."
+];
+
+// SI ON ÉCRIT « zacharias » : cet échange-là (une ligne par seconde), puis Inga réagit
+const echangeZacharias = [
+	["lui", "Inga, si tu veux me doxx, on est deux à pouvoir jouer à ce jeu."],
+	["moi", "Je suis à ça de trouver sur quel serveur tu as le cache de ta camera, sale gosse."],
+	["lui", "Continue à essayer, sur ce terrain je gagnerai."]
+];
+
+
+const messages = document.getElementById("messages");
+const champ = document.getElementById("champ");
+
+// ajoute une bulle en bas de la conversation (qui : "lui" ou "moi")
+function ajouter(qui, texte) {
+	const bulle = document.createElement("div");
+	bulle.className = "chat-message " + qui;
+	bulle.textContent = texte;
+	messages.appendChild(bulle);
+	messages.scrollTop = messages.scrollHeight;
+}
+
+document.getElementById("ecrire").addEventListener("submit", (evenement) => {
+	evenement.preventDefault();
+
+	const texte = champ.value.trim();
+	if (texte === "") return;
+
+	ajouter("moi", texte);
+	champ.value = "";
+
+	if (texte.toLowerCase().includes("zacharias")) {
+		for (let n = 0; n < echangeZacharias.length; n++) {
+			const qui = echangeZacharias[n][0];
+			const phrase = echangeZacharias[n][1];
+			setTimeout(() => ajouter(qui, phrase), 800 + n * 1000);
+		}
+		// Inga réagit (si la page est ouverte sur un de ses PC)
+		setTimeout(() => {
+			if (parent.voir) parent.voir("steam-zacharias");
+		}, 3800);
+		return;
+	}
+
+	const reponse = reponses[Math.floor(Math.random() * reponses.length)];
+	setTimeout(() => ajouter("lui", reponse), 800);
+});
+
+// la conversation s'ouvre en bas, sur les derniers messages
+messages.scrollTop = messages.scrollHeight;
+champ.focus();
+</script>
 
 </body>
 </html>

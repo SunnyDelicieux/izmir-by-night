@@ -204,7 +204,7 @@ Inga : … Une lettre ?
 // =========================================================
 // LES ORDINATEURS
 //   == pc1 ==             ce qu'Inga dit en éteignant le PC 1
-//   == vu steam-chat ==   la première fois que la page steam-chat.html s'affiche sur un PC
+//   == vu baron ==        la première fois que la page baron.html s'affiche sur un PC
 // =========================================================
 
 == pc1 ==
@@ -237,8 +237,8 @@ Inga : Ils voient des trucs que la Cour verra jamais.
 Inga : Ils savent pas que je les lis. Ou ils savent, et ils s'en foutent. Je sais pas ce qui est le plus vexant.
 
 
-// PC 1 : la conversation Steam avec Zacharias
-== vu steam-chat ==
+// PC 1 : quand on écrit « zacharias » dans la conversation Steam (pc/steam-chat.html)
+== vu steam-zacharias ==
 Inga : Il râle, mais il n'a bloqué que quatre de mes cinq comptes…
 Inga : Je devrais pouvoir récupérer ce que je cherche bientôt, s'il reste aussi peu méfiant.
 Inga : Reste à savoir ce que lui cherche, en continuant à me répondre.

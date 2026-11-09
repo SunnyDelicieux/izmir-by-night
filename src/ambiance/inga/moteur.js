@@ -21,6 +21,8 @@ const DOSSIER_HISTOIRE = "histoire/";
 const TEXTE_DE_FIN = "FIN — pour l'instant.";
 const CLE_SAUVEGARDE = "inga-sauvegarde";
 const DELAI_REACTION = 1500;   // le temps avant qu'Inga réagisse à une page de PC (en millisecondes)
+const LARGEUR_ECRAN = 1200;    // la taille de l'écran des PC (voir .ecran dans style.css)
+const HAUTEUR_ECRAN = 800;
 
 // les éléments de la page dont le moteur se sert
 const boite = document.getElementById("dialogue");
@@ -257,6 +259,10 @@ async function jouer(nom) {
 
     occupe = true;
 
+    // pendant qu'Inga parle, l'écran du PC s'efface ; il revient à la fin du dialogue
+    const pcEfface = pcAllume;
+    if (pcEfface !== null) pcEfface.hidden = true;
+
     for (const ligne of choisirPartie(bloc)) {
         if (ligne.sorte === "action") {
             await faire(ligne.texte);
@@ -276,6 +282,12 @@ async function jouer(nom) {
         nuitSuivanteDemandee = false;
         await passerALaNuit(etat.nuit + 1);
         return;
+    }
+
+    // le PC revient, sauf s'il a été éteint pendant le dialogue (par [pièce …], par exemple)
+    if (pcEfface !== null && pcAllume === pcEfface) {
+        pcEfface.hidden = false;
+        ajusterEcran();
     }
 
     await verifierFinDeNuit();
@@ -504,9 +516,21 @@ function allumer(ordinateur) {
     }
 
     ordinateur.hidden = false;
+    ajusterEcran();
 
     if (verrou && !verrou.hidden) verrou.querySelector("input").focus();
 }
+
+// L'écran fait toujours 1200 × 800 : on calcule de combien l'agrandir (ou le rétrécir)
+// pour qu'il remplisse le moniteur sans être déformé.
+function ajusterEcran() {
+    if (pcAllume === null || pcAllume.hidden) return;
+    const moniteur = pcAllume.querySelector(".moniteur");
+    const echelle = Math.min(moniteur.clientWidth / LARGEUR_ECRAN, moniteur.clientHeight / HAUTEUR_ECRAN);
+    moniteur.style.setProperty("--echelle", echelle);
+}
+
+window.addEventListener("resize", ajusterEcran);
 
 // en éteignant un PC, Inga dit le bloc qui porte son nom (« == pc1 == »)
 function eteindre(avecCommentaire) {
@@ -549,6 +573,8 @@ function ouvrirFichier(adresse, titre) {
         page.addEventListener("load", () => {
             try {
                 voir(page.contentWindow.location.pathname);
+                // Échap marche aussi quand on a cliqué dans la page
+                page.contentDocument.addEventListener("keydown", toucheEchap);
             } catch (e) {
                 // une page d'un autre site : le navigateur ne nous laisse pas lire son adresse
             }
@@ -574,6 +600,8 @@ function nomDuFichier(adresse) {
 
 // Une page vue pour la première fois cette nuit : Inga reçoit le drapeau « vu steam-chat »,
 // et le bloc « == vu steam-chat == » se joue s'il existe.
+// Une page de PC peut aussi l'appeler elle-même, avec un simple nom, pour faire réagir Inga
+// à autre chose qu'une page : if (parent.voir) parent.voir("steam-zacharias");
 function voir(adresse) {
 
     const nom = nomDuFichier(adresse);
@@ -625,15 +653,17 @@ document.addEventListener("submit", (evenement) => {
 });
 
 // Échap : ferme la fenêtre ouverte, sinon éteint le PC
-document.addEventListener("keydown", (evenement) => {
-    if (evenement.key !== "Escape" || pcAllume === null) return;
+function toucheEchap(evenement) {
+    if (evenement.key !== "Escape" || pcAllume === null || pcAllume.hidden) return;
     const fenetre = pcAllume.querySelector(".fenetre");
     if (!fenetre.hidden) {
         fermerFenetre();
     } else {
         eteindre(true);
     }
-});
+}
+
+document.addEventListener("keydown", toucheEchap);
 
 
 /* =========================================================

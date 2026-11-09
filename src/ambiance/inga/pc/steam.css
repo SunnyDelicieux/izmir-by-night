@@ -416,6 +416,13 @@ a:hover {
    LA CONVERSATION (steam-chat.html)
    ========================= */
 
+/* la page prend toute la hauteur : les messages défilent, la ligne pour écrire reste en bas */
+.steam-page.chat {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 30px);
+}
+
 .chat-header {
 	display: flex;
 	align-items: center;
@@ -461,10 +468,12 @@ a:hover {
 }
 
 .chat-messages {
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
 	padding: 10px;
+	overflow-y: auto;
 	background: #1b2838;
 }
 
@@ -488,6 +497,49 @@ a:hover {
 	align-self: flex-end;
 	background: #1a9fff;
 	color: #fff;
+}
+
+/* la ligne pour écrire */
+.chat-input {
+	display: flex;
+	padding: 7px;
+	background: #171d25;
+	border-top: 1px solid #000;
+}
+
+.chat-input input {
+	flex: 1;
+	min-width: 0;
+	padding: 7px;
+	border: 1px solid #000;
+	outline: none;
+	background: #101822;
+	color: #fff;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+}
+
+.chat-input input::placeholder {
+	color: #687786;
+}
+
+.chat-input input:focus {
+	border-color: #66c0f4;
+}
+
+.chat-input button {
+	margin-left: 5px;
+	padding: 0 10px;
+	border: 0;
+	background: #5c7e10;
+	color: #d6e8a8;
+	font-family: Arial, sans-serif;
+	font-size: 10px;
+	cursor: pointer;
+}
+
+.chat-input button:hover {
+	background: #75a313;
 }
 
 

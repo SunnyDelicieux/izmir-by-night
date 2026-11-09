@@ -10,8 +10,8 @@
 
    Les couches, de l'arrière vers l'avant :
      la pièce → objets en gros plan (20) → Inga (25) → la boîte de dialogue (30)
-     → les ordinateurs (10000) → Inga et la boîte quand elle parle sur un PC (10025, 10030)
-     → l'écran noir (10050) → la feuille (10060) → ENTER (99999)
+     → les ordinateurs (10000) → l'écran noir (10050) → la feuille (10060) → ENTER (99999)
+   Quand Inga parle, l'écran du PC s'efface le temps du dialogue (voir moteur.js).
    ========================================================= */
 
 
@@ -420,7 +420,7 @@ body {
     gap: 10px;
     padding: 56px 14px 14px;   /* en haut : la place de la barre du site */
     box-sizing: border-box;
-    background: rgba(0, 0, 0, .94);
+    background: #000;
     animation: fondu .25s ease-out;
 }
 
@@ -453,14 +453,26 @@ body {
     border-color: #c00000;
 }
 
-/* l'écran : un cadre sombre avec une lueur rouge */
-.ecran {
+/* le moniteur : toute la place sous la barre du PC */
+.moniteur {
     position: relative;
     flex: 1;
+}
+
+/* l'écran : toujours 1200 × 800, agrandi ou rétréci par le moteur (--echelle) pour remplir le moniteur
+   sans être déformé. Un cadre sombre avec une lueur rouge. */
+.ecran {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1200px;
+    height: 800px;
+    box-sizing: border-box;
     overflow: hidden;
     border: 2px solid #222;
     border-radius: 10px;
     box-shadow: 0 0 30px #300000;
+    transform: translate(-50%, -50%) scale(var(--echelle, 1));
 }
 
 /* la fenêtre où s'ouvrent les fichiers */
@@ -619,8 +631,9 @@ body {
     border-radius: 4px;
 }
 
-/* la fenêtre façon vieux Windows */
+/* la fenêtre façon vieux Windows, à droite des deux colonnes d'icônes (qui restent cliquables) */
 .bureau-pc .fenetre {
+    inset: 40px 30px 30px 230px;
     padding: 4px;
     background: grey;
     border: 1px solid #000;

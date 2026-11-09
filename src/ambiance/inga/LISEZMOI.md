@@ -77,9 +77,9 @@ Donc on écrit les versions dans l'ordre de l'histoire, et tout se passe bien.
 | `== début ==` | tout seul, au début de la nuit |
 | `== fin de nuit si a, b, c ==` | tout seul, dès que `a`, `b` et `c` sont acquis. Il finit en général par `[nuit suivante]` |
 | `== pc1 ==` | quand on éteint le PC 1 (même chose pour `pc2`) |
-| `== vu steam-chat ==` | la première fois de la nuit que la page `steam-chat.html` s'affiche sur un PC |
+| `== vu baron ==` | la première fois de la nuit que la page `baron.html` s'affiche sur un PC |
 
-Chaque page affichée sur un PC donne aussi le drapeau `vu <nom du fichier>` : `vu steam-chat`, `vu log-04`, `vu vermine-fin`…
+Chaque page affichée sur un PC donne aussi le drapeau `vu <nom du fichier>` : `vu baron`, `vu log-04`, `vu vermine-fin`…
 On peut s'en servir dans les conditions, par exemple : `== fin de nuit si lettre, vu log-04 ==`.
 
 Les drapeaux restent d'une nuit à l'autre. Les « premiers clics », eux, repartent de zéro à chaque nuit.
@@ -110,6 +110,16 @@ Une zone n'apparaît que si la nuit a un bloc à son nom : une nuit où l'objet 
 Une page `.html` est une page web normale : ses liens vers d'autres pages de `pc/` marchent tout seuls,
 et chaque page atteinte compte comme « vue ». Elle n'a besoin d'aucun code pour faire réagir Inga.
 Donne à chaque fichier un nom unique, puisque c'est son nom qui sert pour les drapeaux.
+
+Pour faire réagir Inga à autre chose qu'une page (un mot tapé, un bouton…), la page peut le dire elle-même, en une ligne :
+```js
+if (parent.voir) parent.voir("steam-zacharias");
+```
+Ça donne le drapeau `vu steam-zacharias` et ça joue le bloc `== vu steam-zacharias ==`, comme une page.
+C'est ce que fait `pc/steam-chat.html` quand on écrit « zacharias ».
+
+L'écran des PC fait toujours **1200 × 800** : le jeu l'agrandit ou le rétrécit pour remplir la place, sans le déformer.
+Quand Inga parle, l'écran s'efface, puis revient là où on en était.
 
 ### Ajouter un personnage
 Dans `personnages.js`, ajouter une ligne dans `PORTRAITS` (et dans `SPRITES` s'il a une grande image).
