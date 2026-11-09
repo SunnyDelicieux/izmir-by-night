@@ -5,7 +5,14 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
-
+- src: sun/snake.png
+  alt: Femme aux yeux de serpent.
+  tags: [sunny, noncanon, autre, serpent]
+  desc: Les pièces du puzzle.
+- src: sun/bloodmagic.webp
+  alt: Blood magic.
+  tags: [sunny, canon, tremere, sophia]
+  desc: Blood magic.
 - src: sun/webcrawleer.png
   alt: Web crawler.
   tags: [sunny, noncanon, tremere, nosferatu, ventrue, inga, zacharias, cem]
