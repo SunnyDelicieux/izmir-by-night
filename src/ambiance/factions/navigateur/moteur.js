@@ -91,6 +91,10 @@ Nav.titre = (adresse) => {
 
 // la petite icône de l'onglet, selon le site
 Nav.icone = (adresse) => {
+    // un site de sites.js peut donner la sienne : icone: ["C", "couleur du fond", "couleur de la lettre"]
+    const site = Nav.sites && Nav.sites[adresse];
+    if (site && site.icone) return `<span class="favicon" style="background:${site.icone[1]};color:${site.icone[2]}">${site.icone[0]}</span>`;
+
     if (adresse.startsWith("ege-chan.org")) return `<span class="favicon" style="background:#17296f;color:#8fb3ff">e</span>`;
     if (adresse.startsWith(RECHERCHE)) return `<span class="favicon" style="background:#fff;color:#4285f4">g</span>`;
     if (adresse.startsWith("chrome://")) return `<span class="favicon" style="background:#9e9e9e;color:#fff">&#9679;</span>`;
@@ -167,6 +171,7 @@ function domaine(adresse) {
          page: "/ambiance/web/carat/",          où est la vraie page
          mots: ["garage", "voiture"],           facultatif : les recherches Google qui la trouvent
          extrait: "Réparation de voitures…"     facultatif : le texte sous le résultat Google
+         icone: ["C", "#0e1a2b", "#ffd84a"]     facultatif : la lettre de l'icône, son fond, sa couleur
      });
 
    Les fiches sont dans sites.js.

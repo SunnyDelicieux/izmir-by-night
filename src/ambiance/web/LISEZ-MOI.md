@@ -84,10 +84,12 @@ Nav.site("mon-site.com.tr", {
 
 Ensuite, dans le navigateur d'Inga, on peut taper l'adresse, suivre un lien depuis l'annuaire, ou chercher un des mots dans Google.
 
-Pour qu'un site apparaisse **sans rien taper**, ajoute son adresse dans `src/ambiance/factions/navigateur/historique.js` :
+Pour qu'un site se voie **sans rien taper**, ajoute son adresse dans `src/ambiance/factions/navigateur/historique.js` :
 
-- dans `Nav.plusVisites`, pour une vignette sur la page « Nouvel onglet » ;
+- dans `Nav.plusVisites`, pour une vignette sur la page « Nouvel onglet » (8 au maximum ; les cinq sites de départ y sont déjà) ;
 - dans `Nav.historique`, pour une ligne dans l'historique d'Inga.
+
+**Où les trouver dans le jeu :** PC 1, icône Chrome. Les vignettes sont sur la première page.
 
 ## Un contenu qui n'apparaît qu'à partir d'une nuit
 

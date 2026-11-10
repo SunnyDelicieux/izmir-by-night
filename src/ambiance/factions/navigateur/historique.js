@@ -30,7 +30,14 @@ Nav.historique = [
 /* Les vignettes de la page « Nouvel onglet » (8 au maximum) */
 
 Nav.plusVisites = [
-    "ege-chan.org/izm"
+    "ege-chan.org/izm",
+    // les sites « vieux web » de /ambiance/web/ (leurs fiches sont dans sites.js).
+    // Enlever une ligne enlève la vignette ; le site reste accessible par son adresse et par Google.
+    "izmirweb.net",
+    "minuitmoinsune.tv",
+    "carat-izmir.com.tr",
+    "devourme-video.com",
+    "mysteres-de-smyrne.izmirweb.net"
 ];
 
 

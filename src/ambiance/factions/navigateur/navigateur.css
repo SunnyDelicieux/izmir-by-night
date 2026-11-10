@@ -192,7 +192,7 @@ html, body {
 
 .vignettes {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, minmax(0, 1fr)); /* quatre colonnes égales, même si un titre est long */
 	gap: 14px;
 	margin: 26px 0;
 }
