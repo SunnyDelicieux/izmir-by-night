@@ -196,6 +196,10 @@
   groupes:
     - titre: Mort finale
       cartes:
+        - fiche: shahar
+          nom: Shahar
+          role: Vizir de l'Ashira
+          note: Assassiné en 1560
         - nom: Bardas Planudes
           icone: /img/wiki/icon/no-icon.png
           role: Primogène Brujah
@@ -208,14 +212,12 @@
           nom: Alkinoos Kerkyra
           role: Régent de Smyrne
           note: Mort finale en 1922
-        - fiche: Shahar
-          icone: /img/wiki/icon/no-icon.png
-          role: Vizir de l'Ashira
-          note: Assassiné en 1560
+
     - titre: A quitté la ville
       cartes:
         - fiche: ibrahim
           role: Ancien primogene Ventrue
+
 - titre: Autre
   id: antique
   groupes:
