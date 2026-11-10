@@ -179,7 +179,7 @@
       cartes:
         - fiche: pretre
           nom: "Le pretre"
-          role: L'infante de Scylla
+          role: L'infant de Scylla
         - fiche: ductus
           nom: "Le Ductus"
           role: Le grand dévoreur
@@ -217,7 +217,7 @@
 - titre: Autre
   id: antique
   groupes:
-    - titre: Histoire ancienne
+    - titre: Antiquité
       cartes:
         - fiche: soteria
           role: Première toreador
