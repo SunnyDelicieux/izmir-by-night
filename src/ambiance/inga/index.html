@@ -1,46 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Inga</title>
-    <link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+    <link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png" />
 
     <!-- le site : le bouton de connexion et la recherche, en haut à droite -->
     <script src="/js/outils.js"></script>
     <script src="/js/connexion.js"></script>
     <script src="/js/recherche.js" defer></script>
-    <link rel="stylesheet" href="/css/barre.css">
+    <link rel="stylesheet" href="/css/barre.css" />
 
     <!-- le style du moteur, puis l'ambiance propre à cette histoire -->
-    <link rel="stylesheet" href="/ambiance/vn/vn.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="/ambiance/vn/vn.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body data-pagefind-body data-pagefind-meta="title:Inga">
+  <body data-pagefind-body data-pagefind-meta="title:Inga">
+    <!-- Le moteur fabrique tout le visual novel dans cette boîte. -->
+    <div id="vn"></div>
 
-<!-- Le moteur fabrique tout le visual novel dans cette boîte. -->
-<div id="vn"></div>
-
-
-<!-- LE MOTEUR, commun à tous les visual novels du site (ne pas changer l'ordre).
+    <!-- LE MOTEUR, commun à tous les visual novels du site (ne pas changer l'ordre).
      On n'y touche pas pour écrire : le mode d'emploi est dans /ambiance/vn/LISEZ-MOI.md -->
-<script src="/ambiance/vn/moteur/1-histoire.js"></script>
-<script src="/ambiance/vn/moteur/2-affichage.js"></script>
-<script src="/ambiance/vn/moteur/3-lieux.js"></script>
-<script src="/ambiance/vn/moteur/4-scenes.js"></script>
-<script src="/ambiance/vn/moteur/5-atelier.js"></script>
+    <script src="/ambiance/vn/moteur/1-histoire.js"></script>
+    <script src="/ambiance/vn/moteur/2-affichage.js"></script>
+    <script src="/ambiance/vn/moteur/3-lieux.js"></script>
+    <script src="/ambiance/vn/moteur/4-scenes.js"></script>
+    <script src="/ambiance/vn/moteur/5-atelier.js"></script>
 
-<!-- L'HISTOIRE D'INGA : c'est ici qu'on écrit. Un fichier par nuit. -->
-<script src="histoire/reglages.js"></script>
-<script src="histoire/lieux.js"></script>
-<script src="histoire/nuit-1.js"></script>
-<script src="histoire/nuit-2.js"></script>
-<!-- Une troisième nuit est proposée dans histoire/nuit-3.js. Pour la brancher,
+    <!-- L'HISTOIRE D'INGA : c'est ici qu'on écrit. Un fichier par nuit. -->
+    <script src="histoire/reglages.js"></script>
+    <script src="histoire/lieux.js"></script>
+    <script src="histoire/nuit-1.js"></script>
+    <script src="histoire/nuit-2.js"></script>
+    <!-- Une troisième nuit est proposée dans histoire/nuit-3.js. Pour la brancher,
      enlever les flèches de commentaire autour de la ligne suivante : -->
-<!-- <script src="histoire/nuit-3.js"></script> -->
+    <script src="histoire/nuit-3.js"></script>
 
-<script>VN.demarrer();</script>
-
-</body>
+    <script>
+      VN.demarrer();
+    </script>
+  </body>
 </html>
