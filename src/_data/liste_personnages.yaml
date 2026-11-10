@@ -186,10 +186,10 @@
         - role: Estimation de 10 membres
     - titre: Setites
       cartes:
-        - role: Estimation de 4 membres
         - fiche: serpent
           nom: Serpent
           note: Femme aux yeux de serpent
+        - role: Estimation de 4 membres
 - titre: Absents
   id: absents
   groupes:
