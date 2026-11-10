@@ -207,8 +207,7 @@
           nom: Alkinoos Kerkyra
           role: Régent de Smyrne
           note: Mort finale en 1922
-        - nom: Shahar
-          icone: /img/wiki/icon/no-icon.png
+        - fiche: Shahar
           role: Vizir de l'Ashira
           note: Assassiné en 1560
     - titre: A quitté la ville
@@ -218,7 +217,7 @@
 - titre: Autre
   id: antique
   groupes:
-    - titre: Antiquité
+    - titre: Histoire ancienne
       cartes:
         - fiche: soteria
           role: Première toreador
