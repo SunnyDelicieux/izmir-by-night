@@ -94,7 +94,7 @@ const CLASSEURS = [
             nom: "Enluminure d'Eudokia",
             image: "mort-d-eudokia.webp",
           },
-            {
+          {
             chemise: "vierge-bleue.webp",
             nom: "Procès d'Eudokia la Séditieuse.",
             pdf: "procés-eudokia.pdf",
@@ -120,6 +120,11 @@ const CLASSEURS = [
             nom: "Enluminure du Sabbat",
             image: "sabbat.webp",
           },
+          {
+            chemise: "vierge-rose.webp",
+            nom: "Le grand dévoreur",
+            pdf: "ductus.pdf",
+          },
         ],
       },
     ],
@@ -135,7 +140,7 @@ const CLASSEURS = [
             nom: "Enluminure des Primogènes",
             image: "primogene.webp",
           },
-		    {
+          {
             chemise: "vierge-bleue.webp",
             nom: "Charites d'Izmir",
             pdf: "les-charites-d-izmir.pdf",
