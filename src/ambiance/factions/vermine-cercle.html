@@ -186,6 +186,8 @@
 </div>
 
 
+<!-- le pont vers l'histoire d'Inga (voir /ambiance/vn/pont.js) -->
+<script src="/ambiance/vn/pont.js"></script>
 <script>
 /* =========================
    LA CONVERSATION
@@ -302,11 +304,11 @@ async function terminer(fin) {
         sessionStorage.setItem("vermine-fin", fin);
     } catch (e) {}
 
-    // quelques secondes après le dernier message, Inga interrompt (si on est dans sa chambre)
+    // quelques secondes après le dernier message, Inga réagit (si la page est affichée sur son PC) :
+    // la scène « vermine » (inga/histoire/nuit-1.js), qui ne se joue qu'une fois
     await attendre(3500);
-    const chambre = chambreDInga();
-    if (chambre) {
-        await chambre.reactionUnique("vermine"); // une seule fois
+    if (Pont.histoire()) {
+        await Pont.joue("vermine");
         await attendre(800);
     }
 
@@ -314,18 +316,6 @@ async function terminer(fin) {
     document.getElementById("oeil").style.display = "flex";
     await attendre(4000);
     location.href = "vermine.html#livre";
-}
-
-// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
-function chambreDInga() {
-    try {
-        let fenetre = window;
-        while (fenetre !== fenetre.parent) {
-            fenetre = fenetre.parent;
-            if (typeof fenetre.ingaInterrompt === "function") return fenetre;
-        }
-    } catch (e) {}
-    return null;
 }
 
 derouler();

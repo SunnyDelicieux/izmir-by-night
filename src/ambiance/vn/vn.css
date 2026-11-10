@@ -1,0 +1,590 @@
+/* =====================================================================
+   LE STYLE DU MOTEUR DE VISUAL NOVEL
+
+   Tout ce que le moteur affiche est mis en forme ici : la scène, les zones,
+   la boîte de dialogue, les écrans, le papier, l'écran noir, l'accueil.
+
+   Pour donner une autre ambiance à une histoire, on ne change pas ce fichier :
+   l'histoire a son propre style.css, chargé après celui-ci, où elle redonne
+   une valeur aux réglages ci-dessous (et ajoute ce qui lui est propre).
+===================================================================== */
+
+#vn {
+    /* LES RÉGLAGES D'AMBIANCE */
+    --accent: #c00000;              /* la couleur vive : le nom de celui qui parle, les contours actifs, les étoiles survolées */
+    --accent-eteint: #650000;       /* la même, au repos : les étoiles */
+    --texte: #eee;                  /* le texte des dialogues */
+    --texte-narration: #999;        /* la narration */
+    --texte-discret: #777;          /* « suite », les petites indications */
+    --boite: rgba(0, 0, 0, .96);    /* le fond de la boîte de dialogue */
+    --bordure: #555;                /* le bord des boîtes et des boutons */
+    --police: Georgia, serif;       /* la police des textes */
+    --indice: "✦";                  /* le signe posé sur les objets cliquables */
+    --papier: #e9e1cf;              /* la couleur des lettres */
+    --encre: #2a2520;               /* et de leur texte */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+}
+
+/* un élément caché l'est vraiment, quelle que soit sa mise en forme */
+#vn [hidden] {
+    display: none !important;
+}
+
+
+/* LA SCÈNE : l'image du lieu, aux proportions données par les réglages (taille) */
+
+#scene {
+    position: relative;
+    width: min(100%, calc(var(--largeur) * 1px));
+    aspect-ratio: var(--largeur) / var(--hauteur);
+    margin: auto;
+    background: #0c0c0c;
+}
+
+#fond {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* LES ZONES : les objets cliquables, invisibles, avec leur signe au milieu */
+
+.zone {
+    position: absolute;
+    padding: 0;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+.zone:focus-visible {
+    outline: 1px dashed var(--accent);
+}
+
+.zone::after {
+    content: var(--indice);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--accent-eteint);
+    font-size: 30px;
+    opacity: .8;
+    pointer-events: none;
+    text-shadow: 0 0 4px var(--accent-eteint), 0 0 10px var(--accent-eteint);
+    transition: .2s;
+}
+
+.zone:hover::after,
+.zone:focus-visible::after {
+    color: var(--accent);
+    opacity: 1;
+    text-shadow: 0 0 5px var(--accent-eteint), 0 0 12px var(--accent), 0 0 25px var(--accent);
+}
+
+
+/* L'IMAGE EN GROS PLAN */
+
+#gros-plan {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    max-width: 60%;
+    z-index: 23; /* devant le voile, derrière le sprite et la boîte de dialogue */
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 5px #000) drop-shadow(0 0 20px #000);
+    pointer-events: none;
+}
+
+
+/* LE SPRITE : la grande image de celui qui parle */
+
+#sprite {
+    position: absolute;
+    left: 3%;
+    bottom: 0;
+    height: 95%;
+    z-index: 25; /* devant le lieu, derrière la boîte de dialogue */
+    pointer-events: none;
+    filter: drop-shadow(0 0 12px #000);
+    animation: spriteArrive .35s ease-out;
+}
+
+@keyframes spriteArrive {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+}
+
+
+/* LA BOÎTE DE DIALOGUE */
+
+#dialogue {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 88%;
+    max-width: 950px;
+    min-height: 130px;
+    box-sizing: border-box;
+    padding: 18px;
+    background: var(--boite);
+    color: var(--texte);
+    font: 18px/1.5 var(--police);
+    border: 2px solid var(--bordure);
+    box-shadow: 0 0 25px #000;
+    z-index: 30;
+    cursor: pointer;
+}
+
+/* quand l'objet cliqué est dans le bas de l'image, la boîte passe en haut */
+#dialogue.en-haut {
+    bottom: auto;
+    top: 30px;
+}
+
+#portrait {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    float: left;
+    margin-right: 22px;
+    border: 1px solid #333;
+    image-rendering: pixelated;
+}
+
+#dialogue-contenu {
+    min-height: 110px;
+    overflow: hidden;
+}
+
+/* le nom de celui qui parle */
+#nom {
+    margin-bottom: 4px;
+    color: var(--accent);
+    font: 12px var(--police);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#texte {
+    padding: 8px 5px 0 0;
+}
+
+/* une réplique de narration ("* …") */
+#texte.narration {
+    color: var(--texte-narration);
+    font-style: italic;
+}
+
+#suite {
+    display: block;
+    margin-top: 10px;
+    color: var(--texte-discret);
+    font: 11px Arial, sans-serif;
+    text-align: right;
+    letter-spacing: 1px;
+    animation: respire 1.8s infinite;
+}
+
+@keyframes respire {
+    0%, 100% { opacity: .3; }
+    50% { opacity: .9; }
+}
+
+
+/* LES CHOIX : des boutons sous la dernière réplique */
+
+#dialogue.avec-choix {
+    cursor: default;
+}
+
+#dialogue.avec-choix #suite {
+    display: none;
+}
+
+#choix {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+#choix button,
+#ecran-barre button,
+#recommencer {
+    padding: 7px 14px;
+    background: rgba(0, 0, 0, .85);
+    border: 1px solid var(--bordure);
+    color: #999;
+    font: 12px var(--police);
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#choix button {
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-align: left;
+    color: #ccc;
+}
+
+#choix button:hover,
+#choix button:focus-visible,
+#ecran-barre button:hover,
+#ecran-barre button:focus-visible,
+#recommencer:hover {
+    color: #fff;
+    border-color: var(--accent);
+}
+
+
+/* LES FLÈCHES vers les lieux voisins */
+
+.fleche {
+    position: fixed;
+    top: 10px;
+    z-index: 9000;
+    padding: 0 25px;
+    background: none;
+    border: none;
+    color: #fff;
+    font: bold 80px/1 Arial, sans-serif; /* « /1 » : une boîte pas plus haute que la flèche, pour ne pas voler les clics des objets placés dessous */
+    cursor: pointer;
+    -webkit-text-stroke: 3px #000;
+    text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
+    transition: .2s;
+}
+
+.fleche:hover {
+    color: #eee;
+    text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 0 0 15px #fff;
+}
+
+.fleche.gauche { left: 10px; }
+.fleche.droite { right: 10px; }
+.fleche.haut   { left: 50%; transform: translateX(-50%); }
+.fleche.bas    { left: 50%; top: auto; bottom: 10px; transform: translateX(-50%); }
+
+/* pas de changement de lieu pendant une scène, ni une fois l'histoire finie */
+#vn.en-scene .fleche,
+#vn.fini .fleche {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* LE COMPTEUR, en haut de l'écran */
+
+#compteur {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 35;
+    padding: 6px 16px;
+    background: rgba(0, 0, 0, .85);
+    border: 1px solid var(--bordure);
+    color: #ddd;
+    font: 14px var(--police);
+    letter-spacing: 2px;
+    pointer-events: none;
+}
+
+
+/* L'ÉCRAN (les PC) */
+
+#ecran {
+    position: fixed;
+    inset: 0;
+    z-index: 9500; /* devant les flèches, derrière la barre du site (9999) */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 56px 14px 14px; /* en haut : la place du bouton de connexion du site */
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .82);
+    animation: fondu .25s ease-out;
+}
+
+#ecran-barre {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#ecran-onglets {
+    display: flex;
+    gap: 6px;
+    margin-right: auto;
+}
+
+#ecran-onglets button.actif {
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-eteint);
+}
+
+/* le moniteur : un cadre sombre avec une lueur */
+#ecran-moniteur {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    border: 2px solid #222;
+    border-radius: 10px;
+    background: #000;
+    box-shadow: 0 0 30px var(--accent-eteint), inset 0 0 40px #000;
+}
+
+#ecran-pages {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+}
+
+#ecran-pages iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #000;
+}
+
+/* des lignes de balayage très légères, par-dessus la page */
+#ecran-grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .025) 0 1px, transparent 1px 3px);
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, .7);
+}
+
+#ecran-moniteur.allumage #ecran-pages {
+    animation: allumage .45s ease-out;
+}
+
+@keyframes fondu {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes allumage {
+    0%   { filter: brightness(3) contrast(.4); opacity: .2; }
+    20%  { filter: brightness(.3); opacity: 1; }
+    40%  { filter: brightness(1.6); }
+    100% { filter: none; }
+}
+
+
+/* LE PAPIER : une lettre à lire */
+
+#papier {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, .75);
+    cursor: pointer;
+}
+
+#feuille {
+    width: min(520px, 80%);
+    max-height: 80%;
+    overflow-y: auto;
+    padding: 28px 32px;
+    background: var(--papier);
+    color: var(--encre);
+    font: 17px/1.55 var(--police);
+    white-space: pre-line;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 10px 40px #000, inset 0 0 40px rgba(120, 90, 50, .25);
+}
+
+#papier span {
+    color: var(--texte-discret);
+    font: 11px var(--police);
+    letter-spacing: 2px;
+}
+
+
+/* L'ÉCRAN NOIR : transparent, en voile, ou plein (voir 2-affichage.js) */
+
+#noir {
+    position: absolute;
+    inset: 0;
+    z-index: 22; /* devant le lieu, derrière le sprite (25) et la boîte de dialogue (30) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: rgba(0, 0, 0, 0);
+    color: #bbb;
+    font: italic 22px var(--police);
+    letter-spacing: 4px;
+    text-align: center;
+    pointer-events: none;
+    transition: background 1.5s;
+}
+
+#noir.voile {
+    background: rgba(0, 0, 0, .55);
+    pointer-events: auto;
+}
+
+#noir.plein {
+    background: #000;
+    pointer-events: auto;
+}
+
+#noir-texte:not(:empty) {
+    animation: fondu 2s ease-out;
+}
+
+#noir-texte.titre-de-fin {
+    color: #ddd;
+    font-style: normal;
+    letter-spacing: 8px;
+}
+
+#recommencer {
+    padding: 8px 18px;
+    background: #000;
+    animation: fondu 2s ease-out;
+}
+
+
+/* L'ÉCRAN D'ACCUEIL : un clic pour entrer (et lancer la musique) */
+
+#accueil {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+#accueil span {
+    color: var(--texte-discret);
+    font: 14px var(--police);
+    letter-spacing: 6px;
+    animation: respire 2s infinite;
+}
+
+#accueil span:hover {
+    color: #fff;
+}
+
+#accueil.parti {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =====================================================================
+   POUR L'AUTRICE : les problèmes de l'histoire, et le mode atelier (#atelier)
+===================================================================== */
+
+#problemes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100001;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 10px 14px;
+    background: #2a0000;
+    border-bottom: 2px solid #c00000;
+    color: #ffd7d7;
+    font: 13px/1.5 Arial, sans-serif;
+    cursor: pointer;
+}
+
+#problemes[hidden] {
+    display: none;
+}
+
+#atelier {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 260px;
+    padding: 10px;
+    background: rgba(10, 20, 30, .92);
+    border: 1px solid #3c6;
+    color: #cfe;
+    font: 12px/1.4 Arial, sans-serif;
+}
+
+#atelier-titre {
+    cursor: pointer;
+}
+
+#atelier.replie > :not(#atelier-titre) {
+    display: none;
+}
+
+#atelier input:not([type]) {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+}
+
+#atelier button {
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+#atelier-zone {
+    user-select: all;
+    color: #fd6;
+    font-family: monospace;
+}
+
+/* en mode atelier, on voit le contour et le nom de chaque zone */
+#vn.atelier .zone {
+    outline: 1px dashed #3c6;
+}
+
+#vn.atelier .zone::before {
+    content: attr(data-objet);
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1px 4px;
+    background: #3c6;
+    color: #000;
+    font: 11px Arial, sans-serif;
+}
+
+#atelier-cadre {
+    position: absolute;
+    z-index: 50;
+    border: 2px solid #fd6;
+    background: rgba(255, 221, 102, .15);
+    pointer-events: none;
+}

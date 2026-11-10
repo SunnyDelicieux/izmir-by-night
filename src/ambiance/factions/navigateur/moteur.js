@@ -14,6 +14,9 @@
    Les adresses s'écrivent sans http:// ni www : "ege-chan.org/izm".
    Un lien vers une autre page : <a data-lien="ege-chan.org/izm">...</a>
    Une adresse inconnue affiche la page d'erreur de Chrome.
+
+   Dans le HTML d'une page, un morceau peut n'apparaître qu'à partir d'une nuit de l'histoire :
+     <div class="post" data-nuit="2"> ... </div>     (voir /ambiance/vn/pont.js)
 ========================= */
 
 const Nav = {
@@ -119,6 +122,7 @@ Nav.aller = (adresse, nouvelleVisite = true) => {
     vue.style.setProperty("--lien", couleurs.lien || "#1a0dab");
     vue.className = page.classe || "";
     vue.innerHTML = page.html;
+    Pont.filtre(vue); // cache ce qui est prévu pour une nuit plus tard (data-nuit)
     vue.scrollTop = 0;
 
     document.getElementById("onglet-titre").textContent = page.titre;
@@ -211,6 +215,11 @@ Nav.demarrer = () => Nav.aller(NOUVEL_ONGLET);
    LES PAGES DE CHROME ET DE GOOGLE
 ========================= */
 
+// l'historique visible cette nuit : une visite peut n'apparaître qu'à partir d'une nuit ({ nuit: 2, ... })
+function historiqueVisible() {
+    return (Nav.historique || []).filter((visite) => Pont.cetteNuit(visite.nuit));
+}
+
 function ligneHistorique(visite) {
     return `
         <div class="visite" data-texte="${(Nav.titre(visite.adresse) + " " + visite.adresse).toLowerCase()}">
@@ -229,7 +238,7 @@ function pageNouvelOnglet() {
             <span class="vignette-titre">${Nav.titre(adresse)}</span>
         </a>`).join("");
 
-    const recentes = (Nav.historique || []).slice(0, 6).map(ligneHistorique).join("");
+    const recentes = historiqueVisible().slice(0, 6).map(ligneHistorique).join("");
 
     return {
         titre: "Nouvel onglet",
@@ -253,7 +262,7 @@ function pageHistorique() {
 
     // une partie par jour, la plus récente en haut
     const jours = {};
-    (Nav.historique || []).forEach((visite) => (jours[visite.jour] = jours[visite.jour] || []).push(visite));
+    historiqueVisible().forEach((visite) => (jours[visite.jour] = jours[visite.jour] || []).push(visite));
 
     const parties = Object.keys(jours).sort((a, b) => a - b).map((jour) => {
         const nomDuJour = jour == 0 ? "Aujourd'hui - " : jour == 1 ? "Hier - " : "";

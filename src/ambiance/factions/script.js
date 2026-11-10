@@ -95,9 +95,10 @@ chatForm.addEventListener("submit", event => {
             );
         }, 2800);
 
-        // quelques secondes après, Inga interrompt (si on est dans sa chambre)
+        // quelques secondes après, Inga réagit : la scène « zacharias » (inga/histoire/nuit-1.js),
+        // qui ne se joue qu'une fois
         setTimeout(() => {
-            chambreDInga()?.reactionUnique("zacharias"); // une seule fois
+            Pont.joue("zacharias");
         }, 5300);
 
         return;
@@ -113,16 +114,3 @@ chatForm.addEventListener("submit", event => {
         addMessage(reply, "them");
     }, 800);
 });
-
-
-// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
-function chambreDInga() {
-    try {
-        let fenetre = window;
-        while (fenetre !== fenetre.parent) {
-            fenetre = fenetre.parent;
-            if (typeof fenetre.ingaInterrompt === "function") return fenetre;
-        }
-    } catch (e) {}
-    return null;
-}

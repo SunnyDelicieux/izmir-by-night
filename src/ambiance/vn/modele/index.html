@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mon visual novel</title>
+
+    <!-- le style du moteur, puis l'ambiance propre à cette histoire -->
+    <link rel="stylesheet" href="/ambiance/vn/vn.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Le moteur fabrique tout le visual novel dans cette boîte. -->
+<div id="vn"></div>
+
+
+<!-- LE MOTEUR, commun à tous les visual novels du site (ne pas changer l'ordre) -->
+<script src="/ambiance/vn/moteur/1-histoire.js"></script>
+<script src="/ambiance/vn/moteur/2-affichage.js"></script>
+<script src="/ambiance/vn/moteur/3-lieux.js"></script>
+<script src="/ambiance/vn/moteur/4-scenes.js"></script>
+<script src="/ambiance/vn/moteur/5-atelier.js"></script>
+
+<!-- L'HISTOIRE : c'est ici qu'on écrit. Quand elle grandit, on la coupe en plusieurs
+     fichiers (un par nuit, par exemple) et on ajoute une ligne par fichier. -->
+<script src="histoire.js"></script>
+
+<script>VN.demarrer();</script>
+
+</body>
+</html>

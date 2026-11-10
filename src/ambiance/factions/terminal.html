@@ -8,11 +8,16 @@
 <!--
     Le PC 2 d'Inga : un terminal façon PowerShell, verrouillé par un mot de passe.
     Le mot de passe est sur le PC 1, dans la petite fenêtre ouverte sur le bureau (12-289-8208).
-    Une fois ouvert, il le reste (le navigateur s'en souvient).
+    Une fois ouvert, il le reste (l'histoire s'en souvient : « pc2Ouvert »).
 
     Les dossiers et les fichiers sont écrits dans « disque », en bas : c'est là qu'on ajoute,
     renomme ou réécrit les fichiers. Un fichier est un texte ; un raccourci (.lnk) ouvre une page.
+
+    Cette page parle à l'histoire d'Inga avec le pont (/ambiance/vn/pont.js) :
+    elle lit sa mémoire (Pont.sait), y note des choses (Pont.note) et lance des scènes (Pont.joue).
 -->
+
+<script src="/ambiance/vn/pont.js"></script>
 
 <link rel="stylesheet" href="terminal.css">
 <style>
@@ -132,6 +137,10 @@ const MOT_DE_PASSE = "12-289-8208";
    LE DISQUE
    Un dossier = un objet { ... } ; un fichier texte = un texte entre ` ` ;
    un raccourci = { ouvre: "adresse de la page" }.
+
+   Un dossier ou un fichier qui n'apparaît qu'à partir d'une certaine nuit de l'histoire :
+       "log_05.txt": { nuit: 3, texte: `…` }
+       "archives":   { nuit: 2, contenu: { …les fichiers du dossier… } }
 ========================= */
 
 const disque = {
@@ -180,7 +189,7 @@ let ouvert = false;              // le mot de passe a-t-il été donné ?
 const historique = [];
 let positionHistorique = 0;
 
-try { ouvert = localStorage.getItem("inga-pc2") === "ouvert"; } catch (e) {}
+ouvert = Boolean(Pont.sait("pc2Ouvert"));
 
 const simplifier = (texte) => texte.toLowerCase().replace(/[^a-z0-9]/g, "");
 
@@ -193,8 +202,17 @@ function ecrire(texte, classe = "") {
     return ligne;
 }
 
+// le contenu d'un dossier ({ nuit: 2, contenu: { … } } ou directement { … })
+const contenuDe = (dossier) => dossier.contenu || dossier;
+
 function dossierActuel() {
-    return chemin.reduce((dossier, nom) => dossier[nom], disque);
+    return chemin.reduce((dossier, nom) => contenuDe(dossier[nom]), disque);
+}
+
+// les noms visibles cette nuit dans le dossier actuel (voir « nuit » dans le disque)
+function nomsVisibles() {
+    const dossier = dossierActuel();
+    return Object.keys(dossier).filter((nom) => Pont.cetteNuit(dossier[nom].nuit));
 }
 
 function cheminAffiche() {
@@ -209,11 +227,12 @@ function majInvite() {
 // trouve un élément du dossier actuel sans tenir compte des majuscules
 function trouver(nom) {
     const dossier = dossierActuel();
-    const cle = Object.keys(dossier).find((k) => k.toLowerCase() === nom.toLowerCase());
+    const cle = nomsVisibles().find((k) => k.toLowerCase() === nom.toLowerCase());
     return cle ? { cle, element: dossier[cle] } : null;
 }
 
-const estDossier = (element) => typeof element === "object" && !element.ouvre && !element.aEcrire;
+const estDossier = (element) =>
+    typeof element === "object" && !element.ouvre && !element.aEcrire && element.texte === undefined;
 
 
 /* les commandes */
@@ -234,7 +253,7 @@ Astuce : on peut aussi cliquer sur les noms, et Tab complète un nom.`, "discret
 
     ls() {
         const dossier = dossierActuel();
-        const noms = Object.keys(dossier);
+        const noms = nomsVisibles();
         ecrire(`\n    Répertoire : ${cheminAffiche()}\n`, "discret");
         if (!noms.length) ecrire("    (vide)", "discret");
         for (const nom of noms) {
@@ -248,7 +267,7 @@ Astuce : on peut aussi cliquer sur les noms, et Tab complète un nom.`, "discret
             lien.addEventListener("click", () => executer(
                 (estDossier(element) ? "cd " : nom.endsWith(".lnk") ? "start " : "cat ") + nom));
             ligne.appendChild(lien);
-            if (element.aEcrire && !progression().logEcrit) ligne.append(document.createTextNode("   (vide)"));
+            if (element.aEcrire && !Pont.sait("logEcrit")) ligne.append(document.createTextNode("   (vide)"));
         }
         ecrire("");
 
@@ -285,7 +304,7 @@ Astuce : on peut aussi cliquer sur les noms, et Tab complète un nom.`, "discret
             ecrireLeLog(trouve.cle, trouve.element.aEcrire);
             return;
         }
-        ecrire(trouve.element);
+        ecrire(trouve.element.texte !== undefined ? trouve.element.texte : trouve.element);
         ecrire("");
     },
 
@@ -307,7 +326,7 @@ Astuce : on peut aussi cliquer sur les noms, et Tab complète un nom.`, "discret
     exit() {
         ouvert = false;
         chemin = [];
-        try { localStorage.removeItem("inga-pc2"); } catch (e) {}
+        Pont.oublie("pc2Ouvert");
         commandes.cls();
         accueil();
     }
@@ -329,7 +348,7 @@ function executer(texte) {
         ecrire("Mot de passe : " + "•".repeat(texte.length), "invite");
         if (simplifier(texte) === simplifier(MOT_DE_PASSE)) {
             ouvert = true;
-            try { localStorage.setItem("inga-pc2", "ouvert"); } catch (e) {}
+            Pont.note("pc2Ouvert");
             ecrire("Accès autorisé.\n", "titre");
             bienvenue();
         } else {
@@ -378,18 +397,10 @@ Tape « cd ashugh » ou « cd sabbat », ou clique sur un nom. « help » pour l
 }
 
 
-// la progression de la chambre d'Inga (écrite aussi par quete.js)
-function progression() {
-    try { return JSON.parse(localStorage.getItem("inga-progression")) || {}; } catch (e) { return {}; }
-}
-
-function noterProgression(changements) {
-    try { localStorage.setItem("inga-progression", JSON.stringify(Object.assign(progression(), changements))); } catch (e) {}
-}
-
-// la réaction d'Inga en ouvrant les logs de son groupe (une seule fois)
+// la réaction d'Inga en ouvrant les logs de son groupe : la scène « log » (inga/histoire/nuit-1.js),
+// qui ne se joue qu'une fois
 function reactionLogs() {
-    setTimeout(() => chambreDInga()?.reactionUnique("log"), 1200); // une seule fois
+    setTimeout(() => Pont.joue("log"), 1200);
 }
 
 // le log d'Aram : vide avant la lettre ; ensuite, il s'écrit sous nos yeux, une seule fois
@@ -397,15 +408,14 @@ let ecritureEnCours = false;
 
 async function ecrireLeLog(nom, texte) {
 
-    const p = progression();
-
-    if (p.logEcrit) {
+    if (Pont.sait("logEcrit")) {
         ecrire(texte);
         ecrire("");
         return;
     }
 
-    if (!p.chatSorti) {
+    // tant qu'Inga n'a pas trouvé la lettre (« chatSorti », noté par l'histoire), elle n'a rien à écrire
+    if (!Pont.sait("chatSorti")) {
         ecrire(`${nom} est vide.`, "discret");
         return;
     }
@@ -422,22 +432,11 @@ async function ecrireLeLog(nom, texte) {
     }
     ecrire(`\n${nom} enregistré.\n`, "titre");
 
-    noterProgression({ logEcrit: true });
+    Pont.note("logEcrit");
     ecritureEnCours = false;
 
-    setTimeout(() => chambreDInga()?.ingaInterrompt("logEcrit"), 1500);
-}
-
-// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
-function chambreDInga() {
-    try {
-        let fenetre = window;
-        while (fenetre !== fenetre.parent) {
-            fenetre = fenetre.parent;
-            if (typeof fenetre.ingaInterrompt === "function") return fenetre;
-        }
-    } catch (e) {}
-    return null;
+    // Inga réagit : la scène « logEcrit » (inga/histoire/nuit-1.js)
+    setTimeout(() => Pont.joue("logEcrit"), 1500);
 }
 
 
@@ -465,7 +464,7 @@ saisie.addEventListener("keydown", (e) => {
         e.preventDefault();
         const morceaux = saisie.value.split(" ");
         const debut = morceaux.pop().toLowerCase();
-        const nom = Object.keys(dossierActuel()).find((k) => k.toLowerCase().startsWith(debut));
+        const nom = nomsVisibles().find((k) => k.toLowerCase().startsWith(debut));
         if (nom) saisie.value = [...morceaux, nom].join(" ");
     }
 });

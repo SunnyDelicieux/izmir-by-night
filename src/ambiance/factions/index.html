@@ -364,24 +364,15 @@ sujet 23 not outside
 
 
 
+<!-- le pont vers l'histoire d'Inga, quand cette page est affichée sur son PC (voir /ambiance/vn/pont.js) -->
+<script src="/ambiance/vn/pont.js"></script>
 <script>
-// la chambre d'Inga réagit la première fois qu'on ouvre le dossier Anarch (voir reactionUnique dans inga/quete.js)
+// Inga réagit quand on ouvre le dossier Anarch : la scène « anarch » (inga/histoire/nuit-1.js),
+// qui ne se joue qu'une fois
 document.addEventListener("click", (e) => {
 	if (!e.target.closest('.open-page[data-url^="ANARCH"]')) return;
-	setTimeout(() => chambreDInga()?.reactionUnique("anarch"), 2500);
+	setTimeout(() => Pont.joue("anarch"), 2500);
 });
-
-// la chambre d'Inga, si cette page est ouverte sur un de ses PC (sinon : rien)
-function chambreDInga() {
-	try {
-		let fenetre = window;
-		while (fenetre !== fenetre.parent) {
-			fenetre = fenetre.parent;
-			if (typeof fenetre.reactionUnique === "function") return fenetre;
-		}
-	} catch (e) {}
-	return null;
-}
 </script>
 
 </body></html>

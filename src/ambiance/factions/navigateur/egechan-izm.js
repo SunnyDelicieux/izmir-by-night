@@ -1,6 +1,9 @@
 // ============================================================
 //  EGE-CHAN \\izm\\ : la page écrite par l'autrice (EGECHAN/index.html de l'ancien site),
 //  reprise telle quelle, sans les posts cachés. Seules les dates ont été décalées en mars 2013.
+//
+//  Pour qu'un fil (ou une seule réponse) n'apparaisse qu'à partir d'une nuit de l'histoire :
+//      <div class="post" id="p9343600" data-nuit="2"> … </div>
 // ============================================================
 
 Nav.EGECHAN_IZM = `

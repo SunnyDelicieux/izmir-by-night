@@ -92,8 +92,10 @@
 /legacy/OLDINDEX.html: /archives/ancien-hub.html
 /ELYSIUM/index.html: /ambiance/elysium/
 /INGA/index.html: /ambiance/inga/
-/INGA/inga.html: /ambiance/inga/inga.html
-/INGA/inga2.html: /ambiance/inga/inga2.html
+/INGA/inga.html: /ambiance/inga/
+/INGA/inga2.html: /ambiance/inga/
+/ambiance/inga/inga.html: /ambiance/inga/
+/ambiance/inga/inga2.html: /ambiance/inga/
 /JOURNAL/index.html: /ambiance/journal/
 /SITE/FACTIONS/ANARCH/baron.html: /ambiance/factions/ANARCH/baron.html
 /SITE/FACTIONS/ANARCH/ciné.html: /ambiance/factions/ANARCH/ciné.html

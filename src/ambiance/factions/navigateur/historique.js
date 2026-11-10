@@ -7,6 +7,7 @@
      adresse : une page qui existe (voir egechan.js),
                ou une recherche : recherche("ce qu'elle a tapé")
    Une adresse qui n'existe pas affiche la page d'erreur de Chrome.
+   Facultatif : nuit: 2  → la visite n'apparaît qu'à partir de la nuit 2 de l'histoire.
 ========================= */
 
 const recherche = (texte) => "google.fr/search?q=" + encodeURIComponent(texte);

@@ -1,0 +1,29 @@
+/* =====================================================================
+   L'AMBIANCE DE CETTE HISTOIRE
+
+   Le style commun est dans /ambiance/vn/vn.css. Ici, on redonne seulement une valeur
+   aux réglages d'ambiance (la liste complète est en haut de vn.css), et on ajoute
+   ce qui est propre à cette histoire.
+===================================================================== */
+
+#vn {
+    --accent: #e0b050;                 /* la couleur vive : le nom de celui qui parle, les contours */
+    --accent-eteint: #7a5a20;          /* la même, au repos */
+    --texte: #f3ead8;
+    --texte-narration: #b0a48c;
+    --boite: rgba(20, 14, 8, .95);     /* le fond de la boîte de dialogue */
+    --bordure: #6b5330;
+    --police: "Trebuchet MS", sans-serif;
+    --indice: "◆";                     /* le signe posé sur les objets cliquables */
+}
+
+/* un lieu sans image : un simple fond de couleur */
+#scene {
+    background: #241a10;
+}
+
+/* exemple : animer un sprite selon l'humeur demandée dans une réplique, "(surprise) Oh."
+#sprite.surprise {
+    animation: spriteArrive .2s ease-out;
+}
+*/
