@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le titre de l'onglet</title>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+
+<!--
+    UNE PAGE À COPIER pour commencer un nouveau site « vieux web ».
+    Du HTML et du CSS, rien d'autre : pas de JavaScript.
+
+    POUR FAIRE UN NOUVEAU SITE
+      1. copier ce dossier « _modele » et lui donner un nom : /ambiance/web/mon-site/
+      2. changer le titre, les couleurs (juste en dessous) et les textes
+      3. ajouter une ligne dans l'annuaire (/ambiance/web/index.html)
+      Le mode d'emploi complet : /ambiance/web/LISEZ-MOI.md
+
+    AJOUTER DU CONTENU : chaque bloc entre « COPIER À PARTIR D'ICI » et « JUSQU'ICI »
+    peut être dupliqué juste en dessous, puis réécrit.
+
+    AJOUTER UNE IMAGE : remplacer une fausse image
+        <span class="fausse-image">[photo.jpg]</span>
+    par une vraie (le fichier se range dans ce dossier) :
+        <img src="photo.jpg" alt="">
+-->
+
+<style>
+/* LES COULEURS ET LA POLICE DU SITE : tout se change ici */
+body {
+    margin: 0;
+    padding: 12px;
+    background: #dfe6ee;
+    color: #222;
+    font: 13px Verdana, Arial, sans-serif;
+}
+
+a { color: #0000ee; }
+a:visited { color: #551a8b; }
+
+#page {
+    max-width: 720px;
+    margin: auto;
+    background: #fff;
+    border: 2px solid #7a8aa0;
+}
+
+#banniere {
+    padding: 14px;
+    background: #7a8aa0;
+    color: #fff;
+    text-align: center;
+}
+
+#banniere h1 { margin: 0; font: bold 26px Georgia, serif; }
+#banniere p { margin: 4px 0 0; font-style: italic; }
+
+#contenu { padding: 12px 18px; }
+
+h2 { margin: 18px 0 6px; font-size: 16px; border-bottom: 1px dotted #7a8aa0; }
+
+.bloc {
+    margin: 10px 0;
+    padding: 8px 10px;
+    background: #f4f6f9;
+    border: 1px solid #c5ccd6;
+}
+
+.bloc b { color: #44546a; }
+.quand { color: #888; font-size: 11px; }
+
+/* une image qui « ne charge pas », comme sur le vieux web */
+.fausse-image {
+    display: inline-block;
+    width: 120px;
+    height: 90px;
+    margin: 6px;
+    background: #ddd;
+    border: 2px outset #ccc;
+    color: #888;
+    font: 11px Arial, sans-serif;
+    text-align: center;
+    line-height: 90px;
+    vertical-align: middle;
+}
+
+#pied {
+    padding: 8px;
+    background: #eef1f5;
+    border-top: 1px solid #c5ccd6;
+    color: #666;
+    font-size: 11px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+<div id="page">
+
+    <div id="banniere">
+        <h1>Le nom du site</h1>
+        <p>son slogan</p>
+    </div>
+
+    <div id="contenu">
+
+        <h2>Une rubrique</h2>
+
+        <p>Un paragraphe d'introduction.</p>
+
+        <!-- COPIER À PARTIR D'ICI pour ajouter un bloc -->
+        <div class="bloc">
+            <b>Un titre</b> <span class="quand">— 12/03/2010</span><br>
+            Le texte du bloc.
+        </div>
+        <!-- JUSQU'ICI -->
+
+        <p><span class="fausse-image">[photo.jpg]</span></p>
+
+    </div>
+
+    <div id="pied">
+        <a href="../">« retour à l'annuaire IZMIR.WEB</a> ~ © 2010
+    </div>
+
+</div>
+</body>
+</html>

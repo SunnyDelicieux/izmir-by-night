@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>~*~ Les Mystères de Smyrne ~*~</title>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+
+<!--
+    LES MYSTÈRES DE SMYRNE : le site perso d'un passionné d'occulte, façon page hébergée gratuitement en 2010.
+    Du HTML et du CSS, rien d'autre : pas de JavaScript.
+
+    AJOUTER DU CONTENU : chaque bloc entre « COPIER À PARTIR D'ICI » et « JUSQU'ICI »
+    peut être dupliqué juste en dessous, puis réécrit (un dossier, un message du livre d'or).
+
+    AJOUTER UNE AUTRE PAGE OCCULTE : copier ce fichier dans ce dossier sous un autre nom
+    (par exemple « tarot.html »), puis faire un lien vers elle :  <a href="tarot.html">Le tarot</a>
+
+    AJOUTER UNE IMAGE : remplacer une fausse image
+        <span class="fausse-image">[photo.jpg]</span>
+    par une vraie (le fichier se range dans ce dossier) :
+        <img src="photo.jpg" alt="">
+
+    C'est un mortel qui écrit : il voit des choses vraies, et il les comprend de travers.
+    Les textes sont des brouillons tirés de ce qui existe déjà (le portail du Sabbat : les chants,
+    les corps sur les plages ; le blog anarch : « toujours six » ; le forum ege-chan : le port,
+    l'université, Kadifekale ; le Cercle du Jardin). Tout est à réécrire.
+-->
+
+<style>
+/* LES COULEURS ET LA POLICE DU SITE */
+body {
+    margin: 0;
+    padding: 10px;
+    color: #c9b8ff;
+    font: 14px "Times New Roman", Times, serif;
+    /* un ciel étoilé, fait sans image */
+    background-color: #05020c;
+    background-image:
+        radial-gradient(circle, #fff 1px, transparent 1.5px),
+        radial-gradient(circle, #9d7bff 1px, transparent 1.5px);
+    background-size: 90px 90px, 140px 140px;
+    background-position: 0 0, 45px 70px;
+}
+
+a { color: #7dff9a; }
+a:visited { color: #c06bff; }
+
+#page {
+    max-width: 680px;
+    margin: auto;
+    padding: 0 20px 10px;
+    background: rgba(10, 4, 24, .92);
+    border: 3px double #6b3fd6;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    padding-top: 16px;
+    color: #c06bff;
+    font: 38px Papyrus, "Palatino Linotype", fantasy;
+    text-shadow: 0 0 8px #6b3fd6;
+}
+
+.symboles { color: #7dff9a; font-size: 20px; letter-spacing: 10px; }
+
+.clignote { color: #ff3030; font: bold 12px Arial, sans-serif; animation: clignote 1s steps(1) infinite; }
+@keyframes clignote { 50% { visibility: hidden; } }
+
+hr { border: 0; border-top: 1px dashed #6b3fd6; margin: 18px 0; }
+
+h2 { margin: 0 0 6px; color: #7dff9a; font: italic 22px "Times New Roman", serif; }
+
+.dossier { margin: 14px 0; text-align: left; }
+.dossier h3 { margin: 0; color: #fff; font-size: 17px; }
+.dossier .quand { color: #7a6aa8; font-size: 12px; }
+.dossier p { margin: 6px 0; text-align: justify; }
+
+.encadre {
+    margin: 14px auto;
+    padding: 10px;
+    max-width: 480px;
+    border: 1px solid #7dff9a;
+    color: #7dff9a;
+}
+
+.message { margin: 8px 0; padding: 6px 10px; border-left: 2px solid #6b3fd6; text-align: left; font-size: 13px; }
+.message .qui { color: #7dff9a; font-weight: bold; }
+.message .quand { color: #7a6aa8; font-size: 11px; }
+
+.fausse-image {
+    display: inline-block;
+    width: 140px;
+    height: 100px;
+    margin: 6px;
+    background: #1b1230;
+    border: 1px solid #6b3fd6;
+    color: #7a6aa8;
+    font: 11px Arial, sans-serif;
+    line-height: 100px;
+}
+
+#pied { color: #7a6aa8; font-size: 12px; }
+
+#compteur { padding: 1px 4px; background: #000; color: #7dff9a; font: bold 12px "Courier New", monospace; letter-spacing: 2px; }
+</style>
+</head>
+
+<body>
+<div id="page">
+
+    <h1>Les Mystères de Smyrne</h1>
+    <div class="symboles">☽ ✦ ⛧ ✦ ☾</div>
+    <p><i>ce que la ville ne vous dit pas ~ par Hermès_35</i></p>
+    <p><span class="clignote">MISE À JOUR !</span> nouveau dossier sur le port (voir plus bas)</p>
+
+    <p>
+        <a href="#dossiers">Les dossiers</a> ~
+        <a href="#rituel">Le rituel du mois</a> ~
+        <a href="#livre">Livre d'or</a>
+    </p>
+
+    <hr>
+
+    <p>Bienvenue, chercheur de vérité. Ici je rassemble ce qu'on raconte à Izmir quand les journalistes sont couchés.
+       Je ne dis pas que tout est vrai. Je dis que personne ne m'a prouvé le contraire.</p>
+    <p><small>Ne lisez pas ce site après minuit si vous habitez près de l'eau.</small></p>
+
+    <hr>
+
+    <h2 id="dossiers">Les dossiers</h2>
+
+    <!-- COPIER À PARTIR D'ICI pour ajouter un dossier -->
+    <div class="dossier">
+        <h3>☾ Les chants du golfe</h3>
+        <span class="quand">dossier n° 1 ~ mis à jour le 13/01/2010</span>
+        <p>Ma grand-mère disait qu'on ne se baigne pas la nuit, « parce qu'on vous appelle ». Les vieilles du bord de mer
+           parlent de choses sous les vagues, et tous les deux ou trois ans la mer rend quelqu'un sur une plage.</p>
+        <p>J'ai parlé à un homme qui a entendu chanter, une seule fois, il y a quatre ans. Il l'entend encore.
+           Même loin du rivage. Même quand la mer est calme. Il a déménagé à Ankara. Ça n'a rien changé.</p>
+    </div>
+    <!-- JUSQU'ICI -->
+
+    <div class="dossier">
+        <h3>☾ Six</h3>
+        <span class="quand">dossier n° 2 ~ <span class="clignote">NEW!</span></span>
+        <p>Au port, ça va toujours par six. J'ai repris les faits divers depuis les années 80 : six corps en quelques semaines,
+           puis plus rien pendant des mois. À chaque fois on parle de chiens.</p>
+        <p>Des chiens. Dans un port clôturé. Qui ne laissent presque pas de sang.</p>
+    </div>
+
+    <div class="dossier">
+        <h3>☾ Le dernier étage</h3>
+        <span class="quand">dossier n° 3 ~ 02/03/2010</span>
+        <p>À l'université Ege, le vieux bâtiment de lettres est « en rénovation ». Aucun ouvrier, aucun échafaudage.
+           Et de la lumière au dernier étage, certaines nuits. J'y suis allé avec un pendule. Il n'a pas arrêté de tourner.
+           (Il faisait du vent.)</p>
+    </div>
+
+    <div class="dossier">
+        <h3>☾ Ceux qui ont « brisé leurs chaînes »</h3>
+        <span class="quand">dossier n° 4 ~ 28/05/2010</span>
+        <p>Mon cousin est allé à un atelier du Cercle du Jardin, un jeudi soir. Il dit qu'il va très bien.
+           Il le dit beaucoup. Il ne répond plus au téléphone le jeudi.</p>
+    </div>
+
+    <p><span class="fausse-image">[plage_nuit.jpg]</span> <span class="fausse-image">[pendule.gif]</span></p>
+
+    <hr>
+
+    <h2 id="rituel">Le rituel du mois</h2>
+    <div class="encadre">
+        <b>Pour ne pas être suivi en rentrant chez soi</b><br><br>
+        Une pincée de sel dans la poche gauche.<br>
+        Ne vous retournez pas avant d'avoir fermé la porte.<br>
+        Si quelqu'un est en costume devant le métro de Konak, changez de trottoir.<br><br>
+        <small>(testé par l'auteur ~ résultats non garantis)</small>
+    </div>
+
+    <hr>
+
+    <h2 id="livre">Livre d'or</h2>
+
+    <!-- COPIER À PARTIR D'ICI pour ajouter un message -->
+    <div class="message">
+        <span class="qui">yildiz_karsiyaka</span> <span class="quand">— 20/01/2010</span><br>
+        super site !! moi aussi ma tante a entendu chanter
+    </div>
+    <!-- JUSQU'ICI -->
+
+    <div class="message">
+        <span class="qui">gozgoz_1925</span> <span class="quand">— 07/03/2010</span><br>
+        bonjour je cherche un rituel pour que Göztepe gagne enfin, merci d'avance
+    </div>
+
+    <div class="message">
+        <span class="qui">un ami</span> <span class="quand">— 16/06/2010</span><br>
+        Tu devrais arrêter d'écrire sur le port.
+    </div>
+
+    <div class="message">
+        <span class="qui">Hermès_35</span> <span class="quand">— 16/06/2010</span><br>
+        @un ami : c'est qui ?
+    </div>
+
+    <hr>
+
+    <p id="pied">
+        Vous êtes le chercheur n° <span id="compteur">000666</span><br>
+        <a href="../">« retour à l'annuaire IZMIR.WEB</a> ~ voir aussi : <a href="../max/">Minuit moins une</a> (ils en parlent enfin)<br>
+        site hébergé gratuitement ~ © Hermès_35 ~ ne pas copier, les esprits veillent
+    </p>
+
+</div>
+</body>
+</html>

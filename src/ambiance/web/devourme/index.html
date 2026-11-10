@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>DEVOUR ME vidéo ~ cassettes et DVD par correspondance</title>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+
+<!--
+    DEVOUR ME VIDÉO : le catalogue de cassettes d'Aylin, façon vente par correspondance de 2010.
+    Du HTML et du CSS, rien d'autre : pas de JavaScript.
+
+    AJOUTER UNE CASSETTE : copier un bloc entre « COPIER À PARTIR D'ICI » et « JUSQU'ICI »,
+    le coller juste en dessous, puis changer le titre, l'année, le résumé et le prix.
+    Pour une cassette épuisée : ajouter la classe « epuise » →  <div class="cassette epuise">
+
+    AJOUTER UNE IMAGE (une jaquette) : mettre une vraie image dans l'étiquette de la cassette,
+        <div class="etiquette"><img src="jaquette.jpg" alt=""></div>
+    (le fichier se range dans ce dossier).
+
+    Les textes sont des brouillons tirés de la fiche d'Aylin : des films à petit budget aux scénarios
+    étranges, qui parlent de désir, de solitude, d'oubli de soi, et dont on oublie le titre.
+    Le nom « DEVOUR ME » vient du nom de son icône : à confirmer ou à changer. Tout est à réécrire.
+-->
+
+<style>
+/* LES COULEURS ET LA POLICE DU SITE */
+body {
+    margin: 0;
+    padding: 10px;
+    background: #0a0a0a;
+    color: #e8e8e8;
+    font: 13px "Courier New", Courier, monospace;
+}
+
+a { color: #ff4fa3; }
+a:visited { color: #b05cff; }
+
+#page {
+    max-width: 740px;
+    margin: auto;
+    border: 2px dashed #ff4fa3;
+    background: #141414;
+}
+
+#banniere {
+    padding: 16px 10px;
+    text-align: center;
+    border-bottom: 2px dashed #ff4fa3;
+}
+
+#banniere h1 {
+    margin: 0;
+    color: #ffe600;
+    font: 52px Impact, "Arial Black", sans-serif;
+    letter-spacing: 6px;
+    text-shadow: 3px 3px 0 #ff4fa3;
+}
+
+#banniere p { margin: 6px 0 0; color: #ff4fa3; letter-spacing: 2px; }
+
+#adultes {
+    padding: 4px;
+    background: #ffe600;
+    color: #000;
+    font: bold 12px Arial, sans-serif;
+    text-align: center;
+}
+
+#contenu { padding: 12px 18px; }
+
+h2 {
+    margin: 22px 0 8px;
+    color: #ffe600;
+    font: 20px Impact, "Arial Black", sans-serif;
+    letter-spacing: 2px;
+    border-bottom: 1px dashed #555;
+}
+
+blockquote {
+    margin: 10px 30px;
+    color: #ccc;
+    font-style: italic;
+}
+
+/* UNE CASSETTE : l'étiquette à gauche (dessinée sans image), le texte à droite */
+.cassette {
+    display: flex;
+    gap: 14px;
+    margin: 12px 0;
+    padding: 10px;
+    background: #1d1d1d;
+    border: 1px solid #333;
+}
+
+.etiquette {
+    flex: none;
+    width: 150px;
+    height: 92px;
+    box-sizing: border-box;
+    padding: 6px;
+    background: #2b2b2b;
+    border: 3px solid #000;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 2px #444;
+    color: #111;
+    font: bold 11px Arial, sans-serif;
+    text-align: center;
+}
+
+.etiquette b {
+    display: block;
+    padding: 3px;
+    background: #f1ead6;
+    border-bottom: 3px solid #ff4fa3;
+}
+
+/* les deux bobines */
+.etiquette::after {
+    content: "◉   ◉";
+    display: block;
+    margin-top: 10px;
+    color: #777;
+    font-size: 22px;
+    letter-spacing: 4px;
+}
+
+.etiquette img { width: 100%; height: 100%; object-fit: cover; }
+
+.cassette h3 { margin: 0 0 4px; color: #fff; font: bold 15px Arial, sans-serif; }
+.cassette .fiche { color: #999; font-size: 11px; }
+.cassette .prix { color: #ffe600; font-weight: bold; }
+
+.cassette.epuise { opacity: .55; }
+.cassette.epuise .prix { color: #ff3030; text-decoration: line-through; }
+.cassette.epuise h3::after { content: "  ÉPUISÉ"; color: #ff3030; font-size: 11px; }
+
+.avis {
+    margin: 8px 0;
+    padding: 6px 10px;
+    border-left: 3px solid #ff4fa3;
+    color: #ccc;
+}
+
+.avis .qui { color: #888; font-size: 11px; }
+
+#pied {
+    padding: 8px;
+    border-top: 2px dashed #ff4fa3;
+    color: #888;
+    font-size: 11px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+<div id="page">
+
+    <div id="banniere">
+        <h1>DEVOUR ME</h1>
+        <p>~ vidéo ~ cassettes &amp; DVD par correspondance ~ Izmir ~</p>
+    </div>
+
+    <div id="adultes">CATALOGUE RÉSERVÉ AUX ADULTES ~ en entrant ici, vous déclarez avoir plus de 18 ans et un magnétoscope</div>
+
+    <div id="contenu">
+
+        <h2>LE MOT DE LA MAISON</h2>
+        <blockquote>
+            « Tout le monde a faim de quelque chose. La différence, c'est ce que l'on accepte d'avaler. »
+        </blockquote>
+        <p>Nous tournons des films à petit budget, avec de vraies gens et de drôles d'idées.
+           Vous ne les trouverez pas au vidéoclub du coin. Vous aurez du mal à expliquer pourquoi vous les avez regardés jusqu'au bout.</p>
+        <p>Envoi discret, sous enveloppe kraft, sans nom d'expéditeur.</p>
+
+
+        <h2>LE CATALOGUE</h2>
+
+        <!-- COPIER À PARTIR D'ICI pour ajouter une cassette -->
+        <div class="cassette">
+            <div class="etiquette"><b>LA SALLE D'ATTENTE</b></div>
+            <div>
+                <h3>La salle d'attente</h3>
+                <div class="fiche">1988 ~ VHS ~ 71 min ~ couleur (par endroits)</div>
+                <p>Une femme attend son tour. Personne n'appelle son nom.
+                   Vers la fin, elle n'est plus sûre de l'avoir donné.</p>
+                <span class="prix">35 TL</span>
+            </div>
+        </div>
+        <!-- JUSQU'ICI -->
+
+        <div class="cassette">
+            <div class="etiquette"><b>TROIS MIROIRS</b></div>
+            <div>
+                <h3>Trois miroirs</h3>
+                <div class="fiche">1994 ~ VHS ~ 64 min</div>
+                <p>Un homme emménage dans un appartement où les miroirs ont une seconde de retard.
+                   Il finit par préférer son reflet.</p>
+                <span class="prix">35 TL</span>
+            </div>
+        </div>
+
+        <div class="cassette">
+            <div class="etiquette"><b>L'APPÉTIT DES AUTRES</b></div>
+            <div>
+                <h3>L'appétit des autres</h3>
+                <div class="fiche">2001 ~ VHS ou DVD ~ 82 min</div>
+                <p>Un dîner de famille. Chacun a envie de quelque chose, personne ne le dit.
+                   Le dessert n'arrive jamais.</p>
+                <span class="prix">40 TL</span>
+            </div>
+        </div>
+
+        <div class="cassette">
+            <div class="etiquette"><b>MAIN GAUCHE</b></div>
+            <div>
+                <h3>Main gauche</h3>
+                <div class="fiche">2006 ~ DVD ~ 58 min</div>
+                <p>Une dactylo se réveille convaincue que sa main gauche appartient à quelqu'un d'autre.
+                   Elle commence à lui écrire.</p>
+                <span class="prix">40 TL</span>
+            </div>
+        </div>
+
+        <div class="cassette epuise">
+            <div class="etiquette"><b>(titre oublié)</b></div>
+            <div>
+                <h3>Celui dont personne ne retrouve le titre</h3>
+                <div class="fiche">2009 ~ DVD ~ durée inconnue</div>
+                <p>Tous ceux qui l'ont vu s'en souviennent très bien. Sauf du titre. Nous non plus.</p>
+                <span class="prix">45 TL</span>
+            </div>
+        </div>
+
+
+        <h2>ILS ONT REGARDÉ JUSQU'AU BOUT</h2>
+
+        <!-- COPIER À PARTIR D'ICI pour ajouter un avis -->
+        <div class="avis">
+            « J'ai rien compris. J'en ai commandé trois autres. »
+            <div class="qui">— un client de Bornova</div>
+        </div>
+        <!-- JUSQU'ICI -->
+
+        <div class="avis">
+            « Provocation gratuite. »
+            <div class="qui">— un critique, qui a quand même tout vu</div>
+        </div>
+
+        <div class="avis">
+            « Depuis <i>Trois miroirs</i>, je me regarde plus pareil. Remboursez-moi. »
+            <div class="qui">— anonyme</div>
+        </div>
+
+
+        <h2>COMMANDER</h2>
+        <p>Envoyez le titre (ou ce dont vous vous souvenez) et votre règlement à notre boîte postale.
+           Comptez trois semaines. Ne nous demandez pas ce que ça veut dire.</p>
+        <p><small>Nous cherchons toujours des acteurs et des actrices amateurs. Aucune expérience demandée.
+           Juste de l'honnêteté.</small></p>
+
+    </div>
+
+    <div id="pied">
+        <a href="../">« retour à l'annuaire IZMIR.WEB</a> ~ site ami : <a href="../max/">Minuit moins une</a><br>
+        © DEVOUR ME vidéo ~ aucune image de ce site n'a chargé depuis 2007
+    </div>
+
+</div>
+</body>
+</html>

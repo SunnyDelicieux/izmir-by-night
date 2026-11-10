@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CAR'AT ~ Garage ~ Voitures de luxe et de collection ~ Izmir</title>
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+
+<!--
+    CAR'AT : le site du garage de Dimitri, façon petit commerce de 2010.
+    Du HTML et du CSS, rien d'autre : pas de JavaScript.
+
+    AJOUTER DU CONTENU : chaque bloc entre « COPIER À PARTIR D'ICI » et « JUSQU'ICI »
+    peut être dupliqué juste en dessous, puis réécrit (un service, une blague, un message du livre d'or).
+
+    AJOUTER UNE IMAGE : remplacer une fausse image
+        <span class="fausse-image">[photo.jpg]</span>
+    par une vraie (le fichier se range dans ce dossier) :
+        <img src="photo.jpg" alt="">
+
+    Les textes sont des brouillons tirés de la fiche de Dimitri (le garage ouvert la nuit, les plaques,
+    les portières arrachées, les taches sur le cuir, les deux employés, les blagues nulles) : à réécrire.
+-->
+
+<style>
+/* LES COULEURS ET LA POLICE DU SITE */
+body {
+    margin: 0;
+    padding: 10px;
+    background: #1b2430;
+    color: #111;
+    font: 13px Arial, Helvetica, sans-serif;
+}
+
+a { color: #0b3d91; }
+a:visited { color: #5a2d82; }
+
+#page {
+    max-width: 760px;
+    margin: auto;
+    background: #f2f2f2;
+    border: 3px ridge #9aa7b5;
+}
+
+/* la bannière : un dégradé « chrome » fait sans image */
+#banniere {
+    padding: 14px;
+    text-align: center;
+    background: linear-gradient(#fdfdfd, #b9c2cc 45%, #7c8894 55%, #d7dde3);
+    border-bottom: 3px ridge #9aa7b5;
+}
+
+#banniere h1 {
+    margin: 0;
+    color: #0e1a2b;
+    font: italic bold 44px "Arial Black", Impact, sans-serif;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+#banniere p { margin: 2px 0 0; color: #0e1a2b; font-weight: bold; }
+
+marquee {
+    display: block;
+    padding: 3px;
+    background: #0e1a2b;
+    color: #ffd84a;
+    font: bold 12px Arial, sans-serif;
+}
+
+table#mise-en-page { width: 100%; border-collapse: collapse; }
+
+#menu {
+    width: 140px;
+    vertical-align: top;
+    padding: 10px;
+    background: #d5dbe2;
+    border-right: 2px groove #9aa7b5;
+}
+
+#menu a { display: block; margin-bottom: 8px; font-weight: bold; }
+
+#contenu { vertical-align: top; padding: 10px 16px; }
+
+h2 {
+    margin: 18px 0 6px;
+    padding: 3px 8px;
+    background: #0e1a2b;
+    color: #fff;
+    font: bold 15px Arial, sans-serif;
+}
+
+h2:first-child { margin-top: 0; }
+
+table.tarifs { width: 100%; border-collapse: collapse; background: #fff; }
+table.tarifs td { padding: 5px 8px; border: 1px solid #b9c2cc; }
+table.tarifs td.prix { width: 150px; text-align: right; white-space: nowrap; color: #8a0000; font-weight: bold; }
+
+.blague {
+    margin: 8px 0;
+    padding: 8px 10px;
+    background: #fffbe0;
+    border: 2px dashed #d0a000;
+    font-style: italic;
+}
+
+.message {
+    margin: 8px 0;
+    padding: 6px 8px;
+    background: #fff;
+    border: 1px solid #b9c2cc;
+}
+
+.message .qui { color: #0b3d91; font-weight: bold; }
+.message .quand { color: #888; font-size: 11px; }
+.message.patron { background: #eaf1fb; border-color: #0b3d91; }
+
+.fausse-image {
+    display: inline-block;
+    width: 130px;
+    height: 95px;
+    margin: 6px 4px;
+    background: #ddd;
+    border: 2px outset #ccc;
+    color: #888;
+    font: 11px Arial, sans-serif;
+    text-align: center;
+    line-height: 95px;
+    vertical-align: middle;
+}
+
+.travaux {
+    padding: 6px;
+    background: repeating-linear-gradient(45deg, #ffd84a 0 12px, #222 12px 24px);
+    text-align: center;
+}
+
+.travaux span { padding: 2px 8px; background: #fff; font-weight: bold; }
+
+#pied {
+    padding: 8px;
+    background: #d5dbe2;
+    border-top: 2px groove #9aa7b5;
+    color: #444;
+    font-size: 11px;
+    text-align: center;
+}
+
+#compteur {
+    padding: 1px 4px;
+    background: #000;
+    color: #0f0;
+    font: bold 12px "Courier New", monospace;
+    letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+<div id="page">
+
+    <div id="banniere">
+        <h1>CAR'AT</h1>
+        <p>Garage ~ voitures de luxe et de collection ~ Izmir ~ depuis 2009</p>
+    </div>
+
+    <marquee scrollamount="4">★ Bienvenue à Car'at ! Que puis-je faire pour vous ? ★ Devis gratuit ★ Ouvert tard sur rendez-vous ★ Discrétion assurée ★ Une blague offerte à chaque vidange ★</marquee>
+
+    <table id="mise-en-page">
+        <tr>
+            <td id="menu">
+                <a href="#accueil">» Accueil</a>
+                <a href="#services">» Nos services</a>
+                <a href="#horaires">» Horaires</a>
+                <a href="#blague">» La blague du mois</a>
+                <a href="#galerie">» Galerie</a>
+                <a href="#livre">» Livre d'or</a>
+                <br>
+                <span class="fausse-image" style="width:110px;height:60px;line-height:60px">[logo.gif]</span>
+            </td>
+
+            <td id="contenu">
+
+                <h2 id="accueil">Bienvenue à Car'at !</h2>
+                <p>Que puis-je faire pour vous ?</p>
+                <p>Moi c'est Dimitri. Je suis venu de Grèce en vacances en décembre 1994, et je ne suis jamais reparti.
+                   Depuis 2009, je m'occupe de vos belles voitures comme si c'étaient les miennes
+                   (mais je vous les rends, promis).</p>
+                <p>Ici on répare les voitures de luxe et de collection. On ne pose pas de questions sur ce qui leur est arrivé.
+                   On aime juste qu'elles repartent propres.</p>
+                <p><span class="fausse-image">[dimitri_garage.jpg]</span> <span class="fausse-image">[facade.jpg]</span></p>
+
+
+                <h2 id="services">Nos services</h2>
+                <table class="tarifs">
+                    <!-- COPIER À PARTIR D'ICI pour ajouter un service -->
+                    <tr>
+                        <td>Entretien et révision, toutes marques de prestige</td>
+                        <td class="prix">sur devis</td>
+                    </tr>
+                    <!-- JUSQU'ICI -->
+                    <tr>
+                        <td>Remplacement de portière (même « partie toute seule »)</td>
+                        <td class="prix">sur devis</td>
+                    </tr>
+                    <tr>
+                        <td>Nettoyage des cuirs : toutes taches, même tenaces, même récentes</td>
+                        <td class="prix">à partir de 150 TL</td>
+                    </tr>
+                    <tr>
+                        <td>Pose de plaques d'immatriculation, dans l'heure</td>
+                        <td class="prix">voir avec Dimitri</td>
+                    </tr>
+                    <tr>
+                        <td>Enlèvement et livraison du véhicule à domicile, de nuit</td>
+                        <td class="prix">offert aux habitués</td>
+                    </tr>
+                </table>
+                <p><small>Règlement en espèces, par carte, ou en service rendu (voir avec la direction).</small></p>
+
+
+                <h2 id="horaires">Horaires</h2>
+                <p><b>Atelier :</b> du lundi au samedi, de 9 h à 19 h.<br>
+                   <b>Le soir et la nuit :</b> sur rendez-vous uniquement. Sonnez deux fois.</p>
+                <p><small>Merci de ne pas déranger nos deux mécaniciens pendant leur service de jour.
+                   Ils ne sont pas au courant de tout, et ils ne sont pas à la carte.</small></p>
+
+
+                <h2 id="blague">La blague du mois</h2>
+                <!-- COPIER À PARTIR D'ICI pour ajouter une blague -->
+                <div class="blague">
+                    Pourquoi les voitures de collection ne répètent jamais rien ?<br>
+                    Parce qu'elles ont un coffre.
+                </div>
+                <!-- JUSQU'ICI -->
+                <div class="blague">
+                    Un client m'a demandé si je pouvais faire disparaître une rayure.<br>
+                    Je lui ai dit : « Sur la voiture, oui. »
+                </div>
+                <div class="blague">
+                    On me dit que je parle trop de voitures. Je réponds : ça roule.
+                </div>
+
+
+                <h2 id="galerie">Galerie</h2>
+                <div class="travaux"><span>PAGE EN TRAVAUX ~ les photos arrivent (depuis 2009)</span></div>
+                <p>
+                    <span class="fausse-image">[avant.jpg]</span>
+                    <span class="fausse-image">[apres.jpg]</span>
+                    <span class="fausse-image">[apres_2.jpg]</span>
+                </p>
+
+
+                <h2 id="livre">Livre d'or</h2>
+                <p>Laissez un petit mot ! <i>(les nouveaux messages sont relus par Dimitri avant d'apparaître)</i></p>
+
+                <!-- COPIER À PARTIR D'ICI pour ajouter un message -->
+                <div class="message">
+                    <span class="qui">A.</span> <span class="quand">— 14/05/2010</span><br>
+                    Portière conducteur arrachée « dans un parking ». Remplacée dans la nuit, aucune question. Merci Dimitri.
+                </div>
+                <!-- JUSQU'ICI -->
+
+                <div class="message">
+                    <span class="qui">un habitué</span> <span class="quand">— 02/09/2010</span><br>
+                    Les sièges en cuir sont comme neufs. Je ne veux pas savoir avec quoi il a nettoyé.
+                </div>
+
+                <div class="message patron">
+                    <span class="qui">Dimitri (Car'at)</span> <span class="quand">— 03/09/2010</span><br>
+                    Merci ! Et pour info c'est du bicarbonate. Surtout du bicarbonate.
+                </div>
+
+                <div class="message">
+                    <span class="qui">selim_k</span> <span class="quand">— 21/11/2010</span><br>
+                    travail impeccable mais trop de blagues. 4 étoiles quand même
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+    <div id="pied">
+        Vous êtes le visiteur n° <span id="compteur">001994</span> ~
+        <a href="../">« retour à l'annuaire IZMIR.WEB</a><br>
+        Sites amis : <a href="../max/">Minuit moins une</a> ~ <a href="../occulte/">Les Mystères de Smyrne</a> ~
+        © 2009-2010 Car'at ~ site fait par le neveu d'un client
+    </div>
+
+</div>
+</body>
+</html>

@@ -3,6 +3,7 @@
 
    Les pages des sites sont dans les autres fichiers de ce dossier :
      egechan.js       ege-chan.org (et egechan-izm.js pour le contenu du board \izm\)
+     sites.js         les sites « vieux web » de /ambiance/web/ (de vraies pages HTML), une fiche par site
      historique.js    l'historique d'Inga, ses recherches, les sites les plus visités
 
    Une page s'ajoute comme ça :
@@ -125,16 +126,21 @@ Nav.aller = (adresse, nouvelleVisite = true) => {
     Pont.filtre(vue); // cache ce qui est prévu pour une nuit plus tard (data-nuit)
     vue.scrollTop = 0;
 
-    document.getElementById("onglet-titre").textContent = page.titre;
+    majBarre(adresse, page.titre);
+
+    if (page.apres) page.apres(vue);
+};
+
+// l'onglet, la barre d'adresse et les boutons précédent / suivant
+function majBarre(adresse, titre) {
+    document.getElementById("onglet-titre").textContent = titre;
     document.getElementById("onglet-icone").innerHTML = Nav.icone(adresse);
-    document.title = page.titre;
+    document.title = titre;
     champAdresse.value = adresse === NOUVEL_ONGLET ? "" : afficherAdresse(adresse);
 
     document.getElementById("precedent").disabled = Nav.position <= 0;
     document.getElementById("suivant").disabled = Nav.position >= Nav.visites.length - 1;
-
-    if (page.apres) page.apres(vue);
-};
+}
 
 Nav.actualiser = () => Nav.aller(Nav.visites[Nav.position], false);
 
@@ -149,6 +155,64 @@ function afficherAdresse(adresse) {
 // le nom du site, en gris dans l'historique : "ege-chan.org"
 function domaine(adresse) {
     return afficherAdresse(adresse).replace(/^https?:\/\//, "").split("/")[0];
+}
+
+
+/* =========================
+   LES VRAIES PAGES (les sites de /ambiance/web/)
+   Un site peut être une vraie page HTML du site, affichée telle quelle sous une fausse adresse :
+
+     Nav.site("carat-izmir.com.tr", {
+         titre: "Car'at - Garage",              le titre de l'onglet
+         page: "/ambiance/web/carat/",          où est la vraie page
+         mots: ["garage", "voiture"],           facultatif : les recherches Google qui la trouvent
+         extrait: "Réparation de voitures…"     facultatif : le texte sous le résultat Google
+     });
+
+   Les fiches sont dans sites.js.
+========================= */
+
+Nav.sites = {};
+
+Nav.site = (adresse, fiche) => {
+    Nav.sites[adresse] = fiche;
+    Nav.pages[adresse] = () => ({
+        titre: fiche.titre,
+        classe: "vraie-page",
+        html: `<iframe src="${fiche.page}" title="${fiche.titre}"></iframe>`,
+        apres: suivreLesLiens
+    });
+};
+
+// Dans une vraie page, un lien vers un autre site (l'annuaire en est plein) change la page toute seule.
+// On met alors à jour la barre d'adresse, l'onglet et les boutons précédent / suivant.
+function suivreLesLiens(vue) {
+    const cadre = vue.querySelector("iframe");
+
+    cadre.addEventListener("load", () => {
+        const chemin = cadre.contentWindow.location.pathname.replace(/index\.html$/, "");
+        const adresse = Object.keys(Nav.sites).find((a) => Nav.sites[a].page === chemin);
+
+        if (!adresse || adresse === Nav.visites[Nav.position]) return;
+
+        Nav.visites = Nav.visites.slice(0, Nav.position + 1);
+        Nav.visites.push(adresse);
+        Nav.position = Nav.visites.length - 1;
+        majBarre(adresse, Nav.sites[adresse].titre);
+    });
+}
+
+// les sites dont un des « mots » est dans la recherche Google ; celui qui en a le plus sort en premier
+function sitesTrouves(question) {
+    const recherche = question.toLowerCase();
+    const trouves = (adresse) => (Nav.sites[adresse].mots || []).filter((mot) => recherche.includes(mot)).length;
+
+    const liens = Object.keys(Nav.sites)
+        .filter((adresse) => trouves(adresse) > 0)
+        .sort((a, b) => trouves(b) - trouves(a))
+        .map((adresse) => ({ adresse, titre: Nav.sites[adresse].titre, texte: Nav.sites[adresse].extrait || "" }));
+
+    return liens.length ? { nombre: String(liens.length * 1370), liens } : null;
 }
 
 
@@ -300,7 +364,8 @@ function pageHistorique() {
 
 function pageRecherche(question) {
 
-    const resultats = Nav.recherches[question.trim().toLowerCase()];
+    // d'abord les recherches écrites à la main (historique.js), sinon les sites qui ont ce mot-clé (sites.js)
+    const resultats = Nav.recherches[question.trim().toLowerCase()] || sitesTrouves(question);
 
     const liste = resultats
         ? `<p class="nombre">Environ ${resultats.nombre || "1 240 000"} résultats (0,${31 + question.length % 40} secondes)</p>`
