@@ -178,8 +178,11 @@
     - titre: Sabbat
       cartes:
         - fiche: pretre
-          nom: 'Le pretre'
+          nom: "Le pretre"
           role: L'infant de Scylla
+        - fiche: ductus
+          nom: "Le Ductus"
+          role: Le grand dévoreur
         - role: Estimation de 10 membres
     - titre: Setites
       cartes:
