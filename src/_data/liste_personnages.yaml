@@ -190,6 +190,7 @@
           nom: Serpent
           note: Femme aux yeux de serpent
         - role: Estimation de 4 membres
+
 - titre: Absents
   id: absents
   groupes:
@@ -207,7 +208,8 @@
           nom: Alkinoos Kerkyra
           role: Régent de Smyrne
           note: Mort finale en 1922
-        - fiche: Shahar
+        - nom: Shahar
+          icone: /img/wiki/icon/no-icon.png
           role: Vizir de l'Ashira
           note: Assassiné en 1560
     - titre: A quitté la ville
