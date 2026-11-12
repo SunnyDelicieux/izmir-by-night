@@ -55,47 +55,80 @@ lieux:
   - nom: Tour Marmara
     lat: 38.4522
     lon: 27.1766
-    texte: Quarante étages à Bayraklı. Le siège du groupe Marmara, et les appartements d'Arslan.
-    lien: /personnages/kerem/
-    lien_texte: La fiche d'Arslan
+    texte: Le siège du groupe Marmara, et le coeur du domaine Arslan.
     personnages: [kerem]
 
   - nom: Université Égéenne
     lat: 38.4575
     lon: 27.2280
     texte: Domaine Tremere de 1955 à 2009. Depuis, le clan n'y garde qu'une zone d'influence.
-    lien: /univers/tremere/
-    lien_texte: L'histoire des Tremere
-    personnages: [eylem, mariko]
+    personnages: [eleni, gabriel, serpent]
 
   - nom: Le port
     lat: 38.4450
     lon: 27.1495
-    texte: Tenu, avec Bayraklı, par le réseau Uyanık Göz.
-    lien: /univers/brujah/uyanik/
-    lien_texte: Uyanık Göz
+    texte: Entrée et sortie de toute la marchandise de la ville, possédé par le Prince, co-géré par le primogénat.
 
   - nom: Konak
     lat: 38.4180
     lon: 27.1340
-    texte: Le centre de la ville. C'est là que sont ses plus grands musées.
-    lien: /univers/#culture
-    lien_texte: La ville d'Izmir
+    texte: Le coeur du domaine Torador.
+    personnages: [nafissa]
 
   - nom: Ancien quartier arménien
     lat: 38.4250
     lon: 27.1440
     texte: L'église Saint-Stepannos, cœur du quartier et domaine Nosferatu, a brûlé avec lui en 1922.
-    lien: /personnages/atam/
-    lien_texte: La fiche d'Atam
     personnages: [atam]
 
   - nom: Whisper
     lat: 38.45411
     lon: 27.11336
     texte: Boite de nuit Brujah.
-    lien: /personnages/aaron/
-    lien_texte: La fiche d'Aaron
+    personnages: [aaron]
+
+  - nom: Clinique
+    lat: 38.46532,
+    lon: 27.22035
+    texte: Domaine Tremere.
+    personnages: [esen]
+
+  - nom: Manoir Enry
+    lat: 38.49409,
+    lon: 27.10118
+    texte: Manoir Enry.
+    personnages: [enry]
+
+  - nom: Hotel primogènes
+    lat: 38.39368,
+    lon: 27.03282
+    texte: Le lieu de réunion connu des primogènes.
+    personnages: [enry]
+
+  - nom: Wayfarer Holding
+    lat: 38.39848,
+    lon: 27.07651
+    texte: Le siège sociale du groupe Wayfarer.
+    personnages: [mariko, aaron, dimitri, alejandro]
+
+  - nom: Bureau du sheriff
+    lat: 38.46735,
+    lon: 27.12874
+    texte: Bureau du sheriff.
+    personnages: [baran]
+
+  - nom: Jardin de Soteria
+    lat: 38.41156,
+    lon: 27.20226
+    texte: Jardin de Soteria.
+    personnages: [maliha, aylin, calliope]
+
+ - nom: Elysium
+    lat: 38.41886,
+    lon: 27.12866
+    texte: Elysium permanent de Nebetta.
+    personnages: [nebetta, louiza, sophia]
+
 
 # ───────────────────────────────────────────────────────────────────────────────────────────────
 # LES ZONES D'INFLUENCE : des formes colorées sur la carte, avec leur légende en dessous.
@@ -107,30 +140,3 @@ lieux:
 #            dans l'ordre où on ferait le tour de la zone. Pas besoin de répéter le premier à la fin.
 # Celles de départ viennent du wiki ; leur contour est approximatif, à redessiner.
 zones:
-  - nom: Le port et Bayraklı
-    qui: Uyanık Göz (Brujah)
-    couleur: "#b3423a"
-    lien: /univers/brujah/uyanik/
-    points:
-      - [38.4380, 27.1470]
-      - [38.4490, 27.1450]
-      - [38.4510, 27.1560]
-      - [38.4470, 27.1680]
-      - [38.4560, 27.1690]
-      - [38.4700, 27.1560]
-      - [38.4810, 27.1620]
-      - [38.4800, 27.1850]
-      - [38.4620, 27.1900]
-      - [38.4450, 27.1850]
-      - [38.4360, 27.1640]
-
-  - nom: Université Égéenne
-    qui: Tremere (zone d'influence)
-    couleur: "#6a4c93"
-    lien: /univers/tremere/
-    points:
-      - [38.4660, 27.2160]
-      - [38.4680, 27.2340]
-      - [38.4560, 27.2420]
-      - [38.4480, 27.2300]
-      - [38.4520, 27.2170]
