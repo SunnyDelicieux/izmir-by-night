@@ -48,6 +48,94 @@
   clip-path: inset(50%);
 }
 
+/* ─────────── les 3 couches : Lieux / Domaines / Quartiers ─────────── */
+.carte-couches {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.carte-couches button {
+  padding: 5px 16px;
+  color: var(--iz-button-text);
+  background: var(--iz-button);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  font: italic 15px var(--iz-font-title);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.carte-couches button:hover {
+  color: var(--iz-button-text-hover);
+  border-color: var(--iz-border-hover);
+}
+
+.carte-couches button.actif {
+  color: var(--iz-accent);
+  border-color: var(--iz-accent);
+  background: var(--iz-button-active);
+}
+
+/* une seule couche visible à la fois */
+.carte-vue .couche {
+  display: none;
+}
+.carte-vue.voir-lieux .couche-lieux,
+.carte-vue.voir-domaines .couche-domaines,
+.carte-vue.voir-quartiers .couche-quartiers {
+  display: block;
+}
+/* la légende reste en ligne (flex) quand elle est affichée */
+.carte-vue.voir-domaines .carte-legende.couche-domaines,
+.carte-vue.voir-quartiers .carte-legende.couche-quartiers {
+  display: flex;
+}
+
+/* la bulle qui montre le nom d'un domaine / quartier au survol */
+.carte-infobulle {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  padding: 3px 9px;
+  font: italic 14px var(--iz-font-title);
+  color: var(--iz-text);
+  background: var(--iz-panel);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  white-space: nowrap;
+  transform: translate(-50%, -145%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.carte-infobulle[hidden] {
+  display: none;
+}
+
+/* les quartiers : un simple contour */
+.carte-quartiers {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.carte-quartiers polygon {
+  fill: var(--iz-accent);
+  fill-opacity: 0.08;
+  stroke: var(--iz-accent);
+  stroke-width: 1.5px;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 4 3;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: auto;
+  cursor: help;
+  transition: fill-opacity 0.15s ease;
+}
+.carte-quartiers polygon:hover {
+  fill-opacity: 0.22;
+}
+
 .carte-boite {
   position: relative;
   border: 1px solid var(--iz-border-strong);
@@ -152,6 +240,23 @@
   stroke-dasharray: 6 4;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
+  pointer-events: auto;
+  cursor: help;
+  transition: fill-opacity 0.15s ease;
+}
+.carte-zones polygon:hover {
+  fill-opacity: 0.45;
+}
+
+/* une zone souterraine (domaine Ventrue) : hachurée, pour qu'on voie qu'elle passe en dessous */
+.carte-zones polygon.souterrain {
+  fill: url(#hachures-souterrain);
+  fill-opacity: 1;
+  stroke-dasharray: 2 2.5;
+}
+.carte-zones polygon.souterrain:hover {
+  fill-opacity: 1;
+  stroke-width: 3px;
 }
 
 .carte .zone-nom {
@@ -329,6 +434,21 @@ div.carte-legende {
   border-radius: 50%;
   background: #a0303c;
   border: 2px solid #fff;
+}
+
+/* la pastille « souterrain » de la légende : hachurée */
+.carte-legende .puce.hachure {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--iz-muted) 0 2px,
+    transparent 2px 4px
+  );
+  border: 1px solid var(--iz-border-strong);
+}
+
+.carte-hint {
+  color: var(--iz-muted);
+  font-style: italic;
 }
 
 .carte-option {

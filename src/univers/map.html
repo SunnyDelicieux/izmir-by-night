@@ -123,9 +123,20 @@ carte_izmir.bords %}
   </section>
 
   <!-- ══════════ NIVEAU 2 : IZMIR ══════════ -->
-  <section class="carte-vue" data-niveau="izmir" hidden>
+  {#- Trois couches, une seule visible à la fois : Lieux, Domaines, Quartiers (boutons gérés par carte.js).
+      Les noms des domaines et des quartiers s'affichent au survol (une bulle), pour éviter que les
+      libellés se chevauchent. La légende des domaines montre les clans (src/_data/carte_izmir.yaml → clans). -#}
+  <section class="carte-vue voir-lieux" data-niveau="izmir" hidden>
     <!-- un titre invisible : la recherche du site s'en sert pour ouvrir directement la carte d'Izmir -->
     <h2 id="izmir" class="carte-titre-cache">Izmir</h2>
+
+    <!-- le choix de la couche -->
+    <div class="carte-couches">
+      <button type="button" data-couche="lieux" class="actif">Lieux</button>
+      <button type="button" data-couche="domaines">Domaines</button>
+      <button type="button" data-couche="quartiers">Quartiers</button>
+    </div>
+
     <div class="carte-boite">
       <div class="carte-cadre">
         <div class="carte">
@@ -134,37 +145,53 @@ carte_izmir.bords %}
             alt="Carte d'Izmir et de son golfe"
           />
 
-          <!-- les zones d'influence : un dessin posé sur l'image, de 0 à 100 dans les deux sens -->
+          <!-- COUCHE DOMAINES : les zones d'influence, colorées par clan -->
           <svg
-            class="carte-zones"
+            class="carte-zones couche couche-domaines"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
-            aria-hidden="true"
           >
+            <defs>
+              <!-- les hachures des zones souterraines (domaine Ventrue) -->
+              <pattern
+                id="hachures-souterrain"
+                width="1.4"
+                height="1.4"
+                patternUnits="userSpaceOnUse"
+                patternTransform="rotate(45)"
+              >
+                <line x1="0" y1="0" x2="0" y2="1.4" stroke="#1a0f04" stroke-width="0.6" opacity="0.5" />
+              </pattern>
+            </defs>
             {%- for z in carte_izmir.zones %}
             <polygon
+              class="{{ 'souterrain' if z.souterrain }}"
               style="--couleur: {{ z.couleur }}"
+              data-nom="{{ z.nom }} — {{ z.qui }}{% if z.souterrain %} (souterrains){% endif %}"
               points="{% for p in z.points %}{{ ((p[1] - b.ouest) / (b.est - b.ouest) * 100) | round(2) }},{{ ((b.nord - p[0]) / (b.nord - b.sud) * 100) | round(2) }} {% endfor %}"
             />
             {%- endfor %}
           </svg>
 
-          <!-- le nom de chaque zone : juste au-dessus de son point le plus au nord, au milieu de sa largeur -->
-          {%- for z in carte_izmir.zones %} {%- set n = z.points | length %} {%-
-          set lat = (z.points | sort(true, false, "0") | first)[0] %} {%- set
-          lon = (z.points | sum("1")) / n %}
-          <span
-            class="zone-nom"
-            style="left: {{ ((lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ ((b.nord - lat) / (b.nord - b.sud) * 100) | round(2) }}%; --couleur: {{ z.couleur }}"
-            >{{ z.nom }}</span
+          <!-- COUCHE QUARTIERS : les districts de la ville -->
+          <svg
+            class="carte-quartiers couche couche-quartiers"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
           >
-          {%- endfor %}
+            {%- for q in carte_izmir.quartiers %}
+            <polygon
+              data-nom="{{ q.nom }}"
+              points="{% for p in q.points %}{{ ((p[1] - b.ouest) / (b.est - b.ouest) * 100) | round(2) }},{{ ((b.nord - p[0]) / (b.nord - b.sud) * 100) | round(2) }} {% endfor %}"
+            />
+            {%- endfor %}
+          </svg>
 
-          <!-- les lieux -->
+          <!-- COUCHE LIEUX : les points d'intérêt -->
           {%- for l in carte_izmir.lieux %} {%- set haut = ((b.nord - l.lat) /
           (b.nord - b.sud) * 100) | round(2) %}
           <div
-            class="lieu endroit"
+            class="lieu endroit couche couche-lieux"
             tabindex="0"
             style="left: {{ ((l.lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ haut }}%"
           >
@@ -183,17 +210,34 @@ carte_izmir.bords %}
           </div>
           {%- endfor %}
 
-          <!-- les rencontres qui ont des coordonnées -->
+          <!-- les rencontres qui ont des coordonnées (dans la couche Lieux) -->
           {%- for r in carte_izmir.rencontres %}{% if r.lat and r.lon %}
           <a
-            class="lieu porte"
+            class="lieu porte couche couche-lieux"
             href="{{ r.lien }}"
             style="left: {{ ((r.lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ ((b.nord - r.lat) / (b.nord - b.sud) * 100) | round(2) }}%; background-image: url('{{ r.icone }}')"
             ><span>{{ r.nom }} · {{ r.qui }}</span></a
           >
           {%- endif %}{% endfor %}
+
+          <!-- la bulle qui montre le nom d'un domaine ou d'un quartier au survol -->
+          <div class="carte-infobulle" hidden></div>
         </div>
       </div>
+    </div>
+
+    <!-- la légende, selon la couche -->
+    <div class="carte-legende couche couche-domaines">
+      {%- for c in carte_izmir.clans %}
+      <span class="zone-legende"
+        ><span class="puce" style="background: {{ c.couleur }}"></span> {{ c.nom }}</span
+      >
+      {%- endfor %}
+      <span class="zone-legende"><span class="puce hachure"></span> souterrain</span>
+      <span class="carte-hint">· survole un domaine pour son nom</span>
+    </div>
+    <div class="carte-legende couche couche-quartiers">
+      <span class="carte-hint">Les districts de la ville — survole un quartier pour son nom.</span>
     </div>
 
     <!-- les rencontres, toujours là, en bas de la carte -->
@@ -206,35 +250,25 @@ carte_izmir.bords %}
       {%- endfor %}
     </nav>
 
-    <div class="carte-legende">
-      <label class="carte-option"
-        ><input type="checkbox" id="voir-zones" checked /> les zones
-        d'influence</label
-      >
-      {%- for z in carte_izmir.zones %}
-      <span class="zone-legende"
-        ><span class="puce" style="background: {{ z.couleur }}"></span> {%- if
-        z.lien %}<a href="{{ z.lien }}">{{ z.nom }}</a>{% else %}{{ z.nom }}{%
-        endif %}{% if z.qui %} — {{ z.qui }}{% endif %}</span
-      >
-      {%- endfor %}
-    </div>
-
-    <h2>Les lieux d'Izmir</h2>
-    <div class="liste-lieux">
-      {%- for l in carte_izmir.lieux %}
-      <div>
-        <b>{{ l.nom }}</b>
-        {%- if l.texte %} — {{ l.texte }}{% endif %} {%- if l.lien %}
-        <a href="{{ l.lien }}">{{ l.lien_texte or "En savoir plus" }} →</a>
-        {%- endif %}
+    <!-- la liste des lieux (couche Lieux) -->
+    <div class="couche couche-lieux">
+      <h2>Les lieux d'Izmir</h2>
+      <div class="liste-lieux">
+        {%- for l in carte_izmir.lieux %}
+        <div>
+          <b>{{ l.nom }}</b>
+          {%- if l.texte %} — {{ l.texte }}{% endif %} {%- if l.lien %}
+          <a href="{{ l.lien }}">{{ l.lien_texte or "En savoir plus" }} →</a>
+          {%- endif %}
+        </div>
+        {%- endfor %}
       </div>
-      {%- endfor %}
+      <p>
+        Pour tout savoir sur la ville :
+        <a href="/univers/">La ville d'Izmir</a>,
+        <a href="/univers/clans/">ses clans</a> et
+        <a href="/univers/lois/">ses lois</a>.
+      </p>
     </div>
-    <p>
-      Pour tout savoir sur la ville : <a href="/univers/">La ville d'Izmir</a>,
-      <a href="/univers/clans/">ses clans</a> et
-      <a href="/univers/lois/">ses lois</a>.
-    </p>
   </section>
 </div>
