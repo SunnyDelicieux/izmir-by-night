@@ -6,33 +6,44 @@
   order: -1;
 }
 
-/* ─────────── le calendrier ─────────── */
-.accueil-calendrier {
+/* ─────────── les prochaines séances (affichées directement) ─────────── */
+.accueil-seances {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 6px 18px;
   padding: 12px 16px;
   background: var(--iz-box);
   border: 1px solid var(--iz-accent-dim);
   border-radius: var(--iz-radius);
-  transition: 0.2s ease;
 }
 
-.accueil-calendrier b {
+.accueil-seances b {
   color: var(--iz-accent);
   font: italic 18px var(--iz-font-title);
   letter-spacing: 1px;
 }
 
-.accueil-calendrier span {
-  color: var(--iz-text-soft);
-  font-size: 13px;
+.accueil-seances ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.accueil-calendrier:hover {
-  border-color: var(--iz-accent);
-  background: var(--iz-box-soft);
+.accueil-seances li {
+  color: var(--iz-text-soft);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.accueil-seances .date {
+  margin-right: 6px;
+  color: var(--iz-accent);
+  font-family: monospace;
+  font-size: 13px;
 }
 
 /* ─────────── les tuiles ─────────── */

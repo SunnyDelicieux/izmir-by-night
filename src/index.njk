@@ -58,11 +58,15 @@ tuiles:
       </div>
     </div>
 
-    <!-- le calendrier : la première chose qu'on cherche -->
-    <a class="accueil-calendrier" href="/espace-joueur/#calendrier">
-      <b>Calendrier</b>
-      <span>voir mes prochaines séances →</span>
-    </a>
+    <!-- les prochaines séances, affichées directement (données : src/_data/seances.yaml) -->
+    <div class="accueil-seances">
+      <b>Prochaines séances</b>
+      <ul>
+        {%- for s in seances %}
+        <li><span class="date">{{ s.date }}</span> {{ s.quoi }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
 
     <!-- les tuiles -->
     <nav class="tuiles" aria-label="Les pages les plus utiles">
