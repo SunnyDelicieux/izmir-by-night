@@ -90,6 +90,13 @@ lieux:
     lien_texte: La fiche d'Atam
     personnages: [atam]
 
+  - nom: Whisper
+    lat: 38.45411
+    lon: 27.11336
+    texte: Boite de nuit Brujah.
+    lien: /personnages/aaron/
+    lien_texte: La fiche d'Aaron
+
 # ───────────────────────────────────────────────────────────────────────────────────────────────
 # LES ZONES D'INFLUENCE : des formes colorées sur la carte, avec leur légende en dessous.
 #   nom : le nom de la zone
