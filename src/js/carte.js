@@ -186,11 +186,19 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
     bulle.style.top = clientY - r.top + "px";
   }
 
-  for (const svg of carte.querySelectorAll(".carte-zones, .carte-quartiers")) {
+  for (const svg of carte.querySelectorAll(".carte-quartiers")) {
     svg.addEventListener("pointerover", (e) => {
-      const nom = e.target.closest("polygon")?.dataset.nom;
-      if (!nom) return;
-      bulle.textContent = nom;
+      const poly = e.target.closest("polygon");
+      if (!poly || !poly.dataset.nom) return;
+      bulle.textContent = "";
+      const titre = document.createElement("b");
+      titre.textContent = poly.dataset.nom;
+      bulle.appendChild(titre);
+      if (poly.dataset.desc) {
+        const desc = document.createElement("span");
+        desc.textContent = poly.dataset.desc;
+        bulle.appendChild(desc);
+      }
       bulle.hidden = false;
       placer(e.clientX, e.clientY);
     });
