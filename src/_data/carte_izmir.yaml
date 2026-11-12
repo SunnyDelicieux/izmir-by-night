@@ -11,8 +11,8 @@ image: /img/map-izmir.webp
 bords:
   ouest: 26.68
   est: 27.41
-  nord: 38.57
-  sud: 38.22
+  nord: 38.58
+  sud: 38.23
 
 # ───────────────────────────────────────────────────────────────────────────────────────────────
 # LES RENCONTRES : les pages d'ambiance. Elles sont toujours en bas de la carte, en boutons.
