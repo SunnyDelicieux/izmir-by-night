@@ -58,7 +58,7 @@ lieux:
     lat: 38.4575
     lon: 27.2280
     texte: Domaine Tremere de 1955 à 2009. Depuis, le clan n'y garde qu'une zone d'influence.
-    personnages: [eleni, gabriel, serpent]
+    personnages: [eleni-paschalia, gabriel, serpent]
 
   - nom: Le port
     lat: 38.4450
