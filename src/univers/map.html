@@ -7,11 +7,32 @@ js: [/espace-joueur/lecteur.js, /js/carte.js]
 
 {#- La carte, sur deux niveaux : la région, puis Izmir quand on clique sur la
 ville. La région : les triangles sont dans src/_data/origines.yaml, les points
-sont écrits plus bas. Izmir : tout est dans src/_data/carte_izmir.yaml (image,
-rencontres, lieux, zones). Le zoom, le glisser et le passage d'un niveau à
-l'autre sont dans src/js/carte.js ; le style dans src/css/plan.css. L'adresse
-/univers/map/#izmir ouvre directement la carte d'Izmir. -#} {%- set b =
-carte_izmir.bords %}
+sont écrits plus bas. Izmir : une Google My Map (les lieux et les zones se
+dessinent dans la carte, côté Google) ; les rencontres et la liste des lieux
+viennent de src/_data/carte_izmir.yaml. Le passage d'un niveau à l'autre est dans
+src/js/carte.js ; le style dans src/css/plan.css.
+L'adresse /univers/map/#izmir ouvre directement la carte d'Izmir. -#}
+
+<style>
+  /* la Google My Map : un cadre qui garde ses proportions et remplit la largeur */
+  .carte-embed {
+    aspect-ratio: 21 / 17;
+    border: 1px solid var(--iz-border-strong);
+    border-radius: var(--iz-radius);
+    overflow: hidden;
+    background: var(--iz-sunken);
+  }
+  .carte-embed iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .carte-embed-lien {
+    margin: 6px 0 0;
+    font-size: 14px;
+  }
+</style>
 
 <div id="contents">
   <!-- les deux onglets -->
@@ -109,13 +130,26 @@ carte_izmir.bords %}
     <!-- un titre invisible : la recherche du site s'en sert pour ouvrir directement la carte d'Izmir -->
     <h2 id="izmir" class="carte-titre-cache">Izmir</h2>
 
-    <iframe
-      src="https://www.google.com/maps/d/embed?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA&ehbc=2E312F&noprof=1"
-      width="840"
-      height="680"
-    ></iframe>
+    <!-- la carte d'Izmir : la Google My Map. Les lieux et les zones d'influence se
+         dessinent DANS la carte, sur Google (My Maps → modifier). -->
+    <div class="carte-embed">
+      <iframe
+        src="https://www.google.com/maps/d/embed?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA&ehbc=2E312F&noprof=1"
+        title="Carte d'Izmir"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <p class="carte-embed-lien">
+      <a
+        href="https://www.google.com/maps/d/viewer?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA"
+        target="_blank"
+        rel="noopener"
+        >Ouvrir la carte en grand ↗</a
+      >
+    </p>
 
-
+    <!-- les rencontres : les pages d'ambiance, en boutons -->
     <nav class="carte-portes" aria-label="Les rencontres">
       {%- for r in carte_izmir.rencontres %}
       <a href="{{ r.lien }}">
@@ -136,6 +170,5 @@ carte_izmir.bords %}
       </div>
       {%- endfor %}
     </div>
-
   </section>
 </div>
