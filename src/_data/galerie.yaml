@@ -5,6 +5,34 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sunn/gyaru.webp
+  alt: Ah, kawaii !
+  tags: [sunny, noncanon, autre, camil]
+  desc: Ah, kawaii !
+- src: sunn/night.webp
+  alt: Night sky.
+  tags: [sunny, noncanon, tremere, mariko]
+  desc: Night sky.
+- src: sunn/leather.webp
+  alt: Leather and fame.
+  tags: [sunny, noncanon, toreador, alejandro]
+  desc: Leather and fame.
+- src: sunn/bobo.webp
+  alt: Retraite spirituelle.
+  tags: [sunny, noncanon, tremere, esen]
+  desc: Retraite spirituelle.
+- src: sunn/techwear.webp
+  alt: Techwear.
+  tags: [sunny, noncanon, brujah, kaadir]
+  desc: Techwear.
+- src: sunn/cybergoth.webp
+  alt: Cybergoth.
+  tags: [sunny, noncanon, tremere, nosferatu, zacharias, inga]
+  desc: Cybergoth.
+- src: sunn/duo.webp
+  alt: Lounging in the chantry.
+  tags: [sunny, noncanon, tremere, mariko, eylem]
+  desc: Lounging in the chantry.
 - type: comic
   title: Toujours trois
   alt: Toujours trois
