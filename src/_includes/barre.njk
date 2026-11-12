@@ -11,9 +11,17 @@
         {%- for colonne in entree.colonnes %}
           <div class="navi-col">
             <div class="navi-titre">{{ colonne.titre }}</div>
+          {%- if colonne.seances %}
+            <ul class="navi-seances">
+            {%- for s in seances %}
+              <li><span class="navi-date">{{ s.date }}</span> {{ s.quoi }}</li>
+            {%- endfor %}
+            </ul>
+          {%- else %}
           {%- for lien in colonne.liens %}
             <a href="{{ lien.url }}">{{ lien.texte }}</a>
           {%- endfor %}
+          {%- endif %}
           </div>
         {%- endfor %}
         </div>

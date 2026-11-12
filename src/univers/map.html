@@ -123,107 +123,31 @@ carte_izmir.bords %}
   </section>
 
   <!-- ══════════ NIVEAU 2 : IZMIR ══════════ -->
-  {#- Trois vues : Lieux et Quartiers sont dessinées sur ton fond (noms au survol) ;
-      Domaines affiche ta Google My Map, qui gère seule les domaines qui se chevauchent.
-      Les boutons sont gérés par src/js/carte.js. -#}
-  <section class="carte-vue voir-lieux" data-niveau="izmir" hidden>
+  {#- La carte d'Izmir, c'est ta Google My Map : elle contient tout (lieux, domaines,
+      quartiers) et ses propres calques pour filtrer. Pour la changer : carte_domaines
+      dans src/_data/carte_izmir.yaml. -#}
+  <section class="carte-vue" data-niveau="izmir" hidden>
     <!-- un titre invisible : la recherche du site s'en sert pour ouvrir directement la carte d'Izmir -->
     <h2 id="izmir" class="carte-titre-cache">Izmir</h2>
 
-    <!-- le choix de la vue -->
-    <div class="carte-couches">
-      <button type="button" data-couche="lieux" class="actif">Lieux</button>
-      <button type="button" data-couche="domaines">Domaines</button>
-      <button type="button" data-couche="quartiers">Quartiers</button>
-    </div>
-
-    <!-- la carte-image : vues Lieux et Quartiers -->
-    <div class="carte-boite couche couche-lieux couche-quartiers">
-      <div class="carte-cadre">
-        <div class="carte">
-          <img
-            src="{{ carte_izmir.image }}"
-            alt="Carte d'Izmir et de son golfe"
-          />
-
-          <!-- COUCHE QUARTIERS : les districts de la ville -->
-          <svg
-            class="carte-quartiers couche couche-quartiers"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            {%- for q in carte_izmir.quartiers %}
-            <polygon
-              data-nom="{{ q.nom }}"
-              {%- if q.texte %} data-desc="{{ q.texte }}"{% endif %}
-              points="{% for p in q.points %}{{ ((p[1] - b.ouest) / (b.est - b.ouest) * 100) | round(2) }},{{ ((b.nord - p[0]) / (b.nord - b.sud) * 100) | round(2) }} {% endfor %}"
-            />
-            {%- endfor %}
-          </svg>
-
-          <!-- COUCHE LIEUX : les points d'intérêt -->
-          {%- for l in carte_izmir.lieux %} {%- set haut = ((b.nord - l.lat) /
-          (b.nord - b.sud) * 100) | round(2) %}
-          <div
-            class="lieu endroit couche couche-lieux"
-            tabindex="0"
-            style="left: {{ ((l.lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ haut }}%"
-          >
-            <div class="{{ 'vers-le-haut' if haut > 55 }}">
-              <b>{{ l.nom }}</b>
-              {%- if l.texte %}
-              <p>{{ l.texte }}</p>
-              {%- endif %} {%- for id in l.personnages %}{% set carte = id |
-              carteDe(liste_personnages) %}{% include "carte-personnage.njk"
-              %}{% endfor %} {%- if l.lien %}
-              <a class="suite" href="{{ l.lien }}"
-                >{{ l.lien_texte or "En savoir plus" }} →</a
-              >
-              {%- endif %}
-            </div>
-          </div>
-          {%- endfor %}
-
-          <!-- les rencontres qui ont des coordonnées (dans la couche Lieux) -->
-          {%- for r in carte_izmir.rencontres %}{% if r.lat and r.lon %}
-          <a
-            class="lieu porte couche couche-lieux"
-            href="{{ r.lien }}"
-            style="left: {{ ((r.lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ ((b.nord - r.lat) / (b.nord - b.sud) * 100) | round(2) }}%; background-image: url('{{ r.icone }}')"
-            ><span>{{ r.nom }} · {{ r.qui }}</span></a
-          >
-          {%- endif %}{% endfor %}
-
-          <!-- la bulle qui montre le nom d'un quartier au survol -->
-          <div class="carte-infobulle" hidden></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- la Google My Map : vue Domaines -->
-    <div class="carte-embed couche couche-domaines">
+    <div class="carte-embed">
       <iframe
         src="{{ carte_izmir.carte_domaines }}"
-        title="Les domaines d'Izmir"
+        title="Carte d'Izmir"
         loading="lazy"
         allowfullscreen
       ></iframe>
     </div>
-    <p class="carte-embed-lien couche couche-domaines">
+    <p class="carte-embed-lien">
       <a
         href="{{ carte_izmir.carte_domaines | replace('/embed?', '/viewer?') }}"
         target="_blank"
         rel="noopener"
-        >Ouvrir la carte des domaines en grand ↗</a
+        >Ouvrir la carte en grand ↗</a
       >
     </p>
 
-    <!-- la légende de la vue Quartiers -->
-    <div class="carte-legende couche couche-quartiers">
-      <span class="carte-hint">Les districts de la ville — survole un quartier pour son nom.</span>
-    </div>
-
-    <!-- les rencontres, toujours là, en bas de la carte -->
+    <!-- les rencontres : les pages d'ambiance, en boutons -->
     <nav class="carte-portes" aria-label="Les rencontres">
       {%- for r in carte_izmir.rencontres %}
       <a href="{{ r.lien }}">
@@ -232,26 +156,5 @@ carte_izmir.bords %}
       </a>
       {%- endfor %}
     </nav>
-
-    <!-- la liste des lieux (couche Lieux) -->
-    <div class="couche couche-lieux">
-      <h2>Les lieux d'Izmir</h2>
-      <div class="liste-lieux">
-        {%- for l in carte_izmir.lieux %}
-        <div>
-          <b>{{ l.nom }}</b>
-          {%- if l.texte %} — {{ l.texte }}{% endif %} {%- if l.lien %}
-          <a href="{{ l.lien }}">{{ l.lien_texte or "En savoir plus" }} →</a>
-          {%- endif %}
-        </div>
-        {%- endfor %}
-      </div>
-      <p>
-        Pour tout savoir sur la ville :
-        <a href="/univers/">La ville d'Izmir</a>,
-        <a href="/univers/clans/">ses clans</a> et
-        <a href="/univers/lois/">ses lois</a>.
-      </p>
-    </div>
   </section>
 </div>

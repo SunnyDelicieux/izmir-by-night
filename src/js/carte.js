@@ -118,7 +118,9 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
   function montrer(niveau) {
     for (const vue of vues) vue.hidden = vue.dataset.niveau !== niveau;
     for (const onglet of onglets) onglet.classList.toggle("actif", onglet.dataset.niveau === niveau);
-    const cadre = vues.find((vue) => !vue.hidden).querySelector(".carte-cadre");
+    // le niveau Izmir est une Google My Map (iframe), sans carte-image à initialiser
+    const cadre = vues.find((vue) => !vue.hidden)?.querySelector(".carte-cadre");
+    if (!cadre) return;
     cadre.dispatchEvent(new Event("carte:montree"));
     if (!calme) {
       cadre.classList.add("arrive");
@@ -156,59 +158,4 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
   addEventListener("popstate", () => montrer(niveauDeLAdresse()));
   addEventListener("hashchange", () => montrer(niveauDeLAdresse()));
   if (niveauDeLAdresse() === "izmir") montrer("izmir");
-})();
-
-// ─────────── 3. la carte d'Izmir : les 3 couches (Lieux / Domaines / Quartiers) ───────────
-(function () {
-  const vue = document.querySelector('.carte-vue[data-niveau="izmir"]');
-  if (!vue) return;
-  const boutons = [...vue.querySelectorAll(".carte-couches button")];
-  for (const bouton of boutons) {
-    bouton.addEventListener("click", () => {
-      vue.classList.remove("voir-lieux", "voir-domaines", "voir-quartiers");
-      vue.classList.add("voir-" + bouton.dataset.couche);
-      for (const x of boutons) x.classList.toggle("actif", x === bouton);
-    });
-  }
-})();
-
-// ─────────── 4. la bulle qui montre le nom d'un domaine ou d'un quartier au survol ───────────
-(function () {
-  const bulle = document.querySelector(".carte-infobulle");
-  if (!bulle) return;
-  const carte = bulle.closest(".carte");
-  const cadre = bulle.closest(".carte-cadre");
-
-  // place la bulle à la position (x, y) de l'écran, exprimée dans le repère de la carte
-  function placer(clientX, clientY) {
-    const r = carte.getBoundingClientRect();
-    bulle.style.left = clientX - r.left + "px";
-    bulle.style.top = clientY - r.top + "px";
-  }
-
-  for (const svg of carte.querySelectorAll(".carte-quartiers")) {
-    svg.addEventListener("pointerover", (e) => {
-      const poly = e.target.closest("polygon");
-      if (!poly || !poly.dataset.nom) return;
-      bulle.textContent = "";
-      const titre = document.createElement("b");
-      titre.textContent = poly.dataset.nom;
-      bulle.appendChild(titre);
-      if (poly.dataset.desc) {
-        const desc = document.createElement("span");
-        desc.textContent = poly.dataset.desc;
-        bulle.appendChild(desc);
-      }
-      bulle.hidden = false;
-      placer(e.clientX, e.clientY);
-    });
-    svg.addEventListener("pointermove", (e) => {
-      if (!bulle.hidden) placer(e.clientX, e.clientY);
-    });
-    svg.addEventListener("pointerout", (e) => {
-      if (!e.relatedTarget || !e.relatedTarget.closest("polygon")) bulle.hidden = true;
-    });
-  }
-  // pendant qu'on fait glisser la carte, pas de bulle
-  cadre?.addEventListener("pointerdown", () => (bulle.hidden = true));
 })();

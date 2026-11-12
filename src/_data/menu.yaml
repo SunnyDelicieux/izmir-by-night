@@ -52,10 +52,11 @@
 
 - titre: Jouer
   colonnes:
+    # La liste des prochaines séances se remplit avec src/_data/seances.yaml.
+    - titre: Prochaines séances
+      seances: true
     - titre: À la table
       liens:
-        - texte: Calendrier
-          url: /espace-joueur/#calendrier
         - texte: Lignes et voiles
           url: /jouer/lignes-et-voiles/
         - texte: Alchemy
