@@ -93,13 +93,13 @@ lieux:
     lat: 38.49409
     lon: 27.10118
     texte: Manoir Enry.
-    personnages: [enry]
+    personnages: [henri]
 
   - nom: Hôtel des Primogènes
     lat: 38.39368
     lon: 27.03282
     texte: Le lieu de réunion connu des primogènes.
-    personnages: [enry]
+    personnages: [henri]
 
   - nom: Wayfarer Holding
     lat: 38.39848
