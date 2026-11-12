@@ -9,10 +9,10 @@
 # Si tout est un peu décalé après tes premiers points, ajuste ces 4 nombres (pas les points).
 image: /img/map-izmir.webp
 bords:
-  ouest: 26.68 # la longitude du bord gauche
-  est: 27.41 # la longitude du bord droit
-  nord: 38.57 # la latitude du bord du haut
-  sud: 38.22 # la latitude du bord du bas
+  ouest: 26.68
+  est: 27.41
+  nord: 38.57
+  sud: 38.22
 
 # ───────────────────────────────────────────────────────────────────────────────────────────────
 # LES RENCONTRES : les pages d'ambiance. Elles sont toujours en bas de la carte, en boutons.
