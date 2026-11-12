@@ -1,5 +1,3 @@
-# Les prochaines séances (vraies dates de jeu), affichées dans le menu, sous « Jouer ».
-# Juste une date puis ce qui se joue. Range-les dans l'ordre et retire celles qui sont passées.
 - date: 15/11
   quoi: primogène
 - date: 22/11
