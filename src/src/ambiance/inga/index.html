@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+<title>Inga</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- la barre du site (connexion, recherche) -->
+<script src="/js/outils.js"></script>
+<script src="/js/connexion.js"></script>
+<script src="/js/recherche.js" defer></script>
+<link rel="stylesheet" href="/css/barre.css">
+</head>
+
+<body data-pagefind-body data-pagefind-meta="title:Inga">
+
+<!--
+    LA CHAMBRE D'INGA
+    Le mode d'emploi complet est dans LISEZMOI.md. En bref :
+    - ce qui se dit et se passe :  histoire/nuit-1.txt, nuit-2.txt…
+    - les pièces et les ordinateurs : ici, dans cette page
+    - les portraits et les sprites :  personnages.js
+    - le moteur :                     moteur.js (on n'y touche pas)
+-->
+
+
+<div id="scene">
+
+    <!-- =====================================================
+         LES PIÈCES
+         Une zone cliquable : <button class="zone" data-nom="chat" style="--x1: …; --y1: …; --x2: …; --y2: …;">✦</button>
+           data-nom : le nom du bloc à jouer (« == chat == » dans les fichiers d'histoire),
+                      ou le nom d'un ordinateur plus bas (pc1, pc2) pour l'allumer.
+           x1 y1 x2 y2 : le rectangle, en pixels de l'image (1366 × 768).
+                      Pour les trouver : ouvrir /ambiance/inga/#zones et cliquer sur l'image.
+           Si deux zones se chevauchent, la dernière de la liste passe au-dessus.
+         Une flèche : <button class="fleche droite" data-vers="bureau">→</button>
+         ===================================================== -->
+
+    <section class="piece" id="chambre" hidden>
+        <img src="img/chambre.webp" alt="La chambre d'Inga">
+
+        <button class="zone" data-nom="chaise"  aria-label="la chaise"  style="--x1: 361; --y1: 159; --x2: 456; --y2: 262;">✦</button>
+        <button class="zone" data-nom="fenetre" aria-label="la fenêtre" style="--x1: 712; --y1: 14; --x2: 805; --y2: 126;">✦</button>
+        <button class="zone" data-nom="chat"    aria-label="le chat"    style="--x1: 1020; --y1: 510; --x2: 1126; --y2: 594;">✦</button>
+        <button class="zone" data-nom="poster"  aria-label="le poster"  style="--x1: 1216; --y1: 15; --x2: 1322; --y2: 178;">✦</button>
+
+        <button class="fleche droite" data-vers="bureau" aria-label="aller au bureau">→</button>
+    </section>
+
+    <section class="piece" id="bureau" hidden>
+        <img src="img/bureau.webp" alt="Le bureau d'Inga">
+
+        <button class="zone" data-nom="travail"   aria-label="le travail"  style="--x1: 1068; --y1: 33; --x2: 1336; --y2: 291;">✦</button>
+        <button class="zone" data-nom="pc2"       aria-label="le PC 2"     style="--x1: 682; --y1: 193; --x2: 842; --y2: 340;">✦</button>
+        <button class="zone" data-nom="pc1"       aria-label="le PC 1"     style="--x1: 439; --y1: 176; --x2: 582; --y2: 279;">✦</button>
+        <button class="zone" data-nom="travail"   aria-label="le travail"  style="--x1: 46; --y1: 399; --x2: 208; --y2: 681;">✦</button>
+        <button class="zone" data-nom="code"      aria-label="le code"     style="--x1: 998; --y1: 30; --x2: 1094; --y2: 131;">✦</button>
+        <button class="zone" data-nom="oreillers" aria-label="les oreillers" style="--x1: 1047; --y1: 552; --x2: 1201; --y2: 700;">✦</button>
+        <button class="zone" data-nom="tas"       aria-label="le tas"      style="--x1: 1257; --y1: 282; --x2: 1341; --y2: 414;">✦</button>
+
+        <button class="fleche gauche" data-vers="chambre" aria-label="aller dans la chambre">←</button>
+    </section>
+
+
+    <!-- ce que le moteur affiche par-dessus la pièce -->
+    <img id="gros-plan" alt="" hidden>
+    <img id="telephone" src="img/telephone.webp" alt="" hidden>
+    <img id="sprite" alt="" hidden>
+
+    <div id="dialogue" hidden>
+        <img id="dialogue-portrait" alt="">
+        <div id="dialogue-nom"></div>
+        <div id="dialogue-texte"></div>
+        <span class="suite">suite</span>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LES ORDINATEURS
+     Chaque lien <a href="…"> s'ouvre dans la fenêtre du PC :
+       une page .html, un texte .txt, ou une image .webp / .png / .jpg.
+       data-titre : le titre de la fenêtre (sinon, le texte du lien).
+       data-si    : n'apparaît qu'à certaines conditions, ex. data-si="lettre" ou data-si="pas lettre".
+     Pour ajouter une page : mettre le fichier dans pc/, puis ajouter un lien ici.
+     Un mot de passe : data-mot-de-passe="…" sur la section, avec un <form class="verrou"> et une <div class="session">.
+     L'écran fait 1200 × 800 : le moteur l'agrandit ou le rétrécit pour qu'il remplisse la place, sans le déformer.
+     ===================================================== -->
+
+<section class="ordinateur" id="pc1" hidden>
+
+    <div class="barre-pc">
+        <span>PC 1 · bureau</span>
+        <button class="eteindre" type="button" title="éteindre (Échap)">⏻ éteindre</button>
+    </div>
+
+    <div class="moniteur">
+    <div class="ecran bureau-pc" style="background-image: url('https://wallpaperaccess.com/full/4464419.jpg');">
+
+        <div class="bureau-titre">REMINDER TO FEED THE CAT</div>
+
+        <div class="icones">
+            <a href="pc/steam.html" data-titre="STEAM">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/960px-Steam_icon_logo.svg.png" alt="">
+                <span>Steam</span>
+            </a>
+            <a href="/ambiance/factions/ANARCH/baron.html" data-titre="ANARCH">
+                <img src="img/icones/dossier.webp" alt="">
+                <span>Anarch</span>
+            </a>
+            <a href="pc/chrome/nouvel-onglet.html" data-titre="Google Chrome">
+                <img src="img/icones/chrome.svg" alt="">
+                <span>Chrome</span>
+            </a>
+            <a href="pc/vermine.html" data-titre="VERMINE.EXE — Internet Explorer">
+                <img src="img/icones/vermine.webp" alt="">
+                <span>vermine.exe</span>
+            </a>
+        </div>
+
+        <!-- des jeux, pour le décor : pas de lien, on ne peut pas les ouvrir -->
+        <div class="icones decor">
+            <span><img src="https://cdn.simpleicons.org/osu" alt=""><span>osu!</span></span>
+            <span><img src="https://cdn2.steamgriddb.com/icon/bc573864331a9e42e4511de6f678aa83.ico" alt=""><span>Isaac</span></span>
+            <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/WoW_icon.svg/3840px-WoW_icon.svg.png" alt=""><span>WoW</span></span>
+        </div>
+
+        <!-- le pense-bête : le mot de passe du PC 2 est dedans -->
+        <div class="pense-bete">
+            <div class="pense-bete-titre">ପ(๑•ᴗ•๑)ଓ ♡</div>
+            <p>12-289-8208-[date_de_parution]<br>280 en ligne 9832 en pause<br>sujet 23 not outside</p>
+        </div>
+
+        <div class="icones dossier-oublie">
+            <a href="pc/document.webp" data-titre="nouveau dossier (2) › document.pdf">
+                <img src="img/icones/dossier.webp" alt="">
+                <span>nouveau dossier (2)</span>
+            </a>
+        </div>
+
+        <div class="fenetre" hidden>
+            <div class="fenetre-barre">
+                <span class="fenetre-titre"></span>
+                <button class="fermer-fenetre" type="button" title="fermer (Échap)">×</button>
+            </div>
+            <div class="fenetre-contenu"></div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+
+<section class="ordinateur terminal" id="pc2" data-mot-de-passe="12-289-8208" hidden>
+
+    <div class="barre-pc">
+        <span>PC 2 · ???</span>
+        <button class="eteindre" type="button" title="éteindre (Échap)">⏻ éteindre</button>
+    </div>
+
+    <div class="moniteur">
+    <div class="ecran">
+
+        <div class="terminal-titre">PC-INGA · terminal</div>
+
+        <form class="verrou">
+            <p class="ambre">PC-INGA · session verrouillée</p>
+            <label>Mot de passe : <input type="password" autocomplete="off" spellcheck="false"></label>
+            <p class="refus" hidden>Accès refusé.<br><span class="discret">Indice : ce que ton bureau garde ouvert.</span></p>
+        </form>
+
+        <div class="session" hidden>
+<pre class="discret">Deux espaces sur cette machine :
+
+    sabbat     ce que je sais d'eux
+    ashugh     nous
+</pre>
+            <p>PS C:\Users\inga&gt; dir /s</p>
+            <ul class="fichiers">
+                <li><a href="pc/sabbat-lisez-moi.txt" data-titre="C:\Users\inga\sabbat\lisez-moi.txt">sabbat\lisez-moi.txt</a></li>
+                <li><a href="/ambiance/factions/sabbat/test.html" data-titre="sabbat\portail.lnk">sabbat\portail.lnk</a></li>
+                <li data-si="pas lettre"><a href="pc/log-vide.txt" data-titre="C:\Users\inga\ashugh\logs\log_04.txt">ashugh\logs\log_04.txt</a> <span class="discret">(vide)</span></li>
+                <li data-si="lettre"><a href="pc/log-04.txt" data-titre="C:\Users\inga\ashugh\logs\log_04.txt">ashugh\logs\log_04.txt</a></li>
+            </ul>
+        </div>
+
+        <div class="fenetre" hidden>
+            <div class="fenetre-barre">
+                <span class="fenetre-titre"></span>
+                <button class="fermer-fenetre" type="button" title="fermer (Échap)">[ fermer ]</button>
+            </div>
+            <div class="fenetre-contenu"></div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+
+<!-- les écrans par-dessus tout -->
+<div id="noir" hidden></div>
+
+<div id="papier" hidden>
+    <div class="feuille"></div>
+    <span class="reposer">cliquer pour reposer</span>
+</div>
+
+<div id="entrer"><span>ENTER</span></div>
+<audio id="musique" src="son/musique.mp3" loop></audio>
+
+<!-- pour écrire : les erreurs dans les fichiers d'histoire, et les coordonnées en mode #zones -->
+<div id="erreurs" hidden></div>
+<div id="coordonnees"></div>
+
+
+<script src="personnages.js"></script>
+<script src="moteur.js"></script>
+
+</body>
+</html>

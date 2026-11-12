@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+<title>Page Web non disponible</title>
+<link rel="stylesheet" href="chrome.css">
+</head>
+<body>
+
+<!-- CHROME, sur le PC 1 : la page d'erreur, pour tous les sites qui « n'existent pas ». -->
+
+<div id="onglets">
+	<div class="onglet">
+		<span class="favicon" style="background:#ddd;color:#777">&#9675;</span>
+		<span class="onglet-titre">Page Web non disponible</span>
+		<span class="onglet-fermer">×</span>
+	</div>
+	<a class="onglet-nouveau" href="nouvel-onglet.html" title="Nouvel onglet"></a>
+</div>
+
+<div id="barre">
+	<button onclick="history.back()" title="Page précédente">&#8592;</button>
+	<button onclick="history.forward()" title="Page suivante">&#8594;</button>
+	<button onclick="location.reload()" title="Actualiser">&#8635;</button>
+	<div class="adresse"><span id="site-adresse"></span></div>
+	<span class="etoile">&#9734;</span>
+	<a class="bouton" href="historique.html" title="Historique">&#9776;</a>
+</div>
+
+<main id="vue">
+	<div class="erreur-chrome">
+		<div class="erreur-icone">:(</div>
+		<h1>Cette page Web n'est pas disponible</h1>
+		<p>Le serveur de <b id="site"></b> est introuvable, car la résolution DNS a échoué.</p>
+		<p class="code">ERR_NAME_NOT_RESOLVED</p>
+	</div>
+
+<script>
+// le nom du site est dans l'adresse de la page : erreur.html?site=forum-maison.fr
+const site = new URLSearchParams(location.search).get("site") || "ce site";
+document.getElementById("site").textContent = site;
+document.getElementById("site-adresse").textContent = site;
+</script>
+</main>
+
+</body>
+</html>

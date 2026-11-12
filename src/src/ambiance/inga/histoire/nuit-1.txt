@@ -1,0 +1,300 @@
+// =========================================================
+// NUIT 1
+// Inga n'a rien mangé depuis des semaines. Le chat non plus.
+//
+// Pour finir la nuit, il faut :
+//   - nourrir le chat et trouver la lettre        → lettre
+//   - écrire le log sur le PC 2                    → vu log-04
+//   - aller au bout de l'espace membres setite     → vu vermine-fin
+//
+// La syntaxe est expliquée dans LISEZMOI.md. Le plus important :
+//   Inga : …              Inga parle
+//   Inga (dégoûtée) : …   avec le sprite dégoûté
+//   * …                   de la narration
+//   --- ensuite ---       sépare le premier clic des clics suivants
+//   [donne taie]          Inga obtient le drapeau « taie »
+//   Si plusieurs versions d'un même bloc sont possibles, c'est la plus BASSE dans le fichier qui est jouée.
+// =========================================================
+
+
+== début ==
+[pièce chambre]
+
+
+// =========================================================
+// LA CHAMBRE
+// =========================================================
+
+== fenetre ==
+Inga : La porte. Enfin, ce qu'on en devine derrière la pile.
+Inga : Ça fait si longtemps que je suis pas sortie que les fringues ont formé une sorte de barrière. Ça, et l'armoire que j'ai déplacée devant pour la coincer.
+Inga : Le carton sur la fenêtre date de… 2008 ? 2009 ? Le scotch a jauni, le carton a gondolé.
+Inga : Je devrais probablement sortir bientôt. Tout est quasiment mort ici, et la faim commence à me déchirer le crâne.
+Inga : … Bon. Pas ce soir.
+--- ensuite ---
+Inga : Pas ce soir.
+--- ensuite ---
+Inga : Non.
+
+
+== chaise ==
+Inga : Ma chaise. Achetée avec l'argent de l'héritage, quand j'ai emménagé.
+Inga : Mes parents m'ont laissé une maison vide, des dettes, et un carton de manuscrits que personne voulait lire.
+Inga : J'ai gardé le carton. J'ai acheté une chaise. Grosse journée.
+Inga : Je m'assois jamais dessus et personne vient ici pour l'utiliser, alors elle sert de stockage.
+--- ensuite ---
+Inga : Si tu es le genre d'objet avec une conscience, je suis désolée pour toi.
+
+
+== poster ==
+[image https://i.postimg.cc/C5LqKScr/image.png]
+Inga : Le dernier poster survivant. Les autres ont moisi un par un, comme dans un slasher pour papier.
+Inga : Quelqu'un me l'a filé la dernière fois que je suis sortie.
+Inga : C'est un rare cadeau qui ne m'a pas été fait pour se moquer de moi.
+Inga : Je l'ai accroché près de la fenêtre. C'est l'endroit le plus sec de l'appart. C'est là que je mets les trucs que je veux garder.
+Inga : Y en a pas beaucoup.
+--- ensuite ---
+[image https://i.postimg.cc/C5LqKScr/image.png]
+Inga : 2012. Une bonne année. Pour les posters.
+--- ensuite ---
+[image https://i.postimg.cc/C5LqKScr/image.png]
+Inga : Je devrais peut-être réfléchir à un cadeau en retour.
+
+
+// =========================================================
+// LE BUREAU
+// =========================================================
+
+== code ==
+Inga : La demande d'archivage. Encore.
+Inga : Ils veulent que je stocke les données des archives. Des copies de copies réparties sur trois serveurs, avec chacun deux sauvegardes et un disque dur dans un coffre, au cas où.
+Inga : Je sais pas pour qui ça reste un secret à la fin, mais si Il le demande, c'est que ce sera utile plus tard.
+Inga : J'ai vraiment pas envie de m'y mettre.
+--- ensuite ---
+Inga : Ça peut attendre encore quelques mois.
+--- ensuite ---
+Inga : Demain. Peut-être.
+
+
+== travail ==
+Inga : Il y a une pile de papier sur laquelle je travaille depuis un moment. J'arrive à rien.
+Inga : Les choses fonctionnent mieux en système de trois, mais je ne crois pas non plus au principe d'alchimie. Il y a quelque chose d'autre.
+Inga : Nous avons trop évolué pour ne pas impliquer la machine dans le concept même du monde. L'idée de quelque chose qui suit un but, et qui cherche à briser les limites sans les comprendre.
+Inga : Je me demande si Il pourrait m'aider.
+Inga : … Le jour où Il viendra me voir.
+--- ensuite ---
+Inga : Pas maintenant.
+--- ensuite ---
+Inga : Trois. Pourquoi toujours trois.
+
+
+== oreillers ==
+Inga : Mon lit. Enfin, mon tas d'oreillers. La moitié vient de l'Élysium.
+Inga : Certains ont été volés, la majorité, c'est Nebetta qui me les a gentiment donnés après ma visite.
+Inga : Qu'elle est gentille, et puis, ça n'a rien à voir avec le fait qu'elle ne voulait pas garder quelque chose que j'ai touché.
+Inga : Mine de rien, ils sentent encore l'encens et le parfum de riche. Ça couvre un peu le reste.
+Inga : Faudrait que je m'achète un vrai lit. Mais il faudrait qu'un livreur monte, qu'il voie l'appart, qu'il voie ma tête. Non merci.
+--- ensuite ---
+Inga : Plus tard, la torpeur.
+--- ensuite ---
+Inga : Je peux tenir encore un peu.
+
+
+// =========================================================
+// LA QUÊTE DU CHAT, dans l'ordre où elle se joue
+//   1. le chat (chambre) : il a faim                         → chat_vu
+//   2. le tas (bureau) : à mains nues, impossible
+//   3. les oreillers (bureau) : une taie, pour faire un sac  → taie
+//   4. le tas : un rat, puis un deuxième                      → rat1, puis rats
+//   5. le chat : un rat pour lui, un pour elle, la lettre     → lettre
+// =========================================================
+
+== chat ==
+[image https://i.postimg.cc/yx3hXVzt/image.png]
+Inga : Le chat blanc. T'es toujours en vie, toi ?
+Inga : Tu me regardes comme si j'allais te bouffer. Vu le contexte, c'est une lecture assez lucide de la situation.
+Inga : Il a faim. Moi aussi. J'ai rien à lui donner.
+Inga : Faudrait trouver un truc. N'importe quoi qui bouge encore dans cet appart.
+[donne chat_vu]
+--- ensuite ---
+[image https://i.postimg.cc/yx3hXVzt/image.png]
+Inga : Il veut pas sortir. Je le comprends.
+--- ensuite ---
+[image https://i.postimg.cc/yx3hXVzt/image.png]
+Inga : Psst. Le chat. … Ouais, non. Il viendra pas.
+
+
+// tant qu'elle n'a pas vu que le chat a faim, Inga n'a aucune raison d'y plonger les bras
+== tas ==
+Inga (dégoûtée) : Je suis à peu près sûre qu'il y a des boîtes de 2009 là-dessous.
+Inga (dégoûtée) : Ça couine, aussi. Faiblement. Comme si le tas avait un avis sur la question.
+Inga (dégoûtée) : J'ai pas envie d'y mettre les bras. Même morte, j'ai des limites.
+--- ensuite ---
+Inga (dégoûtée) : Ça couine toujours.
+--- ensuite ---
+Inga (dégoûtée) : Non.
+
+
+== tas si chat_vu ==
+Inga : Allez. Pour le chat.
+* Elle plonge le bras dans le tas. Un truc lui file entre les doigts. Puis un deuxième.
+Inga : Ils sont rapides, ces cons.
+Inga : À mains nues, j'y arriverai jamais. Faudrait un sac. Un piège. Un truc.
+--- ensuite ---
+Inga : Il me faut un sac.
+--- ensuite ---
+Inga : Pas à mains nues. Pas deux fois.
+
+
+== oreillers si chat_vu, pas taie ==
+* Elle tire une taie de sous les oreillers et la secoue.
+Inga : Nebetta a payé une fortune pour que ça finisse en sac à rats.
+Inga : Ça me fait plaisir d'une façon que je vais pas analyser.
+[donne taie]
+
+
+== tas si taie ==
+* Elle enfonce la taie dans le tas et la referme d'un coup.
+Inga : … Un.
+Inga : Il gigote. Encore un et c'est bon.
+[donne rat1]
+
+
+== tas si rat1 ==
+* Elle recommence. La taie se tortille un peu plus.
+Inga : Deux. Un pour lui, un pour moi.
+Inga : Sûrement les derniers de l'appart. Après eux, plus rien couinera ici. Même pas moi.
+Inga (dégoûtée) : Ils sentent le linge mouillé et la poubelle. Je vais pas réfléchir à ce qu'ils ont mangé.
+[donne rats]
+
+
+== tas si rats ==
+Inga : Plus rien couine là-dedans.
+--- ensuite ---
+Inga : Silence radio.
+--- ensuite ---
+Inga : Faudrait faire le ménage. Un jour.
+
+
+== chat si rats ==
+Inga : Viens. Doucement. Celui-là est pour toi.
+* Le chat hésite. Puis il mord.
+Inga : … Bien.
+Inga (dégoûtée) : Et celui-là, c'est pour moi.
+Inga (dégoûtée) : C'est immonde. Le goût est de plus en plus fade, presque comme boire de l'eau croupie.
+Inga : Plus de rats, plus qu'un seul chat, et personne est venu ici depuis des lustres.
+Inga : Faudra que je me débrouille pour en trouver d'autres. Pour sortir, surtout.
+Inga : Peut-être que je pourrais Le voir. Peut-être qu'Il viendrait à ma rencontre.
+Inga (dégoûtée) : Mais non. Il préfère aller voir les autres… sous prétexte qu'ils sont amis.
+Inga : Je lui suis utile. C'est censé être mieux. Tellement mieux.
+Inga : . . .
+* Ça remue sous la pile de linge.
+Inga : . . . ?
+* Le chat sort enfin de sa cachette, laissant une carcasse derrière lui. Il y a quelque chose de coincé là-dessous.
+Inga : … Une lettre ?
+[document histoire/lettre-deaddogs.txt]
+[donne lettre]
+
+
+// la lettre, quand on revient voir le chat
+== chat si lettre ==
+[document histoire/lettre-deaddogs.txt]
+
+
+// =========================================================
+// LES ORDINATEURS
+//   == pc1 ==             ce qu'Inga dit en éteignant le PC 1
+//   == vu baron ==        la première fois que la page baron.html s'affiche sur un PC
+// =========================================================
+
+== pc1 ==
+Inga : Ça fait un moment que j'ai pas eu de problème informatique à régler pour les autres.
+Inga : Personne a cliqué sur une pièce jointe louche et mis en ligne ses brisures de Mascarade. Personne m'a demandé de pirater son ex.
+Inga : Soit la ville est devenue adulte, soit elle a trouvé quelqu'un d'autre. Je me demande lequel des deux autres s'y colle.
+Inga : Hm. Ça arrange mes affaires, en soi.
+--- ensuite ---
+Inga : Encore une partie. Une seule.
+--- ensuite ---
+Inga : Faudrait nourrir le chat.
+
+
+== pc2 ==
+Inga : L'autre machine. Branchée sur rien. Pas de réseau, pas de wifi, rien.
+Inga : La seule chose dans cet appart que la Camarilla pourra jamais lire. Je suis pas conne, je sais qu'ils peuvent savoir pour le reste.
+Inga : Façon de parler.
+--- ensuite ---
+Inga : Je laisse pas ces fichiers ouverts trop longtemps.
+--- ensuite ---
+Inga : Débranchée. Comme il faut.
+
+
+// PC 1 : le dossier Anarch (sa première page est baron.html)
+== vu baron ==
+Inga : Le blog des Anarchs. De ce que j'en tire, c'est leur cinquième.
+Inga : Ils vivent comme s'ils étaient encore humains, comme si de rien n'était.
+Inga : Et entre deux engueulades, un truc comme ça : des infos sur le Sabbat, la mort de gens dont on a jamais entendu parler.
+Inga : Ils voient des trucs que la Cour verra jamais.
+Inga : Ils savent pas que je les lis. Ou ils savent, et ils s'en foutent. Je sais pas ce qui est le plus vexant.
+
+
+// PC 1 : quand on écrit « zacharias » dans la conversation Steam (pc/steam-chat.html)
+== vu steam-zacharias ==
+Inga : Il râle, mais il n'a bloqué que quatre de mes cinq comptes…
+Inga : Je devrais pouvoir récupérer ce que je cherche bientôt, s'il reste aussi peu méfiant.
+Inga : Reste à savoir ce que lui cherche, en continuant à me répondre.
+Inga : … Ou il répond juste parce que personne d'autre lui écrit non plus.
+
+
+// PC 1 : la fin de l'espace membres setite (vermine.exe)
+== vu vermine-fin ==
+Inga (dégoûtée) : Un humain m'a filé une clé USB avec ce truc dessus. Il avait l'air fier de lui.
+Inga (dégoûtée) : C'est nul à chier. Les Setites recrutent avec un site codé en 2001 par un prof de yoga.
+Inga (dégoûtée) : Et le pire, c'est que ça marche. Les gens veulent tellement qu'on leur dise que leurs désirs sont une forme de liberté.
+Inga : Pas moyen de remonter à celui qui l'a fait. Pistes brouillées, proxys, tout le tralala. Presque respectable.
+Inga : Mais il a quand même laissé une <div> soup. Personne d'aussi prudent code aussi mal par accident. Le côté moche, c'est voulu. Ça fait « accessible ».
+Inga : … Ça fait aussi un peu 2004. Presque nostalgique.
+
+
+// PC 2 : le log, avant d'avoir lu la lettre (le fichier est vide)
+== vu log-vide ==
+Inga : Les logs. Ils servent à pas mal de choses, mais c'est surtout un moyen pour les autres de savoir qu'on est pas mort.
+Inga : Quand on fait notre boulot, ça peut arriver à n'importe quel moment.
+Inga : Dernier log : il y a plus d'un an. Avant, c'était toutes les semaines.
+Inga : Ils m'écrivent encore. Pas souvent. Une lettre tous les six mois, glissée sous la porte, que je trouve trois mois plus tard sous un carton.
+Inga : C'est pas grave. Ils sont occupés. Moi aussi.
+Inga : … Enfin. Je crois.
+
+
+// PC 2 : le log, une fois la lettre lue (Inga l'écrit)
+== vu log-04 ==
+Inga : Les logs. Ils servent à pas mal de choses, mais c'est surtout un moyen pour les autres de savoir qu'on est pas mort.
+Inga : Quand on fait notre boulot, ça peut arriver à n'importe quel moment.
+Inga : Dernier log : il y a plus d'un an. Avant, c'était toutes les semaines.
+Inga : Ils m'écrivent encore. Pas souvent. Une lettre tous les six mois, glissée sous la porte, que je trouve trois mois plus tard sous un carton.
+Inga : C'est pas grave. Ils sont occupés. Moi aussi.
+Inga : … Enfin. Je crois.
+* Elle tape le log d'une traite, sans se relire.
+Inga : Voilà. DUMBF0UNDED est en vie.
+Inga : Trois lignes, une date. Et quelque part, quatre personnes vont se dire « ah, elle est pas morte » avant de retourner à leur vie.
+Inga : Rendez-vous dans un an.
+
+// la même chose, si elle a déjà dit tout ça en ouvrant le log vide
+== vu log-04 si vu log-vide ==
+* Elle tape le log d'une traite, sans se relire.
+Inga : Voilà. DUMBF0UNDED est en vie.
+Inga : Trois lignes, une date. Et quelque part, quatre personnes vont se dire « ah, elle est pas morte » avant de retourner à leur vie.
+Inga : Rendez-vous dans un an.
+
+
+// =========================================================
+// LA FIN DE LA NUIT : se joue toute seule dès que les trois conditions sont remplies
+// =========================================================
+
+== fin de nuit si lettre, vu log-04, vu vermine-fin ==
+[pièce chambre]
+* La lumière passe sous le carton de la fenêtre. Faible, lointaine, mais présente tout de même.
+Inga : Il doit bien être sept heures, et j'ai trop repoussé la torpeur.
+Inga : Mes paupières pèsent des tonnes.
+Inga : J'ai rien fait aujourd'hui encore, et je pense pas faire plus demain.
+* La torpeur la prend avant qu'elle atteigne les oreillers. Elle s'effondre sur le sol.
+[nuit suivante]

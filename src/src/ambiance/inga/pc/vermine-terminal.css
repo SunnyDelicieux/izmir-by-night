@@ -1,0 +1,180 @@
+/* =========================
+   L'ESPACE MEMBRES DE VERMINE.EXE (vermine-cercle.html et vermine-fin.html)
+   Un vieux terminal un peu cheap : texte vert phosphore, lignes de balayage.
+   ========================= */
+
+* { box-sizing: border-box; }
+
+:root {
+    --vert: #8fdc8a;        /* le texte de la voix */
+    --vert-pale: #4f7a4c;   /* les détails : invites, bordures */
+    --ambre: #e3c46a;       /* les révélations */
+    --fond: #050805;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: var(--fond);
+    color: var(--vert);
+    font: 15px/1.55 "Lucida Console", "Courier New", monospace;
+    text-shadow: 0 0 4px rgba(143, 220, 138, .35);
+}
+
+/* lignes de balayage et bords assombris, par-dessus tout */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, .55) 100%),
+        repeating-linear-gradient(to bottom, rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+a.retour {
+    color: var(--vert-pale);
+    text-decoration: none;
+}
+
+a.retour:hover {
+    color: var(--vert);
+}
+
+/* la barre de titre */
+header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    background: #0d140d;
+    border-bottom: 1px solid #1d2e1c;
+    color: var(--vert-pale);
+    font-size: 12px;
+    text-shadow: none;
+}
+
+header .points span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border: 1px solid var(--vert-pale);
+}
+
+header .retour {
+    margin-left: auto;
+}
+
+
+/* ===== la conversation (vermine-cercle.html) ===== */
+
+#fil {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 22px;
+}
+
+#serpent {
+    margin: 0 0 6px;
+    color: var(--vert-pale);
+    font-size: 12px;
+    line-height: 1.15;
+}
+
+.ligne {
+    margin: 0 0 10px;
+    white-space: pre-wrap;
+}
+
+.ligne.voix::before {
+    content: "> ";
+    color: var(--vert-pale);
+}
+
+.ligne.toi {
+    color: #b9c9b6;
+    text-shadow: none;
+}
+
+.ligne.toi::before {
+    content: "[toi]$ ";
+    color: var(--vert-pale);
+}
+
+.ligne.revelation {
+    margin: 16px 0;
+    color: var(--ambre);
+    text-shadow: 0 0 8px rgba(227, 196, 106, .55);
+}
+
+.ligne.revelation::before {
+    content: ":: ";
+    color: #8a7638;
+}
+
+#choix {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #1d2e1c;
+}
+
+#choix button {
+    padding: 3px 8px;
+    background: none;
+    border: none;
+    color: var(--vert);
+    font: inherit;
+    text-shadow: inherit;
+    cursor: pointer;
+}
+
+#choix button .touche {
+    margin-right: 8px;
+    color: var(--vert-pale);
+}
+
+#choix button:hover {
+    background: var(--vert);
+    color: var(--fond);
+    text-shadow: none;
+}
+
+
+/* ===== l'œil (vermine-fin.html) ===== */
+
+#oeil {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--ambre);
+    text-shadow: 0 0 8px rgba(227, 196, 106, .55);
+    animation: apparition 1.5s ease-out;
+}
+
+#oeil pre {
+    margin: 0;
+    line-height: 1.15;
+}
+
+@keyframes apparition {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

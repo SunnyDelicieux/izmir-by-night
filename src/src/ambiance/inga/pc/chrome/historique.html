@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
+<title>Historique</title>
+<link rel="stylesheet" href="chrome.css">
+</head>
+<body>
+
+<!-- CHROME, sur le PC 1 : l'historique d'Inga. Une visite = un <div class="visite"> (l'heure, l'icône, le lien, le site). -->
+
+<div id="onglets">
+	<div class="onglet">
+		<span class="favicon" style="background:#9e9e9e;color:#fff">&#9679;</span>
+		<span class="onglet-titre">Historique</span>
+		<span class="onglet-fermer">×</span>
+	</div>
+	<a class="onglet-nouveau" href="nouvel-onglet.html" title="Nouvel onglet"></a>
+</div>
+
+<div id="barre">
+	<button onclick="history.back()" title="Page précédente">&#8592;</button>
+	<button onclick="history.forward()" title="Page suivante">&#8594;</button>
+	<button onclick="location.reload()" title="Actualiser">&#8635;</button>
+	<div class="adresse">chrome://history</div>
+	<span class="etoile">&#9734;</span>
+	<a class="bouton" href="historique.html" title="Historique">&#9776;</a>
+</div>
+
+<main id="vue">
+	<div class="historique">
+		<h1>Historique</h1>
+
+	<div class="jour">
+		<h3>Aujourd'hui</h3>
+		<div class="visite">
+			<span class="heure">05:02</span>
+			<span class="favicon" style="background:#17296f;color:#8fb3ff">e</span>
+			<a href="egechan.html">/izm/ - egechan</a>
+			<span class="domaine">ege-chan.org</span>
+		</div>
+		<div class="visite">
+			<span class="heure">04:47</span>
+			<span class="favicon" style="background:#fff;color:#4285f4">g</span>
+			<a href="recherche-rat.html">attraper un rat sans piège - Recherche Google</a>
+			<span class="domaine">www.google.fr</span>
+		</div>
+		<div class="visite">
+			<span class="heure">04:40</span>
+			<span class="favicon" style="background:#17296f;color:#8fb3ff">e</span>
+			<a href="egechan.html">/izm/ - egechan</a>
+			<span class="domaine">ege-chan.org</span>
+		</div>
+	</div>
+
+	<div class="jour">
+		<h3>Hier</h3>
+		<div class="visite">
+			<span class="heure">06:31</span>
+			<span class="favicon" style="background:#fff;color:#4285f4">g</span>
+			<a href="recherche-chat.html">chat ne mange plus se cache - Recherche Google</a>
+			<span class="domaine">www.google.fr</span>
+		</div>
+		<div class="visite">
+			<span class="heure">05:40</span>
+			<span class="favicon" style="background:#17296f;color:#8fb3ff">e</span>
+			<a href="egechan.html">/izm/ - egechan</a>
+			<span class="domaine">ege-chan.org</span>
+		</div>
+	</div>
+
+	<div class="jour">
+		<h3>Il y a 3 jours</h3>
+		<div class="visite">
+			<span class="heure">02:20</span>
+			<span class="favicon" style="background:#fff;color:#4285f4">g</span>
+			<a href="recherche-sortir.html">combien de temps sans sortir de chez soi - Recherche Google</a>
+			<span class="domaine">www.google.fr</span>
+		</div>
+		<div class="visite">
+			<span class="heure">01:48</span>
+			<span class="favicon" style="background:#17296f;color:#8fb3ff">e</span>
+			<a href="egechan.html">/izm/ - egechan</a>
+			<span class="domaine">ege-chan.org</span>
+		</div>
+	</div>
+
+	<div class="jour">
+		<h3>Il y a 6 jours</h3>
+		<div class="visite">
+			<span class="heure">23:58</span>
+			<span class="favicon" style="background:#17296f;color:#8fb3ff">e</span>
+			<a href="egechan.html">/izm/ - egechan</a>
+			<span class="domaine">ege-chan.org</span>
+		</div>
+	</div>
+	</div>
+</main>
+
+</body>
+</html>
