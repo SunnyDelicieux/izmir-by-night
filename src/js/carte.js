@@ -108,23 +108,17 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
 // ─────────── 2. les deux niveaux : la région et Izmir ───────────
 (function () {
   const vues = [...document.querySelectorAll(".carte-vue")];
-  const onglets = [
-    ...document.querySelectorAll(".carte-niveaux [data-niveau]"),
-  ];
+  const onglets = [...document.querySelectorAll(".carte-niveaux [data-niveau]")];
   if (vues.length < 2) return;
 
   const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const niveauDeLAdresse = () =>
-    location.hash === "#izmir" ? "izmir" : "region";
+  const niveauDeLAdresse = () => (location.hash === "#izmir" ? "izmir" : "region");
 
   // affiche un niveau et cache l'autre
   function montrer(niveau) {
     for (const vue of vues) vue.hidden = vue.dataset.niveau !== niveau;
-    for (const onglet of onglets)
-      onglet.classList.toggle("actif", onglet.dataset.niveau === niveau);
-    // un niveau n'a pas forcément de carte-image (celui d'Izmir est une Google My Map)
+    for (const onglet of onglets) onglet.classList.toggle("actif", onglet.dataset.niveau === niveau);
     const cadre = vues.find((vue) => !vue.hidden).querySelector(".carte-cadre");
-    if (!cadre) return;
     cadre.dispatchEvent(new Event("carte:montree"));
     if (!calme) {
       cadre.classList.add("arrive");
@@ -136,11 +130,7 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
   function aller(niveau) {
     if (niveau === niveauDeLAdresse()) return montrer(niveau);
     // history.pushState ne fait pas défiler la page vers la carte, contrairement à location.hash
-    history.pushState(
-      null,
-      "",
-      niveau === "izmir" ? "#izmir" : location.pathname + location.search,
-    );
+    history.pushState(null, "", niveau === "izmir" ? "#izmir" : location.pathname + location.search);
     montrer(niveau);
   }
 
@@ -166,9 +156,7 @@ document.querySelectorAll(".carte-cadre").forEach((cadre) => {
   // la case « les zones d'influence »
   const caseZones = document.getElementById("voir-zones");
   caseZones?.addEventListener("change", () => {
-    caseZones
-      .closest(".carte-vue")
-      .classList.toggle("sans-zones", !caseZones.checked);
+    caseZones.closest(".carte-vue").classList.toggle("sans-zones", !caseZones.checked);
   });
 
   addEventListener("popstate", () => montrer(niveauDeLAdresse()));

@@ -4,35 +4,12 @@ layout: wiki.njk
 css: [/espace-joueur/compte.css, /css/cartes.css, /css/plan.css]
 js: [/espace-joueur/lecteur.js, /js/carte.js]
 ---
-
-{#- La carte, sur deux niveaux : la région, puis Izmir quand on clique sur la
-ville. La région : les triangles sont dans src/_data/origines.yaml, les points
-sont écrits plus bas. Izmir : une Google My Map (les lieux et les zones se
-dessinent dans la carte, côté Google) ; les rencontres et la liste des lieux
-viennent de src/_data/carte_izmir.yaml. Le passage d'un niveau à l'autre est
-dans src/js/carte.js ; le style dans src/css/plan.css. L'adresse
-/univers/map/#izmir ouvre directement la carte d'Izmir. -#}
-
-<style>
-  /* la Google My Map : un cadre qui garde ses proportions et remplit la largeur */
-  .carte-embed {
-    aspect-ratio: 21 / 17;
-    border: 1px solid var(--iz-border-strong);
-    border-radius: var(--iz-radius);
-    overflow: hidden;
-    background: var(--iz-sunken);
-  }
-  .carte-embed iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-  .carte-embed-lien {
-    margin: 6px 0 0;
-    font-size: 14px;
-  }
-</style>
+{#- La carte, sur deux niveaux : la région, puis Izmir quand on clique sur la ville.
+      La région : les triangles sont dans src/_data/origines.yaml, les points sont écrits plus bas.
+      Izmir     : tout est dans src/_data/carte_izmir.yaml (image, rencontres, lieux, zones).
+    Le zoom, le glisser et le passage d'un niveau à l'autre sont dans src/js/carte.js ; le style dans src/css/plan.css.
+    L'adresse /univers/map/#izmir ouvre directement la carte d'Izmir. -#}
+{%- set b = carte_izmir.bords %}
 
 <div id="contents">
   <!-- les deux onglets -->
@@ -44,77 +21,76 @@ dans src/js/carte.js ; le style dans src/css/plan.css. L'adresse
   <!-- ══════════ NIVEAU 1 : LA RÉGION ══════════ -->
   <section class="carte-vue" data-niveau="region">
     <div class="carte-boite">
-      <div class="carte-cadre">
-        <div class="carte">
-          <img
-            src="/img/map.webp"
-            alt="Carte de la Méditerranée et du Moyen-Orient"
-          />
+    <div class="carte-cadre">
+      <div class="carte">
+        <img
+          src="/img/map.webp"
+          alt="Carte de la Méditerranée et du Moyen-Orient"
+        />
 
-          <!-- les triangles : d'où viennent les personnages -->
-          {% for o in origines %} {% set haut = ((52.93 - o.lat) / 35.2 * 100) |
-          round(2) %}
+        <!-- les triangles : d'où viennent les personnages -->
+        {% for o in origines %} {% set haut = ((52.93 - o.lat) / 35.2 * 100) |
+        round(2) %}
+        <div
+          class="lieu origine"
+          tabindex="0"
+          style="left: {{ ((o.lon + 13.07) / 104 * 100) | round(2) }}%; top: {{ haut }}%"
+        >
           <div
-            class="lieu origine"
-            tabindex="0"
-            style="left: {{ ((o.lon + 13.07) / 104 * 100) | round(2) }}%; top: {{ haut }}%"
+            class="{{ 'large' if o.personnages | length > 6 }} {{ 'vers-le-haut' if haut > 75 }}"
           >
-            <div
-              class="{{ 'large' if o.personnages | length > 6 }} {{ 'vers-le-haut' if haut > 75 }}"
-            >
-              <b>{{ o.lieu }}</b>
-              {% for id in o.personnages %}{% set carte = id |
-              carteDe(liste_personnages) %}{% include "carte-personnage.njk"
-              %}{% endfor %}
-            </div>
+            <b>{{ o.lieu }}</b>
+            {% for id in o.personnages %}{% set carte = id |
+            carteDe(liste_personnages) %}{% include "carte-personnage.njk" %}{%
+            endfor %}
           </div>
-          {% endfor %}
-
-          <a
-            class="lieu vers-izmir"
-            href="#izmir"
-            style="left: 38.7%; top: 41.2%"
-            ><span>Izmir : entrer dans la ville</span></a
-          >
-          <a
-            class="lieu"
-            href="/univers/istanbul/"
-            style="left: 40.4%; top: 33.9%"
-            ><span>Istanbul</span></a
-          >
-          <span class="lieu" tabindex="0" style="left: 35.4%; top: 42.5%"
-            ><span>Athènes</span></span
-          >
-          <span class="lieu" tabindex="0" style="left: 42.6%; top: 65%"
-            ><span>Le Caire</span></span
-          >
-          <a
-            class="lieu"
-            href="/ambiance/factions/cache/iasy.pdf"
-            style="left: 78.2%; top: 27.4%"
-            onclick="
-              event.preventDefault();
-              izmirLecteur.open({ title: 'Iasy', url: this.href, kind: 'pdf' });
-            "
-            ><span>Iasy</span></a
-          >
-          <span class="lieu" tabindex="0" style="left: 7.8%; top: 53.7%"
-            ><span>Fès</span></span
-          >
-          <span class="lieu" tabindex="0" style="left: 8%; top: 42.8%"
-            ><span>Cordoue</span></span
-          >
-          <span class="lieu" tabindex="0" style="left: 28.3%; top: 13.4%"
-            ><span>Vienne</span></span
-          >
-          <span class="lieu" tabindex="0" style="left: 44.2%; top: 36.9%"
-            ><span>Ankara</span></span
-          >
-          <span class="lieu" tabindex="0" style="left: 58.3%; top: 35.6%"
-            ><span>Azerbaïdjan</span></span
-          >
         </div>
+        {% endfor %}
+
+        <!-- les points : les lieux de la chronique -->
+        <!-- Izmir : ce point ouvre la carte de la ville -->
+        <a class="lieu vers-izmir" href="#izmir" style="left: 38.7%; top: 41.2%"
+          ><span>Izmir : entrer dans la ville</span></a
+        >
+        <a
+          class="lieu"
+          href="/univers/istanbul/"
+          style="left: 40.4%; top: 33.9%"
+          ><span>Istanbul</span></a
+        >
+        <span class="lieu" tabindex="0" style="left: 35.4%; top: 42.5%"
+          ><span>Athènes</span></span
+        >
+        <span class="lieu" tabindex="0" style="left: 42.6%; top: 65%"
+          ><span>Le Caire</span></span
+        >
+        <a
+          class="lieu"
+          href="/ambiance/factions/cache/iasy.pdf"
+          style="left: 78.2%; top: 27.4%"
+          onclick="
+            event.preventDefault();
+            izmirLecteur.open({ title: 'Iasy', url: this.href, kind: 'pdf' });
+          "
+          ><span>Iasy</span></a
+        >
+        <span class="lieu" tabindex="0" style="left: 7.8%; top: 53.7%"
+          ><span>Fès</span></span
+        >
+        <span class="lieu" tabindex="0" style="left: 8%; top: 42.8%"
+          ><span>Cordoue</span></span
+        >
+        <span class="lieu" tabindex="0" style="left: 28.3%; top: 13.4%"
+          ><span>Vienne</span></span
+        >
+        <span class="lieu" tabindex="0" style="left: 44.2%; top: 36.9%"
+          ><span>Ankara</span></span
+        >
+        <span class="lieu" tabindex="0" style="left: 58.3%; top: 35.6%"
+          ><span>Azerbaïdjan</span></span
+        >
       </div>
+    </div>
     </div>
 
     <p class="carte-legende">
@@ -129,27 +105,77 @@ dans src/js/carte.js ; le style dans src/css/plan.css. L'adresse
   <section class="carte-vue" data-niveau="izmir" hidden>
     <!-- un titre invisible : la recherche du site s'en sert pour ouvrir directement la carte d'Izmir -->
     <h2 id="izmir" class="carte-titre-cache">Izmir</h2>
+    <div class="carte-boite">
+    <div class="carte-cadre">
+      <div class="carte">
+        <img src="{{ carte_izmir.image }}" alt="Carte d'Izmir et de son golfe" />
 
-    <!-- la carte d'Izmir : la Google My Map. Les lieux et les zones d'influence se
-         dessinent DANS la carte, sur Google (My Maps → modifier). -->
-    <div class="carte-embed">
-      <iframe
-        src="https://www.google.com/maps/d/embed?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA&ehbc=2E312F&noprof=1"
-        title="Carte d'Izmir"
-        loading="lazy"
-        allowfullscreen
-      ></iframe>
+        <!-- les zones d'influence : un dessin posé sur l'image, de 0 à 100 dans les deux sens -->
+        <svg
+          class="carte-zones"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {%- for z in carte_izmir.zones %}
+          <polygon
+            style="--couleur: {{ z.couleur }}"
+            points="{% for p in z.points %}{{ ((p[1] - b.ouest) / (b.est - b.ouest) * 100) | round(2) }},{{ ((b.nord - p[0]) / (b.nord - b.sud) * 100) | round(2) }} {% endfor %}"
+          />
+          {%- endfor %}
+        </svg>
+
+        <!-- le nom de chaque zone : juste au-dessus de son point le plus au nord, au milieu de sa largeur -->
+        {%- for z in carte_izmir.zones %}
+        {%- set n = z.points | length %}
+        {%- set lat = (z.points | sort(true, false, "0") | first)[0] %}
+        {%- set lon = (z.points | sum("1")) / n %}
+        <span
+          class="zone-nom"
+          style="left: {{ ((lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ ((b.nord - lat) / (b.nord - b.sud) * 100) | round(2) }}%; --couleur: {{ z.couleur }}"
+          >{{ z.nom }}</span
+        >
+        {%- endfor %}
+
+        <!-- les lieux -->
+        {%- for l in carte_izmir.lieux %}
+        {%- set haut = ((b.nord - l.lat) / (b.nord - b.sud) * 100) | round(2) %}
+        <div
+          class="lieu endroit"
+          tabindex="0"
+          style="left: {{ ((l.lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ haut }}%"
+        >
+          <div class="{{ 'vers-le-haut' if haut > 55 }}">
+            <b>{{ l.nom }}</b>
+            {%- if l.texte %}
+            <p>{{ l.texte }}</p>
+            {%- endif %}
+            {%- for id in l.personnages %}{% set carte = id |
+            carteDe(liste_personnages) %}{% include "carte-personnage.njk" %}{%
+            endfor %}
+            {%- if l.lien %}
+            <a class="suite" href="{{ l.lien }}"
+              >{{ l.lien_texte or "En savoir plus" }} →</a
+            >
+            {%- endif %}
+          </div>
+        </div>
+        {%- endfor %}
+
+        <!-- les rencontres qui ont des coordonnées -->
+        {%- for r in carte_izmir.rencontres %}{% if r.lat and r.lon %}
+        <a
+          class="lieu porte"
+          href="{{ r.lien }}"
+          style="left: {{ ((r.lon - b.ouest) / (b.est - b.ouest) * 100) | round(2) }}%; top: {{ ((b.nord - r.lat) / (b.nord - b.sud) * 100) | round(2) }}%; background-image: url('{{ r.icone }}')"
+          ><span>{{ r.nom }} · {{ r.qui }}</span></a
+        >
+        {%- endif %}{% endfor %}
+      </div>
     </div>
-    <p class="carte-embed-lien">
-      <a
-        href="https://www.google.com/maps/d/viewer?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA"
-        target="_blank"
-        rel="noopener"
-        >Ouvrir la carte en grand ↗</a
-      >
-    </p>
+    </div>
 
-    <!-- les rencontres : les pages d'ambiance, en boutons -->
+    <!-- les rencontres, toujours là, en bas de la carte -->
     <nav class="carte-portes" aria-label="Les rencontres">
       {%- for r in carte_izmir.rencontres %}
       <a href="{{ r.lien }}">
@@ -159,16 +185,36 @@ dans src/js/carte.js ; le style dans src/css/plan.css. L'adresse
       {%- endfor %}
     </nav>
 
+    <div class="carte-legende">
+      <label class="carte-option"
+        ><input type="checkbox" id="voir-zones" checked /> les zones
+        d'influence</label
+      >
+      {%- for z in carte_izmir.zones %}
+      <span class="zone-legende"
+        ><span class="puce" style="background: {{ z.couleur }}"></span>
+        {%- if z.lien %}<a href="{{ z.lien }}">{{ z.nom }}</a>{% else %}{{ z.nom
+        }}{% endif %}{% if z.qui %} — {{ z.qui }}{% endif %}</span
+      >
+      {%- endfor %}
+    </div>
+
     <h2>Les lieux d'Izmir</h2>
     <div class="liste-lieux">
       {%- for l in carte_izmir.lieux %}
       <div>
         <b>{{ l.nom }}</b>
-        {%- if l.texte %} - {{ l.texte }}{% endif %} {%- if l.lien %}
+        {%- if l.texte %} — {{ l.texte }}{% endif %}
+        {%- if l.lien %}
         <a href="{{ l.lien }}">{{ l.lien_texte or "En savoir plus" }} →</a>
         {%- endif %}
       </div>
       {%- endfor %}
     </div>
+    <p>
+      Pour tout savoir sur la ville : <a href="/univers/">La ville d'Izmir</a>,
+      <a href="/univers/clans/">ses clans</a> et
+      <a href="/univers/lois/">ses lois</a>.
+    </p>
   </section>
 </div>
