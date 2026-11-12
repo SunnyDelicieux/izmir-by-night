@@ -1,81 +1,57 @@
 # La barre de navigation en haut des pages.
 # Une entrée avec « url » est un lien direct ; une entrée avec « colonnes » est un menu déroulant.
-# Rangée par ordre d'importance, de gauche à droite (et dans chaque menu, les colonnes aussi) :
-#   Ambiance : les rencontres (les pages les plus visitées), le journal, le tarot
-#   Galerie  : en lien direct
-#   Univers  : les repères (chronologie, cartes), les personnages, puis les pages du wiki
-#   Jouer    : le système et les séances, puis la création (moins utile maintenant)
+# Le logo « İzmir by Night », à gauche, ramène à l'accueil (/).
+# Rangée pour une campagne en cours, de gauche à droite :
+#   Izmir      : tout ce qu'on consulte en jouant (carte, personnages, chronologie, wiki)
+#   Rencontres : les pages d'ambiance, les plus visitées
+#   Galerie    : en lien direct
+#   Jouer      : la table et le système, puis ce qui servait avant la campagne (un lien par sujet)
+# Le Journal (/ambiance/journal/) n'est pas dans le menu tant qu'il est vide : pour le remettre,
+# ajoute « - texte: Journal » et « url: /ambiance/journal/ » dans la colonne de ton choix.
 
-- titre: Hub
-  url: /
-
-- titre: Ambiance
+- titre: Izmir
   colonnes:
-    - titre: Rencontres
+    - titre: Explorer
       liens:
-        - texte: Inga (Factions)
-          url: /ambiance/inga/
-        - texte: Atam (Archives)
-          url: /ambiance/archives/
-        - texte: Nebetta (Elysium)
+        - texte: Carte
+          url: /univers/map/
+        - texte: Personnages
+          url: /personnages/
+        - texte: Relations
+          url: /outils/relations/
+        - texte: Chronologie
+          url: /univers/chronologie/
+    - titre: Savoir
+      liens:
+        - texte: La ville
+          url: /univers/
+        - texte: Les clans
+          url: /univers/clans/
+        - texte: Les lois
+          url: /univers/lois/
+        - texte: Tout le wiki
+          url: /univers/toutes-les-pages/
+
+- titre: Rencontres
+  colonnes:
+    - titre: Les lieux
+      liens:
+        - texte: L'Elysium (Nebetta)
           url: /ambiance/elysium/
-    - titre: À lire, à voir
+        - texte: Les Archives (Atam)
+          url: /ambiance/archives/
+        - texte: Chez Inga (factions)
+          url: /ambiance/inga/
+    - titre: Et aussi
       liens:
-        - texte: Journal
-          url: /ambiance/journal/
         - texte: Tarot
           url: /outils/tarot/
 
 - titre: Galerie
   url: /galerie/
 
-- titre: Univers
-  colonnes:
-    - titre: Repères
-      liens:
-        - texte: Chronologie
-          url: /univers/chronologie/
-        - texte: Carte d'Izmir
-          url: /outils/carte/
-        - texte: Carte de la région
-          url: /univers/map/
-    - titre: Personnages
-      liens:
-        - texte: Tous les personnages
-          url: /personnages/
-        - texte: Relations
-          url: /outils/relations/
-    - titre: La ville
-      liens:
-        - texte: La ville d'Izmir
-          url: /univers/
-        - texte: Les lois
-          url: /univers/lois/
-        - texte: Index du wiki
-          url: /univers/toutes-les-pages/
-    - titre: Les clans
-      liens:
-        - texte: Tous les clans
-          url: /univers/clans/
-        - texte: Brujah
-          url: /univers/brujah/
-        - texte: Toreador
-          url: /univers/toreador/
-        - texte: Tremere
-          url: /univers/tremere/
-        - texte: Ventrue
-          url: /univers/ventrue/
-
 - titre: Jouer
   colonnes:
-    - titre: Système
-      liens:
-        - texte: Factions
-          url: /jouer/factions/
-        - texte: Ressources
-          url: /jouer/ressources/
-        - texte: Entreprises
-          url: /jouer/entreprises/
     - titre: À la table
       liens:
         - texte: Calendrier
@@ -84,17 +60,19 @@
           url: /jouer/lignes-et-voiles/
         - texte: Alchemy
           url: /outils/alchemy/
-    - titre: Création
+    - titre: Système
       liens:
-        - texte: Création de personnage
+        - texte: Factions
+          url: /jouer/factions/
+        - texte: Ressources
+          url: /jouer/ressources/
+        - texte: Entreprises
+          url: /jouer/entreprises/
+    - titre: Avant la campagne
+      liens:
+        - texte: Création
           url: /jouer/creation/
-        - texte: Les groupes
-          url: /jouer/groupes/
-        - texte: Les objectifs
-          url: /jouer/objectifs/
-        - texte: Les PNJ
-          url: /jouer/pnj/
-        - texte: Création du clan
-          url: /jouer/creation-du-clan/
-        - texte: La culture de clan
-          url: /jouer/clan/
+        - texte: Le projet
+          url: /jouer/le-projet/
+        - texte: Coulisses
+          url: /hub/

@@ -1,0 +1,166 @@
+/* L'accueil du site (src/index.njk) : le calendrier, les tuiles et les nouveautés.
+   Le reste de la page (cadres, titres, couleurs) vient de /css/izmir.css. */
+
+/* le chat est écrit après le contenu dans la page, mais affiché à gauche sur ordinateur */
+.accueil .sidebar {
+  order: -1;
+}
+
+/* ─────────── le calendrier ─────────── */
+.accueil-calendrier {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--iz-box);
+  border: 1px solid var(--iz-accent-dim);
+  border-radius: var(--iz-radius);
+  transition: 0.2s ease;
+}
+
+.accueil-calendrier b {
+  color: var(--iz-accent);
+  font: italic 18px var(--iz-font-title);
+  letter-spacing: 1px;
+}
+
+.accueil-calendrier span {
+  color: var(--iz-text-soft);
+  font-size: 13px;
+}
+
+.accueil-calendrier:hover {
+  border-color: var(--iz-accent);
+  background: var(--iz-box-soft);
+}
+
+/* ─────────── les tuiles ─────────── */
+.tuiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.tuile {
+  position: relative;
+  display: block;
+  aspect-ratio: 7 / 4;
+  overflow: hidden;
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  background: var(--iz-deep);
+  transition: 0.2s ease;
+}
+
+.tuile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+/* le texte, en bas de l'image, sur un dégradé sombre pour rester lisible */
+.tuile-texte {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 10px 8px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.88) 62%);
+}
+
+.tuile b {
+  display: block;
+  color: #f3e6cc;
+  font: italic 17px var(--iz-font-title);
+  letter-spacing: 0.5px;
+}
+
+.tuile small {
+  display: block;
+  margin-top: 2px;
+  color: #d8c7a4;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  line-height: 1.25;
+}
+
+.tuile:hover,
+.tuile:focus-visible {
+  border-color: var(--iz-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--iz-drop-shadow);
+}
+
+.tuile:hover img,
+.tuile:focus-visible img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* ─────────── les nouveautés ─────────── */
+.accueil-nouveautes {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
+.accueil-nouveautes .date-label {
+  color: var(--iz-muted);
+  font-family: monospace;
+}
+
+.accueil-suite {
+  display: inline-block;
+  margin-top: 8px;
+  font: italic 14px var(--iz-font-title);
+}
+
+/* ─────────── ce qui servait avant la campagne ─────────── */
+.accueil-retrait {
+  text-align: center;
+  color: var(--iz-muted);
+  font-size: 12px;
+}
+
+/* ─────────── la bande de blinkies ─────────── */
+.blinkie-scroll {
+  overflow: hidden;
+  width: 100%;
+}
+
+.blinkie-scroll-inner {
+  display: inline-flex;
+  gap: 6px;
+  white-space: nowrap;
+  animation: blinkie-march 20s linear infinite;
+}
+
+@keyframes blinkie-march {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─────────── sur téléphone ─────────── */
+@media (max-width: 768px) {
+  /* le contenu d'abord, le chat après */
+  .accueil .sidebar {
+    order: 0;
+  }
+
+  .tuiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* la grande image du coin ne passe pas par-dessus les tuiles */
+  body:has(.accueil)::before {
+    display: none;
+  }
+}
