@@ -6,31 +6,35 @@ css: [/css/izmir.css, /css/accueil.css]
 # sa page (lien) et son image (une image d'environ 560 × 320 pixels, dans src/img/accueil/).
 tuiles:
   - titre: La carte
-    texte: La ville d'Izmir et sa région
+    texte: Izmir, ses lieux, ses zones
     lien: /univers/map/#izmir
     image: /img/accueil/carte.webp
   - titre: Les personnages
-    texte: Les pages wiki de chaque personnage
+    texte: Qui est qui en ville
     lien: /personnages/
     image: /img/accueil/personnages.webp
   - titre: L'Elysium
-    texte: Nebetta, et la rumeur de la semaine
+    texte: Nebetta et les rumeurs de la semaine
     lien: /ambiance/elysium/
     image: /img/accueil/elysium.webp
   - titre: Les Archives
-    texte: Les archives publique de Smyrne
+    texte: Atam et les dossiers de Smyrne
     lien: /ambiance/archives/
     image: /img/accueil/archives.webp
   - titre: Chez Inga
-    texte: Les infos sur les factions (WIP)
+    texte: Le Sabbat, les Anarchs, les Sétites
     lien: /ambiance/inga/
     image: /img/accueil/inga.webp
   - titre: La chronologie
-    texte: L'histoire de Smyrne
+    texte: L'histoire de Smyrne, date par date
     lien: /univers/chronologie/
     image: /img/accueil/chronologie.webp
 ---
-
+{#- L'accueil du site (adresse : /), pensé pour une campagne en cours :
+      le calendrier, les tuiles vers les pages les plus utiles, puis les dernières nouveautés.
+    Les tuiles sont dans l'en-tête de ce fichier ; les nouveautés dans src/_data/nouveautes.yaml.
+    La présentation du projet (l'ancien accueil) est maintenant dans src/jouer/le-projet.html,
+    et le blog « yap » dans src/hub/index.njk. Le style de cette page : src/css/accueil.css. -#}
 <div class="page-wrap accueil">
 
   <!-- Container starts -->
@@ -77,20 +81,17 @@ tuiles:
       {%- endfor %}
     </nav>
 
-<div> /!\ J'ai fuck up le supabase, jusqu'au 26/11, il n'est plus possible de se connecter, de voir le calendrier in game ni d'avoir les rumeurs de Nebetta. Sry ! :3</div>
-
     <!-- les 5 dernières nouveautés -->
     <div class="note accueil-nouveautes">
       <div class="title">quoi de neuf ?</div>
       <ul class="list">
-        {%- for n in nouveautes.slice(0, 5) %}
+        {%- for n in nouveautes %}
         <li>
           <span class="date-label">{{ n.date }}</span> ·
           {% if n.lien %}<a href="{{ n.lien }}"{% if n.nouvel_onglet %} target="_blank"{% endif %}>{{ n.texte }}</a>{% else %}{{ n.texte }}{% endif %}
         </li>
         {%- endfor %}
       </ul>
-      <a class="accueil-suite" href="/hub/">toutes les nouveautés →</a>
     </div>
 
     <div class="blinkie-scroll" aria-hidden="true">
@@ -134,7 +135,7 @@ tuiles:
       <!-- PLEASE DON'T REMOVE THE CREDIT "layout made by itinerae" !! Thank you. -->
       <p>
         <b
-          >Layout inspired by
+          >Layout made by
           <a href="https://itinerae.org" target="_blank">Itinerae.</a></b
         >
       </p>

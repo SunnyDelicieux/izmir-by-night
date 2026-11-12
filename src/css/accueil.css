@@ -118,6 +118,21 @@
   letter-spacing: 0.3px;
   line-height: 1.5;
 }
+/* toutes les nouveautés, dans une boîte qui défile */
+.accueil-nouveautes .list {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--iz-accent-dim) transparent;
+}
+.accueil-nouveautes .list::-webkit-scrollbar {
+  width: 8px;
+}
+.accueil-nouveautes .list::-webkit-scrollbar-thumb {
+  background: var(--iz-accent-dim);
+  border-radius: 4px;
+}
 
 .accueil-nouveautes .date-label {
   color: var(--iz-muted);
