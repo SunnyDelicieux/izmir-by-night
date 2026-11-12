@@ -1,12 +1,11 @@
-# La carte d'Izmir : le deuxième niveau de la page Carte (src/univers/map.html), quand on entre dans la ville.
+# La carte d'Izmir : le deuxième niveau de la page Carte (src/univers/map.html).
 # Tout ce qui s'y affiche est dans ce fichier : l'image de fond, les rencontres, les lieux et les zones.
 #
-# POUR TROUVER DES COORDONNÉES : dans Google Maps, clic droit sur l'endroit, puis clic sur les deux nombres
-# en haut du petit menu (ex. « 38.4189, 27.1287 ») : ils sont copiés. Le premier est « lat », le deuxième « lon ».
+# POUR TROUVER DES COORDONNÉES : dans Google Maps, clic droit sur l'endroit,
+# puis clic sur les deux nombres en haut du petit menu.
+# Le premier est « lat », le deuxième « lon ».
 
-# L'image de fond. Enregistre ta capture Google Maps sous src/img/map-izmir.webp (le nord en haut).
-# Les bords ci-dessous sont calés sur TA capture (celle avec l'aéroport, Gaziemir, Urla, Bornova).
-# Si tout est un peu décalé après tes premiers points, ajuste ces 4 nombres (pas les points).
+# L'image de fond.
 image: /img/map-izmir.webp
 bords:
   ouest: 26.68
@@ -14,13 +13,12 @@ bords:
   nord: 38.58
   sud: 38.23
 
-# ───────────────────────────────────────────────────────────────────────────────────────────────
-# LES RENCONTRES : les pages d'ambiance. Elles sont toujours en bas de la carte, en boutons.
-#   nom, qui : le lieu et le personnage qu'on y rencontre
-#   lien : la page d'ambiance
-#   icone : la petite image ronde
-#   lat, lon : (facultatif) si tu les ajoutes, la rencontre apparaît AUSSI sur la carte, à cet endroit.
-#              Elles n'y sont pas encore : enlève le « # » devant lat et lon et mets les vraies coordonnées.
+# ─────────────────────────────────────────────────────────────────────────────
+# LES RENCONTRES
+# Les pages d'ambiance, toujours affichées en bas de la carte, en boutons.
+# lat et lon sont facultatifs : s'ils sont renseignés, la rencontre apparaît
+# également sur la carte.
+
 rencontres:
   - nom: L'Elysium
     qui: Nebetta
@@ -43,14 +41,12 @@ rencontres:
     # lat: 38.4189
     # lon: 27.1287
 
-# ───────────────────────────────────────────────────────────────────────────────────────────────
-# LES LIEUX : les points de la carte. Au survol (ou au toucher), un panneau s'ouvre.
-#   nom : le nom du lieu
-#   lat, lon : ses coordonnées
-#   texte : (facultatif) une phrase ou deux
-#   lien, lien_texte : (facultatif) la page du site qui en parle, et le texte du lien
-#   personnages : (facultatif) qui on y croise : les noms des fichiers des fiches, sans .html (comme dans origines.yaml)
-# Seulement ce qui est public ! Ceux de départ viennent tous de pages du wiki ; leur position est approximative.
+# ─────────────────────────────────────────────────────────────────────────────
+# LES LIEUX
+# Les points de la carte. Au survol (ou au toucher), un panneau s'ouvre.
+# personnages : noms des fichiers des fiches, sans .html.
+# Seulement les informations publiques.
+
 lieux:
   - nom: Tour Marmara
     lat: 38.4522
@@ -72,7 +68,7 @@ lieux:
   - nom: Konak
     lat: 38.4180
     lon: 27.1340
-    texte: Le coeur du domaine Torador.
+    texte: Le coeur du domaine Toreador.
     personnages: [nafissa]
 
   - nom: Ancien quartier arménien
@@ -88,55 +84,52 @@ lieux:
     personnages: [aaron]
 
   - nom: Clinique
-    lat: 38.46532,
+    lat: 38.46532
     lon: 27.22035
     texte: Domaine Tremere.
     personnages: [esen]
 
   - nom: Manoir Enry
-    lat: 38.49409,
+    lat: 38.49409
     lon: 27.10118
     texte: Manoir Enry.
     personnages: [enry]
 
-  - nom: Hotel primogènes
-    lat: 38.39368,
+  - nom: Hôtel des Primogènes
+    lat: 38.39368
     lon: 27.03282
     texte: Le lieu de réunion connu des primogènes.
     personnages: [enry]
 
   - nom: Wayfarer Holding
-    lat: 38.39848,
+    lat: 38.39848
     lon: 27.07651
-    texte: Le siège sociale du groupe Wayfarer.
+    texte: Le siège social du groupe Wayfarer.
     personnages: [mariko, aaron, dimitri, alejandro]
 
   - nom: Bureau du sheriff
-    lat: 38.46735,
+    lat: 38.46735
     lon: 27.12874
     texte: Bureau du sheriff.
     personnages: [baran]
 
   - nom: Jardin de Soteria
-    lat: 38.41156,
+    lat: 38.41156
     lon: 27.20226
     texte: Jardin de Soteria.
     personnages: [maliha, aylin, calliope]
 
- - nom: Elysium
-    lat: 38.41886,
+  - nom: Elysium
+    lat: 38.41886
     lon: 27.12866
     texte: Elysium permanent de Nebetta.
     personnages: [nebetta, louiza, sophia]
 
+# ─────────────────────────────────────────────────────────────────────────────
+# LES ZONES D'INFLUENCE
+# Des formes colorées sur la carte, avec leur légende en dessous.
+# points : contour de la zone, un point par ligne [lat, lon].
+# Il faut au moins 3 points, dans l'ordre du contour.
+# Pas besoin de répéter le premier point à la fin.
 
-# ───────────────────────────────────────────────────────────────────────────────────────────────
-# LES ZONES D'INFLUENCE : des formes colorées sur la carte, avec leur légende en dessous.
-#   nom : le nom de la zone
-#   qui : à qui elle est (affiché dans la légende)
-#   couleur : sa couleur (ex. "#b3423a" ; garde les guillemets)
-#   lien : (facultatif) la page du site qui en parle
-#   points : le contour de la zone, un point par ligne : [lat, lon]. Il faut au moins 3 points,
-#            dans l'ordre où on ferait le tour de la zone. Pas besoin de répéter le premier à la fin.
-# Celles de départ viennent du wiki ; leur contour est approximatif, à redessiner.
 zones:
