@@ -1,11 +1,3 @@
-# La carte d'Izmir : le deuxième niveau de la page Carte (src/univers/map.html), quand on entre dans la ville.
-# Tout ce qui s'y affiche est dans ce fichier : l'image de fond, les rencontres, les lieux et les zones.
-#
-# POUR TROUVER DES COORDONNÉES : dans Google Maps, clic droit sur l'endroit, puis clic sur les deux nombres
-# en haut du petit menu (ex. « 38.4189, 27.1287 ») : ils sont copiés. Le premier est « lat », le deuxième « lon ».
-
-# L'image de fond. Pour mettre ta propre carte : remplace le fichier src/img/map-izmir.webp
-# (le nord en haut) et écris ici les bords de ton image, en degrés.
 image: /img/map-izmir.webp
 bords:
   ouest: 26.96 # la longitude du bord gauche
@@ -42,87 +34,39 @@ rencontres:
     # lat: 38.4189
     # lon: 27.1287
 
-# ───────────────────────────────────────────────────────────────────────────────────────────────
-# LES LIEUX : les points de la carte. Au survol (ou au toucher), un panneau s'ouvre.
-#   nom : le nom du lieu
-#   lat, lon : ses coordonnées
-#   texte : (facultatif) une phrase ou deux
-#   lien, lien_texte : (facultatif) la page du site qui en parle, et le texte du lien
-#   personnages : (facultatif) qui on y croise : les noms des fichiers des fiches, sans .html (comme dans origines.yaml)
-# Seulement ce qui est public ! Ceux de départ viennent tous de pages du wiki ; leur position est approximative.
-lieux:
-  - nom: Tour Marmara
-    lat: 38.4522
-    lon: 27.1766
-    texte: Quarante étages à Bayraklı. Le siège du groupe Marmara, et les appartements d'Arslan.
-    lien: /personnages/kerem/
-    lien_texte: La fiche d'Arslan
-    personnages: [kerem]
 
+
+lieux:
   - nom: Université Égéenne
-    lat: 38.4575
-    lon: 27.2280
     texte: Domaine Tremere de 1955 à 2009. Depuis, le clan n'y garde qu'une zone d'influence.
     lien: /univers/tremere/
     lien_texte: L'histoire des Tremere
-    personnages: [eylem, mariko]
-
-  - nom: Le port
-    lat: 38.4450
-    lon: 27.1495
-    texte: Tenu, avec Bayraklı, par le réseau Uyanık Göz.
-    lien: /univers/brujah/uyanik/
-    lien_texte: Uyanık Göz
+    personnages: [eleni, gabriel, serpent]
 
   - nom: Konak
-    lat: 38.4180
-    lon: 27.1340
     texte: Le centre de la ville. C'est là que sont ses plus grands musées.
-    lien: /univers/#culture
-    lien_texte: La ville d'Izmir
+    lien: /univers/toreador/
+    lien_texte: L'histoire des Toreador
 
   - nom: Ancien quartier arménien
-    lat: 38.4250
-    lon: 27.1440
     texte: L'église Saint-Stepannos, cœur du quartier et domaine Nosferatu, a brûlé avec lui en 1922.
     lien: /personnages/atam/
     lien_texte: La fiche d'Atam
     personnages: [atam]
 
-# ───────────────────────────────────────────────────────────────────────────────────────────────
-# LES ZONES D'INFLUENCE : des formes colorées sur la carte, avec leur légende en dessous.
-#   nom : le nom de la zone
-#   qui : à qui elle est (affiché dans la légende)
-#   couleur : sa couleur (ex. "#b3423a" ; garde les guillemets)
-#   lien : (facultatif) la page du site qui en parle
-#   points : le contour de la zone, un point par ligne : [lat, lon]. Il faut au moins 3 points,
-#            dans l'ordre où on ferait le tour de la zone. Pas besoin de répéter le premier à la fin.
-# Celles de départ viennent du wiki ; leur contour est approximatif, à redessiner.
-zones:
-  - nom: Le port et Bayraklı
-    qui: Uyanık Göz (Brujah)
-    couleur: "#b3423a"
-    lien: /univers/brujah/uyanik/
-    points:
-      - [38.4380, 27.1470]
-      - [38.4490, 27.1450]
-      - [38.4510, 27.1560]
-      - [38.4470, 27.1680]
-      - [38.4560, 27.1690]
-      - [38.4700, 27.1560]
-      - [38.4810, 27.1620]
-      - [38.4800, 27.1850]
-      - [38.4620, 27.1900]
-      - [38.4450, 27.1850]
-      - [38.4360, 27.1640]
+  - nom: Manoir Enry
+    texte: Un manoir batit au coeur du domaine Brujah.
+    lien: /personnages/enri/
+    lien_texte: La fiche d'Enry
+    personnages: [enri]
 
-  - nom: Université Égéenne
-    qui: Tremere (zone d'influence)
-    couleur: "#6a4c93"
+  - nom: Tour Marmara
+    texte: Quarante étages à Bayraklı. Le siège du groupe Marmara, et les appartements d'Arslan.
+    lien: /personnages/kerem/
+    lien_texte: La fiche d'Arslan
+    personnages: [kerem]
+
+  - nom: Wayfarer Clinic
+    texte: La clinique privé de l'Ouest de la ville, controlé par les Tremere..
     lien: /univers/tremere/
-    points:
-      - [38.4660, 27.2160]
-      - [38.4680, 27.2340]
-      - [38.4560, 27.2420]
-      - [38.4480, 27.2300]
-      - [38.4520, 27.2170]
+    lien_texte: Histoire tremere

@@ -49,8 +49,6 @@ carte_izmir.bords %}
           </div>
           {% endfor %}
 
-          <!-- les points : les lieux de la chronique -->
-          <!-- Izmir : ce point ouvre la carte de la ville -->
           <a
             class="lieu vers-izmir"
             href="#izmir"
@@ -113,11 +111,11 @@ carte_izmir.bords %}
 
     <iframe
       src="https://www.google.com/maps/d/embed?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA&ehbc=2E312F&noprof=1"
-      width="640"
-      height="480"
+      width="840"
+      height="680"
     ></iframe>
 
-    <!-- les rencontres, toujours là, en bas de la carte -->
+
     <nav class="carte-portes" aria-label="Les rencontres">
       {%- for r in carte_izmir.rencontres %}
       <a href="{{ r.lien }}">
@@ -127,35 +125,17 @@ carte_izmir.bords %}
       {%- endfor %}
     </nav>
 
-    <div class="carte-legende">
-      <label class="carte-option"
-        ><input type="checkbox" id="voir-zones" checked /> les zones
-        d'influence</label
-      >
-      {%- for z in carte_izmir.zones %}
-      <span class="zone-legende"
-        ><span class="puce" style="background: {{ z.couleur }}"></span> {%- if
-        z.lien %}<a href="{{ z.lien }}">{{ z.nom }}</a>{% else %}{{ z.nom }}{%
-        endif %}{% if z.qui %} — {{ z.qui }}{% endif %}</span
-      >
-      {%- endfor %}
-    </div>
-
     <h2>Les lieux d'Izmir</h2>
     <div class="liste-lieux">
       {%- for l in carte_izmir.lieux %}
       <div>
         <b>{{ l.nom }}</b>
-        {%- if l.texte %} — {{ l.texte }}{% endif %} {%- if l.lien %}
+        {%- if l.texte %} - {{ l.texte }}{% endif %} {%- if l.lien %}
         <a href="{{ l.lien }}">{{ l.lien_texte or "En savoir plus" }} →</a>
         {%- endif %}
       </div>
       {%- endfor %}
     </div>
-    <p>
-      Pour tout savoir sur la ville : <a href="/univers/">La ville d'Izmir</a>,
-      <a href="/univers/clans/">ses clans</a> et
-      <a href="/univers/lois/">ses lois</a>.
-    </p>
+
   </section>
 </div>
