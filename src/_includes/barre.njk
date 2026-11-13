@@ -1,7 +1,7 @@
 {#- La barre de navigation en haut des pages. Les liens du menu sont dans src/_data/menu.yaml. -#}
 <nav id="iz-barre" aria-label="Navigation du site" data-pagefind-ignore="all">
   <div class="izb-ligne">
-    <a class="izb-titre" href="/accueil/"><img class="izb-logo" src="/img/wiki/icon/logo-128.png" alt="">İzmir by Night</a>
+    <a class="izb-titre" href="/"><img class="izb-logo" src="/img/wiki/icon/logo-128.png" alt="">İzmir by Night</a>
     <div class="izb-menu">
     {%- for entree in menu %}
       {%- if entree.colonnes %}
@@ -11,9 +11,17 @@
         {%- for colonne in entree.colonnes %}
           <div class="navi-col">
             <div class="navi-titre">{{ colonne.titre }}</div>
+          {%- if colonne.seances %}
+            <ul class="navi-seances">
+            {%- for s in seances %}
+              <li><span class="navi-date">{{ s.date }}</span> {{ s.quoi }}</li>
+            {%- endfor %}
+            </ul>
+          {%- else %}
           {%- for lien in colonne.liens %}
             <a href="{{ lien.url }}">{{ lien.texte }}</a>
           {%- endfor %}
+          {%- endif %}
           </div>
         {%- endfor %}
         </div>

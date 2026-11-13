@@ -1,80 +1,160 @@
 ---
-titre: Map de la région
+titre: La carte
 layout: wiki.njk
-css: [/espace-joueur/compte.css, /css/cartes.css]
+css: [/espace-joueur/compte.css, /css/cartes.css, /css/plan.css]
 js: [/espace-joueur/lecteur.js, /js/carte.js]
 ---
 
-<div id="contents">
-  <div class="carte-cadre">
-    <div class="carte">
-      <img
-        src="/img/map.webp"
-        alt="Carte de la Méditerranée et du Moyen-Orient"
-      />
+{#- La carte, sur deux niveaux : la région, puis Izmir quand on clique sur la
+ville. La région : les triangles sont dans src/_data/origines.yaml, les points
+sont écrits plus bas. Izmir : tout est dans src/_data/carte_izmir.yaml (image,
+rencontres, lieux, zones). Le zoom, le glisser et le passage d'un niveau à
+l'autre sont dans src/js/carte.js ; le style dans src/css/plan.css. L'adresse
+/univers/map/#izmir ouvre directement la carte d'Izmir. -#} {%- set b =
+carte_izmir.bords %}
 
-      <!-- les triangles  -->
-      {% for o in origines %} {% set haut = ((52.93 - o.lat) / 35.2 * 100) |
-      round(2) %}
-      <div
-        class="lieu origine"
-        tabindex="0"
-        style="left: {{ ((o.lon + 13.07) / 104 * 100) | round(2) }}%; top: {{ haut }}%"
-      >
-        <div
-          class="{{ 'large' if o.personnages | length > 6 }} {{ 'vers-le-haut' if haut > 75 }}"
-        >
-          <b>{{ o.lieu }}</b>
-          {% for id in o.personnages %}{% set carte = id |
-          carteDe(liste_personnages) %}{% include "carte-personnage.njk" %}{%
-          endfor %}
+<div id="contents">
+  <!-- les deux onglets -->
+  <div class="carte-niveaux">
+    <button type="button" data-niveau="region" class="actif">La région</button>
+    <button type="button" data-niveau="izmir">Izmir</button>
+  </div>
+
+  <!-- ══════════ NIVEAU 1 : LA RÉGION ══════════ -->
+  <section class="carte-vue" data-niveau="region">
+    <div class="carte-boite">
+      <div class="carte-cadre">
+        <div class="carte">
+          <img
+            src="/img/map.webp"
+            alt="Carte de la Méditerranée et du Moyen-Orient"
+          />
+
+          <!-- les triangles : d'où viennent les personnages -->
+          {% for o in origines %} {% set haut = ((52.93 - o.lat) / 35.2 * 100) |
+          round(2) %}
+          <div
+            class="lieu origine"
+            tabindex="0"
+            style="left: {{ ((o.lon + 13.07) / 104 * 100) | round(2) }}%; top: {{ haut }}%"
+          >
+            <div
+              class="{{ 'large' if o.personnages | length > 6 }} {{ 'vers-le-haut' if haut > 75 }}"
+            >
+              <b>{{ o.lieu }}</b>
+              {% for id in o.personnages %}{% set carte = id |
+              carteDe(liste_personnages) %}{% include "carte-personnage.njk"
+              %}{% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+
+          <!-- les points : les lieux de la chronique -->
+          <!-- Izmir : ce point ouvre la carte de la ville -->
+          <a
+            class="lieu vers-izmir"
+            href="#izmir"
+            style="left: 38.7%; top: 41.2%"
+            ><span>Izmir : entrer dans la ville</span></a
+          >
+          <a
+            class="lieu"
+            href="/univers/istanbul/"
+            style="left: 40.4%; top: 33.9%"
+            ><span>Istanbul</span></a
+          >
+          <span class="lieu" tabindex="0" style="left: 35.4%; top: 42.5%"
+            ><span>Athènes</span></span
+          >
+          <span class="lieu" tabindex="0" style="left: 42.6%; top: 65%"
+            ><span>Le Caire</span></span
+          >
+          <a
+            class="lieu"
+            href="/ambiance/factions/cache/iasy.pdf"
+            style="left: 78.2%; top: 27.4%"
+            onclick="
+              event.preventDefault();
+              izmirLecteur.open({ title: 'Iasy', url: this.href, kind: 'pdf' });
+            "
+            ><span>Iasy</span></a
+          >
+
+          <a
+            class="lieu"
+            href="/ambiance/archives/docs/tolede.pdf"
+            style="left: 8%; top: 37.4%"
+            onclick="
+              event.preventDefault();
+              izmirLecteur.open({
+                title: 'Tolède',
+                url: this.href,
+                kind: 'pdf',
+              });
+            "
+            ><span>Tolède</span></a
+          >
+
+          <span class="lieu" tabindex="0" style="left: 7.8%; top: 53.7%"
+            ><span>Fès</span></span
+          >
+          <span class="lieu" tabindex="0" style="left: 8%; top: 42.8%"
+            ><span>Cordoue</span></span
+          >
+          <span class="lieu" tabindex="0" style="left: 28.3%; top: 13.4%"
+            ><span>Vienne</span></span
+          >
+          <span class="lieu" tabindex="0" style="left: 44.2%; top: 36.9%"
+            ><span>Ankara</span></span
+          >
+          <span class="lieu" tabindex="0" style="left: 58.3%; top: 35.6%"
+            ><span>Azerbaïdjan</span></span
+          >
         </div>
       </div>
-      {% endfor %}
-
-      <!-- les points : les lieux de la chronique -->
-      <a class="lieu" href="/univers/" style="left: 38.7%; top: 41.2%"
-        ><span>Izmir</span></a
-      >
-      <a class="lieu" href="/univers/istanbul/" style="left: 40.4%; top: 33.9%"
-        ><span>Istanbul</span></a
-      >
-      <span class="lieu" tabindex="0" style="left: 35.4%; top: 42.5%"
-        ><span>Athènes</span></span
-      >
-      <span class="lieu" tabindex="0" style="left: 42.6%; top: 65%"
-        ><span>Le Caire</span></span
-      >
-      <a
-        class="lieu"
-        href="/ambiance/factions/cache/iasy.pdf"
-        style="left: 78.2%; top: 27.4%"
-        onclick="
-          event.preventDefault();
-          izmirLecteur.open({ title: 'Iasy', url: this.href, kind: 'pdf' });
-        "
-        ><span>Iasy</span></a
-      >
-      <span class="lieu" tabindex="0" style="left: 7.8%; top: 53.7%"
-        ><span>Fès</span></span
-      >
-      <span class="lieu" tabindex="0" style="left: 8%; top: 42.8%"
-        ><span>Cordoue</span></span
-      >
-      <span class="lieu" tabindex="0" style="left: 28.3%; top: 13.4%"
-        ><span>Vienne</span></span
-      >
-      <span class="lieu" tabindex="0" style="left: 44.2%; top: 36.9%"
-        ><span>Ankara</span></span
-      >
-      <span class="lieu" tabindex="0" style="left: 58.3%; top: 35.6%"
-        ><span>Azerbaïdjan</span></span
-      >
     </div>
-  </div>
-  <p>
-    ● les infos sur une ville &nbsp;·&nbsp; ▲ la source des personnages,
-    parfoisleur ville de naissance parfois l'endroit d'ou ils disent venir, et
-    ou ils ont été rattachés.
-  </p>
+
+    <p class="carte-legende">
+      <span class="puce izmir"></span> Izmir : clique pour entrer dans la ville
+      &nbsp;·&nbsp; ● les infos sur une ville &nbsp;·&nbsp; ▲ la source des
+      personnages : parfois leur ville de naissance, parfois l'endroit d'où ils
+      disent venir, et où ils ont été rattachés.
+    </p>
+  </section>
+
+  <!-- ══════════ NIVEAU 2 : IZMIR ══════════ -->
+  {#- La carte d'Izmir, c'est ta Google My Map : elle contient tout (lieux, domaines,
+      quartiers) et ses propres calques pour filtrer. Pour la changer : carte_domaines
+      dans src/_data/carte_izmir.yaml. -#}
+  <section class="carte-vue" data-niveau="izmir" hidden>
+    <!-- un titre invisible : la recherche du site s'en sert pour ouvrir directement la carte d'Izmir -->
+    <h2 id="izmir" class="carte-titre-cache">Izmir</h2>
+
+    <div class="carte-embed">
+      <iframe
+        src="{{ carte_izmir.carte_domaines }}"
+        title="Carte d'Izmir"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <p class="carte-embed-lien">
+      <a
+        href="{{ carte_izmir.carte_domaines | replace('/embed?', '/viewer?') }}"
+        target="_blank"
+        rel="noopener"
+        >Ouvrir la carte en grand ↗</a
+      >
+    </p>
+
+    <!-- les rencontres : les pages d'ambiance, en boutons -->
+    <nav class="carte-portes" aria-label="Les rencontres">
+      {%- for r in carte_izmir.rencontres %}
+      <a href="{{ r.lien }}">
+        <img src="{{ r.icone }}" alt="" />
+        <span><b>{{ r.nom }}</b><small>{{ r.qui }}</small></span>
+      </a>
+      {%- endfor %}
+    </nav>
+  </section>
 </div>

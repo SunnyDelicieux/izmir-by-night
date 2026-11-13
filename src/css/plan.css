@@ -1,0 +1,517 @@
+/* La page Carte (src/univers/map.html) : les onglets, la carte d'Izmir, ses lieux, ses zones et ses rencontres.
+   La base des cartes (le cadre, les points, les triangles) est dans /css/wiki.css.
+   Les données de la carte d'Izmir sont dans src/_data/carte_izmir.yaml. */
+
+/* ─────────── les onglets « La région » / « Izmir » ─────────── */
+.carte-niveaux {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.carte-niveaux button {
+  padding: 7px 18px;
+  color: var(--iz-button-text);
+  background: var(--iz-button);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  font: italic 16px var(--iz-font-title);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.carte-niveaux button:hover {
+  color: var(--iz-button-text-hover);
+  border-color: var(--iz-border-hover);
+}
+
+.carte-niveaux button.actif {
+  color: var(--iz-accent);
+  border-color: var(--iz-accent);
+  background: var(--iz-button-active);
+}
+
+/* ─────────── le cadre de la carte ─────────── */
+.carte-vue[hidden] {
+  display: none;
+}
+
+/* le titre « Izmir » : là pour la recherche du site, mais pas affiché */
+.carte-titre-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* ─────────── les 3 couches : Lieux / Domaines / Quartiers ─────────── */
+.carte-couches {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.carte-couches button {
+  padding: 5px 16px;
+  color: var(--iz-button-text);
+  background: var(--iz-button);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  font: italic 15px var(--iz-font-title);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.carte-couches button:hover {
+  color: var(--iz-button-text-hover);
+  border-color: var(--iz-border-hover);
+}
+
+.carte-couches button.actif {
+  color: var(--iz-accent);
+  border-color: var(--iz-accent);
+  background: var(--iz-button-active);
+}
+
+/* une seule couche visible à la fois */
+.carte-vue .couche {
+  display: none;
+}
+.carte-vue.voir-lieux .couche-lieux,
+.carte-vue.voir-domaines .couche-domaines,
+.carte-vue.voir-quartiers .couche-quartiers {
+  display: block;
+}
+/* la légende reste en ligne (flex) quand elle est affichée */
+.carte-vue.voir-domaines .carte-legende.couche-domaines,
+.carte-vue.voir-quartiers .carte-legende.couche-quartiers {
+  display: flex;
+}
+
+/* la bulle qui montre le nom d'un domaine / quartier au survol */
+.carte-infobulle {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  max-width: 250px;
+  padding: 6px 10px;
+  color: var(--iz-text);
+  background: var(--iz-panel);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  transform: translate(-50%, calc(-100% - 14px));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.carte-infobulle b {
+  display: block;
+  font: italic 15px var(--iz-font-title);
+  color: var(--iz-accent);
+  white-space: nowrap;
+}
+.carte-infobulle span {
+  display: block;
+  margin-top: 3px;
+  font: 13px/1.35 var(--iz-font);
+  color: var(--iz-text-soft);
+}
+.carte-infobulle[hidden] {
+  display: none;
+}
+
+/* la Google My Map (vue Domaines) : un cadre qui garde ses proportions */
+.carte-embed {
+  aspect-ratio: 21 / 17;
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  overflow: hidden;
+  background: var(--iz-sunken);
+}
+.carte-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.carte-embed-lien {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+/* les quartiers : un simple contour */
+.carte-quartiers {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.carte-quartiers polygon {
+  fill: var(--iz-accent);
+  fill-opacity: 0.08;
+  stroke: var(--iz-accent);
+  stroke-width: 1.5px;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 4 3;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: auto;
+  cursor: help;
+  transition: fill-opacity 0.15s ease;
+}
+.carte-quartiers polygon:hover {
+  fill-opacity: 0.22;
+}
+
+.carte-boite {
+  position: relative;
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  overflow: hidden;
+  background: #5f9cc6;
+}
+
+/* les boutons + et −, en haut à droite */
+.carte-zoom {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 6px var(--iz-drop-shadow);
+}
+
+.carte-zoom button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--iz-button-text);
+  background: var(--iz-bar);
+  border: none;
+  font: 20px/1 var(--iz-font);
+  cursor: pointer;
+}
+
+.carte-zoom button + button {
+  border-top: 1px solid var(--iz-border-strong);
+}
+
+.carte-zoom button:hover {
+  color: var(--iz-accent-hover);
+}
+
+/* on entre dans la ville : la région plonge vers Izmir, puis la nouvelle carte arrive */
+.carte-cadre.plonge {
+  overflow: hidden;
+}
+
+.carte-cadre.plonge .carte {
+  transform: scale(7);
+  opacity: 0;
+  transition:
+    transform 0.45s ease-in,
+    opacity 0.45s ease-in;
+}
+
+.carte-cadre.arrive .carte {
+  animation: carte-arrive 0.45s ease-out;
+}
+
+@keyframes carte-arrive {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+/* ─────────── la région : le point d'Izmir, qui ouvre la ville ─────────── */
+.carte .lieu.vers-izmir {
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+  background: #a0303c;
+  box-shadow: 0 0 0 0 rgba(160, 48, 60, 0.7);
+  animation: carte-appel 2.2s ease-out infinite;
+}
+
+@keyframes carte-appel {
+  to {
+    box-shadow: 0 0 0 16px rgba(160, 48, 60, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carte .lieu.vers-izmir {
+    animation: none;
+  }
+}
+
+/* ─────────── Izmir : les zones d'influence ─────────── */
+.carte-zones {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.carte-zones polygon {
+  fill: var(--couleur);
+  fill-opacity: 0.28;
+  stroke: var(--couleur);
+  stroke-width: 2px;
+  stroke-dasharray: 6 4;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: auto;
+  cursor: help;
+  transition: fill-opacity 0.15s ease;
+}
+.carte-zones polygon:hover {
+  fill-opacity: 0.45;
+}
+
+/* une zone souterraine (domaine Ventrue) : hachurée, pour qu'on voie qu'elle passe en dessous */
+.carte-zones polygon.souterrain {
+  fill: url(#hachures-souterrain);
+  fill-opacity: 1;
+  stroke-dasharray: 2 2.5;
+}
+.carte-zones polygon.souterrain:hover {
+  fill-opacity: 1;
+  stroke-width: 3px;
+}
+
+.carte .zone-nom {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  padding-bottom: 3px;
+  max-width: 14em;
+  text-align: center;
+  font: italic bold 14px/1.15 var(--iz-font-title);
+  color: color-mix(in srgb, var(--couleur), #000 45%);
+  text-shadow:
+    0 0 3px #fff,
+    0 0 3px #fff,
+    0 0 6px #fff;
+  pointer-events: none;
+}
+
+/* la case « les zones d'influence » décochée */
+.sans-zones .carte-zones,
+.sans-zones .zone-nom {
+  display: none;
+}
+
+/* ─────────── Izmir : les lieux ─────────── */
+.carte .lieu.endroit {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* le panneau d'un lieu : son nom, son texte, ses personnages, son lien */
+.carte .lieu.endroit > div {
+  top: 100%;
+  bottom: auto;
+  width: 240px;
+  margin-top: 6px;
+  padding: 10px 12px;
+  white-space: normal;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--iz-text);
+  background: var(--iz-panel);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+/* un lieu dans le bas de la carte : son panneau s'ouvre vers le haut */
+.carte .lieu.endroit > div.vers-le-haut {
+  top: auto;
+  bottom: 100%;
+  margin: 0 0 6px;
+}
+
+.carte .lieu.endroit b {
+  display: block;
+  font: italic 17px var(--iz-font-title);
+  color: var(--iz-accent);
+}
+
+.carte .lieu.endroit p {
+  margin: 4px 0 6px;
+}
+
+.carte .lieu.endroit .card {
+  padding: 3px 0;
+  gap: 8px;
+}
+
+.carte .lieu.endroit .card .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.carte .lieu.endroit .content {
+  text-align: left;
+}
+
+.carte .lieu.endroit .suite {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* une rencontre placée sur la carte : un rond avec son image */
+.carte .lieu.porte {
+  width: 38px;
+  height: 38px;
+  z-index: 1;
+  border: 2px solid var(--iz-accent);
+  background: var(--iz-deep) center / cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.carte .lieu.porte > span {
+  bottom: 44px;
+}
+
+/* ─────────── Izmir : les rencontres, en bas de la carte ─────────── */
+.carte-portes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  grid-auto-flow: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.carte-portes a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  min-width: 0;
+  color: var(--iz-text);
+  text-decoration: none;
+  background: var(--iz-box);
+  border: 1px solid var(--iz-border-strong);
+  border-radius: var(--iz-radius);
+  transition: 0.2s ease;
+}
+
+.carte-portes a:hover {
+  border-color: var(--iz-accent);
+  transform: translateY(-2px);
+}
+
+.carte-portes img {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--iz-accent-dim);
+}
+
+.carte-portes b {
+  display: block;
+  font: italic 17px var(--iz-font-title);
+  color: var(--iz-accent);
+}
+
+.carte-portes small {
+  font-size: 13px;
+  color: var(--iz-muted);
+}
+
+/* ─────────── sous la carte : la légende et la liste des lieux ─────────── */
+.carte-legende {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--iz-text-soft);
+}
+
+div.carte-legende {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 18px;
+}
+
+.carte-legende .puce {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  border-radius: 3px;
+  vertical-align: -1px;
+}
+
+.carte-legende .puce.izmir {
+  border-radius: 50%;
+  background: #a0303c;
+  border: 2px solid #fff;
+}
+
+/* la pastille « souterrain » de la légende : hachurée */
+.carte-legende .puce.hachure {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--iz-muted) 0 2px,
+    transparent 2px 4px
+  );
+  border: 1px solid var(--iz-border-strong);
+}
+
+.carte-hint {
+  color: var(--iz-muted);
+  font-style: italic;
+}
+
+.carte-option {
+  cursor: pointer;
+}
+
+.liste-lieux {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.liste-lieux b {
+  color: var(--iz-accent);
+}
+
+.liste-lieux a {
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .carte-portes {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+  }
+
+  .liste-lieux {
+    grid-template-columns: 1fr;
+  }
+
+  .carte .lieu.endroit > div {
+    width: 200px;
+  }
+}

@@ -201,6 +201,25 @@
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+/* la liste sobre des prochaines séances (menu Jouer) */
+.izb-menu .navi-seances {
+  margin: 0;
+  padding: 0 8px;
+  list-style: none;
+}
+.izb-menu .navi-seances li {
+  padding: 3px 0;
+  color: var(--iz-text-soft);
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.izb-menu .navi-seances .navi-date {
+  margin-right: 7px;
+  color: var(--iz-accent);
+  font-family: monospace;
+  font-size: 12px;
+}
 .izb-outils {
   flex: none;
   display: flex;

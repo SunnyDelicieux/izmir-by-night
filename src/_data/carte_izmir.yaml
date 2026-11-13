@@ -1,0 +1,31 @@
+# La carte d'Izmir (src/univers/map.html, niveau « Izmir ») : c'est ta Google My Map.
+# Elle contient tout — lieux, domaines, quartiers — et ses propres calques pour filtrer.
+#
+# L'ADRESSE DE LA CARTE. Pour la changer : sur ta My Map → Partager → Intégrer la carte,
+# copie l'adresse du cadre (le « src » de l'iframe) et colle-la ici.
+carte_domaines: "https://www.google.com/maps/d/embed?mid=1VNOzY_BYUN6wipynyJf8XBiTUYO8jUA&ehbc=2E312F&noprof=1"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LES RENCONTRES : les pages d'ambiance, en boutons sous la carte.
+
+rencontres:
+  - nom: L'Elysium
+    qui: Nebetta
+    lien: /ambiance/elysium/
+    icone: /img/wiki/autre/nebetta.png
+    # lat: 38.4189
+    # lon: 27.1287
+
+  - nom: Les Archives
+    qui: Atam
+    lien: /ambiance/archives/
+    icone: /img/wiki/autre/atam.png
+    # lat: 38.4189
+    # lon: 27.1287
+
+  - nom: Chez Inga
+    qui: Inga
+    lien: /ambiance/inga/
+    icone: /img/wiki/autre/inga.png
+    # lat: 38.4189
+    # lon: 27.1287
