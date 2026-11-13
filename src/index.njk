@@ -30,10 +30,33 @@ tuiles:
     lien: /univers/chronologie/
     image: /img/accueil/chronologie.webp
 ---
-
+{#- L'accueil du site (adresse : /), pensé pour une campagne en cours :
+      le calendrier, les tuiles vers les pages les plus utiles, puis les dernières nouveautés.
+    Les tuiles sont dans l'en-tête de ce fichier ; les nouveautés dans src/_data/nouveautes.yaml.
+    La présentation du projet (l'ancien accueil) est maintenant dans src/jouer/le-projet.html,
+    et le blog « yap » dans src/hub/index.njk. Le style de cette page : src/css/accueil.css. -#}
 <div class="page-wrap accueil">
 
-	
+  <!-- Container starts -->
+  <div class="container">
+    <div class="header">
+      <div class="header-inner">
+        <img
+          src="https://i.pinimg.com/originals/52/1e/20/521e20e35e00cfbb7757c74e4c79fc11.gif"
+          alt=""
+          class="icon header-img--nuit"
+          style="width: 200px; height: 80px; object-fit: contain"
+        />
+        <img
+          src="https://i.pinimg.com/originals/bc/5e/b5/bc5eb5c00c26a519749f86c79d617e42.gif"
+          alt=""
+          class="icon header-img--jour"
+          style="width: 200px; height: 80px; object-fit: contain"
+        />
+        <div class="site-name">İzmir by Night</div>
+        <div class="sub-title">un projet de Sunny</div>
+      </div>
+    </div>
 
     <!-- les prochaines séances, affichées directement (données : src/_data/seances.yaml) -->
     <div class="accueil-seances">
