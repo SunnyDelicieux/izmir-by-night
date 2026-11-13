@@ -1,0 +1,13 @@
+{
+  "ltex.language": "fr",
+  "ltex.dictionary": {
+    "fr": [":dictionnaire-izmir.txt"]
+  },
+  "ltex.enabled": ["markdown", "html", "nunjucks"],
+  "files.associations": {
+    "*.njk": "html"
+  },
+  "ltex.disabledRules": {
+    "fr": ["FRENCH_WHITESPACE"]
+  }
+}
