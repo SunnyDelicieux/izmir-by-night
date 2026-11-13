@@ -5,6 +5,18 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sunn/video.webp
+  alt: God keeps trying to make me a divine prophet but i'm not interested
+  tags: [sunny, noncanon, toreador, angelos]
+  desc: God keeps trying to make me a divine prophet but i'm not interested
+- src: sunn/pyjama.webp
+  alt: Lesbians ?????
+  tags: [sunny, canon, toreador, aylin]
+  desc: Lesbians ?????
+- src: sunn/slay.webp
+  alt: Slay, girlypop
+  tags: [sunny, noncanon, toreador, maliha]
+  desc: Slay, girlypop
 - src: sunn/gyaru.webp
   alt: Ah, kawaii !
   tags: [sunny, noncanon, autre, camil]

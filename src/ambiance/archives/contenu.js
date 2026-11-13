@@ -145,6 +145,11 @@ const CLASSEURS = [
             nom: "Charites d'Izmir",
             pdf: "les-charites-d-izmir.pdf",
           },
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Baba Ishak",
+            pdf: "Vengez-nous.pdf",
+          },
         ],
       },
       {
