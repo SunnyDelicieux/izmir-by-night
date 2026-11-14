@@ -5,6 +5,28 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+
+- type: comic
+  title: Patience
+  alt: Patience
+  tags: [yolnir, noncanon, brujah, enry, gabriel]
+  desc: Patience.
+  pages:
+    - src: sunn/1.png
+    - src: sunn/2.png
+    - src: sunn/3.png
+- src: sunn/&à.png
+  alt: Movie review
+  tags: [sunny, noncanon, brujah, tremere, enry, dimitrios]
+  desc: Movie review
+- src: sunn/listen.webp
+  alt: Smoking a cigarette while telling a story, but the story is a complete lie
+  tags: [sunny, noncanon, brujah, baran]
+  desc: Smoking a cigarette while telling a story, but the story is a complete lie
+- src: sunn/VIDEO2.webp
+  alt: Everyone is chasing money, i'm chasing a reason to live
+  tags: [sunny, noncanon, brujah, baran]
+  desc: Everyone is chasing money, i'm chasing a reason to live
 - src: sunn/video.webp
   alt: God keeps trying to make me a divine prophet but i'm not interested
   tags: [sunny, noncanon, toreador, angelos]
