@@ -36,6 +36,11 @@ const CLASSEURS = [
             pdf: "une-legende-vetue-de-noir.pdf",
           },
           {
+            chemise: "vierge-peche.webp",
+            nom: "Le conquérant",
+            pdf: "conquerant.pdf",
+          },
+          {
             chemise: "vierge-rose-gauche.webp",
             nom: "Enluminure des cavaliers",
             images: [
@@ -149,6 +154,11 @@ const CLASSEURS = [
             chemise: "vierge-rose-gauche.webp",
             nom: "Baba Ishak",
             pdf: "Vengez-nous.pdf",
+          },
+          {
+            chemise: "vierge-peche.webp",
+            nom: "Nomination du fléau",
+            pdf: "fléau.pdf",
           },
         ],
       },

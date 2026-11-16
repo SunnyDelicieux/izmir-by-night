@@ -5,7 +5,18 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
-
+- src: sunn/PAINTING.webp
+  alt: Le conquérant
+  tags: [sunny, canon, ventrue, conquérant]
+  desc: Portrait du conquérant par Alkis
+- src: yolnir/miau.mp4
+  alt: d
+  tags: [yolnir, noncanon, nosferatu, tremere, sophia, tarik, atam, inga]
+  desc: Mother, am i ugly ?
+- src: sunn/KUSHIEDDD.webp
+  alt: Kushi bestial form
+  tags: [sunny, canon, autre, kushi]
+  desc: Forme de la bete de Kushi
 - type: comic
   title: Patience
   alt: Patience
