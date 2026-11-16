@@ -1,173 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Les Archives de Smyrne</title>
-	<link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
-	<link rel="stylesheet" href="archives.css">
-	<!-- le lien « ← carte », en haut à gauche -->
-	<script src="/js/retour.js" defer></script>
-	<style>
-		body {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-			overflow: hidden;
-		}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Les Archives de Smyrne</title>
+    <link rel="icon" type="image/png" href="/img/wiki/icon/logo-128.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+    <link rel="stylesheet" href="archives.css" />
+    <!-- le lien « ← carte », en haut à gauche -->
+    <script src="/js/retour.js" defer></script>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+      }
 
-		.salle {
-			position: relative;
-			width: min(100vw, 177.78vh);
-			aspect-ratio: 16 / 9;
-			overflow: hidden;
-			container-type: inline-size;
-		}
+      .salle {
+        position: relative;
+        width: min(100vw, 177.78vh);
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        container-type: inline-size;
+      }
 
-		.salle > * {
-			position: absolute;
-		}
+      .salle > * {
+        position: absolute;
+      }
 
-		.lumiere {
-			inset: 0;
-			pointer-events: none;
-			background: radial-gradient(ellipse 45% 60% at 55% 8%, rgba(255, 236, 200, 0.1), transparent 70%),
-				radial-gradient(ellipse 80% 90% at 55% 30%, transparent 50%, rgba(0, 0, 0, 0.6));
-		}
+      .lumiere {
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            ellipse 45% 60% at 55% 8%,
+            rgba(255, 236, 200, 0.1),
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 80% 90% at 55% 30%,
+            transparent 50%,
+            rgba(0, 0, 0, 0.6)
+          );
+      }
 
-		.sol {
-			left: 0;
-			right: 0;
-			top: 89%;
-			bottom: 0;
-			background: linear-gradient(#1b1714, #0b0908);
-			border-top: 0.25cqw solid #2a241f;
-		}
+      .sol {
+        left: 0;
+        right: 0;
+        top: 89%;
+        bottom: 0;
+        background: linear-gradient(#1b1714, #0b0908);
+        border-top: 0.25cqw solid #2a241f;
+      }
 
-		.tableau {
-			padding: 0;
-			background: none;
-			border: none;
-			cursor: pointer;
-			filter: brightness(0.7) drop-shadow(0 0.5cqw 0.8cqw rgba(0, 0, 0, 0.7));
-			transition: transform 0.15s ease, filter 0.15s ease;
-		}
+      .tableau {
+        padding: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        filter: brightness(0.7) drop-shadow(0 0.5cqw 0.8cqw rgba(0, 0, 0, 0.7));
+        transition:
+          transform 0.15s ease,
+          filter 0.15s ease;
+      }
 
-		.tableau img {
-			display: block;
-			height: 100%;
-		}
+      .tableau img {
+        display: block;
+        height: 100%;
+      }
 
-		.salle > .classeur {
-			bottom: 11%;
-			height: 52%;
-			transform: translateX(-50%);
-			filter: drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
-		}
+      .salle > .classeur {
+        bottom: 11%;
+        height: 52%;
+        transform: translateX(-50%);
+        filter: drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
+      }
 
-		.salle > .classeur .nom {
-			position: absolute;
-			bottom: 100%;
-			left: 50%;
-			transform: translateX(-50%);
-			padding: 0.4cqi 2cqi;
-			white-space: nowrap;
-			font: 500 5.4cqi var(--mono);
-			color: #1c1a17;
-			background: #cfc7b4;
-		}
+      .salle > .classeur .nom {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.4cqi 2cqi;
+        white-space: nowrap;
+        font: 500 5.4cqi var(--mono);
+        color: #1c1a17;
+        background: #cfc7b4;
+      }
 
-		.bureau {
-			left: -20%;
-			bottom: 0.5%;
-			height: 33%;
-			filter: brightness(0.8) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
-		}
+      .bureau {
+        left: -20%;
+        bottom: 0.5%;
+        height: 33%;
+        filter: brightness(0.8) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
+      }
 
-		.armoire {
-			top: 4%;
-			height: 87%;
-			filter: brightness(0.62) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
-		}
+      .armoire {
+        top: 4%;
+        height: 87%;
+        filter: brightness(0.62) drop-shadow(0 0.8cqw 1cqw rgba(0, 0, 0, 0.8));
+      }
 
-		.objet {
-			padding: 0;
-			border: none;
-			background: none;
-			cursor: pointer;
-			transform: translate(-50%, -100%);
-			filter: brightness(0.75) drop-shadow(0 0.4cqw 0.5cqw rgba(0, 0, 0, 0.8));
-			transition: transform 0.15s ease, filter 0.15s ease;
-		}
+      .objet {
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transform: translate(-50%, -100%);
+        filter: brightness(0.75) drop-shadow(0 0.4cqw 0.5cqw rgba(0, 0, 0, 0.8));
+        transition:
+          transform 0.15s ease,
+          filter 0.15s ease;
+      }
 
-		.objet img {
-			display: block;
-			height: 100%;
-		}
+      .objet img {
+        display: block;
+        height: 100%;
+      }
 
-		.objet:hover,
-		.objet:focus-visible {
-			transform: translate(-50%, -100%) scale(1.05);
-			filter: brightness(0.95) drop-shadow(0 0.4cqw 0.5cqw rgba(0, 0, 0, 0.8));
-			outline: none;
-		}
+      .objet:hover,
+      .objet:focus-visible {
+        transform: translate(-50%, -100%) scale(1.05);
+        filter: brightness(0.95) drop-shadow(0 0.4cqw 0.5cqw rgba(0, 0, 0, 0.8));
+        outline: none;
+      }
 
-		.tableau:hover,
-		.tableau:focus-visible {
-			transform: scale(1.02);
-			filter: brightness(0.85) drop-shadow(0 0.5cqw 0.8cqw rgba(0, 0, 0, 0.7));
-			outline: none;
-		}
-	</style>
-</head>
-<body>
+      .tableau:hover,
+      .tableau:focus-visible {
+        transform: scale(1.02);
+        filter: brightness(0.85) drop-shadow(0 0.5cqw 0.8cqw rgba(0, 0, 0, 0.7));
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="salle mur" id="salle">
+      <div class="sol"></div>
 
-<main class="salle mur" id="salle">
-	<div class="sol"></div>
+      <button
+        class="tableau"
+        style="left: 3%; top: 6%; height: 31%"
+        data-texte="test"
+      >
+        <img src="img/conquerant.webp" alt="Portrait du conquérant" />
+      </button>
+      <button
+        class="tableau"
+        style="left: 20%; top: 4.5%; height: 27%"
+        data-texte="test"
+      >
+        <img src="img/vue-de-smyrne.webp" alt="Vue de Smyrne" />
+      </button>
 
-	<button class="tableau" style="left: 3%; top: 6%; height: 31%" data-texte="test">
-		<img src="/src/galerie/dessins/sunn/PAINTING.webp" alt="Portrait du conquérant">
-	</button>
-	<button class="tableau" style="left: 20%; top: 4.5%; height: 27%" data-texte="test">
-		<img src="img/vue-de-smyrne.webp" alt="Vue de Smyrne">
-	</button>
+      <img class="bureau" src="img/bureau.webp" alt="" />
+      <img class="armoire" src="img/etagere.webp" alt="" style="left: 73%" />
+      <img class="armoire" src="img/etagere.webp" alt="" style="left: 94.8%" />
 
-	<img class="bureau" src="img/bureau.webp" alt="">
-	<img class="armoire" src="img/etagere.webp" alt="" style="left: 73%">
-	<img class="armoire" src="img/etagere.webp" alt="" style="left: 94.8%">
+      <button
+        class="objet"
+        style="left: 80%; top: 39.6%; height: 7.5%"
+        data-texte="test"
+      >
+        <img src="img/astrolabe.webp" alt="Un astrolabe" />
+      </button>
+      <button
+        class="objet"
+        style="left: 87.1%; top: 39.6%; height: 9%"
+        data-texte="test"
+      >
+        <img
+          src="img/statue-croissant.webp"
+          alt="Une statuette au croissant de lune"
+        />
+      </button>
+      <button
+        class="objet"
+        style="left: 80%; top: 50.9%; height: 7%"
+        data-texte="test"
+      >
+        <img
+          src="img/mosaique.webp"
+          alt="Une mosaïque : un aigle et des serpents"
+        />
+      </button>
+      <button
+        class="objet"
+        style="left: 87.1%; top: 50.9%; height: 8%"
+        data-texte="test"
+      >
+        <img src="img/vase.webp" alt="Une jarre peinte" />
+      </button>
+      <button
+        class="objet"
+        style="left: 80%; top: 62.1%; height: 8.5%"
+        data-texte="test"
+      >
+        <img src="img/statue-bronze.webp" alt="Une statuette de bronze" />
+      </button>
+      <button
+        class="objet"
+        style="left: 87.1%; top: 62.1%; height: 8%"
+        data-texte="test"
+      >
+        <img src="img/aiguiere.webp" alt="Une aiguière" />
+      </button>
 
-	<button class="objet" style="left: 80%; top: 39.6%; height: 7.5%" data-texte="test"><img src="img/astrolabe.webp" alt="Un astrolabe"></button>
-	<button class="objet" style="left: 87.1%; top: 39.6%; height: 9%" data-texte="test"><img src="img/statue-croissant.webp" alt="Une statuette au croissant de lune"></button>
-	<button class="objet" style="left: 80%; top: 50.9%; height: 7%" data-texte="test"><img src="img/mosaique.webp" alt="Une mosaïque : un aigle et des serpents"></button>
-	<button class="objet" style="left: 87.1%; top: 50.9%; height: 8%" data-texte="test"><img src="img/vase.webp" alt="Une jarre peinte"></button>
-	<button class="objet" style="left: 80%; top: 62.1%; height: 8.5%" data-texte="test"><img src="img/statue-bronze.webp" alt="Une statuette de bronze"></button>
-	<button class="objet" style="left: 87.1%; top: 62.1%; height: 8%" data-texte="test"><img src="img/aiguiere.webp" alt="Une aiguière"></button>
+      <div class="lumiere"></div>
+    </main>
 
-	<div class="lumiere"></div>
-</main>
+    <script src="contenu.js"></script>
+    <script src="commun.js"></script>
+    <script>
+      const salle = document.getElementById("salle");
 
-<script src="contenu.js"></script>
-<script src="commun.js"></script>
-<script>
-	const salle = document.getElementById("salle");
+      salle.querySelectorAll("[data-texte]").forEach((el) => {
+        el.onclick = () => dire(el.dataset.texte, el.querySelector("img")?.src);
+      });
 
-	salle.querySelectorAll("[data-texte]").forEach((el) => {
-		el.onclick = () => dire(el.dataset.texte, el.querySelector("img")?.src);
-	});
-
-	const PLACES_CLASSEURS = [32, 47, 62];
-	const lumiere = salle.querySelector(".lumiere");
-	CLASSEURS.forEach((classeur, c) => {
-		const meuble = document.createElement("div");
-		meuble.style.left = PLACES_CLASSEURS[c] + "%";
-		const aller = (t) => (location.href = `classeur.html?classeur=${c + 1}&tiroir=${t + 1}`);
-		construireClasseur(meuble, classeur, classeur.decor ? null : aller);
-		meuble.insertAdjacentHTML("beforeend", `<span class="nom">${echapper(classeur.nom)}</span>`);
-		salle.insertBefore(meuble, lumiere);
-	});
-</script>
-
-</body>
+      const PLACES_CLASSEURS = [32, 47, 62];
+      const lumiere = salle.querySelector(".lumiere");
+      CLASSEURS.forEach((classeur, c) => {
+        const meuble = document.createElement("div");
+        meuble.style.left = PLACES_CLASSEURS[c] + "%";
+        const aller = (t) =>
+          (location.href = `classeur.html?classeur=${c + 1}&tiroir=${t + 1}`);
+        construireClasseur(meuble, classeur, classeur.decor ? null : aller);
+        meuble.insertAdjacentHTML(
+          "beforeend",
+          `<span class="nom">${echapper(classeur.nom)}</span>`,
+        );
+        salle.insertBefore(meuble, lumiere);
+      });
+    </script>
+  </body>
 </html>

@@ -36,7 +36,7 @@ const CLASSEURS = [
             pdf: "une-legende-vetue-de-noir.pdf",
           },
           {
-            chemise: "vierge-peche.webp",
+            chemise: "vierge-bleue.webp",
             nom: "Le conquérant",
             pdf: "conquerant.pdf",
           },
