@@ -5,6 +5,10 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sunn/atratinus.webp
+  alt: Atratinus
+  tags: [sunny, canon, ventrue, atratinus]
+  desc: Portrait d'Atratinus par Alkis
 - src: sunn/PAINTING.webp
   alt: Le conquérant
   tags: [sunny, canon, ventrue, conquérant]
