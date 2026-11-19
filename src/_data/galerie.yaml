@@ -5,6 +5,58 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sunn/candle.png
+  alt: Candle
+  tags: [sunny, noncanon, nosferatu, inga]
+  desc: you have to break the pattern today, or the cycle will repeat tomorrow
+- src: sunn/ahmet.png
+  alt: Walking in the city
+  tags: [sunny, canon, brujah, ahmet]
+  desc: Walking in the city
+- src: sunn/test.png
+  alt: Portrait du prophete
+  tags: [sunny, canon, autre, prophete]
+  desc: Sketch du portrait du prophete par Alkis
+- src: sunn/prophete.png
+  alt: Portrait du prophete
+  tags: [sunny, canon, autre, prophete]
+  desc: Portrait du prophete par Alkis
+- src: yolnir/cda.mp4
+  alt: Car work
+  tags: [yolnir, noncanon, ventrue, toreador, aylin, dimitri, video]
+  desc: Car work
+- src: sunn/LIGHTSHOW.png
+  alt: Light
+  tags: [sunny, canon, autre, meryem]
+  desc: Light show
+- src: sunn/trois.mp4
+  alt: Trois
+  tags: [sunny, canon, ventrue, autre, brujah, shahar, emine, zaya, video]
+  desc: The dragon has three heads
+- src: sunn/doodle.png
+  alt: Trio
+  tags: [sunny, canon, halloween]
+  desc: Doodle d'halloween
+- src: sunn/leader.png
+  alt: Trio
+  tags: [sunny, canon, ventrue, autre, brujah, shahar, emine, zaya]
+  desc: Portrait de Zaya, Emine et Shahar par Alkis
+- type: comic
+  title: Zaya
+  alt: Zaya commission
+  tags: [parmesancheese, canon, ventrue, zaya]
+  desc: Zaya commission de parmesancheese.
+  pages:
+    - src: commi/zayaposter.png
+    - src: commi/zaya.png
+- src: sunn/soteria.png
+  alt: Soteria
+  tags: [sunny, canon, toreador, soteria]
+  desc: Portrait de Soteria par Alkis
+- src: yolnir/nok.mp4
+  alt: Not ok
+  tags: [yolnir, noncanon, nosferatu, inga, video]
+  desc: Inga Binga
 - src: sunn/atratinus.webp
   alt: Atratinus
   tags: [sunny, canon, ventrue, atratinus]
@@ -15,7 +67,7 @@
   desc: Portrait du conquérant par Alkis
 - src: yolnir/miau.mp4
   alt: d
-  tags: [yolnir, noncanon, nosferatu, tremere, sophia, tarik, atam, inga]
+  tags: [yolnir, noncanon, nosferatu, tremere, sophia, tarik, atam, inga, video]
   desc: Mother, am i ugly ?
 - src: sunn/KUSHIEDDD.webp
   alt: Kushi bestial form
