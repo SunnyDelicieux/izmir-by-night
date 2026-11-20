@@ -5,6 +5,10 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: yolnir/nebetta.png
+  alt: Nebetta
+  tags: [yolnir, spice, nosferatu, nebetta]
+  desc: you have to break the pattern today, or the cycle will repeat tomorrow
 - src: sunn/candle.png
   alt: Candle
   tags: [sunny, noncanon, nosferatu, inga]

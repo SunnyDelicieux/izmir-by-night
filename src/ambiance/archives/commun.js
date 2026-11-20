@@ -15,19 +15,15 @@ function construireClasseur(element, classeur, cliquer) {
 		if (!TIROIRS[i]) return;
 		const bouton = document.createElement(cliquer ? "button" : "span");
 		bouton.className = "tiroir";
-		if (cliquer) bouton.title = [classeur.nom, tiroir.etiquette].filter(Boolean).join(" · ");
+		if (cliquer) bouton.title = `${classeur.nom} · ${tiroir.etiquette}`;
 		bouton.style.top = TIROIRS[i].haut + "%";
 		bouton.style.height = TIROIRS[i].hauteur + "%";
-		bouton.innerHTML = `<img src="img/tiroir-${i + 1}.png" alt=""><span class="etiquette${tiroir.etiquette.length > 11 ? " longue" : ""}">${echapper(tiroir.etiquette)}</span>`;
+		bouton.innerHTML = `<img src="img/tiroir-${i + 1}.png" alt=""><span class="etiquette">${echapper(tiroir.etiquette)}</span>`;
 		if (cliquer) bouton.onclick = () => cliquer(i);
 		element.append(bouton);
 	});
 }
 
-
-/* =========================
-   LA BOÎTE DE DIALOGUE, et l'objet en grand le temps du dialogue
-========================= */
 
 function dire(texte, image) {
 	let boite = document.getElementById("dialogue");
@@ -56,9 +52,6 @@ function fermerDialogue() {
 }
 
 
-/* =========================
-   UN DOCUMENT PAR-DESSUS LA PAGE : un PDF, ou une image
-========================= */
 
 function fenetre() {
 	let boite = document.getElementById("fenetre");
@@ -98,11 +91,6 @@ addEventListener("keydown", (e) => {
 	if (e.key === "Escape") fermerDialogue();
 });
 
-
-/* =========================
-   LA LUMIÈRE QUI VACILLE : toutes les 6 à 14 secondes, elle baisse un instant, deux fois
-   (pas si l'ordinateur demande moins d'animations)
-========================= */
 
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 	const ombre = document.createElement("div");
