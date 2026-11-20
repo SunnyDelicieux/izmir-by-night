@@ -49,6 +49,11 @@ const CLASSEURS = [
               "cavalier-kushi.webp",
             ],
           },
+            {
+            chemise: "vierge-peche.webp",
+            nom: "Atratinus l'Inconnu",
+            pdf: "atratinus.pdf",
+          },
         ],
       },
       {
