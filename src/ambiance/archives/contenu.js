@@ -29,12 +29,12 @@ const CLASSEURS = [
           {
             chemise: "vierge-rose.webp",
             nom: "Notre Dame du jardin",
-            pdf: "NotreDamedujardin.pdf",
+            pdf: "NotreDameduJardin.pdf",
           },
           {
             chemise: "vierge-rose-gauche.webp",
             nom: "Dis-mois, Dis-moi",
-            pdf: "dis-moidis-moi.pdf",
+            pdf: "Dis-moidis-moi.pdf",
           },
         ],
       },
