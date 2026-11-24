@@ -51,11 +51,11 @@
   desc: Walking in the city
 - src: sunn/tests.png
   alt: Portrait du prophete
-  tags: [sunny, canon, autre, prophete]
+  tags: [sunny, canon, autre, le prophète]
   desc: Sketch du portrait du prophete par Alkis
 - src: sunn/prophete.png
   alt: Portrait du prophete
-  tags: [sunny, canon, autre, prophete]
+  tags: [sunny, canon, autre, le prophète]
   desc: Portrait du prophete par Alkis
 - src: yolnir/cda.mp4
   alt: Car work
@@ -210,7 +210,7 @@
     - src: sun/kushibeast.webp
 - src: sun/raffied.webp
   alt: Raffied.
-  tags: [sunny, canon, ventrue, raffi]
+  tags: [sunny, canon, ventrue, raffi, soteria]
   desc: Blind devotion.
 - src: sun/eylem.webp
   alt: Piercing the veil.
