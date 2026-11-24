@@ -26,6 +26,16 @@ const CLASSEURS = [
             nom: "Enluminure de Soteria",
             image: "soteria-et-atratinus.webp",
           },
+          {
+            chemise: "vierge-rose.webp",
+            nom: "Notre Dame du jardin",
+            pdf: "NotreDamedujardin.pdf",
+          },
+          {
+            chemise: "vierge-rose-gauche.webp",
+            nom: "Dis-mois, Dis-moi",
+            pdf: "dis-moidis-moi.pdf",
+          },
         ],
       },
       {
@@ -49,7 +59,7 @@ const CLASSEURS = [
               "cavalier-kushi.webp",
             ],
           },
-            {
+          {
             chemise: "vierge-peche.webp",
             nom: "Atratinus l'Inconnu",
             pdf: "atratinus.pdf",

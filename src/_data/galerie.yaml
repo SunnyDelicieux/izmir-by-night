@@ -5,6 +5,38 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sunn/TROIS.webp
+  alt: 1930
+  tags: [sunny, canon, tremere, dimitrios, sophia, esen]
+  desc: Welcome to Smyrne
+- src: sunn/iconorgeuil.webp
+  alt: Orgeuil
+  tags: [sunny, canon, autre, kushi]
+  desc: Orgeuil
+- src: sunn/orgeuil.webp
+  alt: Orgeuil
+  tags: [sunny, canon, autre, kushi, spice]
+  desc: Orgeuil
+- src: yolnir/ines_aylin.webp
+  alt: Ines Aylin
+  tags: [sunny, noncanon, toreador, aylin, ines, spice]
+  desc: Ines Aylin
+- src: sunn/stefano.webp
+  alt: Stefano
+  tags: [sunny, canon, autre, stefano]
+  desc: Stefano, Nebetta's friend
+- src: sunn/La_ou_porte_le_vent.webp
+  alt: La_ou_porte_le_vent
+  tags: [sunny, canon, brujah, enry, gemistos]
+  desc: La_ou_porte_le_vent
+- src: sunn/ZACKYZAC.webp
+  alt: Zac
+  tags: [sunny, noncanon, nosferatu, tremere, inga, zacharias]
+  desc: Inga is drowning
+- src: sunn/maxmaxxing.webp
+  alt: Max
+  tags: [sunny, canon, toreador, max]
+  desc: ma(x)licieux
 - src: yolnir/nebetta.png
   alt: Nebetta
   tags: [yolnir, spice, nosferatu, nebetta]
