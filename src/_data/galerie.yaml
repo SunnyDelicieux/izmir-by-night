@@ -5,6 +5,10 @@
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 # Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: sunn/paintingg.webp
+  alt: Painting
+  tags: [sunny, canon, toreador, calliope, tremere]
+  desc: Les racines sous la terre.
 - src: sunn/TROIS.webp
   alt: 1930
   tags: [sunny, canon, tremere, dimitrios, sophia, esen]
