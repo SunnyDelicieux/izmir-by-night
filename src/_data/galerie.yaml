@@ -3,8 +3,23 @@
 #   alt  : la description courte de l'image ; desc : le texte sous l'image agrandie
 #   tags : les filtres où il apparaît (voir galerie_filtres.yaml), « spice » pour le flouter
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
-# Les miniatures et les grandes images sont fabriquées automatiquement à la construction du site.
 
+- src: autriche/la_rose_le_roi.webp
+  alt: La rose Le roi
+  tags: [autriche, canon, autre, toreador, ventrue, mitrades, kushi]
+  desc: La rose Le roi
+- src: sunn/reverie.webp
+  alt: Reveries
+  tags: [sunny, canon, ismini]
+  desc: Reveries
+- src: sunn/marcusforain.webp
+  alt: L'eveil d'un ancien
+  tags: [sunny, canon, marcus forain]
+  desc: L'eveil d'un ancien.
+- src: sunn/flapper.webp
+  alt: Flapper
+  tags: [sunny, canon, ventrue, alita]
+  desc: Flapper Fanny.
 - src: sunn/paintingg.webp
   alt: Painting
   tags: [sunny, canon, toreador, calliope, tremere]
