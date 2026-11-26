@@ -177,6 +177,9 @@
           role: Anarch
     - titre: Sabbat
       cartes:
+        - fiche: marcus
+          nom: "Marcus Forain"
+          role: Le bourreau
         - fiche: pretre
           nom: "Le pretre"
           role: L'infant de Scylla

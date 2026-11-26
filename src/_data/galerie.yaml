@@ -10,11 +10,11 @@
   desc: La rose Le roi
 - src: sunn/reverie.webp
   alt: Reveries
-  tags: [sunny, canon, ismini]
+  tags: [sunny, canon, ismini, tremere]
   desc: Reveries
 - src: sunn/marcusforain.webp
   alt: L'eveil d'un ancien
-  tags: [sunny, canon, marcus forain]
+  tags: [sunny, canon, marcus]
   desc: L'eveil d'un ancien.
 - src: sunn/flapper.webp
   alt: Flapper
@@ -217,7 +217,7 @@
   desc: Getting started.
 - src: sun/socialpower.png
   alt: Social power.
-  tags: [sunny, canon, ventrue, tremere, nosferatu, sofia, louiza, nebetta]
+  tags: [sunny, canon, ventrue, tremere, nosferatu, sophia, louiza, nebetta]
   desc: Social power.
 - type: comic
   title: The chase
