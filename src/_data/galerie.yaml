@@ -148,6 +148,14 @@
   alt: Kushi bestial form
   tags: [sunny, canon, autre, kushi]
   desc: Forme de la bete de Kushi
+- src: sunn/coterie.png
+  alt: Coterie
+  tags: [sunny, canon, lasombra, toreador, tremere, eleni, nour, kejal]
+  desc: Sketch coterie des jeunes pousses
+- src: sunn/image.png
+  alt: Coterie
+  tags: [sunny, canon, toreador, tremere, eleni, aylin]
+  desc: Sketch duo du jardin
 - type: comic
   title: Patience
   alt: Patience
@@ -319,6 +327,10 @@
   alt: zacharias.
   tags: [sunny, canon, essil, brujah, halloween]
   desc: The ol'mighty one
+- src: sun/cem.webp
+  alt: cem fantome.
+  tags: [sunny, canon, ventrue, cem]
+  desc: Boo
 - src: sun/zacharias.webp
   alt: zacharias.
   tags: [sunny, canon, zacharias, tremere, halloween]
@@ -530,7 +542,7 @@
   desc: wif wif
 - src: sunny/uyanik.webp
   alt: Nour.
-  tags: [sunny, canon, uyanik, emre yilmaz]
+  tags: [sunny, canon, uyanik, emre]
   desc: Water downed stare
 - src: sunny/YELLOW.webp
   alt: Nour.
