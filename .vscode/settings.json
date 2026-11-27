@@ -9,5 +9,18 @@
   },
   "ltex.disabledRules": {
     "fr": ["FRENCH_WHITESPACE"]
-  }
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/_site/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/_site": true
+  },
+  "files.exclude": {
+    "**/_site": true
+  },
+  "json.schemaDownload.enable": false,
+  "npm.autoDetect": "off"
 }
