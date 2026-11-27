@@ -4,6 +4,26 @@
 #   tags : les filtres où il apparaît (voir galerie_filtres.yaml), « spice » pour le flouter
 #   pages : pour une BD ou une série, la liste des images (à la place de src)
 
+- src: commi/kushi.webp
+  alt: Forme bestiale de kushi
+  tags: [Xylaria, canon, autre, kushi]
+  desc: "Il avait alors l’apparence d’un monstre : son corps déformé, couvert de plumes, il était plus large qu’un ours "
+- src: sunn/raffi.webp
+  alt: Raffi
+  tags: [sunny, canon, ventrue, raffi]
+  desc: Raffi
+- src: sunn/pouced.webp
+  alt: Neutralité
+  tags: [sunny, noncanon, nosferatu, autre, ventrue, atam, kushi, atratinus]
+  desc: Neutralité
+- src: autriche/esclave.webp
+  alt: baba ishak c un ver
+  tags: [autriche, noncanon, baba ishak]
+  desc: Un esclave reste un esclave, même dans ses rêves
+- src: sunn/cocktail.webp
+  alt: Mariko Cocktail party
+  tags: [sunny, noncanon, tremere, mariko]
+  desc: Mariko Cocktail party
 - src: autriche/la_rose_le_roi.webp
   alt: La rose Le roi
   tags: [autriche, canon, autre, toreador, ventrue, mitrades, kushi]
